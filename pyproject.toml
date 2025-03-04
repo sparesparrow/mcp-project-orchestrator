@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-project-orchestrator"
+version = "0.1.0"
+description = "An MCP server to orchestrate software projects with design patterns and automated documentation."
+authors = [
+    {name = "sparesparrow", email = "sparesparrow@gmail.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+keywords = ["MCP", "orchestration", "templates", "design patterns", "software architecture"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.10"
+
+[project.urls]
+Homepage = "https://github.com/sparesparrow/mcp-project-orchestrator"
+Documentation = "https://github.com/sparesparrow/mcp-project-orchestrator/blob/main/README.md"
+
+[project.scripts]
+mcp-project-orchestrator = "src.mcp_project_orchestrator.__main__:main"
+
+[tool.mcp_project_orchestrator]
+description = "An MCP server to orchestrate software projects, utilizing standardized templates and design patterns."
+
+[tool.mcp_project_orchestrator.config]
+communication_protocol = "JSON-RPC"
+mcp_compliance = true 

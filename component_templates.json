@@ -1,0 +1,156 @@
+{
+  "component_templates": [
+    {
+      "name": "FactoryComponent",
+      "type": "Factory Method",
+      "description": "Creates objects using the Factory Method.",
+      "mermaid": "Generate a Mermaid diagram for FactoryMethodProject showing the factory, product, and client interactions.",
+      "directory_structure": "Create directories: FactoryMethod/ with subdirectories src, tests, docs.",
+      "file_path": "FactoryMethod/FactoryComponent.js"
+    },
+    {
+      "name": "AbstractFactoryComponent",
+      "type": "Abstract Factory",
+      "description": "Creates related objects without specifying concrete classes.",
+      "mermaid": "Generate a Mermaid diagram for AbstractFactoryProject illustrating families of related objects and their creation process.",
+      "directory_structure": "Create directories: AbstractFactory/ with subdirectories src, tests, docs.",
+      "file_path": "AbstractFactory/AbstractFactoryComponent.js"
+    },
+    {
+      "name": "BuilderComponent",
+      "type": "Builder",
+      "description": "Constructs objects using a step-by-step approach.",
+      "mermaid": "Generate a Mermaid diagram for BuilderProject that shows the step-by-step construction process of complex objects.",
+      "directory_structure": "Create directories: Builder/ with subdirectories src, tests, docs.",
+      "file_path": "Builder/BuilderComponent.js"
+    },
+    {
+      "name": "PrototypeComponent",
+      "type": "Prototype",
+      "description": "Clones existing objects as prototypes.",
+      "mermaid": "Generate a Mermaid diagram for PrototypeProject displaying object cloning and prototype relationships.",
+      "directory_structure": "Create directories: Prototype/ with subdirectories src, tests, docs.",
+      "file_path": "Prototype/PrototypeComponent.js"
+    },
+    {
+      "name": "SingletonComponent",
+      "type": "Singleton",
+      "description": "Manages a single instance across the application.",
+      "mermaid": "Generate a Mermaid diagram for SingletonProject illustrating the single instance and global access point.",
+      "directory_structure": "Create directories: Singleton/ with subdirectories src, tests, docs.",
+      "file_path": "Singleton/SingletonComponent.js"
+    },
+    {
+      "name": "AdapterComponent",
+      "type": "Adapter",
+      "description": "Adapts one interface to another.",
+      "mermaid": "Generate a Mermaid diagram for AdapterProject showing how incompatible interfaces are adapted to work together.",
+      "directory_structure": "Create directories: Adapter/ with subdirectories src, tests, docs.",
+      "file_path": "Adapter/AdapterComponent.js"
+    },
+    {
+      "name": "DecoratorComponent",
+      "type": "Decorator",
+      "description": "Wraps objects to extend functionality.",
+      "mermaid": "Generate a Mermaid diagram for DecoratorProject that shows dynamic addition of behaviors to objects.",
+      "directory_structure": "Create directories: Decorator/ with subdirectories src, tests, docs.",
+      "file_path": "Decorator/DecoratorComponent.js"
+    },
+    {
+      "name": "FacadeComponent",
+      "type": "Facade",
+      "description": "Simplifies interactions with a subsystem.",
+      "mermaid": "Generate a Mermaid diagram for FacadeProject showing a simplified interface versus a complex subsystem.",
+      "directory_structure": "Create directories: Facade/ with subdirectories src, tests, docs.",
+      "file_path": "Facade/FacadeComponent.js"
+    },
+    {
+      "name": "ProxyComponent",
+      "type": "Proxy",
+      "description": "Intermediates access to a real object.",
+      "mermaid": "Generate a Mermaid diagram for ProxyProject demonstrating the surrogate control pattern.",
+      "directory_structure": "Create directories: Proxy/ with subdirectories src, tests, docs.",
+      "file_path": "Proxy/ProxyComponent.js"
+    },
+    {
+      "name": "ChainComponent",
+      "type": "Chain Of Responsibility",
+      "description": "Processes a request through a chain of handlers.",
+      "mermaid": "Generate a Mermaid diagram for ChainOfResponsibilityProject showing the flow of requests through handlers.",
+      "directory_structure": "Create directories: ChainOfResponsibility/ with subdirectories src, tests, docs.",
+      "file_path": "ChainOfResponsibility/ChainComponent.js"
+    },
+    {
+      "name": "CommandComponent",
+      "type": "Command",
+      "description": "Encapsulates requests as objects.",
+      "mermaid": "Generate a Mermaid diagram for CommandProject outlining encapsulated request objects and their invokers.",
+      "directory_structure": "Create directories: Command/ with subdirectories src, tests, docs.",
+      "file_path": "Command/CommandComponent.js"
+    },
+    {
+      "name": "IteratorComponent",
+      "type": "Iterator",
+      "description": "Enables sequential access to collection elements.",
+      "mermaid": "Generate a Mermaid diagram for IteratorProject showing sequential access to a collection.",
+      "directory_structure": "Create directories: Iterator/ with subdirectories src, tests, docs.",
+      "file_path": "Iterator/IteratorComponent.js"
+    },
+    {
+      "name": "MediatorComponent",
+      "type": "Mediator",
+      "description": "Manages communication between objects.",
+      "mermaid": "Generate a Mermaid diagram for MediatorProject showing how components communicate via a mediator.",
+      "directory_structure": "Create directories: Mediator/ with subdirectories src, tests, docs.",
+      "file_path": "Mediator/MediatorComponent.js"
+    },
+    {
+      "name": "MementoComponent",
+      "type": "Memento",
+      "description": "Stores and restores object state.",
+      "mermaid": "Generate a Mermaid diagram for MementoProject illustrating state capture and restoration processes.",
+      "directory_structure": "Create directories: Memento/ with subdirectories src, tests, docs.",
+      "file_path": "Memento/MementoComponent.js"
+    },
+    {
+      "name": "ObserverComponent",
+      "type": "Observer",
+      "description": "Notifies subscribers of state changes.",
+      "mermaid": "Generate a Mermaid diagram for ObserverProject showing one-to-many dependencies between subjects and observers.",
+      "directory_structure": "Create directories: Observer/ with subdirectories src, tests, docs.",
+      "file_path": "Observer/ObserverComponent.js"
+    },
+    {
+      "name": "StateComponent",
+      "type": "State",
+      "description": "Manages state-dependent behavior.",
+      "mermaid": "Generate a Mermaid diagram for StateProject outlining state transitions and behavior changes.",
+      "directory_structure": "Create directories: State/ with subdirectories src, tests, docs.",
+      "file_path": "State/StateComponent.js"
+    },
+    {
+      "name": "StrategyComponent",
+      "type": "Strategy",
+      "description": "Encapsulates interchangeable algorithms.",
+      "mermaid": "Generate a Mermaid diagram for StrategyProject showing interchangeable algorithms and their selection criteria.",
+      "directory_structure": "Create directories: Strategy/ with subdirectories src, tests, docs.",
+      "file_path": "Strategy/StrategyComponent.js"
+    },
+    {
+      "name": "TemplateMethodComponent",
+      "type": "Template Method",
+      "description": "Defines a skeletal algorithm with overrideable steps.",
+      "mermaid": "Generate a Mermaid diagram for TemplateMethodProject illustrating the skeletal algorithm with customizable steps.",
+      "directory_structure": "Create directories: TemplateMethod/ with subdirectories src, tests, docs.",
+      "file_path": "TemplateMethod/TemplateMethodComponent.js"
+    },
+    {
+      "name": "VisitorComponent",
+      "type": "Visitor",
+      "description": "Separates operations from object structure.",
+      "mermaid": "Generate a Mermaid diagram for VisitorProject showing the separation of operations from object structure.",
+      "directory_structure": "Create directories: Visitor/ with subdirectories src, tests, docs.",
+      "file_path": "Visitor/VisitorComponent.js"
+    }
+  ]
+}
