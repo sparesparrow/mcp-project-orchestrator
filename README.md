@@ -283,11 +283,88 @@ The script:
 
 ### Claude Desktop Integration
 
-To add this MCP server to Claude Desktop:
+To add this MCP server to Claude Desktop, you have two options:
+
+#### Option 1: Using the Setup Script (Recommended)
+
+We provide a convenient setup script that automatically configures Claude Desktop for you:
+
+```bash
+# Make the script executable
+chmod +x scripts/setup_claude_desktop.py
+
+# For Python-based integration (default)
+./scripts/setup_claude_desktop.py
+
+# For Docker-based integration
+./scripts/setup_claude_desktop.py --method docker
+
+# For Podman-based integration
+./scripts/setup_claude_desktop.py --method podman
+```
+
+The script will:
+1. Detect your OS and locate the Claude Desktop config file
+2. Check if the necessary tools are installed
+3. Generate the appropriate configuration
+4. Save it to the correct location
+
+Run with `--help` to see all available options.
+
+#### Option 2: Manual Configuration
 
 1. Install [Claude Desktop](https://claude.ai/download) if you haven't already
 2. Open Claude Desktop and go to Settings > Developer > Edit Config
-3. Add the following to your `claude_desktop_config.json`:
+3. Add the configuration that matches your setup:
+
+#### Option 1: Using the installed package (recommended)
+
+First, make sure the package is installed globally or in a virtual environment that Claude Desktop can access:
+
+```bash
+# Install the package 
+pip install -e /path/to/mcp-project-orchestrator
+```
+
+Then add this to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "project-orchestrator": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_project_orchestrator.fastmcp"
+      ],
+      "env": {
+        "PYTHONPATH": "/path/to/mcp-project-orchestrator"
+      }
+    }
+  }
+}
+```
+
+#### Option 2: Using Docker
+
+```json
+{
+  "mcpServers": {
+    "project-orchestrator": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-p",
+        "8080:8080",
+        "mcp-project-orchestrator:latest"
+      ]
+    }
+  }
+}
+```
+
+If you've published the image to GitHub Container Registry:
 
 ```json
 {
@@ -306,8 +383,38 @@ To add this MCP server to Claude Desktop:
 }
 ```
 
-Replace `YOUR_USERNAME` with your GitHub username if you've published the image to GitHub Container Registry.
+#### Option 3: Using Podman
+
+```json
+{
+  "mcpServers": {
+    "project-orchestrator": {
+      "command": "podman",
+      "args": [
+        "run",
+        "--rm",
+        "-p",
+        "8080:8080",
+        "localhost/mcp-project-orchestrator:latest"
+      ]
+    }
+  }
+}
+```
 
 4. Restart Claude Desktop to access the Project Orchestrator tools in the tools menu (hammer icon).
+
+### Troubleshooting Claude Desktop Integration
+
+If you encounter errors with the MCP server in Claude Desktop:
+
+1. Check the logs at:
+   - MacOS: `~/Library/Logs/Claude/mcp-server-project-orchestrator.log`
+   - Windows: `%APPDATA%\Claude\logs\mcp-server-project-orchestrator.log`
+
+2. Common issues and solutions:
+   - **Module not found errors**: Make sure your Python path includes the package or use the containerized version
+   - **Port conflicts**: Change the port number if 8080 is already in use
+   - **Permission issues**: Run Claude Desktop with appropriate permissions to execute commands
 
 For more information on MCP, visit [modelcontextprotocol.io](https://modelcontextprotocol.io).

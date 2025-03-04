@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=42.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -24,7 +24,7 @@ Homepage = "https://github.com/sparesparrow/mcp-project-orchestrator"
 Documentation = "https://github.com/sparesparrow/mcp-project-orchestrator/blob/main/README.md"
 
 [project.scripts]
-mcp-project-orchestrator = "src.mcp_project_orchestrator.__main__:main"
+mcp-project-orchestrator = "mcp_project_orchestrator.fastmcp:main"
 
 [tool.mcp_project_orchestrator]
 description = "An MCP server to orchestrate software projects, utilizing standardized templates and design patterns."
