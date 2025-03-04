@@ -23,7 +23,7 @@ jobs:
       # Optionally, add steps to push the image to a registry if needed
       # - name: Login to Container Registry
       #   run: |
-      #     podman login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} registry.example.com
+      #     podman login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} ghcr.io
       # - name: Push container image
       #   run: |
-      #     podman push mcp-project-orchestrator registry.example.com/mcp-project-orchestrator 
+      #     podman push mcp-project-orchestrator ghcr.io/sparesparrow/mcp-project-orchestrator 
