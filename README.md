@@ -289,6 +289,25 @@ To add this MCP server to Claude Desktop, you have two options:
 
 We provide a convenient setup script that automatically configures Claude Desktop for you:
 
+##### For Container Integration Issues
+
+If you're experiencing "module not found" errors, use these specialized scripts for container-based integration with volume mounting:
+
+```bash
+# For Podman (recommended)
+chmod +x scripts/setup_podman_config.sh
+./scripts/setup_podman_config.sh
+
+# For Docker
+chmod +x scripts/setup_docker_config.sh
+./scripts/setup_docker_config.sh
+```
+
+These scripts:
+1. Mount your project directory into the container
+2. Use the container's Python interpreter to run the module
+3. Override the entrypoint to ensure the module is found
+
 ##### Using the Shell Script (Easiest)
 
 A shell script wrapper is provided that automatically finds a suitable Python interpreter and handles environment issues:
@@ -452,8 +471,9 @@ If you encounter errors with the MCP server in Claude Desktop:
    - Windows: `%APPDATA%\Claude\logs\mcp-server-project-orchestrator.log`
 
 2. Common issues and solutions:
-   - **Module not found errors**: Make sure your Python path includes the package or use the containerized version
+   - **Module not found errors**: Make sure your Python path includes the package or use the containerized version with the specialized scripts provided
    - **Port conflicts**: Change the port number if 8080 is already in use
    - **Permission issues**: Run Claude Desktop with appropriate permissions to execute commands
+   - **Container issues**: Ensure the container image is built correctly and accessible to Claude Desktop
 
 For more information on MCP, visit [modelcontextprotocol.io](https://modelcontextprotocol.io).
