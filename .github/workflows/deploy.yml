@@ -1,0 +1,29 @@
+name: Build and Deploy Container
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+      
+      - name: Build container image
+        run: |
+          podman build -t mcp-project-orchestrator .
+
+      # Optionally, add steps to push the image to a registry if needed
+      # - name: Login to Container Registry
+      #   run: |
+      #     podman login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} registry.example.com
+      # - name: Push container image
+      #   run: |
+      #     podman push mcp-project-orchestrator registry.example.com/mcp-project-orchestrator 

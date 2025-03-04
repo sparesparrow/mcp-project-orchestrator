@@ -57,3 +57,61 @@ Developers can extend or modify the orchestration process by:
 ## License
 
 This project is licensed under the MIT License.
+
+## Virtual Environment Setup
+
+To set up the project locally using a virtual environment:
+
+1. Create a virtual environment:
+   ```bash
+   python3 -m venv venv
+   ```
+
+2. Activate the virtual environment:
+   ```bash
+   source ./venv/bin/activate
+   ```
+
+3. Upgrade pip (optional but recommended):
+   ```bash
+   pip install --upgrade pip
+   ```
+
+4. Install the package in editable mode:
+   ```bash
+   pip install -e . --break-system-packages
+   ```
+
+## Running Tests
+
+Run tests using pytest (clear cache to avoid stale data):
+
+```bash
+python -m pytest --cache-clear
+```
+
+## Containerized Deployment
+
+A Containerfile is provided for containerizing the application using Podman.
+
+### Build the Container Image
+
+Use the following command to build the container image:
+
+```bash
+podman build -t mcp-project-orchestrator .
+```
+
+### Run the Container
+
+Run the container exposing port 8080 (adjust the port if needed):
+
+```bash
+podman run -p 8080:8080 mcp-project-orchestrator
+```
+
+## GitHub Actions Workflow for Containerized Deployment
+
+A GitHub Actions workflow is set up in the `.github/workflows/deploy.yml` file to automate the container build and deploy process.
+
+For further details, refer to the workflow file.
