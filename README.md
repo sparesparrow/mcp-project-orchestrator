@@ -289,6 +289,28 @@ To add this MCP server to Claude Desktop, you have two options:
 
 We provide a convenient setup script that automatically configures Claude Desktop for you:
 
+##### Using the Shell Script (Easiest)
+
+A shell script wrapper is provided that automatically finds a suitable Python interpreter and handles environment issues:
+
+```bash
+# Make the script executable
+chmod +x scripts/setup_claude.sh
+
+# For Python-based integration (default)
+./scripts/setup_claude.sh
+
+# For Docker-based integration
+./scripts/setup_claude.sh --method docker
+
+# For Podman-based integration
+./scripts/setup_claude.sh --method podman
+```
+
+##### Using the Python Script Directly
+
+If you prefer to use the Python script directly:
+
 ```bash
 # Make the script executable
 chmod +x scripts/setup_claude_desktop.py
@@ -303,13 +325,30 @@ chmod +x scripts/setup_claude_desktop.py
 ./scripts/setup_claude_desktop.py --method podman
 ```
 
+If you encounter Python environment errors when running the Python script directly, try using a specific Python interpreter:
+
+```bash
+# Using Python 3 explicitly
+python3 scripts/setup_claude_desktop.py
+
+# Using a virtual environment's Python
+venv/bin/python scripts/setup_claude_desktop.py
+
+# Specifying a custom project path
+python3 scripts/setup_claude_desktop.py --project-path /absolute/path/to/mcp-project-orchestrator
+```
+
 The script will:
 1. Detect your OS and locate the Claude Desktop config file
 2. Check if the necessary tools are installed
 3. Generate the appropriate configuration
 4. Save it to the correct location
 
-Run with `--help` to see all available options.
+Run with `--help` to see all available options:
+
+```bash
+python3 scripts/setup_claude_desktop.py --help
+```
 
 #### Option 2: Manual Configuration
 
