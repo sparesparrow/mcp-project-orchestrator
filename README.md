@@ -124,6 +124,40 @@ docker run -d --rm -p 8080:8080 --name mcp-server mcp-project-orchestrator:lates
 podman run -d --rm -p 8080:8080 localhost/mcp-project-orchestrator:latest
 ```
 
+#### Testing with Containers
+
+If you're encountering "module not found" errors with containers, use this approach that mounts the project directory:
+
+##### Podman (Recommended)
+```bash
+# Build the container
+podman build -t mcp-project-orchestrator:latest -f Containerfile .
+
+# Run with project directory mounted and explicit entrypoint
+podman run --rm -p 8080:8080 \
+  -v "$(pwd):/app:Z" \
+  --workdir /app \
+  --entrypoint python \
+  localhost/mcp-project-orchestrator:latest \
+  -m mcp_project_orchestrator.fastmcp
+```
+
+##### Docker
+```bash
+# Build the container
+docker build -t mcp-project-orchestrator:latest -f Containerfile .
+
+# Run with project directory mounted and explicit entrypoint
+docker run --rm -p 8080:8080 \
+  -v "$(pwd):/app" \
+  --workdir /app \
+  --entrypoint python \
+  mcp-project-orchestrator:latest \
+  -m mcp_project_orchestrator.fastmcp
+```
+
+**Note:** Docker doesn't use the 'localhost/' prefix that Podman uses. Make sure to use the correct image name for your container engine.
+
 ## GitHub Actions Workflow for CI/CD
 
 A comprehensive GitHub Actions workflow is set up in the `.github/workflows/ci-cd.yml` file to automate:

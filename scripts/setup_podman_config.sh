@@ -31,7 +31,9 @@ cat > "$CONFIG_PATH" << EOL
         "-p",
         "8080:8080",
         "-v",
-        "${PROJECT_DIR}:/app",
+        "${PROJECT_DIR}:/app:Z",
+        "--workdir",
+        "/app",
         "--entrypoint",
         "python",
         "localhost/mcp-project-orchestrator:latest",
@@ -46,7 +48,7 @@ EOL
 echo "Configuration saved to $CONFIG_PATH"
 echo "Please restart Claude Desktop to apply the changes."
 echo 
-echo "If you still encounter issues:"
-echo "1. Make sure the container image exists locally (run 'podman images')"
-echo "2. Try building the image again with: podman build -t mcp-project-orchestrator:latest -f Containerfile ."
-echo "3. Check the logs at ~/Library/Logs/Claude/mcp-server-project-orchestrator.log (macOS) or %APPDATA%\\Claude\\logs\\mcp-server-project-orchestrator.log (Windows)" 
+echo "If you still encounter issues, try:"
+echo "1. Rebuild the container: podman build -t mcp-project-orchestrator:latest -f Containerfile ."
+echo "2. Test it directly: podman run --rm -v \"${PROJECT_DIR}:/app:Z\" --workdir /app -p 8080:8080 --entrypoint python localhost/mcp-project-orchestrator:latest -m mcp_project_orchestrator.fastmcp"
+echo "3. Check the logs: ls -la ~/Library/Logs/Claude/mcp-server-project-orchestrator.log" 
