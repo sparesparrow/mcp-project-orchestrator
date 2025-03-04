@@ -92,27 +92,53 @@ python -m pytest --cache-clear
 
 ## Containerized Deployment
 
-A Containerfile is provided for containerizing the application using Podman.
+A Containerfile is provided for containerizing the application using either Docker or Podman.
 
 ### Build the Container Image
 
-Use the following command to build the container image:
+Choose your preferred container engine:
+
+#### Using Docker
 
 ```bash
-podman build -t mcp-project-orchestrator .
+docker build -t mcp-project-orchestrator:latest -f Containerfile .
+```
+
+#### Using Podman
+
+```bash
+podman build -t mcp-project-orchestrator:latest -f Containerfile .
 ```
 
 ### Run the Container
 
-Run the container exposing port 8080 (adjust the port if needed):
+#### Using Docker
 
 ```bash
-podman run -p 8080:8080 mcp-project-orchestrator
+docker run -d --rm -p 8080:8080 --name mcp-server mcp-project-orchestrator:latest
 ```
 
-## GitHub Actions Workflow for Containerized Deployment
+#### Using Podman
 
-A GitHub Actions workflow is set up in the `.github/workflows/deploy.yml` file to automate the container build and deploy process.
+```bash
+podman run -d --rm -p 8080:8080 localhost/mcp-project-orchestrator:latest
+```
+
+## GitHub Actions Workflow for CI/CD
+
+A comprehensive GitHub Actions workflow is set up in the `.github/workflows/ci-cd.yml` file to automate:
+
+- Code linting and type checking
+- Running tests with coverage reporting
+- Building and testing container images
+- Testing with MCP Inspector
+- Publishing to GitHub Container Registry
+- Deployment to production (on manual trigger)
+
+Key features of the CI/CD pipeline:
+- Validates MCP server functionality with multiple inspector tests
+- Tests with both Docker and Podman (disabled by default)
+- Includes a dedicated manual validation step
 
 For further details, refer to the workflow file.
 
@@ -175,6 +201,85 @@ The inspector will:
 - Provide detailed error information if issues are found
 
 For more information on MCP Inspector, visit [MCP Inspector Documentation](https://modelcontextprotocol.io/docs/tools/inspector).
+
+### Interactive Testing with MCP Inspector
+
+The interactive mode of MCP Inspector is particularly useful for manual testing:
+
+```bash
+npx @modelcontextprotocol/inspector http://localhost:8080 --interactive
+```
+
+In interactive mode, you can:
+
+1. View all available tools and resources
+2. Execute tools with custom parameters
+3. View detailed server responses
+4. Test edge cases and error handling
+
+Common MCP Inspector commands:
+
+```
+# List all resources
+resources
+
+# List all tools
+tools
+
+# Execute a tool
+call <tool_name> --param1 value1 --param2 value2
+
+# View detailed resources 
+resource <resource_name>
+
+# Exit the inspector
+exit
+```
+
+### MCP Server Validation Commands
+
+You can run various validation checks on your MCP server:
+
+```bash
+# Basic connectivity test
+npx @modelcontextprotocol/inspector http://localhost:8080
+
+# Full validation test
+npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+
+# Verbose output for debugging
+npx @modelcontextprotocol/inspector http://localhost:8080 --verbose
+```
+
+For CI/CD environments, you can run non-interactive validation:
+
+```bash
+# Exit with non-zero code if validation fails
+npx @modelcontextprotocol/inspector http://localhost:8080 --validate --strict
+```
+
+### Convenience Testing Script
+
+A convenience script is provided to run all the key MCP test commands in sequence:
+
+```bash
+# Give execute permission to the script
+chmod +x scripts/mcp_test.sh
+
+# Run with Docker (default)
+./scripts/mcp_test.sh 
+
+# Or run with Podman
+./scripts/mcp_test.sh podman
+```
+
+The script:
+1. Builds the container image
+2. Runs the container
+3. Installs MCP Inspector if needed
+4. Runs basic connectivity test
+5. Runs validation test
+6. Cleans up containers
 
 ### Claude Desktop Integration
 

@@ -68,7 +68,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - name: Build container image
         run: |
-          docker build -t mcp-project-orchestrator:${{ github.sha }} .
+          docker build -t mcp-project-orchestrator:${{ github.sha }} -f Containerfile .
       - name: Save image to tarball
         run: |
           docker save -o mcp-project-orchestrator-image.tar mcp-project-orchestrator:${{ github.sha }}
@@ -108,7 +108,14 @@ jobs:
         run: sleep 5
       - name: Test with MCP Inspector
         run: |
+          # Basic connectivity test
+          npx @modelcontextprotocol/inspector http://localhost:8080
+          
+          # Validation test
           npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+          
+          # Try interactive mode but exit immediately (for testing connectivity)
+          echo "exit" | npx @modelcontextprotocol/inspector http://localhost:8080 --interactive || true
       - name: Stop MCP Server
         run: |
           docker stop mcp-server
@@ -157,3 +164,81 @@ jobs:
           # - SSH into server
           # - Pull latest container image
           # - Restart services 
+
+  # Add a new job for Podman testing (if CI system supports it)
+  podman-test:
+    name: Test with Podman
+    if: false  # Disabled by default - enable if your CI runners support Podman
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+      - name: Build with Podman
+        run: |
+          podman build -t mcp-project-orchestrator:${{ github.sha }} -f Containerfile .
+      - name: Run with Podman
+        run: |
+          podman run -d --rm -p 8080:8080 localhost/mcp-project-orchestrator:${{ github.sha }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install MCP Inspector
+        run: |
+          npm install -g @modelcontextprotocol/inspector
+      - name: Wait for server to start
+        run: sleep 5
+      - name: Test with MCP Inspector under Podman
+        run: |
+          npx @modelcontextprotocol/inspector http://localhost:8080
+      - name: Stop Podman containers
+        run: |
+          podman stop --all
+
+  # Add a manual validation job that can be triggered separately
+  manual-mcp-validate:
+    name: Manual MCP Validation
+    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Download container image
+        uses: actions/download-artifact@v3
+        with:
+          name: container-image
+      - name: Load container image
+        run: |
+          docker load -i mcp-project-orchestrator-image.tar
+      - name: Run MCP Server
+        run: |
+          docker run -d -p 8080:8080 --name mcp-server mcp-project-orchestrator:${{ github.sha }}
+      - name: Install MCP Inspector
+        run: |
+          npm install -g @modelcontextprotocol/inspector
+      - name: Wait for server to start
+        run: sleep 5
+      - name: Comprehensive MCP Validation
+        run: |
+          # Basic connection test
+          npx @modelcontextprotocol/inspector http://localhost:8080
+          
+          # Validation test
+          npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+          
+          # Check server details with verbose output
+          npx @modelcontextprotocol/inspector http://localhost:8080 --verbose
+      - name: Stop MCP Server
+        run: |
+          docker stop mcp-server
+          docker rm mcp-server 
