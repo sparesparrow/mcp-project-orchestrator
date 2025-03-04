@@ -1,0 +1,159 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Deploy to production'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff mypy
+          pip install -e .
+      - name: Lint with ruff
+        run: |
+          ruff check .
+      - name: Type check with mypy
+        run: |
+          mypy src/
+
+  test:
+    name: Run Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+          pip install -e .
+      - name: Test with pytest
+        run: |
+          pytest --cache-clear --cov=src/ --cov-report=xml
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+
+  build:
+    name: Build Container
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Build container image
+        run: |
+          docker build -t mcp-project-orchestrator:${{ github.sha }} .
+      - name: Save image to tarball
+        run: |
+          docker save -o mcp-project-orchestrator-image.tar mcp-project-orchestrator:${{ github.sha }}
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: container-image
+          path: mcp-project-orchestrator-image.tar
+          retention-days: 1
+
+  mcp-inspect:
+    name: Test MCP Server
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Download container image
+        uses: actions/download-artifact@v3
+        with:
+          name: container-image
+      - name: Load container image
+        run: |
+          docker load -i mcp-project-orchestrator-image.tar
+      - name: Run MCP Server
+        run: |
+          docker run -d -p 8080:8080 --name mcp-server mcp-project-orchestrator:${{ github.sha }}
+      - name: Install MCP Inspector
+        run: |
+          npm install -g @modelcontextprotocol/inspector
+      - name: Wait for server to start
+        run: sleep 5
+      - name: Test with MCP Inspector
+        run: |
+          npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+      - name: Stop MCP Server
+        run: |
+          docker stop mcp-server
+          docker rm mcp-server
+
+  publish:
+    name: Publish Container
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: mcp-inspect
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download container image
+        uses: actions/download-artifact@v3
+        with:
+          name: container-image
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Load container image
+        run: |
+          docker load -i mcp-project-orchestrator-image.tar
+      - name: Tag container image
+        run: |
+          docker tag mcp-project-orchestrator:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+          docker tag mcp-project-orchestrator:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ github.sha }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push container image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+          docker push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ github.sha }}
+
+  deploy:
+    name: Deploy to Production
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.inputs.deploy == 'true'
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production environment"
+          # Add deployment steps here, such as:
+          # - SSH into server
+          # - Pull latest container image
+          # - Restart services 

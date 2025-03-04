@@ -115,3 +115,94 @@ podman run -p 8080:8080 mcp-project-orchestrator
 A GitHub Actions workflow is set up in the `.github/workflows/deploy.yml` file to automate the container build and deploy process.
 
 For further details, refer to the workflow file.
+
+## MCP Integration
+
+This server follows the Model Context Protocol (MCP) standards:
+
+### Resources Exposed
+- Project templates catalog
+- Component templates catalog
+- Generated project structures
+
+### Tools Provided
+- `create_project`: Create a new project based on description and design patterns
+- `list_templates`: List available project templates
+- `generate_documentation`: Generate documentation for existing code
+
+### MCP Protocol Compliance
+- Implements the MCP server specification version 0.9
+- Uses the FastMCP server for communication
+- Provides proper error handling and logging
+
+### Testing with MCP Inspector
+
+The MCP Inspector is a powerful tool for testing and validating MCP servers. Follow these steps to test your server:
+
+1. Install the MCP Inspector:
+   ```bash
+   npm install -g @modelcontextprotocol/inspector
+   ```
+
+2. Start your MCP server (if not already running):
+   ```bash
+   # Using the container
+   docker run -d -p 8080:8080 mcp-project-orchestrator
+   
+   # Or directly with Python
+   python -m mcp_project_orchestrator.fastmcp
+   ```
+
+3. Run the MCP Inspector against your server:
+   ```bash
+   npx @modelcontextprotocol/inspector http://localhost:8080
+   ```
+
+4. Validate your server:
+   ```bash
+   npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+   ```
+
+5. Interactive mode for testing tools:
+   ```bash
+   npx @modelcontextprotocol/inspector http://localhost:8080 --interactive
+   ```
+
+The inspector will:
+- Verify your server complies with the MCP protocol
+- List the resources and tools your server exposes
+- Allow you to interactively call tools and test functionality
+- Provide detailed error information if issues are found
+
+For more information on MCP Inspector, visit [MCP Inspector Documentation](https://modelcontextprotocol.io/docs/tools/inspector).
+
+### Claude Desktop Integration
+
+To add this MCP server to Claude Desktop:
+
+1. Install [Claude Desktop](https://claude.ai/download) if you haven't already
+2. Open Claude Desktop and go to Settings > Developer > Edit Config
+3. Add the following to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "project-orchestrator": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-p",
+        "8080:8080",
+        "ghcr.io/YOUR_USERNAME/mcp-project-orchestrator:latest"
+      ]
+    }
+  }
+}
+```
+
+Replace `YOUR_USERNAME` with your GitHub username if you've published the image to GitHub Container Registry.
+
+4. Restart Claude Desktop to access the Project Orchestrator tools in the tools menu (hammer icon).
+
+For more information on MCP, visit [modelcontextprotocol.io](https://modelcontextprotocol.io).
