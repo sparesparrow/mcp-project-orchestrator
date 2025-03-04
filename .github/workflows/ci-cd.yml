@@ -100,7 +100,13 @@ jobs:
           docker load -i mcp-project-orchestrator-image.tar
       - name: Run MCP Server
         run: |
-          docker run -d -p 8080:8080 --name mcp-server mcp-project-orchestrator:${{ github.sha }}
+          docker run -d -p 8080:8080 \
+            -v ${{ github.workspace }}:/app \
+            --workdir /app \
+            --entrypoint python \
+            --name mcp-server \
+            mcp-project-orchestrator:${{ github.sha }} \
+            -m mcp_project_orchestrator.fastmcp
       - name: Install MCP Inspector
         run: |
           npm install -g @modelcontextprotocol/inspector
@@ -182,7 +188,12 @@ jobs:
           podman build -t mcp-project-orchestrator:${{ github.sha }} -f Containerfile .
       - name: Run with Podman
         run: |
-          podman run -d --rm -p 8080:8080 localhost/mcp-project-orchestrator:${{ github.sha }}
+          podman run -d --rm -p 8080:8080 \
+            -v ${{ github.workspace }}:/app:Z \
+            --workdir /app \
+            --entrypoint python \
+            localhost/mcp-project-orchestrator:${{ github.sha }} \
+            -m mcp_project_orchestrator.fastmcp
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -222,7 +233,13 @@ jobs:
           docker load -i mcp-project-orchestrator-image.tar
       - name: Run MCP Server
         run: |
-          docker run -d -p 8080:8080 --name mcp-server mcp-project-orchestrator:${{ github.sha }}
+          docker run -d -p 8080:8080 \
+            -v ${{ github.workspace }}:/app \
+            --workdir /app \
+            --entrypoint python \
+            --name mcp-server \
+            mcp-project-orchestrator:${{ github.sha }} \
+            -m mcp_project_orchestrator.fastmcp
       - name: Install MCP Inspector
         run: |
           npm install -g @modelcontextprotocol/inspector

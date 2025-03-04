@@ -70,6 +70,9 @@ def setup_python_config(project_path):
 
 def setup_docker_config(image_name):
     """Set up the configuration for Docker-based integration."""
+    # Get current directory for volume mounting
+    current_dir = os.getcwd()
+    
     return {
         "command": "docker",
         "args": [
@@ -77,13 +80,24 @@ def setup_docker_config(image_name):
             "--rm",
             "-p",
             "8080:8080",
-            image_name
+            "-v",
+            f"{current_dir}:/app",
+            "--workdir",
+            "/app",
+            "--entrypoint",
+            "python",
+            image_name,
+            "-m",
+            "mcp_project_orchestrator.fastmcp"
         ]
     }
 
 
 def setup_podman_config(image_name):
     """Set up the configuration for Podman-based integration."""
+    # Get current directory for volume mounting
+    current_dir = os.getcwd()
+    
     return {
         "command": "podman",
         "args": [
@@ -91,7 +105,15 @@ def setup_podman_config(image_name):
             "--rm",
             "-p",
             "8080:8080",
-            image_name
+            "-v",
+            f"{current_dir}:/app:Z",
+            "--workdir",
+            "/app",
+            "--entrypoint",
+            "python",
+            image_name,
+            "-m",
+            "mcp_project_orchestrator.fastmcp"
         ]
     }
 
