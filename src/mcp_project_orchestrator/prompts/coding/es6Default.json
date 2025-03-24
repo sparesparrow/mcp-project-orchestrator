@@ -1,0 +1,12 @@
+{
+  "name": "es6Default",
+  "description": "Prompt template extracted from import-injector.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${importedSource}$es6Default",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/helper-module-imports/lib/import-injector.js",
+    "imported": true
+  }
+}

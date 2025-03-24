@@ -1,0 +1,12 @@
+{
+  "name": "value",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${input}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/fill-range/index.js",
+    "imported": true
+  }
+}

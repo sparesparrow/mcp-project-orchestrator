@@ -1,0 +1,12 @@
+{
+  "name": "WIN_SLASH",
+  "description": "Prompt template extracted from constants.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "\\\\\\\\/",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/picomatch/lib/constants.js",
+    "imported": true
+  }
+}

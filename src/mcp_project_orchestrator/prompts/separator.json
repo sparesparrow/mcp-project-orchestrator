@@ -1,0 +1,12 @@
+{
+  "name": "separator",
+  "description": "Prompt template extracted from stringify.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": ",\\n",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/json5/lib/stringify.js",
+    "imported": true
+  }
+}

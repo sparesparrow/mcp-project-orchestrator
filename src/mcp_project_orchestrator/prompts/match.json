@@ -1,0 +1,12 @@
+{
+  "name": "match",
+  "description": "Prompt template extracted from semver.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "-${identifier}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/make-dir/node_modules/semver/classes/semver.js",
+    "imported": true
+  }
+}

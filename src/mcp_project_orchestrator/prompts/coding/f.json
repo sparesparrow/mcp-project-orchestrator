@@ -1,0 +1,12 @@
+{
+  "name": "f",
+  "description": "Prompt template extracted from esprima.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "&",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/esprima/dist/esprima.js",
+    "imported": true
+  }
+}

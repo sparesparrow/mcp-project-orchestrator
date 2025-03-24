@@ -1,0 +1,12 @@
+{
+  "name": "txt",
+  "description": "Prompt template extracted from outbound-serializer.test.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "select * from boom",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pg-protocol/dist/outbound-serializer.test.js",
+    "imported": true
+  }
+}

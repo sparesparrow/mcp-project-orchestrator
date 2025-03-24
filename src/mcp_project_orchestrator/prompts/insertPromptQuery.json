@@ -1,0 +1,12 @@
+{
+  "name": "insertPromptQuery",
+  "description": "Prompt template extracted from postgres-adapter.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\n        INSERT INTO prompts (\n          id, name, description, content, is_template, created_at, updated_at, \n          category, version, metadata\n        ) VALUES (\n          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10\n        ) ON CONFLICT (id) DO UPDATE SET\n          name = $2,\n          description = $3,\n          content = $4,\n          is_template = $5,\n          updated_at = $7,\n          category = $8,\n          version = $9,\n          metadata = $10\n        RETURNING *\n      ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/adapters/postgres-adapter.js",
+    "imported": true
+  }
+}

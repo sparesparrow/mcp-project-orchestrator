@@ -1,0 +1,12 @@
+{
+  "name": "tn",
+  "description": "Prompt template extracted from 29.540aeb3a13cb59106872.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[object String]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/29.540aeb3a13cb59106872.js",
+    "imported": true
+  }
+}

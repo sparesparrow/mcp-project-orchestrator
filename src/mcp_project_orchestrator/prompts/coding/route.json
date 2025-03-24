@@ -1,0 +1,12 @@
+{
+  "name": "route",
+  "description": "Prompt template extracted from 1650.8d7f95fed9378b01c97b.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "edit",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1650.8d7f95fed9378b01c97b.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "templates": [
+    "Database Query Assistant",
+    "Code Review Assistant",
+    "MCP Integration Assistant",
+    "Project Analysis Assistant",
+    "Architecture Design Assistant",
+    "Debugging Assistant",
+    "Foresight Assistant",
+    "Analysis Assistant",
+    "Code Refactoring Assistant",
+    "Research Assistant"
+  ],
+  "count": 10
+}

@@ -1,0 +1,10 @@
+{
+  "name": "generated_diagram",
+  "description": "Mermaid flowchart diagram",
+  "type": "flowchart",
+  "content": "flowchart TD\n    A[Start] --> B{New User?}\n    B -->|Yes| C[Registration Form]\n    B -->|No| D[Login Form]\n    \n    C --> E[Enter Email/Password]\n    C --> F[Enter User Details]\n    E --> G[Validate Input]\n    F --> G\n    G -->|Invalid| C\n    G -->|Valid| H[Create Account]\n    H --> I[Send Verification Email]\n    I --> J[Verify Email]\n    J --> K[Account Created]\n    \n    D --> L[Enter Credentials]\n    L --> M[Validate Login]\n    M -->|Invalid| D\n    M -->|Valid| N[Login Successful]\n    \n    K --> O[Account Dashboard]\n    N --> O\n    \n    O --> P[Manage Profile]\n    O --> Q[Change Password]\n    O --> R[Logout]\n    R --> A\n\n%% Styling\nclassDef default fill:#f9f9f9,stroke:#333333,stroke-width:1px,color:#333333,rx:5px,ry:5px\nclassDef highlight fill:#ff7700,stroke:#333333,stroke-width:2px,color:white,rx:5px,ry:5px\nclassDef success fill:#00aa00,stroke:#333333,stroke-width:1px,color:white,rx:5px,ry:5px\nclassDef warning fill:#ffaa00,stroke:#333333,stroke-width:1px,color:#333333,rx:5px,ry:5px\nclassDef error fill:#dd0000,stroke:#333333,stroke-width:1px,color:white,rx:5px,ry:5px",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

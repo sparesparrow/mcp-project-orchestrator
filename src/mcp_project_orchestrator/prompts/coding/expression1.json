@@ -1,0 +1,12 @@
+{
+  "name": "expression1",
+  "description": "Prompt template extracted from compiler.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Object.getOwnPropertyNames(${value}).every(key => [${schemaKeys}].includes(key))",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@sinclair/typebox/compiler/compiler.js",
+    "imported": true
+  }
+}

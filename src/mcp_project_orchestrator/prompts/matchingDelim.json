@@ -1,0 +1,12 @@
+{
+  "name": "matchingDelim",
+  "description": "Prompt template extracted from 5828.2317870182c25e18e76f.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[{<(",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/5828.2317870182c25e18e76f.js",
+    "imported": true
+  }
+}

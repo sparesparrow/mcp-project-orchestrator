@@ -1,0 +1,12 @@
+{
+  "name": "completionShTemplate",
+  "description": "Prompt template extracted from completion-templates.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "###-begin-{{app_name}}-completions-###\n#\n# yargs command completion script\n#\n# Installation: {{app_path}} {{completion_command}} >> ~/.bashrc\n#    or {{app_path}} {{completion_command}} >> ~/.bash_profile on OSX.\n#\n_{{app_name}}_yargs_completions()\n{\n    local cur_word args type_list\n\n    cur_word=",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/yargs/build/lib/completion-templates.js",
+    "imported": true
+  }
+}

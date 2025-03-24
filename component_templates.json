@@ -1,156 +1,99 @@
 {
   "component_templates": [
     {
-      "name": "FactoryComponent",
-      "type": "Factory Method",
+      "name": "Factory",
       "description": "Creates objects using the Factory Method.",
-      "mermaid": "Generate a Mermaid diagram for FactoryMethodProject showing the factory, product, and client interactions.",
-      "directory_structure": "Create directories: FactoryMethod/ with subdirectories src, tests, docs.",
-      "file_path": "FactoryMethod/FactoryComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing FactoryMethod Design Pattern, showing the factory, product, and client interactions."
     },
     {
-      "name": "AbstractFactoryComponent",
-      "type": "Abstract Factory",
+      "name": "AbstractFactory",
       "description": "Creates related objects without specifying concrete classes.",
-      "mermaid": "Generate a Mermaid diagram for AbstractFactoryProject illustrating families of related objects and their creation process.",
-      "directory_structure": "Create directories: AbstractFactory/ with subdirectories src, tests, docs.",
-      "file_path": "AbstractFactory/AbstractFactoryComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing AbstractFactory Design Pattern, illustrating families of related objects and their creation process."
     },
     {
-      "name": "BuilderComponent",
-      "type": "Builder",
+      "name": "Builder",
       "description": "Constructs objects using a step-by-step approach.",
-      "mermaid": "Generate a Mermaid diagram for BuilderProject that shows the step-by-step construction process of complex objects.",
-      "directory_structure": "Create directories: Builder/ with subdirectories src, tests, docs.",
-      "file_path": "Builder/BuilderComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Builder Design Pattern, that shows the step-by-step construction process of complex objects."
     },
     {
-      "name": "PrototypeComponent",
-      "type": "Prototype",
+      "name": "Prototype",
       "description": "Clones existing objects as prototypes.",
-      "mermaid": "Generate a Mermaid diagram for PrototypeProject displaying object cloning and prototype relationships.",
-      "directory_structure": "Create directories: Prototype/ with subdirectories src, tests, docs.",
-      "file_path": "Prototype/PrototypeComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Prototype Design Pattern, displaying object cloning and prototype relationships."
     },
     {
-      "name": "SingletonComponent",
-      "type": "Singleton",
+      "name": "Singleton",
       "description": "Manages a single instance across the application.",
-      "mermaid": "Generate a Mermaid diagram for SingletonProject illustrating the single instance and global access point.",
-      "directory_structure": "Create directories: Singleton/ with subdirectories src, tests, docs.",
-      "file_path": "Singleton/SingletonComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Singleton Design Pattern, illustrating the single instance and global access point."
     },
     {
-      "name": "AdapterComponent",
-      "type": "Adapter",
+      "name": "Adapter",
       "description": "Adapts one interface to another.",
-      "mermaid": "Generate a Mermaid diagram for AdapterProject showing how incompatible interfaces are adapted to work together.",
-      "directory_structure": "Create directories: Adapter/ with subdirectories src, tests, docs.",
-      "file_path": "Adapter/AdapterComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Adapter Design Pattern, showing how incompatible interfaces are adapted to work together."
     },
     {
-      "name": "DecoratorComponent",
-      "type": "Decorator",
+      "name": "Decorator",
       "description": "Wraps objects to extend functionality.",
-      "mermaid": "Generate a Mermaid diagram for DecoratorProject that shows dynamic addition of behaviors to objects.",
-      "directory_structure": "Create directories: Decorator/ with subdirectories src, tests, docs.",
-      "file_path": "Decorator/DecoratorComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Decorator Design Pattern, that shows dynamic addition of behaviors to objects."
     },
     {
-      "name": "FacadeComponent",
-      "type": "Facade",
+      "name": "Facade",
       "description": "Simplifies interactions with a subsystem.",
-      "mermaid": "Generate a Mermaid diagram for FacadeProject showing a simplified interface versus a complex subsystem.",
-      "directory_structure": "Create directories: Facade/ with subdirectories src, tests, docs.",
-      "file_path": "Facade/FacadeComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Facade Design Pattern, showing a simplified interface versus a complex subsystem."
     },
     {
-      "name": "ProxyComponent",
-      "type": "Proxy",
+      "name": "Proxy",
       "description": "Intermediates access to a real object.",
-      "mermaid": "Generate a Mermaid diagram for ProxyProject demonstrating the surrogate control pattern.",
-      "directory_structure": "Create directories: Proxy/ with subdirectories src, tests, docs.",
-      "file_path": "Proxy/ProxyComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Proxy Design Pattern, demonstrating the surrogate control pattern."
     },
     {
-      "name": "ChainComponent",
-      "type": "Chain Of Responsibility",
+      "name": "Chain",
       "description": "Processes a request through a chain of handlers.",
-      "mermaid": "Generate a Mermaid diagram for ChainOfResponsibilityProject showing the flow of requests through handlers.",
-      "directory_structure": "Create directories: ChainOfResponsibility/ with subdirectories src, tests, docs.",
-      "file_path": "ChainOfResponsibility/ChainComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing ChainOfResponsibility Design Pattern, showing the flow of requests through handlers."
     },
     {
-      "name": "CommandComponent",
-      "type": "Command",
+      "name": "Command",
       "description": "Encapsulates requests as objects.",
-      "mermaid": "Generate a Mermaid diagram for CommandProject outlining encapsulated request objects and their invokers.",
-      "directory_structure": "Create directories: Command/ with subdirectories src, tests, docs.",
-      "file_path": "Command/CommandComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Command Design Pattern, outlining encapsulated request objects and their invokers."
     },
     {
-      "name": "IteratorComponent",
-      "type": "Iterator",
+      "name": "Iterator",
       "description": "Enables sequential access to collection elements.",
-      "mermaid": "Generate a Mermaid diagram for IteratorProject showing sequential access to a collection.",
-      "directory_structure": "Create directories: Iterator/ with subdirectories src, tests, docs.",
-      "file_path": "Iterator/IteratorComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Iterator Design Pattern, showing sequential access to a collection."
     },
     {
-      "name": "MediatorComponent",
-      "type": "Mediator",
+      "name": "Mediator",
       "description": "Manages communication between objects.",
-      "mermaid": "Generate a Mermaid diagram for MediatorProject showing how components communicate via a mediator.",
-      "directory_structure": "Create directories: Mediator/ with subdirectories src, tests, docs.",
-      "file_path": "Mediator/MediatorComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Mediator Design Pattern, showing how components communicate via a mediator."
     },
     {
-      "name": "MementoComponent",
-      "type": "Memento",
+      "name": "Memento",
       "description": "Stores and restores object state.",
-      "mermaid": "Generate a Mermaid diagram for MementoProject illustrating state capture and restoration processes.",
-      "directory_structure": "Create directories: Memento/ with subdirectories src, tests, docs.",
-      "file_path": "Memento/MementoComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Memento Design Pattern, illustrating state capture and restoration processes."
     },
     {
-      "name": "ObserverComponent",
-      "type": "Observer",
+      "name": "Observer",
       "description": "Notifies subscribers of state changes.",
-      "mermaid": "Generate a Mermaid diagram for ObserverProject showing one-to-many dependencies between subjects and observers.",
-      "directory_structure": "Create directories: Observer/ with subdirectories src, tests, docs.",
-      "file_path": "Observer/ObserverComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Observer Design Pattern, showing one-to-many dependencies between subjects and observers."
     },
     {
-      "name": "StateComponent",
-      "type": "State",
+      "name": "State",
       "description": "Manages state-dependent behavior.",
-      "mermaid": "Generate a Mermaid diagram for StateProject outlining state transitions and behavior changes.",
-      "directory_structure": "Create directories: State/ with subdirectories src, tests, docs.",
-      "file_path": "State/StateComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing State Design Pattern, outlining state transitions and behavior changes."
     },
     {
-      "name": "StrategyComponent",
-      "type": "Strategy",
+      "name": "Strategy",
       "description": "Encapsulates interchangeable algorithms.",
-      "mermaid": "Generate a Mermaid diagram for StrategyProject showing interchangeable algorithms and their selection criteria.",
-      "directory_structure": "Create directories: Strategy/ with subdirectories src, tests, docs.",
-      "file_path": "Strategy/StrategyComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Strategy Design Pattern, showing interchangeable algorithms and their selection criteria."
     },
     {
-      "name": "TemplateMethodComponent",
-      "type": "Template Method",
+      "name": "TemplateMethod",
       "description": "Defines a skeletal algorithm with overrideable steps.",
-      "mermaid": "Generate a Mermaid diagram for TemplateMethodProject illustrating the skeletal algorithm with customizable steps.",
-      "directory_structure": "Create directories: TemplateMethod/ with subdirectories src, tests, docs.",
-      "file_path": "TemplateMethod/TemplateMethodComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing TemplateMethod Design Pattern, illustrating the skeletal algorithm with customizable steps."
     },
     {
-      "name": "VisitorComponent",
-      "type": "Visitor",
+      "name": "Visitor",
       "description": "Separates operations from object structure.",
-      "mermaid": "Generate a Mermaid diagram for VisitorProject showing the separation of operations from object structure.",
-      "directory_structure": "Create directories: Visitor/ with subdirectories src, tests, docs.",
-      "file_path": "Visitor/VisitorComponent.js"
+      "mermaid": "Generate a Mermaid diagram visualizing Visitor Design Pattern, showing the separation of operations from object structure."
     }
   ]
 }

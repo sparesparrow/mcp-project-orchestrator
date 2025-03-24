@@ -1,0 +1,12 @@
+{
+  "name": "strValue",
+  "description": "Prompt template extracted from createProcessObject.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${value}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-util/build/createProcessObject.js",
+    "imported": true
+  }
+}

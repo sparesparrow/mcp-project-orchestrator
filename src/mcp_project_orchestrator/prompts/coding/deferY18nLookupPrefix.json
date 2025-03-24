@@ -1,0 +1,12 @@
+{
+  "name": "deferY18nLookupPrefix",
+  "description": "Prompt template extracted from usage.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "__yargsString__:",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/yargs/build/lib/usage.js",
+    "imported": true
+  }
+}

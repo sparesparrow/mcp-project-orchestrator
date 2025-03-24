@@ -1,0 +1,10 @@
+{
+  "name": "Prototype-diagram",
+  "description": "Mermaid diagram for Prototype pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Prototype Design Pattern, displaying object cloning and prototype relationships.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

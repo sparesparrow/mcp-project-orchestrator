@@ -1,0 +1,12 @@
+{
+  "name": "VERSION",
+  "description": "Prompt template extracted from constants.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "4",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/babel-plugin-istanbul/node_modules/istanbul-lib-instrument/src/constants.js",
+    "imported": true
+  }
+}

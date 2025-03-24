@@ -1,0 +1,12 @@
+{
+  "name": "START_OF_LINE",
+  "description": "Prompt template extracted from validation.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "^",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-each/build/validation.js",
+    "imported": true
+  }
+}

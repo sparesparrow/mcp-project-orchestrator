@@ -1,0 +1,12 @@
+{
+  "name": "USAGE",
+  "description": "Prompt template extracted from cli.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Usage:\\n",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/browserslist/cli.js",
+    "imported": true
+  }
+}

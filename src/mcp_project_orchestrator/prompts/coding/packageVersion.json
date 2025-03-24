@@ -1,0 +1,12 @@
+{
+  "name": "packageVersion",
+  "description": "Prompt template extracted from cli.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "1.0.0",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/cli.js",
+    "imported": true
+  }
+}

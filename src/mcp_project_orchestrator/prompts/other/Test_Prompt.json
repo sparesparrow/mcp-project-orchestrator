@@ -1,0 +1,17 @@
+{
+  "name": "Test Prompt",
+  "description": "A test prompt",
+  "type": "prompt",
+  "category": "other",
+  "content": "This is a test prompt for {{variable}}",
+  "variables": {
+    "variable": {
+      "description": "Test variable",
+      "default_value": "testing"
+    }
+  },
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/test-prompt.json",
+    "imported": true
+  }
+}
