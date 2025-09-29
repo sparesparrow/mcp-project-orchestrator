@@ -218,9 +218,17 @@ class MermaidGenerator(BaseOrchestrator):
                 activate = message.get("activate", False)
                 deactivate = message.get("deactivate", False)
             else:
-                from_participant, to_participant, message_text = message
-                message_type = "->>"
-                activate = deactivate = False
+                # Support tuples/lists with variable lengths:
+                # (from, to[, text[, type[, activate[, deactivate]]]])
+                if not isinstance(message, (tuple, list)) or len(message) < 2:
+                    # Invalid message structure; skip safely
+                    continue
+                from_participant = message[0]
+                to_participant = message[1]
+                message_text = message[2] if len(message) >= 3 else ""
+                message_type = message[3] if len(message) >= 4 else ">>" if False else "->>"
+                activate = bool(message[4]) if len(message) >= 5 else False
+                deactivate = bool(message[5]) if len(message) >= 6 else False
             
             lines.append(f"    {from_participant}{message_type}{to_participant}: {message_text}")
             
