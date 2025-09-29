@@ -22,6 +22,7 @@ warn() { printf "\033[33m[warn]\033[0m %s\n" "$*"; }
 err() { printf "\033[31m[err ]\033[0m %s\n" "$*" 1>&2; }
 die() { err "$*"; exit 1; }
 have_cmd() { command -v "$1" >/dev/null 2>&1; }
+json_get() { jq -r "$1" "$CONFIG_PATH" 2>/dev/null; }
 
 SUDO=""
 if [ "${EUID:-$(id -u)}" -ne 0 ]; then
@@ -176,41 +177,31 @@ write_file() {
 setup_cursor_configs() {
   log "Writing .cursor configuration (MCP servers, tools, rules, hooks, deeplinks)"
 
-  write_file "$WORKSPACE_ROOT/.cursor/mcp.json" 0644 <<'JSON'
-{
-  "servers": {
-    "mcp-python": {
-      "command": "bash",
-      "args": ["-lc", "python3 servers/python-mcp/main.py"],
-      "env": {}
-    },
-    "mcp-typescript": {
-      "command": "bash",
-      "args": ["-lc", "node servers/ts-mcp/dist/index.js"],
-      "env": {}
-    },
-    "mcp-cpp": {
-      "command": "bash",
-      "args": ["-lc", "./servers/cpp-mcp/build/mcp_server"],
-      "env": {}
-    }
-  }
-}
-JSON
+  # Build MCP servers config from JSON flags
+  local mcpEntries="{}"
+  if [ "$(json_get '.enable.pythonMcp')" = "true" ]; then
+    mcpEntries=$(jq '. + {"mcp-python": {"command":"bash","args":["-lc","python3 servers/python-mcp/main.py"],"env":{}}}' <<<"$mcpEntries")
+  fi
+  if [ "$(json_get '.enable.tsMcp')" = "true" ]; then
+    mcpEntries=$(jq '. + {"mcp-typescript": {"command":"bash","args":["-lc","node servers/ts-mcp/dist/index.js"],"env":{}}}' <<<"$mcpEntries")
+  fi
+  if [ "$(json_get '.enable.cppMcp')" = "true" ]; then
+    mcpEntries=$(jq '. + {"mcp-cpp": {"command":"bash","args":["-lc","./servers/cpp-mcp/build/mcp_server"],"env":{}}}' <<<"$mcpEntries")
+  fi
+  jq -n --argjson servers "$mcpEntries" '{servers: $servers}' > "$WORKSPACE_ROOT/.cursor/mcp.json"
 
-  write_file "$WORKSPACE_ROOT/.cursor/tools/large-codebases.json" 0644 <<'JSON'
-{
-  "enabled": true,
-  "exclude": ["node_modules", "build", "dist", ".git", ".venv", "venv"],
-  "maxFileSizeMB": 5
-}
-JSON
+  if [ "$(json_get '.tools.largeCodebases.enabled')" = "true" ]; then
+    jq -n \
+      --argjson enabled true \
+      --argjson exclude "$(json_get '.tools.largeCodebases.exclude')" \
+      --argjson maxFileSizeMB "$(json_get '.tools.largeCodebases.maxFileSizeMB')" \
+      '{enabled: $enabled, exclude: $exclude, maxFileSizeMB: $maxFileSizeMB}' \
+      > "$WORKSPACE_ROOT/.cursor/tools/large-codebases.json"
+  fi
 
-  write_file "$WORKSPACE_ROOT/.cursor/tools/mermaid-diagrams.json" 0644 <<'JSON'
-{
-  "enabled": true
-}
-JSON
+  if [ "$(json_get '.tools.mermaid.enabled')" = "true" ]; then
+    jq -n '{enabled: true}' > "$WORKSPACE_ROOT/.cursor/tools/mermaid-diagrams.json"
+  fi
 
   write_file "$WORKSPACE_ROOT/.cursor/rules.json" 0644 <<'JSON'
 {
@@ -259,6 +250,7 @@ JSON
 }
 
 scaffold_python_mcp_server() {
+  if [ "$(json_get '.enable.pythonMcp')" != "true" ]; then return 0; fi
   log "Scaffolding Python MCP server template"
   write_file "$WORKSPACE_ROOT/servers/python-mcp/pyproject.toml" 0644 <<'TOML'
 [build-system]
@@ -314,6 +306,7 @@ PY
 }
 
 scaffold_ts_mcp_server() {
+  if [ "$(json_get '.enable.tsMcp')" != "true" ]; then return 0; fi
   log "Scaffolding TypeScript MCP server template"
   write_file "$WORKSPACE_ROOT/servers/ts-mcp/package.json" 0644 <<'JSON'
 {
@@ -368,6 +361,7 @@ TS
 }
 
 scaffold_cpp_mcp_server() {
+  if [ "$(json_get '.enable.cppMcp')" != "true" ]; then return 0; fi
   log "Scaffolding C++ MCP server template"
   write_file "$WORKSPACE_ROOT/servers/cpp-mcp/CMakeLists.txt" 0644 <<'CMAKE'
 cmake_minimum_required(VERSION 3.16)
@@ -399,6 +393,7 @@ SH
 }
 
 scaffold_mcp_client_ts() {
+  if [ "$(json_get '.enable.mcpClient')" != "true" ]; then return 0; fi
   log "Scaffolding MCP client (TypeScript) template"
   write_file "$WORKSPACE_ROOT/client/mcp-client/package.json" 0644 <<'JSON'
 {
@@ -439,6 +434,7 @@ TS
 }
 
 scaffold_background_agent() {
+  if [ "$(json_get '.enable.backgroundAgent')" != "true" ]; then return 0; fi
   log "Scaffolding background agent + webhooks (FastAPI)"
   write_file "$WORKSPACE_ROOT/services/background-agent/requirements.txt" 0644 <<'REQ'
 fastapi>=0.115.0
@@ -497,6 +493,7 @@ SH
 }
 
 scaffold_github_actions() {
+  if [ "$(json_get '.enable.githubActions')" != "true" ]; then return 0; fi
   log "Adding GitHub Actions workflows (CI, docs, code review)"
 
   write_file "$WORKSPACE_ROOT/.github/workflows/ci.yml" 0644 <<'YML'
@@ -583,6 +580,7 @@ YML
 }
 
 scaffold_devcontainer_and_containerfiles() {
+  if [ "$(json_get '.enable.devcontainer')" != "true" ]; then return 0; fi
   log "Scaffolding devcontainer, Containerfile, Docker deployment"
 
   # Containerfile (Podman)
@@ -639,6 +637,7 @@ YAML
 }
 
 scaffold_aws_terraform() {
+  if [ "$(json_get '.enable.awsTerraform')" != "true" ]; then return 0; fi
   log "Scaffolding AWS Terraform template"
   write_file "$WORKSPACE_ROOT/infra/aws/terraform/main.tf" 0644 <<'TF'
 terraform {
@@ -668,6 +667,7 @@ IGN
 }
 
 scaffold_web_and_mcp_json() {
+  if [ "$(json_get '.enable.webAndMcp')" != "true" ]; then return 0; fi
   log "Scaffolding web project and browser tools mcp.json"
   write_file "$WORKSPACE_ROOT/web/README.md" 0644 <<'MD'
 # Web Dev + Testing
@@ -686,6 +686,7 @@ JSON
 }
 
 scaffold_cpp_conan_and_esp32() {
+  if [ "$(json_get '.enable.cppConan')" != "true" ] && [ "$(json_get '.enable.esp32')" != "true" ]; then return 0; fi
   log "Scaffolding C++ with Conan and ESP32 container template"
   # C++ + Conan
   mkdir -p "$WORKSPACE_ROOT/cpp-conan/src"
@@ -710,20 +711,23 @@ int main() { std::cout << "Hello from Conan template" << std::endl; }
 CPP
 
   # ESP32 containerized builder (placeholder)
-  write_file "$WORKSPACE_ROOT/esp32/Dockerfile" 0644 <<'DOCKER'
+  if [ "$(json_get '.enable.esp32')" = "true" ]; then
+    write_file "$WORKSPACE_ROOT/esp32/Dockerfile" 0644 <<'DOCKER'
 FROM espressif/idf:latest
 WORKDIR /workspace
 CMD ["/bin/bash"]
 DOCKER
 
-  write_file "$WORKSPACE_ROOT/esp32/README.md" 0644 <<'MD'
+    write_file "$WORKSPACE_ROOT/esp32/README.md" 0644 <<'MD'
 # ESP32 Containerized Builder
 
 Use the `espressif/idf` image to build ESP32 targets without local SDK installs.
 MD
+  fi
 }
 
 scaffold_android_kotlin_container() {
+  if [ "$(json_get '.enable.android')" != "true" ]; then return 0; fi
   log "Scaffolding Android Kotlin containerized builder (minimal)"
   write_file "$WORKSPACE_ROOT/android/Dockerfile" 0644 <<'DOCKER'
 FROM eclipse-temurin:17-jdk
@@ -788,6 +792,27 @@ attempt_install_cursor_cli() {
 
 main() {
   log "Starting $SCRIPT_NAME at $START_TS"
+  WORKSPACE_ROOT="${WORKSPACE_ROOT:-/workspace}"
+  if [ ! -d "$WORKSPACE_ROOT" ]; then WORKSPACE_ROOT="$(pwd)"; fi
+  export WORKSPACE_ROOT
+  CONFIG_PATH="${CONFIG_PATH:-$WORKSPACE_ROOT/config/project_orchestration.json}"
+  if ! have_cmd jq; then
+    require_or_install_pkg jq jq || die "jq is required to parse JSON config"
+  fi
+  if [ ! -f "$CONFIG_PATH" ]; then
+    warn "Config not found at $CONFIG_PATH; creating defaults"
+    mkdir -p "$(dirname "$CONFIG_PATH")"
+    cat >"$CONFIG_PATH" <<'JSON'
+{
+  "enable": {"cursorConfigs": true, "pythonMcp": true, "tsMcp": true, "cppMcp": true, "mcpClient": true, "backgroundAgent": true, "githubActions": true, "devcontainer": true, "awsTerraform": true, "webAndMcp": true, "cppConan": true, "esp32": true, "android": true},
+  "ports": {"pyMcpPort": 8765, "tsMcpPort": 8766},
+  "backgroundAgent": {"host": "127.0.0.1", "port": 8088},
+  "tools": {"largeCodebases": {"enabled": true, "exclude": ["node_modules", "build", "dist", ".git", ".venv", "venv"], "maxFileSizeMB": 5}, "mermaid": {"enabled": true}},
+  "container": {"prefer": "podman"},
+  "runtime": {"node": "lts/*", "python": "3.11"}
+}
+JSON
+  fi
   create_dirs
   install_base_packages
   install_node_via_nvm
