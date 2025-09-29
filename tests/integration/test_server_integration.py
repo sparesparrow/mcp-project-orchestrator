@@ -280,4 +280,3 @@ class TestServerIntegration:
             assert response["jsonrpc"] == "2.0"
             assert response["id"] == 2
             assert "error" in response
-```

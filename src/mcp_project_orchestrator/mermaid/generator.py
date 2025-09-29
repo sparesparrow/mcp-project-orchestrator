@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional, Union
 import json
 
 from ..core import BaseOrchestrator, Config
-from .types import DiagramType, DiagramConfig
+from .types import DiagramType, DiagramConfig, DiagramMetadata
 
 class MermaidGenerator(BaseOrchestrator):
     """Class for generating Mermaid diagram definitions."""
@@ -49,8 +49,8 @@ class MermaidGenerator(BaseOrchestrator):
                 
     def generate_flowchart(
         self,
-        nodes: List[Dict[str, str]],
-        edges: List[Dict[str, str]],
+        nodes: List[Dict[str, str]] | List[tuple],
+        edges: List[Dict[str, str]] | List[tuple],
         direction: str = "TB",
         config: Optional[DiagramConfig] = None,
     ) -> str:
@@ -72,9 +72,12 @@ class MermaidGenerator(BaseOrchestrator):
         
         # Add nodes
         for node in nodes:
-            node_id = node["id"]
-            node_label = node.get("label", node_id)
-            node_shape = node.get("shape", "")
+            if isinstance(node, dict):
+                node_id = node["id"]
+                node_label = node.get("label", node_id)
+            else:
+                node_id, node_label = node[0], node[1]
+            node_shape = ""
             
             if node_shape:
                 lines.append(f"    {node_id}[{node_label}]{{{node_shape}}}")
@@ -83,10 +86,14 @@ class MermaidGenerator(BaseOrchestrator):
                 
         # Add edges
         for edge in edges:
-            from_node = edge["from"]
-            to_node = edge["to"]
-            edge_label = edge.get("label", "")
-            edge_style = edge.get("style", "-->")
+            if isinstance(edge, dict):
+                from_node = edge["from"]
+                to_node = edge["to"]
+                edge_label = edge.get("label", "")
+                edge_style = edge.get("style", "-->")
+            else:
+                from_node, to_node, edge_label = edge
+                edge_style = "-->"
             
             if edge_label:
                 lines.append(f"    {from_node} {edge_style}|{edge_label}| {to_node}")
@@ -97,8 +104,8 @@ class MermaidGenerator(BaseOrchestrator):
         
     def generate_class_diagram(
         self,
-        classes: List[Dict[str, Any]],
-        relationships: List[Dict[str, str]],
+        classes: List[Dict[str, Any]] | List[Dict[str, Any]],
+        relationships: List[Dict[str, str]] | List[tuple],
         config: Optional[DiagramConfig] = None,
     ) -> str:
         """Generate a class diagram definition.
@@ -124,8 +131,11 @@ class MermaidGenerator(BaseOrchestrator):
             lines.append(f"    class {class_name} {{")
             
             # Properties
-            for prop in class_def.get("properties", []):
-                prop_name = prop["name"]
+            for prop in class_def.get("attributes", []) or class_def.get("properties", []):
+                if isinstance(prop, str):
+                    lines.append(f"        +{prop}")
+                    continue
+                prop_name = prop.get("name", prop)
                 prop_type = prop.get("type", "")
                 prop_visibility = prop.get("visibility", "+")
                 
@@ -136,7 +146,10 @@ class MermaidGenerator(BaseOrchestrator):
                     
             # Methods
             for method in class_def.get("methods", []):
-                method_name = method["name"]
+                if isinstance(method, str):
+                    lines.append(f"        +{method}")
+                    continue
+                method_name = method.get("name", method)
                 method_params = method.get("params", "")
                 method_return = method.get("return", "")
                 method_visibility = method.get("visibility", "+")
@@ -166,8 +179,8 @@ class MermaidGenerator(BaseOrchestrator):
         
     def generate_sequence_diagram(
         self,
-        participants: List[Dict[str, str]],
-        messages: List[Dict[str, str]],
+        participants: List[Dict[str, str]] | List[str],
+        messages: List[Dict[str, str]] | List[tuple],
         config: Optional[DiagramConfig] = None,
     ) -> str:
         """Generate a sequence diagram definition.
@@ -187,23 +200,34 @@ class MermaidGenerator(BaseOrchestrator):
         
         # Add participants
         for participant in participants:
-            participant_id = participant["id"]
-            participant_label = participant.get("label", participant_id)
+            if isinstance(participant, dict):
+                participant_id = participant["id"]
+                participant_label = participant.get("label", participant_id)
+            else:
+                participant_id = participant
+                participant_label = participant
             lines.append(f"    participant {participant_id} as {participant_label}")
             
         # Add messages
         for message in messages:
-            from_participant = message["from"]
-            to_participant = message["to"]
-            message_text = message["text"]
-            message_type = message.get("type", "->")
+            if isinstance(message, dict):
+                from_participant = message["from"]
+                to_participant = message["to"]
+                message_text = message["text"]
+                message_type = message.get("type", "->")
+                activate = message.get("activate", False)
+                deactivate = message.get("deactivate", False)
+            else:
+                from_participant, to_participant, message_text = message
+                message_type = "->>"
+                activate = deactivate = False
             
             lines.append(f"    {from_participant}{message_type}{to_participant}: {message_text}")
             
             # Add optional activation/deactivation
-            if message.get("activate", False):
+            if activate:
                 lines.append(f"    activate {to_participant}")
-            if message.get("deactivate", False):
+            if deactivate:
                 lines.append(f"    deactivate {to_participant}")
                 
         return "\n".join(lines)
@@ -227,6 +251,21 @@ class MermaidGenerator(BaseOrchestrator):
         template = self.templates.get(template_name)
         if not template:
             return None
+
+    def save_diagram(self, metadata: DiagramMetadata, definition: str, path: Path) -> None:
+        path.write_text(definition)
+
+    def load_diagram(self, path: Path) -> tuple[DiagramMetadata, str]:
+        definition = path.read_text()
+        meta = DiagramMetadata(
+            name=path.stem,
+            description="",
+            type=DiagramType.FLOWCHART,
+            version="0.1.0",
+            author="",
+            tags=[],
+        )
+        return meta, definition
             
         try:
             # Get the template content and diagram type

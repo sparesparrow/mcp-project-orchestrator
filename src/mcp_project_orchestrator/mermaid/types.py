@@ -88,3 +88,36 @@ class RenderConfig:
             "scale": self.scale,
             "includeMetadata": self.include_metadata,
         } 
+
+
+@dataclass
+class DiagramMetadata:
+    """Metadata for a diagram, used for save/load helpers in tests."""
+
+    name: str
+    description: str
+    type: DiagramType
+    version: str
+    author: str
+    tags: list[str]
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "description": self.description,
+            "type": str(self.type),
+            "version": self.version,
+            "author": self.author,
+            "tags": list(self.tags),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "DiagramMetadata":
+        return cls(
+            name=data["name"],
+            description=data.get("description", ""),
+            type=DiagramType(data["type"]),
+            version=data.get("version", "0.1.0"),
+            author=data.get("author", ""),
+            tags=list(data.get("tags", [])),
+        )

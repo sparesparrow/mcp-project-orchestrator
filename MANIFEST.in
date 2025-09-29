@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+recursive-include src/mcp_project_orchestrator *.json *.yaml *.yml *.md *.txt *.mmd
+recursive-include src/mcp_project_orchestrator/templates *.json *.py
+recursive-include src/mcp_project_orchestrator/resources *.json
+recursive-include src/mcp_project_orchestrator/mermaid/templates *.json *.mmd
