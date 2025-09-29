@@ -93,15 +93,31 @@ install_base_packages() {
     require_or_install_pkg python3-pip || true
   fi
 
-  # Podman preferred over Docker
-  require_or_install_pkg podman podman || warn "Podman not installed; containerization features may be limited"
-  # Provide docker compatibility shim if docker client missing and podman exists
-  if have_cmd podman && ! have_cmd docker; then
-    if [ ! -x /usr/local/bin/docker ]; then
-      log "Creating docker -> podman shim at /usr/local/bin/docker"
-      echo '#!/usr/bin/env bash' | $SUDO tee /usr/local/bin/docker >/dev/null
-      echo 'exec podman "$@"' | $SUDO tee -a /usr/local/bin/docker >/dev/null
-      $SUDO chmod +x /usr/local/bin/docker || true
+  # Containers: honor container.prefer from JSON
+  local prefer="$(json_get '.container.prefer')"
+  if [ "$prefer" = "docker" ]; then
+    # Prefer Docker engine when requested
+    if have_cmd apt-get; then
+      require_or_install_pkg docker.io docker || warn "Failed to install docker.io"
+    elif have_cmd dnf; then
+      require_or_install_pkg docker docker || require_or_install_pkg moby-engine docker || true
+    fi
+    if have_cmd docker; then
+      log "Docker is available"
+    else
+      warn "Docker not available; container preference is docker but installation may have failed"
+    fi
+  else
+    # Default/Podman path
+    require_or_install_pkg podman podman || warn "Podman not installed; containerization features may be limited"
+    # Provide docker compatibility shim if docker client missing and podman exists
+    if have_cmd podman && ! have_cmd docker; then
+      if [ ! -x /usr/local/bin/docker ]; then
+        log "Creating docker -> podman shim at /usr/local/bin/docker"
+        echo '#!/usr/bin/env bash' | $SUDO tee /usr/local/bin/docker >/dev/null
+        echo 'exec podman "$@"' | $SUDO tee -a /usr/local/bin/docker >/dev/null
+        $SUDO chmod +x /usr/local/bin/docker || true
+      fi
     fi
   fi
 
@@ -175,15 +191,22 @@ write_file() {
 }
 
 setup_cursor_configs() {
+  if [ "$(json_get '.enable.cursorConfigs')" != "true" ]; then return 0; fi
   log "Writing .cursor configuration (MCP servers, tools, rules, hooks, deeplinks)"
 
   # Build MCP servers config from JSON flags
   local mcpEntries="{}"
+  local py_port
+  py_port="$(json_get '.ports.pyMcpPort')" || py_port="8765"
+  if [ -z "$py_port" ] || [ "$py_port" = "null" ]; then py_port="8765"; fi
+  local ts_port
+  ts_port="$(json_get '.ports.tsMcpPort')" || ts_port="8766"
+  if [ -z "$ts_port" ] || [ "$ts_port" = "null" ]; then ts_port="8766"; fi
   if [ "$(json_get '.enable.pythonMcp')" = "true" ]; then
-    mcpEntries=$(jq '. + {"mcp-python": {"command":"bash","args":["-lc","python3 servers/python-mcp/main.py"],"env":{}}}' <<<"$mcpEntries")
+    mcpEntries=$(jq --arg port "$py_port" '. + {"mcp-python": {"command":"bash","args":["-lc","python3 servers/python-mcp/main.py"],"env":{"PY_MCP_PORT": $port}}}' <<<"$mcpEntries")
   fi
   if [ "$(json_get '.enable.tsMcp')" = "true" ]; then
-    mcpEntries=$(jq '. + {"mcp-typescript": {"command":"bash","args":["-lc","node servers/ts-mcp/dist/index.js"],"env":{}}}' <<<"$mcpEntries")
+    mcpEntries=$(jq --arg port "$ts_port" '. + {"mcp-typescript": {"command":"bash","args":["-lc","node servers/ts-mcp/dist/index.js"],"env":{"TS_MCP_PORT": $port}}}' <<<"$mcpEntries")
   fi
   if [ "$(json_get '.enable.cppMcp')" = "true" ]; then
     mcpEntries=$(jq '. + {"mcp-cpp": {"command":"bash","args":["-lc","./servers/cpp-mcp/build/mcp_server"],"env":{}}}' <<<"$mcpEntries")
@@ -224,29 +247,17 @@ JSON
 }
 JSON
 
-  write_file "$WORKSPACE_ROOT/.cursor/webhooks/webhooks.json" 0644 <<'JSON'
-{
-  "webhooks": [
-    {
-      "name": "background-agent",
-      "url": "http://localhost:8088/webhooks/cursor",
-      "events": ["task.created", "task.updated", "run.completed"]
-    }
-  ]
-}
-JSON
+  local agent_host="$(json_get '.backgroundAgent.host')"
+  local agent_port="$(json_get '.backgroundAgent.port')"
+  jq -n \
+    --arg url "http://${agent_host}:${agent_port}/webhooks/cursor" \
+    '{webhooks: [{name: "background-agent", url: $url, events: ["task.created","task.updated","run.completed"]}]}' \
+    > "$WORKSPACE_ROOT/.cursor/webhooks/webhooks.json"
 
-  write_file "$WORKSPACE_ROOT/.cursor/agents/background-agent.json" 0644 <<'JSON'
-{
-  "agents": [
-    {
-      "name": "default",
-      "baseUrl": "http://localhost:8088",
-      "enabled": true
-    }
-  ]
-}
-JSON
+  jq -n \
+    --arg baseUrl "http://${agent_host}:${agent_port}" \
+    '{agents: [{name: "default", baseUrl: $baseUrl, enabled: true}]}' \
+    > "$WORKSPACE_ROOT/.cursor/agents/background-agent.json"
 }
 
 scaffold_python_mcp_server() {
@@ -484,11 +495,18 @@ PY
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.." || exit 1
+CONFIG_PATH="${CONFIG_PATH:-$(pwd)/config/project_orchestration.json}"
+HOST="127.0.0.1"
+PORT="8088"
+if command -v jq >/dev/null 2>&1 && [ -f "$CONFIG_PATH" ]; then
+  HOST="$(jq -r '.backgroundAgent.host' "$CONFIG_PATH" 2>/dev/null || echo "$HOST")"
+  PORT="$(jq -r '.backgroundAgent.port' "$CONFIG_PATH" 2>/dev/null || echo "$PORT")"
+fi
 python3 -m venv .venv 2>/dev/null || true
 . .venv/bin/activate
 python -m pip install -U pip
 pip install -r services/background-agent/requirements.txt
-exec uvicorn services.background-agent.main:app --host 127.0.0.1 --port 8088 --reload
+exec uvicorn services.background-agent.main:app --host "$HOST" --port "$PORT" --reload
 SH
 }
 
@@ -616,22 +634,25 @@ echo "Devcontainer post-create hook"
 SH
 
   # Docker deployment example
-  write_file "$WORKSPACE_ROOT/Dockerfile" 0644 <<'DOCKER'
+  local agent_port
+  agent_port="$(json_get '.backgroundAgent.port')"
+  if [ -z "$agent_port" ] || [ "$agent_port" = "null" ]; then agent_port="8088"; fi
+  write_file "$WORKSPACE_ROOT/Dockerfile" 0644 <<DOCKER
 FROM python:3.11-slim
 WORKDIR /app
 COPY services/background-agent/requirements.txt /app/requirements.txt
 RUN pip install -U pip && pip install -r /app/requirements.txt
 COPY services/background-agent /app/services/background-agent
-EXPOSE 8088
-CMD ["uvicorn", "services.background-agent.main:app", "--host", "0.0.0.0", "--port", "8088"]
+EXPOSE ${agent_port}
+CMD ["uvicorn", "services.background-agent.main:app", "--host", "0.0.0.0", "--port", "${agent_port}"]
 DOCKER
 
-  write_file "$WORKSPACE_ROOT/compose.yaml" 0644 <<'YAML'
+  write_file "$WORKSPACE_ROOT/compose.yaml" 0644 <<YAML
 services:
   background-agent:
     build: .
     ports:
-      - "8088:8088"
+      - "${agent_port}:${agent_port}"
     restart: unless-stopped
 YAML
 }

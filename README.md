@@ -116,6 +116,7 @@ Edit `config/project_orchestration.json` to control scaffolding:
 ```
 
 - Set items to `false` to skip generating those components.
+- Ports and URLs are respected across `.cursor/webhooks`, `.cursor/agents`, `Dockerfile` EXPOSE, and `compose.yaml`.
 
 ### Prompt Management
 
