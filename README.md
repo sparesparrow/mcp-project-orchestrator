@@ -41,6 +41,24 @@ Or with Poetry:
 poetry add mcp-project-orchestrator
 ```
 
+### Using as a Conan dependency (for ai-servis)
+
+This repository provides a Conan v2 package exposing the Python environment and CLI. In `ai-servis`'s `conanfile.py` add:
+
+```python
+def requirements(self):
+    self.requires("mcp-project-orchestrator/0.1.0@sparesparrow/stable")
+```
+
+Then activate the run environment so `mcp-orchestrator` is on `PATH` and the package is on `PYTHONPATH`:
+
+```bash
+conan profile detect --force
+conan create . --user=sparesparrow --channel=stable
+conan install mcp-project-orchestrator/0.1.0@sparesparrow/stable -g VirtualRunEnv
+./conanrun.sh mcp-orchestrator --help
+```
+
 ## Quick Start
 
 ### Project Templates

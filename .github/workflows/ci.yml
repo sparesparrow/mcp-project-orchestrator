@@ -1,3 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install project (dev)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Type check (mypy)
+        run: mypy src/mcp_project_orchestrator
+
+      - name: Run tests (pytest)
+        run: pytest -q
+
+      - name: Install Conan
+        run: |
+          pip install "conan>=2.3,<3"
+          conan --version | cat
+          conan profile detect --force | cat
+
+      - name: Build Conan package
+        run: |
+          conan create . --user=sparesparrow --channel=stable --build=missing | cat
+
 name: CI/CD
 
 on:

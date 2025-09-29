@@ -9,15 +9,14 @@ RUN useradd -m mcp-user
 # Set working directory
 WORKDIR /app
 
-# Copy only requirements first to leverage Docker caching
+# Copy project metadata and sources
 COPY pyproject.toml ./
+COPY README.md LICENSE ./
+COPY src ./src
 
-# Install dependencies in a single layer
+# Install the application
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir .
-
-# Copy the rest of the application
-COPY . .
 
 # Change ownership to non-root user
 RUN chown -R mcp-user:mcp-user /app
@@ -32,4 +31,4 @@ EXPOSE 8080
 ENV PYTHONUNBUFFERED=1
 
 # Run command with proper signal handling
-CMD ["python", "-m", "mcp_project_orchestrator.fastmcp"] 
+CMD ["mcp-orchestrator"]

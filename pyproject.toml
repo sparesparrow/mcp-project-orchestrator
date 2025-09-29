@@ -1,14 +1,17 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "mcp-project-orchestrator"
 version = "0.1.0"
-description = "A comprehensive project orchestration tool for managing Model Context Protocol (MCP) projects, templates, prompts, and Mermaid diagrams"
+description = "Main Conan manager and Python environment source for orchestrating MCP development flow."
+readme = "README.md"
+requires-python = ">=3.9"
 authors = [
-    { name = "Your Name", email = "your.email@example.com" }
+    { name = "sparesparrow" }
 ]
+license = { text = "MIT" }
 dependencies = [
     "fastapi>=0.68.0",
     "uvicorn>=0.15.0",
@@ -24,7 +27,6 @@ dependencies = [
     "requests>=2.26.0",
     "aiohttp>=3.8.0",
     "watchdog>=2.1.6",
-    "mermaid-cli>=0.1.0",
     "markdown>=3.3.4",
     "pygments>=2.10.0",
 ]
@@ -34,11 +36,10 @@ dev = [
     "pytest>=6.2.5",
     "pytest-asyncio>=0.16.0",
     "pytest-cov>=2.12.1",
-    "black>=21.9b0",
-    "isort>=5.9.3",
     "mypy>=0.910",
     "ruff>=0.1.0",
-    "pre-commit>=2.15.0",
+    "build>=1.2.1",
+    "twine>=5.0.0",
 ]
 
 [project.scripts]
@@ -50,6 +51,28 @@ Documentation = "https://github.com/sparesparrow/mcp-project-orchestrator/blob/m
 
 [tool.mcp_project_orchestrator]
 description = "An MCP server to orchestrate software projects, utilizing standardized templates and design patterns."
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["mcp_project_orchestrator*"]
+
+[tool.setuptools.package-data]
+"mcp_project_orchestrator" = [
+  "templates/**/*.json",
+  "templates/**/*.py",
+  "prompts/**/*.json",
+  "resources/**/*.json",
+  "mermaid/templates/**/*.json",
+  "mermaid/templates/**/*.mmd",
+  "**/*.yaml",
+  "**/*.yml",
+  "**/*.md",
+  "**/*.txt",
+]
 
 [tool.mcp_project_orchestrator.config]
 communication_protocol = "JSON-RPC"
