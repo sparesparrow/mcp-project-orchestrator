@@ -2,6 +2,18 @@ from mcp.server.fastmcp import FastMCP
 import os
 import json
 from typing import List, Dict, Optional
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Import AWS MCP integration
+try:
+    from .aws_mcp import register_aws_mcp_tools, AWSConfig
+    AWS_MCP_AVAILABLE = True
+except ImportError:
+    AWS_MCP_AVAILABLE = False
+    print("Warning: AWS MCP integration not available. Install boto3 to enable AWS features.")
 
 # Load MCP configuration from JSON file
 CONFIG_FILE = 'project_orchestration.json'
@@ -378,6 +390,14 @@ def orchestrate_new_project(user_idea: str) -> str:
         f"Architecture Concepts: {', '.join(design_info['architectures'])}\n"
         "Next Steps: Review the generated README.md at '{project_path}/README.md' for detailed documentation and instructions."
     )
+
+# Register AWS MCP tools if available
+if AWS_MCP_AVAILABLE and os.getenv("AWS_REGION"):
+    try:
+        register_aws_mcp_tools(mcp)
+        print("AWS MCP tools registered successfully")
+    except Exception as e:
+        print(f"Warning: Failed to register AWS MCP tools: {e}")
 
 # Run the server
 if __name__ == "__main__":
