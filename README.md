@@ -29,16 +29,31 @@ A comprehensive project orchestration tool for managing Model Context Protocol (
   - SVG and PNG rendering
   - Diagram validation
 
+- **AWS MCP Integration**
+  - AWS service access (S3, EC2, Lambda, CloudFormation, IAM)
+  - AWS best practices enforcement
+  - Cost optimization recommendations
+  - Security and compliance guidance
+  - See [AWS_MCP.md](./docs/AWS_MCP.md) for details
+
 ## Installation
 
 ```bash
 pip install mcp-project-orchestrator
 ```
 
+For AWS integration support:
+
+```bash
+pip install mcp-project-orchestrator[aws]
+```
+
 Or with Poetry:
 
 ```bash
 poetry add mcp-project-orchestrator
+# Or with AWS support
+poetry add mcp-project-orchestrator -E aws
 ```
 
 ### Using as a Conan dependency (for ai-servis)

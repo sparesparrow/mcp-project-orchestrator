@@ -9,10 +9,27 @@
     "githubActions": true,
     "devcontainer": true,
     "awsTerraform": true,
+    "awsMcp": true,
     "webAndMcp": true,
     "cppConan": true,
     "esp32": true,
     "android": true
+  },
+  "aws": {
+    "enabled": true,
+    "services": ["s3", "ec2", "lambda", "cloudformation", "iam"],
+    "bestPractices": {
+      "enabled": true,
+      "enforcement": true
+    },
+    "costOptimization": {
+      "enabled": true,
+      "alertThreshold": 100
+    },
+    "security": {
+      "scanningEnabled": false,
+      "enforceEncryption": true
+    }
   },
   "ports": {
     "pyMcpPort": 8765,

@@ -13,6 +13,10 @@ import logging
 import json
 import time
 from typing import Dict, Any, Optional, Callable
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Set up logging
 logging.basicConfig(

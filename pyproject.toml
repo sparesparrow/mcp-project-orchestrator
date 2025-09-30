@@ -29,6 +29,8 @@ dependencies = [
     "watchdog>=2.1.6",
     "markdown>=3.3.4",
     "pygments>=2.10.0",
+    "boto3>=1.26.0",
+    "botocore>=1.29.0",
 ]
 
 [project.optional-dependencies]
@@ -40,6 +42,10 @@ dev = [
     "ruff>=0.1.0",
     "build>=1.2.1",
     "twine>=5.0.0",
+]
+aws = [
+    "boto3>=1.26.0",
+    "botocore>=1.29.0",
 ]
 
 [project.scripts]
