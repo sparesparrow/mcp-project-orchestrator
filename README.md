@@ -82,6 +82,42 @@ manager.apply_template("fastapi-project", {
 })
 ```
 
+### JSON-Driven Project Orchestration
+
+The setup script reads `config/project_orchestration.json` to enable/disable features and set ports and tool options.
+
+Run the setup:
+
+```bash
+chmod +x scripts/setup_orchestrator.sh
+scripts/setup_orchestrator.sh
+```
+
+Edit `config/project_orchestration.json` to control scaffolding:
+
+```json
+{
+  "enable": {
+    "cursorConfigs": true,
+    "pythonMcp": true,
+    "tsMcp": true,
+    "cppMcp": true,
+    "mcpClient": true,
+    "backgroundAgent": true,
+    "githubActions": true,
+    "devcontainer": true,
+    "awsTerraform": true,
+    "webAndMcp": true,
+    "cppConan": true,
+    "esp32": true,
+    "android": true
+  }
+}
+```
+
+- Set items to `false` to skip generating those components.
+- Ports and URLs are respected across `.cursor/webhooks`, `.cursor/agents`, `Dockerfile` EXPOSE, and `compose.yaml`.
+
 ### Prompt Management
 
 ```python
