@@ -2,17 +2,16 @@
 Command-line entry point for the MCP Project Orchestrator.
 """
 
-import os
 import sys
 import asyncio
 import argparse
 from pathlib import Path
 
 from .server import start_server
-from .core import MCPConfig, setup_logging
+from .core import setup_logging
 
 
-def main():
+def main() -> None:
     """Main entry point."""
     parser = argparse.ArgumentParser(description="MCP Project Orchestrator")
     parser.add_argument("--config", help="Path to configuration file")

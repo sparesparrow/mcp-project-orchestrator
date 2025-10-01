@@ -12,9 +12,8 @@ import sys
 import signal
 import logging
 import json
-import time
 import asyncio
-from typing import Dict, Any, Optional, Callable, List, Union, Type
+from typing import Dict, Any, Optional, Callable, List
 
 # Set up logging
 logging.basicConfig(
@@ -55,7 +54,7 @@ class FastMCPServer:
         
         logger.info(f"Initialized FastMCP server '{self.name}'")
     
-    async def initialize(self):
+    async def initialize(self) -> None:
         """
         Initialize the server asynchronously.
         
@@ -68,7 +67,7 @@ class FastMCPServer:
         
         logger.info("FastMCPServer initialization complete")
     
-    async def start(self, host=None, port=None):
+    async def start(self, host: Optional[str] = None, port: Optional[int] = None) -> None:
         """
         Start the server asynchronously.
         
@@ -86,7 +85,7 @@ class FastMCPServer:
         
         logger.info(f"FastMCP server started successfully on {self.host}:{self.port}")
     
-    async def stop(self):
+    async def stop(self) -> None:
         """
         Stop the server gracefully.
         """
@@ -199,7 +198,7 @@ class FastMCPServer:
         
         logger.debug(f"Tool registered: {name} - {description}")
     
-    def _handle_signal(self, signum: int, frame) -> None:
+    def _handle_signal(self, signum: int, frame: Any) -> None:
         """
         Handle termination signals gracefully.
         
@@ -430,7 +429,7 @@ class FastMCPServer:
             import asyncio
             import websockets
             
-            async def handle_websocket(websocket, path):
+            async def handle_websocket(websocket: Any, path: str) -> None:
                 """Handle a websocket connection."""
                 async for message in websocket:
                     try:

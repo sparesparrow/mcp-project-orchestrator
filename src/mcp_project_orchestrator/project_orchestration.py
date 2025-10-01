@@ -1,8 +1,10 @@
-from mcp.server.fastmcp import FastMCP
 import os
 import json
 from typing import List, Dict, Optional
 from dotenv import load_dotenv
+
+# Import our own FastMCP implementation
+from .fastmcp import FastMCP
 
 # Load environment variables
 load_dotenv()

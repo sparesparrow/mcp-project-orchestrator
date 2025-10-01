@@ -6,13 +6,12 @@ This module provides a lightweight MCP server that handles communication
 with MCP clients like Claude Desktop, exposing project orchestration
 capabilities through the Model Context Protocol.
 """
-import os
 import sys
 import signal
 import logging
 import json
 import time
-from typing import Dict, Any, Optional, Callable
+from typing import Any, Optional, Callable
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -58,6 +57,8 @@ class FastMCP:
     
     def _load_config(self) -> None:
         """Load configuration from project_orchestration.json if it exists."""
+        import os
+        
         try:
             config_path = os.path.join(os.getcwd(), "project_orchestration.json")
             if os.path.exists(config_path):
@@ -111,7 +112,7 @@ class FastMCP:
         self.resources[name] = content
         logger.info(f"Registered resource '{name}'")
     
-    def _handle_signal(self, signum: int, frame) -> None:
+    def _handle_signal(self, signum: int, frame: Any) -> None:
         """
         Handle shutdown signals gracefully.
         
@@ -149,7 +150,7 @@ class FastMCP:
         finally:
             logger.info("Server shutting down")
 
-def main():
+def main() -> None:
     """Main entry point for the FastMCP server."""
     server = FastMCP("Project Orchestrator")
     server.run()
