@@ -8,8 +8,8 @@ diagram generation, and AWS integration through the Model Context Protocol (MCP)
 __version__ = "0.1.0"
 
 from .core import FastMCPServer, MCPConfig, setup_logging, MCPException
-from .prompt_manager import PromptManager, PromptTemplate, PromptLoader
-from .mermaid import MermaidGenerator, MermaidRenderer, DiagramType
+from .mermaid import DiagramType, MermaidGenerator, MermaidRenderer
+from .prompt_manager import PromptLoader, PromptManager, PromptTemplate
 
 # AWS MCP integration (optional)
 try:
