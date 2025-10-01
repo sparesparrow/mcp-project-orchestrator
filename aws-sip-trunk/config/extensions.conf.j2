@@ -1,0 +1,197 @@
+;
+; Asterisk Dialplan Template for ElevenLabs Integration
+; Jinja2 template for dynamic dialplan generation
+;
+
+[general]
+static=yes
+writeprotect=no
+clearglobalvars=no
+
+[globals]
+ELEVENLABS_PHONE={{ elevenlabs_phone }}
+ELEVENLABS_ENDPOINT=elevenlabs
+RECORDINGS_PATH={{ recordings_path | default('/var/spool/asterisk/recordings') }}
+{% if s3_bucket %}
+S3_BUCKET={{ s3_bucket }}
+{% endif %}
+PROJECT_NAME={{ project_name }}
+
+;
+; Context for incoming calls from ElevenLabs
+;
+[{{ elevenlabs_context | default('from-elevenlabs') }}]
+; Log incoming call
+exten => _X.,1,NoOp(Incoming call from ElevenLabs)
+ same => n,Set(CHANNEL(language)={{ language | default('en') }})
+ same => n,Set(CDR(accountcode)=elevenlabs)
+ same => n,Set(CALL_ID=${STRFTIME(${EPOCH},,%Y%m%d_%H%M%S)}_${CALLERID(num)})
+ same => n,Verbose(1,Call ID: ${CALL_ID})
+ 
+{% if enable_call_recording %}
+; Enable call recording
+ same => n,Set(CALLFILENAME=elevenlabs_${CALL_ID})
+ same => n,MixMonitor(${RECORDINGS_PATH}/${CALLFILENAME}.wav,b)
+ same => n,Verbose(1,Recording to: ${RECORDINGS_PATH}/${CALLFILENAME}.wav)
+{% endif %}
+
+; Answer the call
+ same => n,Answer()
+ same => n,Wait({{ answer_delay | default('1') }})
+ 
+{% if custom_greeting %}
+; Play custom greeting
+ same => n,Playback({{ custom_greeting }})
+{% endif %}
+
+{% if enable_ivr %}
+; IVR Menu
+ same => n,Background({{ ivr_prompt | default('welcome') }})
+ same => n,WaitExten({{ ivr_timeout | default('5') }})
+{% else %}
+; Default: Echo test for audio verification
+ same => n,Playback(hello-world)
+ same => n,Echo()
+{% endif %}
+
+; Hangup
+ same => n,Hangup()
+
+{% if enable_ivr %}
+; IVR Extensions
+exten => 1,1,NoOp(IVR Option 1 selected)
+ same => n,Playback(option-1)
+ same => n,Hangup()
+
+exten => 2,1,NoOp(IVR Option 2 selected)
+ same => n,Playback(option-2)
+ same => n,Hangup()
+
+exten => 9,1,NoOp(IVR Operator request)
+ same => n,Playback(transferring)
+ same => n,Hangup()
+
+; Invalid entry
+exten => i,1,NoOp(Invalid IVR entry)
+ same => n,Playback(invalid)
+ same => n,Goto({{ elevenlabs_context | default('from-elevenlabs') }},s,1)
+
+; Timeout
+exten => t,1,NoOp(IVR timeout)
+ same => n,Playback(goodbye)
+ same => n,Hangup()
+{% endif %}
+
+; Hangup handler
+exten => h,1,NoOp(Call ended - Duration: ${CDR(duration)} seconds)
+{% if enable_call_recording and s3_bucket %}
+ same => n,System(aws s3 cp ${RECORDINGS_PATH}/${CALLFILENAME}.wav s3://${S3_BUCKET}/recordings/ --region {{ aws_region }})
+ same => n,Verbose(1,Uploaded recording to S3: s3://${S3_BUCKET}/recordings/${CALLFILENAME}.wav)
+{% endif %}
+ same => n,Return()
+
+;
+; Context for outbound calls to ElevenLabs
+;
+[{{ outbound_context | default('outbound-to-elevenlabs') }}]
+; Dial ElevenLabs agent
+exten => _X.,1,NoOp(Dialing ElevenLabs Agent: ${EXTEN})
+ same => n,Set(CDR(accountcode)=elevenlabs-outbound)
+ same => n,Set(CALLERID(num)=${ELEVENLABS_PHONE})
+ same => n,Set(CALLERID(name)={{ caller_name | default('AWS-Asterisk') }})
+ same => n,Verbose(1,Calling: PJSIP/${EXTEN}@${ELEVENLABS_ENDPOINT})
+ 
+{% if enable_call_recording %}
+; Enable recording for outbound calls
+ same => n,Set(CALLFILENAME=outbound_${STRFTIME(${EPOCH},,%Y%m%d_%H%M%S)}_${EXTEN})
+ same => n,MixMonitor(${RECORDINGS_PATH}/${CALLFILENAME}.wav,b)
+{% endif %}
+
+; Dial with options
+ same => n,Dial(PJSIP/${EXTEN}@${ELEVENLABS_ENDPOINT},{{ dial_timeout | default('60') }},{{ dial_options | default('tT') }})
+ same => n,NoOp(Dial Status: ${DIALSTATUS})
+ 
+; Handle dial failure
+ same => n,GotoIf($["${DIALSTATUS}" = "ANSWER"]?answered)
+ same => n,GotoIf($["${DIALSTATUS}" = "BUSY"]?busy)
+ same => n,GotoIf($["${DIALSTATUS}" = "NOANSWER"]?noanswer)
+ same => n,GotoIf($["${DIALSTATUS}" = "CANCEL"]?cancel)
+ same => n,Goto(failed)
+
+; Call answered
+ same => n(answered),NoOp(Call answered successfully)
+ same => n,Hangup()
+
+; Call busy
+ same => n(busy),NoOp(Call busy)
+ same => n,Playback(vm-nobodyavail)
+ same => n,Hangup()
+
+; No answer
+ same => n(noanswer),NoOp(No answer)
+ same => n,Playback(vm-nobodyavail)
+ same => n,Hangup()
+
+; Call cancelled
+ same => n(cancel),NoOp(Call cancelled)
+ same => n,Hangup()
+
+; Call failed
+ same => n(failed),NoOp(Call failed: ${DIALSTATUS})
+ same => n,Playback(ss-noservice)
+ same => n,Hangup()
+
+; Hangup handler
+exten => h,1,NoOp(Outbound call ended)
+{% if enable_call_recording and s3_bucket %}
+ same => n,System(aws s3 cp ${RECORDINGS_PATH}/${CALLFILENAME}.wav s3://${S3_BUCKET}/recordings/)
+{% endif %}
+ same => n,Return()
+
+;
+; Default context for unauthorized calls
+;
+[default]
+exten => _X.,1,NoOp(Unauthorized call attempt from ${CALLERID(all)} to ${EXTEN})
+ same => n,Verbose(1,SECURITY: Unauthorized call blocked)
+ same => n,Playback(ss-noservice)
+ same => n,Hangup()
+
+exten => h,1,NoOp(Unauthorized call blocked)
+ same => n,Return()
+
+{% if enable_health_check %}
+;
+; Health check context
+;
+[health-check]
+exten => ping,1,NoOp(Health check request)
+ same => n,Answer()
+ same => n,Playback(beep)
+ same => n,Hangup()
+{% endif %}
+
+{% if enable_custom_contexts %}
+;
+; Custom contexts
+;
+{% for context_name, context_config in custom_contexts.items() %}
+[{{ context_name }}]
+{% for extension, actions in context_config.items() %}
+exten => {{ extension }},1,NoOp(Custom context: {{ context_name }}, extension: {{ extension }})
+{% for action in actions %}
+ same => n,{{ action }}
+{% endfor %}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+;
+; Include custom dialplan if exists
+;
+#include extensions_custom.conf
+
+;
+; End of Dialplan Configuration
+;
