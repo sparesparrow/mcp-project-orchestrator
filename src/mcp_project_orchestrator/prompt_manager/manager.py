@@ -10,11 +10,12 @@ from typing import Any, Dict, List, Optional, Set
 import asyncio
 import json
 
-from ..core import BaseOrchestrator, Config
-from .template import PromptTemplate
+from ..core import Config
+from .template import PromptTemplate, PromptCategory
 from .loader import PromptLoader
 
-class PromptManager(BaseOrchestrator):
+
+class PromptManager:
     """Main class for managing prompt templates."""
     
     def __init__(self, config: Config):
@@ -23,9 +24,10 @@ class PromptManager(BaseOrchestrator):
         Args:
             config: Configuration instance
         """
-        super().__init__(config)
+        self.config = config
         self.loader = PromptLoader(config)
         self.cache: Dict[str, Dict[str, Any]] = {}
+        self._templates: Dict[str, PromptTemplate] = {}
         
     async def initialize(self) -> None:
         """Initialize the prompt manager.
@@ -235,4 +237,79 @@ class PromptManager(BaseOrchestrator):
         Returns:
             List of tag names
         """
-        return self.loader.get_all_tags() 
+        return self.loader.get_all_tags()
+    
+    def discover_prompts(self) -> None:
+        """Discover and load all prompt templates from the prompts directory."""
+        prompts_dir = self.config.settings.prompts_dir
+        if not prompts_dir.exists():
+            return
+        
+        for prompt_file in prompts_dir.rglob("*.json"):
+            try:
+                template = PromptTemplate.from_file(prompt_file)
+                self._templates[template.metadata.name] = template
+            except Exception as e:
+                # Skip invalid templates
+                pass
+    
+    def list_prompts(self, category: Optional[PromptCategory] = None) -> List[str]:
+        """List all available prompt templates.
+        
+        Args:
+            category: Optional category to filter by
+            
+        Returns:
+            List of prompt names
+        """
+        if category is None:
+            return list(self._templates.keys())
+        
+        return [
+            name for name, template in self._templates.items()
+            if template.metadata.category == category
+        ]
+    
+    def get_prompt(self, name: str) -> Optional[PromptTemplate]:
+        """Get a prompt template by name.
+        
+        Args:
+            name: Name of the prompt template
+            
+        Returns:
+            Prompt template or None if not found
+        """
+        return self._templates.get(name)
+    
+    def render_prompt(self, name: str, variables: Dict[str, Any]) -> str:
+        """Render a prompt template with variables.
+        
+        Args:
+            name: Name of the prompt template
+            variables: Variables to substitute
+            
+        Returns:
+            Rendered prompt string
+            
+        Raises:
+            KeyError: If prompt not found or required variable missing
+        """
+        template = self.get_prompt(name)
+        if template is None:
+            raise KeyError(f"Prompt template not found: {name}")
+        
+        return template.render(variables)
+    
+    def save_prompt(self, template: PromptTemplate) -> None:
+        """Save a prompt template to disk.
+        
+        Args:
+            template: Prompt template to save
+        """
+        prompts_dir = self.config.settings.prompts_dir
+        prompts_dir.mkdir(parents=True, exist_ok=True)
+        
+        prompt_path = prompts_dir / f"{template.metadata.name}.json"
+        template.save(prompt_path)
+        
+        self._templates[template.metadata.name] = template 

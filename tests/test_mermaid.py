@@ -129,7 +129,7 @@ def test_diagram_save_load(mermaid_generator, temp_dir):
     
     # Save diagram
     diagram_dir = temp_dir / "diagrams"
-    diagram_dir.mkdir(parents=True)
+    diagram_dir.mkdir(parents=True, exist_ok=True)
     diagram_file = diagram_dir / "save-test.mmd"
     mermaid_generator.save_diagram(metadata, diagram, diagram_file)
     

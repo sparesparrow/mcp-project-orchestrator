@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 
-from mcp_project_orchestrator.prompts import (
+from mcp_project_orchestrator.prompt_manager import (
     PromptManager,
     PromptTemplate,
     PromptCategory,
@@ -58,7 +58,7 @@ def test_prompt_manager(prompt_manager, temp_dir):
     """Test prompt manager functionality."""
     # Create test prompt
     prompt_dir = temp_dir / "prompts"
-    prompt_dir.mkdir(parents=True)
+    prompt_dir.mkdir(parents=True, exist_ok=True)
     
     prompt_file = prompt_dir / "test-prompt.json"
     prompt_file.write_text("""
