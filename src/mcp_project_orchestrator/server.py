@@ -4,11 +4,6 @@ MCP Project Orchestrator Server.
 This is the main entry point for the MCP Project Orchestrator server.
 """
 
-import os
-import sys
-import asyncio
-import json
-from pathlib import Path
 from typing import Dict, Any, Optional
 
 from .core import FastMCPServer, MCPConfig, setup_logging
@@ -39,7 +34,7 @@ class ProjectOrchestratorServer:
         self.template_manager = None
         self.logger = setup_logging(log_file=config.log_file)
         
-    async def initialize(self):
+    async def initialize(self) -> None:
         """Initialize all components and register tools."""
         self.logger.info("Initializing Project Orchestrator Server")
         
@@ -67,7 +62,7 @@ class ProjectOrchestratorServer:
         
         self.logger.info("Project Orchestrator Server initialized successfully")
         
-    def _register_tools(self):
+    def _register_tools(self) -> None:
         """Register all tools with the MCP server."""
         self.logger.info("Registering tools")
         
@@ -307,17 +302,17 @@ class ProjectOrchestratorServer:
                 }
             }
     
-    async def start(self):
+    async def start(self) -> None:
         """Start the server."""
         await self.mcp.start()
         
-    async def stop(self):
+    async def stop(self) -> None:
         """Stop the server."""
         await self.mcp.stop()
 
 
 # Convenience function for starting the server
-async def start_server(config_path: Optional[str] = None):
+async def start_server(config_path: Optional[str] = None) -> "ProjectOrchestratorServer":
     """
     Start the MCP Project Orchestrator server.
     
