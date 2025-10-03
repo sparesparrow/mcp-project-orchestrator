@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 import json
 
-from mcp_project_orchestrator.core import Config
+from mcp_project_orchestrator.core import MCPConfig
 from mcp_project_orchestrator.templates import TemplateManager
 from mcp_project_orchestrator.prompt_manager import PromptManager
 from mcp_project_orchestrator.mermaid import MermaidGenerator, MermaidRenderer
@@ -22,26 +22,26 @@ def temp_dir():
 @pytest.fixture
 def test_config(temp_dir):
     """Create a test configuration."""
-    config = Config()
-    config.workspace_dir = temp_dir / "workspace"
-    config.templates_dir = temp_dir / "templates"
-    config.resources_dir = temp_dir / "resources"
-    config.prompt_templates_dir = temp_dir / "prompts"
-    config.mermaid_output_dir = temp_dir / "diagrams"
+    config = MCPConfig()
+    config.settings.workspace_dir = temp_dir / "workspace"
+    config.settings.templates_dir = temp_dir / "templates"
+    config.settings.resources_dir = temp_dir / "resources"
+    config.settings.prompts_dir = temp_dir / "prompts"
+    config.settings.output_dir = temp_dir / "diagrams"
     
     # Create directories
-    config.workspace_dir.mkdir(parents=True)
-    config.templates_dir.mkdir(parents=True)
-    config.resources_dir.mkdir(parents=True)
-    config.prompt_templates_dir.mkdir(parents=True)
-    config.mermaid_output_dir.mkdir(parents=True)
+    config.settings.workspace_dir.mkdir(parents=True, exist_ok=True)
+    config.settings.templates_dir.mkdir(parents=True, exist_ok=True)
+    config.settings.resources_dir.mkdir(parents=True, exist_ok=True)
+    config.settings.prompts_dir.mkdir(parents=True, exist_ok=True)
+    config.settings.output_dir.mkdir(parents=True, exist_ok=True)
     
     return config
 
 @pytest.fixture
 def template_manager(test_config):
     """Create a template manager instance."""
-    return TemplateManager(test_config.templates_dir)
+    return TemplateManager(test_config.settings.templates_dir)
 
 @pytest.fixture
 def prompt_manager(test_config):

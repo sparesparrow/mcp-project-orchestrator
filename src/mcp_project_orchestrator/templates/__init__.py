@@ -49,7 +49,9 @@ class ComponentTemplate(BaseTemplate):
         target_path.mkdir(parents=True, exist_ok=True)
 
         for file in self.files:
-            dest = target_path / file.path
+            # Substitute variables in the file path as well
+            file_path = self.substitute_variables(file.path)
+            dest = target_path / file_path
             dest.parent.mkdir(parents=True, exist_ok=True)
             content = self.substitute_variables(file.content)
             dest.write_text(content)

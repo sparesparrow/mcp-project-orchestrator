@@ -6,22 +6,79 @@ prompt template with its metadata and rendering capabilities.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from enum import Enum
+from typing import Any, Dict, List, Optional, Union
 from pathlib import Path
 import json
+
+
+class PromptCategory(Enum):
+    """Categories for organizing prompts."""
+    
+    SYSTEM = "system"
+    USER = "user"
+    ASSISTANT = "assistant"
+    DOCUMENTATION = "documentation"
+    CODE_GENERATION = "code_generation"
+    REVIEW = "review"
+    TESTING = "testing"
+    DEBUGGING = "debugging"
+    
+    def __str__(self) -> str:
+        return self.value
+
+
+@dataclass
+class PromptMetadata:
+    """Metadata for a prompt template."""
+    
+    name: str
+    description: str
+    category: PromptCategory
+    version: str = "1.0.0"
+    author: Optional[str] = None
+    tags: List[str] = field(default_factory=list)
+    variables: Dict[str, str] = field(default_factory=dict)
+    
+    def to_dict(self) -> Dict[str, Union[str, List[str], Dict[str, str]]]:
+        """Convert metadata to dictionary format.
+        
+        Returns:
+            Dictionary representation of the metadata
+        """
+        return {
+            "name": self.name,
+            "description": self.description,
+            "category": str(self.category),
+            "version": self.version,
+            "author": self.author,
+            "tags": self.tags,
+            "variables": self.variables,
+        }
+        
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "PromptMetadata":
+        """Create metadata from dictionary.
+        
+        Args:
+            data: Dictionary containing metadata fields
+            
+        Returns:
+            PromptMetadata instance
+        """
+        # Convert string values to enums
+        if "category" in data:
+            data["category"] = PromptCategory(data["category"])
+            
+        return cls(**data)
+
 
 @dataclass
 class PromptTemplate:
     """Class representing a prompt template."""
     
-    name: str
+    metadata: PromptMetadata
     content: str
-    description: str
-    variables: Dict[str, str] = field(default_factory=dict)
-    category: Optional[str] = None
-    tags: List[str] = field(default_factory=list)
-    version: str = "1.0.0"
-    author: Optional[str] = None
     examples: List[Dict[str, str]] = field(default_factory=list)
     
     @classmethod
@@ -44,15 +101,11 @@ class PromptTemplate:
         with open(path) as f:
             data = json.load(f)
             
-        required_fields = {"name", "content", "description"}
-        missing_fields = required_fields - set(data.keys())
-        
-        if missing_fields:
-            raise ValueError(
-                f"Template is missing required fields: {missing_fields}"
-            )
+        if "metadata" not in data or "content" not in data:
+            raise ValueError("Template must have 'metadata' and 'content' fields")
             
-        return cls(**data)
+        metadata = PromptMetadata.from_dict(data["metadata"])
+        return cls(metadata=metadata, content=data["content"], examples=data.get("examples", []))
         
     def render(self, variables: Dict[str, Any]) -> str:
         """Render the template with the provided variables.
@@ -66,15 +119,35 @@ class PromptTemplate:
         Raises:
             KeyError: If a required variable is missing
         """
+        import re
+        
         result = self.content
         
-        for var_name, var_desc in self.variables.items():
+        # Extract all variables from content using regex
+        # Match both {{ var }} and {{var}} patterns
+        pattern = r'\{\{\s*(\w+)\s*\}\}'
+        content_vars = set(re.findall(pattern, result))
+        
+        # Check if required metadata variables are provided
+        for var_name, var_desc in self.metadata.variables.items():
             if var_name not in variables:
                 raise KeyError(
                     f"Missing required variable '{var_name}': {var_desc}"
                 )
-            placeholder = f"{{{var_name}}}"
-            result = result.replace(placeholder, str(variables[var_name]))
+        
+        # Check if all content variables are provided (if no metadata variables defined)
+        if not self.metadata.variables:
+            for var_name in content_vars:
+                if var_name not in variables:
+                    raise KeyError(f"Missing required variable '{var_name}'")
+        
+        # Substitute all provided variables
+        for var_name, var_value in variables.items():
+            # Support both {{ var }} and {{var}} formats
+            placeholder_with_spaces = f"{{{{ {var_name} }}}}"
+            placeholder_without_spaces = f"{{{{{var_name}}}}}"
+            result = result.replace(placeholder_with_spaces, str(var_value))
+            result = result.replace(placeholder_without_spaces, str(var_value))
             
         return result
         
@@ -85,14 +158,8 @@ class PromptTemplate:
             Dictionary representation of the template
         """
         return {
-            "name": self.name,
+            "metadata": self.metadata.to_dict(),
             "content": self.content,
-            "description": self.description,
-            "variables": self.variables,
-            "category": self.category,
-            "tags": self.tags,
-            "version": self.version,
-            "author": self.author,
             "examples": self.examples,
         }
         
@@ -105,29 +172,31 @@ class PromptTemplate:
         with open(path, "w") as f:
             json.dump(self.to_dict(), f, indent=2)
             
-    def validate(self) -> None:
+    def validate(self) -> bool:
         """Validate the template.
         
-        Raises:
-            ValueError: If the template is invalid
+        Returns:
+            True if valid, False otherwise
         """
-        if not self.name:
-            raise ValueError("Template name cannot be empty")
+        if not self.metadata.name:
+            return False
             
         if not self.content:
-            raise ValueError("Template content cannot be empty")
+            return False
             
-        if not self.description:
-            raise ValueError("Template description cannot be empty")
-            
-        # Validate that all variables in content have descriptions
-        content_vars = {
-            name.strip("{}") for name in 
-            (var for var in self.content.split("{") if "}" in var)
-        }
+        if not self.metadata.description:
+            return False
         
-        missing_vars = content_vars - set(self.variables.keys())
-        if missing_vars:
-            raise ValueError(
-                f"Template uses variables without descriptions: {missing_vars}"
-            ) 
+        if not self.metadata.version:
+            return False
+            
+        if not self.metadata.author:
+            return False
+            
+        if not self.metadata.tags:
+            return False
+            
+        if not self.metadata.variables:
+            return False
+            
+        return True 

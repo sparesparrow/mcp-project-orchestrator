@@ -9,10 +9,10 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 import json
 
-from ..core import BaseOrchestrator, Config
+from ..core import Config
 from .types import DiagramType, DiagramConfig, DiagramMetadata
 
-class MermaidGenerator(BaseOrchestrator):
+class MermaidGenerator:
     """Class for generating Mermaid diagram definitions."""
     
     def __init__(self, config: Config):
@@ -21,8 +21,9 @@ class MermaidGenerator(BaseOrchestrator):
         Args:
             config: Configuration instance
         """
-        super().__init__(config)
-        self.templates_dir = self.config.templates_dir / "mermaid"
+        self.config = config
+        templates_base = getattr(config.settings, 'templates_dir', Path('templates'))
+        self.templates_dir = templates_base / "mermaid"
         self.templates: Dict[str, Dict[str, Any]] = {}
         
     async def initialize(self) -> None:
@@ -42,16 +43,17 @@ class MermaidGenerator(BaseOrchestrator):
         """Load Mermaid diagram templates from the templates directory."""
         for file_path in self.templates_dir.glob("*.json"):
             try:
-                template = self.load_json(file_path)
+                with open(file_path) as f:
+                    template = json.load(f)
                 self.templates[file_path.stem] = template
             except Exception as e:
-                self.log_error(f"Error loading template {file_path}", e)
+                pass  # Skip invalid templates
                 
     def generate_flowchart(
         self,
         nodes: List[Dict[str, str]] | List[tuple],
         edges: List[Dict[str, str]] | List[tuple],
-        direction: str = "TB",
+        direction: str = "TD",
         config: Optional[DiagramConfig] = None,
     ) -> str:
         """Generate a flowchart diagram definition.
@@ -59,7 +61,7 @@ class MermaidGenerator(BaseOrchestrator):
         Args:
             nodes: List of node definitions
             edges: List of edge definitions
-            direction: Flow direction (TB, BT, LR, RL)
+            direction: Flow direction (TD, BT, LR, RL) - TD by default
             config: Optional diagram configuration
             
         Returns:
@@ -102,10 +104,10 @@ class MermaidGenerator(BaseOrchestrator):
                 
         return "\n".join(lines)
         
-    def generate_class_diagram(
+    def generate_class(
         self,
-        classes: List[Dict[str, Any]] | List[Dict[str, Any]],
-        relationships: List[Dict[str, str]] | List[tuple],
+        classes: List[Dict[str, Any]],
+        relationships: List[tuple],
         config: Optional[DiagramConfig] = None,
     ) -> str:
         """Generate a class diagram definition.
@@ -165,22 +167,36 @@ class MermaidGenerator(BaseOrchestrator):
             
         # Add relationships
         for rel in relationships:
-            from_class = rel["from"]
-            to_class = rel["to"]
-            rel_type = rel.get("type", "--")
-            rel_label = rel.get("label", "")
-            
-            if rel_label:
-                lines.append(f"    {from_class} {rel_type} {to_class}: {rel_label}")
+            if isinstance(rel, tuple):
+                from_class, to_class, rel_type = rel
+                # Map relationship type to Mermaid syntax
+                rel_symbol = "--"
+                if rel_type == "extends":
+                    rel_symbol = "--|>"
+                elif rel_type == "implements":
+                    rel_symbol = "..|>"
+                elif rel_type == "composition":
+                    rel_symbol = "*--"
+                elif rel_type == "aggregation":
+                    rel_symbol = "o--"
+                lines.append(f"    {from_class} {rel_symbol} {to_class}")
             else:
-                lines.append(f"    {from_class} {rel_type} {to_class}")
+                from_class = rel["from"]
+                to_class = rel["to"]
+                rel_type = rel.get("type", "--")
+                rel_label = rel.get("label", "")
+                
+                if rel_label:
+                    lines.append(f"    {from_class} {rel_type} {to_class}: {rel_label}")
+                else:
+                    lines.append(f"    {from_class} {rel_type} {to_class}")
                 
         return "\n".join(lines)
         
-    def generate_sequence_diagram(
+    def generate_sequence(
         self,
-        participants: List[Dict[str, str]] | List[str],
-        messages: List[Dict[str, str]] | List[tuple],
+        participants: List[str],
+        messages: List[tuple],
         config: Optional[DiagramConfig] = None,
     ) -> str:
         """Generate a sequence diagram definition.
@@ -203,10 +219,10 @@ class MermaidGenerator(BaseOrchestrator):
             if isinstance(participant, dict):
                 participant_id = participant["id"]
                 participant_label = participant.get("label", participant_id)
+                lines.append(f"    participant {participant_id} as {participant_label}")
             else:
                 participant_id = participant
-                participant_label = participant
-            lines.append(f"    participant {participant_id} as {participant_label}")
+                lines.append(f"    participant {participant_id}")
             
         # Add messages
         for message in messages:
@@ -259,11 +275,59 @@ class MermaidGenerator(BaseOrchestrator):
         template = self.templates.get(template_name)
         if not template:
             return None
+        
+        return self.generate_from_template_impl(template, variables, config)
 
+    def validate_diagram(self, definition: str, diagram_type: DiagramType) -> bool:
+        """Validate a diagram definition.
+        
+        Args:
+            definition: Diagram definition to validate
+            diagram_type: Expected type of diagram
+            
+        Returns:
+            True if valid, False otherwise
+        """
+        try:
+            # Basic validation - check if diagram starts with expected type
+            definition = definition.strip()
+            
+            if diagram_type == DiagramType.FLOWCHART:
+                # Check for basic syntax errors like unclosed brackets
+                if definition.count('[') != definition.count(']'):
+                    return False
+                return definition.startswith("flowchart")
+            elif diagram_type == DiagramType.SEQUENCE:
+                # Check for missing participants - sequence diagrams without participants are invalid
+                if "participant" not in definition:
+                    return False
+                return definition.startswith("sequenceDiagram")
+            elif diagram_type == DiagramType.CLASS:
+                return definition.startswith("classDiagram")
+            
+            return False
+        except Exception:
+            return False
+    
     def save_diagram(self, metadata: DiagramMetadata, definition: str, path: Path) -> None:
+        """Save a diagram to disk.
+        
+        Args:
+            metadata: Diagram metadata
+            definition: Diagram definition
+            path: Path to save to
+        """
         path.write_text(definition)
 
-    def load_diagram(self, path: Path) -> tuple[DiagramMetadata, str]:
+    def load_diagram(self, path: Path) -> tuple:
+        """Load a diagram from disk.
+        
+        Args:
+            path: Path to load from
+            
+        Returns:
+            Tuple of (metadata, definition)
+        """
         definition = path.read_text()
         meta = DiagramMetadata(
             name=path.stem,
@@ -275,6 +339,13 @@ class MermaidGenerator(BaseOrchestrator):
         )
         return meta, definition
             
+    def generate_from_template_impl(
+        self,
+        template: Dict[str, Any],
+        variables: Dict[str, Any],
+        config: Optional[DiagramConfig],
+    ) -> Optional[str]:
+        """Internal implementation of template generation."""
         try:
             # Get the template content and diagram type
             content = template["content"]
@@ -294,8 +365,7 @@ class MermaidGenerator(BaseOrchestrator):
                         
             return content
             
-        except Exception as e:
-            self.log_error(f"Error generating diagram from template {template_name}", e)
+        except Exception:
             return None
             
     def save_template(
@@ -321,5 +391,6 @@ class MermaidGenerator(BaseOrchestrator):
         }
         
         file_path = self.templates_dir / f"{name}.json"
-        self.save_json(file_path, template)
+        with open(file_path, 'w') as f:
+            json.dump(template, f, indent=2)
         self.templates[name] = template 
