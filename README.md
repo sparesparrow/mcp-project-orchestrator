@@ -258,3 +258,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Poetry](https://python-poetry.org/) - For dependency management
 - [Ruff](https://github.com/astral-sh/ruff) - For linting
 - [mypy](https://mypy.readthedocs.io/) - For type checking
+## OpenSSL Integration
+
+Enhanced with OpenSSL project templates and Cursor AI configuration.
+
+### Create OpenSSL Project
+
+```bash
+mcp-orchestrator create-openssl-project \
+  --project-name my-secure-app \
+  --deployment-target fips-government
+```
+
+### Deploy AI Configuration
+
+```bash
+mcp-orchestrator deploy-cursor --project-type openssl
+```
+
+### Templates Available
+
+- `openssl-consumer`: Standard OpenSSL application
+- `openssl-fips`: FIPS 140-3 government deployment
