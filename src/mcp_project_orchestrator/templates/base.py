@@ -185,3 +185,19 @@ class BaseTemplate(ABC):
             ValueError: If template validation fails
         """
         pass 
+    def substitute_variables_jinja2(self, content: str) -> str:
+        """Substitute template variables in content using Jinja2.
+        
+        Args:
+            content: Content containing Jinja2 template syntax
+            
+        Returns:
+            Content with variables substituted using Jinja2
+        """
+        try:
+            from jinja2 import Template
+            template = Template(content)
+            return template.render(**self.variables)
+        except ImportError:
+            # Fall back to simple substitution if Jinja2 not available
+            return self.substitute_variables(content)

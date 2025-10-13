@@ -33,7 +33,7 @@ class ProjectTemplate(BaseTemplate):
         for file in self.files:
             dest = project_root / file.path
             dest.parent.mkdir(parents=True, exist_ok=True)
-            content = self.substitute_variables(file.content)
+            content = self.substitute_variables_jinja2(file.content) if file.path.endswith(".jinja2") else self.substitute_variables(file.content)
             dest.write_text(content)
 
 
@@ -53,7 +53,7 @@ class ComponentTemplate(BaseTemplate):
             file_path = self.substitute_variables(file.path)
             dest = target_path / file_path
             dest.parent.mkdir(parents=True, exist_ok=True)
-            content = self.substitute_variables(file.content)
+            content = self.substitute_variables_jinja2(file.content) if file.path.endswith(".jinja2") else self.substitute_variables(file.content)
             dest.write_text(content)
 
 
@@ -113,3 +113,16 @@ __all__ = [
     "ComponentTemplate",
     "TemplateManager",
 ]
+
+    def apply_template(self, template_name: str, variables: dict, target_dir: str) -> None:
+        """Apply a template with variables to create a new project"""
+        template = self.get_template(template_name)
+        if not template:
+            raise ValueError(f"Template '{template_name}' not found")
+        
+        # Set variables
+        for key, value in variables.items():
+            template.set_variable(key, str(value))
+        
+        # Apply template
+        template.apply(target_dir)
