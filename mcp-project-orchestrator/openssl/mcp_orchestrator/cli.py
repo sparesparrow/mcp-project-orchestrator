@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from .cursor_deployer import CursorConfigDeployer
+from .env_config import get_environment_config
 
 
 @click.group()
@@ -30,9 +31,34 @@ def cli():
               help='Skip Cursor configuration deployment (developer opt-out)')
 @click.option('--dry-run', is_flag=True,
               help='Show what would be deployed without making changes')
+@click.option('--check-env', is_flag=True,
+              help='Check environment variables and exit')
+@click.option('--verbose', '-v', is_flag=True,
+              help='Show detailed information')
 def setup_cursor(repo_root: str, force: bool, custom_rules: tuple, 
-                opt_out: bool, dry_run: bool):
+                opt_out: bool, dry_run: bool, check_env: bool, verbose: bool):
     """Deploy Cursor AI configuration to repository (like Conan profile deployment)."""
+    
+    # Get environment configuration
+    env_config = get_environment_config()
+    
+    # Check environment variables
+    is_valid, missing_vars = env_config.validate_required("openssl")
+    if not is_valid:
+        click.echo("❌ Environment validation failed:")
+        for error in env_config.get_validation_errors("openssl"):
+            click.echo(f"   {error}")
+        return 1
+    
+    if check_env:
+        env_config.print_status("openssl", verbose)
+        return 0
+    
+    # Show warnings for missing optional variables
+    warnings = env_config.get_warnings("openssl")
+    if warnings and verbose:
+        for warning in warnings:
+            click.echo(f"⚠️  {warning}")
     
     repo_path = Path(repo_root).resolve()
     

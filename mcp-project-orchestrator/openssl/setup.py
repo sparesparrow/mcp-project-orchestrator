@@ -64,6 +64,7 @@ setup(
     entry_points={
         "console_scripts": [
             "mcp-orchestrator=mcp_orchestrator.cli:cli",
+            "deploy-cursor=mcp_orchestrator.deploy_cursor:deploy_cursor",
         ],
     },
     classifiers=[

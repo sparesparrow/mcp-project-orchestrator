@@ -1,0 +1,81 @@
+{
+  "mcpServers": {
+    "openssl-context": {
+      "command": "npx",
+      "args": ["-y", "@sparesparrow/mcp-openssl-context"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "/workspace/example-workspace",
+        "CONAN_USER_HOME": "/home/developer/.conan2",
+        "PLATFORM": "linux",
+        "ARCHITECTURE": "x86_64",
+        "PYTHON_VERSION": "3.11.0",
+        "USER": "developer"
+      }
+    },
+    "build-intelligence": {
+      "command": "npx",
+      "args": ["-y", "@sparesparrow/mcp-build-intelligence"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "/workspace/example-workspace",
+        "PLATFORM": "linux",
+        "ARCHITECTURE": "x86_64",
+        "BUILD_TYPE": "debug",
+        "CONAN_USER_HOME": "/home/developer/.conan2"
+      }
+    },
+    "workflow-orchestrator": {
+      "command": "npx",
+      "args": ["-y", "@sparesparrow/mcp-workflow-orchestrator"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}",
+        "PLATFORM": "linux",
+        "CI_ENVIRONMENT": "false",
+        "REPO_ROOT": "/workspace/example-workspace"
+      },
+      "disabled": false
+    },
+    "fips-compliance": {
+      "command": "npx",
+      "args": ["-y", "@sparesparrow/mcp-fips-compliance"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "/workspace/example-workspace",
+        "PLATFORM": "linux",
+        "FIPS_MODE": "development",
+        "COMPLIANCE_LEVEL": "FIPS140-2"
+      }
+    },
+    "security-scanner": {
+      "command": "npx",
+      "args": ["-y", "@sparesparrow/mcp-security-scanner"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "/workspace/example-workspace",
+        "PLATFORM": "linux",
+        "SCAN_LEVEL": "standard",
+        "REPORT_FORMAT": "json"
+      }
+    }
+  },
+  "globalShortcut": "Ctrl+Shift+.",
+  "logging": {
+    "level": "info",
+    "file": "/workspace/example-workspace/.cursor/cursor.log",
+    "maxSize": "10MB",
+    "maxFiles": 5
+  },
+  "features": {
+    "autoComplete": true,
+    "syntaxHighlighting": true,
+    "errorChecking": true,
+    "codeFormatting": true,
+    "intelligentSuggestions": true
+  },
+  "platform": {
+    "os": "linux",
+    "architecture": "x86_64",
+    "pythonVersion": "3.11.0",
+    "user": "developer",
+    "home": "/home/developer",
+    "ciEnvironment": false,
+    "timestamp": "2024-01-01T00:00:00"
+  }
+}

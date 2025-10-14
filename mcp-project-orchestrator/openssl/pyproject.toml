@@ -62,6 +62,7 @@ Repository = "https://github.com/sparesparrow/mcp-project-orchestrator"
 
 [project.scripts]
 mcp-orchestrator = "mcp_orchestrator.cli:cli"
+deploy-cursor = "mcp_orchestrator.deploy_cursor:deploy_cursor"
 
 [tool.setuptools.packages.find]
 where = ["."]
