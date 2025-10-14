@@ -1,6 +1,6 @@
 {
   "name": "openssl-consumer",
-  "description": "Template for OpenSSL consumer projects", 
+  "description": "Template for OpenSSL consumer projects",
   "type": "PROJECT",
   "category": "CRYPTOGRAPHY",
   "variables": {
@@ -13,12 +13,12 @@
   },
   "files": [
     "conanfile.py.jinja2",
-    "main.cpp.jinja2", 
+    "main.cpp.jinja2",
     "CMakeLists.txt.jinja2",
     "README.md.jinja2"
   ],
   "setup_commands": [
-    "conan remote add sparesparrow-conan https://conan.cloudsmith.io/sparesparrow-conan/openssl-conan/ --force",
+    "conan remote add ${CONAN_REPOSITORY_NAME} ${CONAN_REPOSITORY_URL} --force",
     "conan install . --build=missing",
     "cmake --preset conan-default",
     "cmake --build --preset conan-release"

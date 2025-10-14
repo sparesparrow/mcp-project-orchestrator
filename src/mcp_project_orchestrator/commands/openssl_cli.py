@@ -43,7 +43,7 @@ def create_openssl_project(template, project_name, openssl_version,
         click.echo("✅ Project created successfully!")
         click.echo(f"\nNext steps:")
         click.echo(f"cd {project_name}")
-        click.echo("conan remote add sparesparrow-conan https://conan.cloudsmith.io/sparesparrow-conan/openssl-conan/ --force")
+        click.echo("conan remote add ${CONAN_REPOSITORY_NAME} ${CONAN_REPOSITORY_URL} --force")
         click.echo("conan install . --build=missing")
         click.echo("cmake --preset conan-default && cmake --build --preset conan-release")
         

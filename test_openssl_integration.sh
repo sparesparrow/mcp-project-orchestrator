@@ -20,8 +20,8 @@ mcp-orchestrator deploy-cursor --project-type openssl --force
 
 # Test 3: Build project
 echo "🔨 Test 3: Build project"
-conan remote add sparesparrow-conan \
-  https://conan.cloudsmith.io/sparesparrow-conan/openssl-conan/ \
+conan remote add ${CONAN_REPOSITORY_NAME} \
+  ${CONAN_REPOSITORY_URL} \
   --force
 
 conan install . --build=missing
