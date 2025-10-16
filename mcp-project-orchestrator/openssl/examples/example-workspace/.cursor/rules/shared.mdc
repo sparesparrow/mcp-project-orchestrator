@@ -1,0 +1,43 @@
+---
+title: OpenSSL Development - Shared Rules
+description: Common development rules and guidelines for OpenSSL projects
+created: 2024-01-01T00:00:00
+platform: shared
+user: developer
+---
+
+# OpenSSL Development Guidelines
+
+## Environment Context
+
+- **Platform**: Linux x86_64
+- **Python**: 3.11.0 (CPython)
+- **User**: developer
+- **Home**: /home/developer
+- **CI Environment**: false
+
+## General Development Rules
+
+### Code Quality Standards
+
+- **Documentation**: All functions, classes, and modules must have comprehensive docstrings following PEP 257 conventions
+- **Type Hints**: Use type hints for all function parameters and return values
+- **Error Handling**: Implement robust error handling with meaningful error messages
+- **Testing**: Maintain high test coverage using pytest
+- **Linting**: Code must pass Ruff linting checks
+
+### OpenSSL-Specific Guidelines
+
+#### Cryptographic Best Practices
+
+- **Constant-Time Operations**: Always use constant-time implementations for cryptographic operations
+- **Memory Management**: Properly zero out sensitive memory after use
+- **Random Number Generation**: Use cryptographically secure random number generators
+- **Key Management**: Follow proper key generation, storage, and disposal practices
+
+#### Security Considerations
+
+- **Input Validation**: Validate all inputs, especially from external sources
+- **Buffer Overflows**: Always check buffer bounds before operations
+- **Side-Channel Attacks**: Be aware of timing and power analysis attacks
+- **FIPS Compliance**: Ensure code meets FIPS 140-2 requirements when applicable
