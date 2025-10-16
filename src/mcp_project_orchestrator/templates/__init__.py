@@ -31,7 +31,9 @@ class ProjectTemplate(BaseTemplate):
         project_root.mkdir(parents=True, exist_ok=True)
 
         for file in self.files:
-            dest = project_root / file.path
+            # Strip .jinja2 extension for output filename
+            dest_path = file.path.replace('.jinja2', '') if file.path.endswith('.jinja2') else file.path
+            dest = project_root / dest_path
             dest.parent.mkdir(parents=True, exist_ok=True)
             content = self.substitute_variables_jinja2(file.content) if file.path.endswith(".jinja2") else self.substitute_variables(file.content)
             dest.write_text(content)
@@ -103,6 +105,19 @@ class TemplateManager:
     def get_template(self, name: str) -> Optional[BaseTemplate]:
         return self._templates.get(name)
 
+    def apply_template(self, template_name: str, variables: dict, target_dir: str) -> None:
+        """Apply a template with variables to create a new project"""
+        template = self.get_template(template_name)
+        if not template:
+            raise ValueError(f"Template '{template_name}' not found")
+
+        # Set variables
+        for key, value in variables.items():
+            template.set_variable(key, str(value))
+
+        # Apply template
+        template.apply(target_dir)
+
 
 __all__ = [
     "TemplateType",
@@ -113,16 +128,3 @@ __all__ = [
     "ComponentTemplate",
     "TemplateManager",
 ]
-
-    def apply_template(self, template_name: str, variables: dict, target_dir: str) -> None:
-        """Apply a template with variables to create a new project"""
-        template = self.get_template(template_name)
-        if not template:
-            raise ValueError(f"Template '{template_name}' not found")
-        
-        # Set variables
-        for key, value in variables.items():
-            template.set_variable(key, str(value))
-        
-        # Apply template
-        template.apply(target_dir)
