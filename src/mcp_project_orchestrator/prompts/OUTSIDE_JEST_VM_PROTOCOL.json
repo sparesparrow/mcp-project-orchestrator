@@ -1,0 +1,12 @@
+{
+  "name": "OUTSIDE_JEST_VM_PROTOCOL",
+  "description": "Prompt template extracted from helpers.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "jest-main:",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-runtime/build/helpers.js",
+    "imported": true
+  }
+}

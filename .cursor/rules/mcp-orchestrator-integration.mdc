@@ -1,0 +1,41 @@
+# MCP Orchestrator Integration Rules for OpenSSL
+
+## Cross-Repo Coordination
+**When using MCP orchestrator:**
+- Use mcp-project-orchestrator for cross-repo operations between OpenSSL components
+- Follow MCP protocol standards for all inter-component communication
+- Document all MCP server endpoints with their purposes and interfaces
+- Include error handling for MCP communication failures with graceful degradation
+- Test MCP integration scenarios in CI/CD pipelines
+
+## Repository Management
+**For multi-repo coordination:**
+- Coordinate builds across openssl, openssl-conan-base, and related repositories
+- Manage dependencies between FIPS and non-FIPS components automatically
+- Automate release processes with MCP orchestration workflows
+- Maintain consistency across repository boundaries through shared configurations
+- Use MCP for automated dependency updates and security patches
+
+## Build Orchestration
+**Automated build coordination:**
+- Use MCP for parallel builds across multiple repositories
+- Coordinate Conan package creation and publishing
+- Automate cross-compilation for multiple target platforms
+- Manage build artifacts and test results across repositories
+- Implement build dependency graphs with proper ordering
+
+## Security Coordination
+**Security event handling:**
+- Use MCP for coordinated security updates across all repositories
+- Automate vulnerability scanning and patch application
+- Coordinate security testing across FIPS and non-FIPS components
+- Implement centralized security monitoring and alerting
+- Maintain security compliance across the entire project ecosystem
+
+## Development Workflow Integration
+**Developer experience improvements:**
+- Integrate MCP with IDE for real-time cross-repo intelligence
+- Provide unified debugging experience across repository boundaries
+- Enable collaborative development with shared context
+- Automate code review processes across multiple repositories
+- Provide unified documentation and knowledge base access

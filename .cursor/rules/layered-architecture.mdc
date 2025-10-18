@@ -1,0 +1,144 @@
+# DDD Layered Architecture Rules for OpenSSL
+
+## Layer Responsibility Guidelines
+
+### Domain Layer (Crypto) - Business Logic Core
+**This layer contains:**
+- FIPS-approved cryptographic algorithms (AES, SHA, RSA, ECC)
+- Core crypto primitives and mathematical operations
+- Algorithm implementations without external dependencies
+- Domain entities representing crypto concepts (keys, signatures, hashes)
+
+**Rules:**
+- No external API calls or I/O operations
+- No UI or presentation logic
+- No infrastructure concerns (databases, networks)
+- Pure cryptographic computations only
+
+### Application Layer (SSL/TLS) - Use Case Orchestration
+**This layer contains:**
+- TLS/SSL protocol state machines
+- Certificate validation logic
+- Handshake orchestration
+- Security policy enforcement
+
+**Rules:**
+- Orchestrates domain objects to fulfill business requirements
+- Thin layer that coordinates domain objects
+- No direct crypto implementation
+- Uses domain services through interfaces
+
+### Infrastructure Layer (Providers) - External Concerns
+**This layer contains:**
+- FIPS module implementation and self-tests
+- External service integrations (HSM, TPM)
+- Repository implementations for key/certificate storage
+- External API adapters
+
+**Rules:**
+- Implements interfaces defined in domain/application layers
+- Handles all external dependencies and I/O
+- No business logic - only technical implementation
+- FIPS boundary implementation
+
+### Presentation Layer (Apps) - User Interface
+**This layer contains:**
+- OpenSSL CLI commands and options parsing
+- API boundary definitions
+- Input validation and sanitization
+- Error message formatting
+
+**Rules:**
+- Thin layer that translates external requests to application calls
+- No business logic or domain knowledge
+- Input validation only (no complex business rules)
+- Format output for external consumption
+
+## Dependency Flow Enforcement
+
+### Strict Dependency Rules
+**Never allow:**
+- Domain layer depending on Application/Infrastructure/Presentation
+- Application layer implementing crypto algorithms
+- Infrastructure layer containing business logic
+- Presentation layer making domain decisions
+
+### Interface Segregation
+**Use interfaces to maintain loose coupling:**
+- Domain layer defines repository/service interfaces
+- Infrastructure implements these interfaces
+- Application depends on abstractions, not concretions
+- Dependency injection for all cross-layer dependencies
+
+## Code Organization by Layer
+
+### File Naming Conventions
+```
+crypto/          # Domain Layer
+├── aes.c        # Algorithm implementation
+├── sha256.c     # Hash function
+├── rsa.c        # Asymmetric crypto
+└── ec.c         # Elliptic curve crypto
+
+ssl/             # Application Layer
+├── tls1_3.c     # Protocol orchestration
+├── handshake.c  # TLS handshake logic
+├── record.c     # Record layer processing
+└── verify.c     # Certificate validation
+
+providers/       # Infrastructure Layer
+├── fips/        # FIPS module
+├── implementations/  # Repository implementations
+└── external/    # External service adapters
+
+apps/            # Presentation Layer
+├── openssl.c    # CLI main
+├── commands/    # Command implementations
+└── ui/          # User interface helpers
+```
+
+## Testing Strategy by Layer
+
+### Domain Layer Testing
+- Unit tests for cryptographic algorithms
+- Known Answer Tests (KAT) for FIPS compliance
+- Mathematical correctness validation
+- No external dependencies in tests
+
+### Application Layer Testing
+- Integration tests for protocol flows
+- Mock domain services for isolation
+- Business rule validation
+- State machine testing
+
+### Infrastructure Layer Testing
+- Adapter pattern testing
+- External service integration tests
+- Repository implementation validation
+- FIPS module self-tests
+
+### Presentation Layer Testing
+- CLI input/output validation
+- API contract testing
+- Error message formatting
+- Input sanitization verification
+
+## Layer Crossing Patterns
+
+### Data Transfer Objects (DTOs)
+- Use DTOs for data crossing layer boundaries
+- No domain objects should cross layer boundaries
+- Validate DTOs at layer entry points
+- Keep DTOs simple and focused
+
+### Dependency Injection
+- Inject infrastructure implementations into application layer
+- Use interfaces to maintain testability
+- Configure dependencies at application startup
+- Avoid service locator patterns
+
+### Error Propagation
+- Define error types appropriate to each layer
+- Translate errors when crossing layer boundaries
+- Maintain error context through layers
+- Log errors at appropriate layer boundaries

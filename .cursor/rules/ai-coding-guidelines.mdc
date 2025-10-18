@@ -1,0 +1,47 @@
+# AI Coding Guidelines for OpenSSL FIPS Development
+
+## Code Change Suggestions
+**When suggesting code modifications:**
+1. Check existing OpenSSL patterns first using @codebase search
+2. Verify FIPS compliance if touching crypto code - consult FIPS requirements
+3. Include appropriate error handling with goto patterns for cleanup
+4. Add tests for new functionality, especially FIPS self-tests
+5. Update documentation as needed, including security considerations
+6. Consider security implications of all changes, including side channels
+7. Validate against FIPS requirements for any cryptographic changes
+8. Check for side-channel vulnerabilities in timing and power analysis
+9. Ensure thread safety where applicable with proper locking
+10. Document any algorithm or protocol changes with security impact
+
+## Anti-Patterns to Avoid
+**Never suggest these problematic patterns:**
+- Direct crypto implementation in application/infrastructure layers (violates DDD)
+- Exposing internal crypto state or key material through APIs
+- Using non-FIPS approved algorithms in security-critical code
+- Missing input validation at trust boundaries
+- Insecure error handling that could leak sensitive information
+- Thread-unsafe operations in multi-threaded environments
+- Missing self-tests for FIPS module changes
+- Undocumented security decisions or trade-offs
+
+## Code Review Checklist for AI
+**Before suggesting code changes:**
+- [ ] Code follows DDD layered architecture principles
+- [ ] FIPS compliance requirements are met
+- [ ] Security coding standards are followed
+- [ ] Input validation is comprehensive
+- [ ] Error handling is secure and doesn't leak information
+- [ ] Memory management uses OpenSSL functions correctly
+- [ ] Thread safety is properly implemented
+- [ ] Tests are included for new functionality
+- [ ] Documentation is updated appropriately
+- [ ] Code follows existing OpenSSL patterns and conventions
+
+## Context Awareness
+**When providing suggestions:**
+- Understand the layered architecture context (Domain/Application/Infrastructure/Presentation)
+- Recognize FIPS boundaries and security requirements
+- Consider cross-platform compatibility and build system constraints
+- Account for backward compatibility and ABI stability requirements
+- Factor in performance implications for cryptographic operations
+- Consider maintenance and future extensibility

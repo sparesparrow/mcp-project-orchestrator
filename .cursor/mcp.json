@@ -1,0 +1,219 @@
+{
+  "openssl-orchestrator": {
+    "command": "python",
+    "args": [
+      "-m",
+      "mcp_project_orchestrator",
+      "--workspace",
+      "${workspaceFolder}"
+    ],
+    "cwd": "${workspaceFolder:../mcp-project-orchestrator}",
+    "env": {
+      "PYTHONPATH": "${workspaceFolder:../mcp-project-orchestrator}/src",
+      "OPENSSL_ROOT": "${workspaceFolder}",
+      "OPENSSL_CONAN_BASE": "${workspaceFolder:../openssl-conan-base}",
+      "CONAN_USER_HOME": "${workspaceFolder}/.conan"
+    }
+  },
+  "conan-package-manager": {
+    "command": "conan",
+    "args": [
+      "server",
+      "--mcp"
+    ],
+    "env": {
+      "CONAN_USER_HOME": "${workspaceFolder}/.conan"
+    }
+  },
+  "fips-validator": {
+    "command": "python",
+    "args": [
+      "-c",
+      "import sys; sys.path.append('${workspaceFolder:../mcp-project-orchestrator}/src'); from mcp_project_orchestrator.fips_validator import FIPSValidator; FIPSValidator().serve_mcp()"
+    ],
+    "cwd": "${workspaceFolder}",
+    "env": {
+      "OPENSSL_CONF": "${workspaceFolder}/providers/fipsmodule.cnf",
+      "OPENSSL_MODULES": "${workspaceFolder}/build/providers"
+    }
+  },
+  "github-integration": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-github"
+    ],
+    "env": {
+      "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}",
+      "GITHUB_REPOSITORY": "openssl/openssl"
+    }
+  },
+  "github-events-monitor-pip": {
+    "command": "github-events-monitor-mcp",
+    "args": [],
+    "env": {
+      "GITHUB_TOKEN": "${{GITHUB_PERSONAL_ACCESS_TOKEN}}",
+      "DATABASE_PATH": "/home/sparrow/mcp/data/github_events.db",
+      "POLL_INTERVAL": "300",
+      "MCP_TRANSPORT": "stdio"
+    },
+    "description": "GitHub Events Monitor MCP Server via pip package installation"
+  },
+  "github-events-monitor-docker": {
+    "command": "docker",
+    "args": [
+      "run",
+      "-i",
+      "--rm",
+      "--init",
+      "-e",
+      "GITHUB_TOKEN=${{GITHUB_PERSONAL_ACCESS_TOKEN}}",
+      "-e",
+      "MCP_MODE=true",
+      "-e",
+      "DATABASE_PATH=/app/data/github_events.db",
+      "-e",
+      "POLL_INTERVAL=300",
+      "-v",
+      "/home/sparrow/mcp/data/github-events:/app/data",
+      "--name",
+      "mcp-github-events-monitor-container",
+      "sparesparrow/github-events-monitor:latest"
+    ],
+    "description": "GitHub Events Monitor MCP Server via Docker container with persistent storage"
+  },
+  "filesystem": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-filesystem",
+      "/path/to/files"
+    ],
+    "type": "stdio"
+  },
+  "memory": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-memory"
+    ],
+    "type": "stdio"
+  },
+  "github": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-github"
+    ],
+    "type": "stdio"
+  },
+  "mcp-prompts": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@sparesparrow/mcp-prompts",
+      "--source",
+      "catalog:",
+      "--source",
+      "file:./company-prompts"
+    ],
+    "env": {
+      "STORAGE_TYPE": "postgres",
+      "POSTGRES_URL": "postgres://sparesparrow:pppppppp@192.168.2oo.23:5432/mcp_prompts",
+      "LOG_LEVEL": "info"
+    },
+    "type": "stdio"
+  },
+  "mcp-prompts-npx": {
+    "name": "mcp-prompts-npx",
+    "transport": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@sparesparrow/mcp-prompts",
+        "--source",
+        "catalog:",
+        "--source",
+        "file:./company-prompts"
+      ]
+    },
+    "env": {
+      "PROMPTS_DIR": "./my-prompts"
+    },
+    "type": "http"
+  },
+  "markitdown": {
+    "type": "stdio",
+    "command": "docker",
+    "args": [
+      "run",
+      "-i",
+      "--rm",
+      "markitdown-mcp:latest"
+    ],
+    "gallery": true
+  },
+  "playwright": {
+    "command": "npx",
+    "args": [
+      "@playwright/mcp@latest"
+    ],
+    "type": "stdio"
+  },
+  "neon": {
+    "url": "https://mcp.neon.tech/sse"
+  },
+  "inputs": [],
+  "mcpServers": {
+    "openssl-orchestrator": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_project_orchestrator",
+        "--workspace",
+        "${workspaceFolder}"
+      ],
+      "cwd": "${workspaceFolder:../mcp-project-orchestrator}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder:../mcp-project-orchestrator}/src",
+        "OPENSSL_ROOT": "${workspaceFolder}",
+        "OPENSSL_CONAN_BASE": "${workspaceFolder:../openssl-conan-base}",
+        "CONAN_USER_HOME": "${workspaceFolder}/.conan"
+      }
+    },
+    "conan-package-manager": {
+      "command": "conan",
+      "args": [
+        "server",
+        "--mcp"
+      ],
+      "env": {
+        "CONAN_USER_HOME": "${workspaceFolder}/.conan"
+      }
+    },
+    "fips-validator": {
+      "command": "python",
+      "args": [
+        "-c",
+        "import sys; sys.path.append('${workspaceFolder:../mcp-project-orchestrator}/src'); from mcp_project_orchestrator.fips_validator import FIPSValidator; FIPSValidator().serve_mcp()"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "OPENSSL_CONF": "${workspaceFolder}/providers/fipsmodule.cnf",
+        "OPENSSL_MODULES": "${workspaceFolder}/build/providers"
+      }
+    },
+    "github-integration": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}",
+        "GITHUB_REPOSITORY": "openssl/openssl"
+      }
+    }
+  }
+}

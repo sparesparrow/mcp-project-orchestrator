@@ -1,0 +1,100 @@
+{
+  "templates": [
+    "theme_dark",
+    "theme_vibrant",
+    "theme_pastel",
+    "theme_default",
+    "generated_diagram",
+    "README",
+    "integration",
+    "Factory-diagram",
+    "AbstractFactory-diagram",
+    "Builder-diagram",
+    "Prototype-diagram",
+    "Singleton-diagram",
+    "Adapter-diagram",
+    "Decorator-diagram",
+    "Facade-diagram",
+    "Proxy-diagram",
+    "Chain-diagram",
+    "Command-diagram",
+    "Iterator-diagram",
+    "Mediator-diagram",
+    "Memento-diagram",
+    "Observer-diagram",
+    "State-diagram",
+    "Strategy-diagram",
+    "TemplateMethod-diagram",
+    "Visitor-diagram",
+    "Analyze Mermaid Diagram",
+    "Mermaid Diagram Modifier",
+    "Code Diagram Documentation Creator",
+    "Modify Mermaid Diagram",
+    "Generate Mermaid Diagram",
+    "Mermaid Diagram Generator",
+    "Mermaid Class Diagram Generator",
+    "Mermaid Analysis Expert"
+  ],
+  "count": 34,
+  "types": {
+    "pie": {
+      "templates": [],
+      "count": 0
+    },
+    "sequence": {
+      "templates": [],
+      "count": 0
+    },
+    "class": {
+      "templates": [],
+      "count": 0
+    },
+    "er": {
+      "templates": [],
+      "count": 0
+    },
+    "gantt": {
+      "templates": [],
+      "count": 0
+    },
+    "flowchart": {
+      "templates": [
+        "Memento-diagram",
+        "TemplateMethod-diagram",
+        "Factory-diagram",
+        "Prototype-diagram",
+        "Iterator-diagram",
+        "Proxy-diagram",
+        "Visitor-diagram",
+        "Command-diagram",
+        "Generate_Mermaid_Diagram",
+        "Builder-diagram",
+        "Mermaid_Analysis_Expert",
+        "README",
+        "Observer-diagram",
+        "Decorator-diagram",
+        "Mermaid_Class_Diagram_Generator",
+        "AbstractFactory-diagram",
+        "Mermaid_Diagram_Modifier",
+        "Analyze_Mermaid_Diagram",
+        "theme_vibrant",
+        "integration",
+        "Mediator-diagram",
+        "theme_dark",
+        "Code_Diagram_Documentation_Creator",
+        "generated_diagram",
+        "Mermaid_Diagram_Generator",
+        "Facade-diagram",
+        "Adapter-diagram",
+        "Chain-diagram",
+        "State-diagram",
+        "theme_default",
+        "Strategy-diagram",
+        "Singleton-diagram",
+        "theme_pastel",
+        "Modify_Mermaid_Diagram"
+      ],
+      "count": 34
+    }
+  }
+}

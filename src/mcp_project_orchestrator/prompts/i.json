@@ -1,0 +1,12 @@
+{
+  "name": "i",
+  "description": "Prompt template extracted from 439.33696bc45fbd403becbb.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "<",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/labextensions/@jupyter-widgets/jupyterlab-manager/static/439.33696bc45fbd403becbb.js",
+    "imported": true
+  }
+}

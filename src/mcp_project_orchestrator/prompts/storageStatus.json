@@ -1,0 +1,12 @@
+{
+  "name": "storageStatus",
+  "description": "Prompt template extracted from health.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "error",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/utils/health.js",
+    "imported": true
+  }
+}

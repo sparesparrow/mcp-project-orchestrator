@@ -1,0 +1,65 @@
+name: Build and Deploy Container
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+      
+      - name: Build container image
+        run: |
+          podman build -t mcp-project-orchestrator:latest -f Containerfile .
+      
+      - name: Test container locally
+        run: |
+          # Run the container with volume mounting to ensure the module can be found
+          podman run -d --rm -p 8080:8080 \
+            -v ${{ github.workspace }}:/app:Z \
+            --workdir /app \
+            --entrypoint python \
+            --name mcp-test \
+            mcp-project-orchestrator:latest \
+            -m mcp_project_orchestrator.fastmcp
+          
+          # Wait for server to start
+          sleep 5
+          
+          # Install and run MCP Inspector for basic validation
+          npm install -g @modelcontextprotocol/inspector
+          npx @modelcontextprotocol/inspector http://localhost:8080 || echo "MCP test failed but continuing"
+          
+          # Stop the test container
+          podman stop mcp-test
+
+      # Login to GitHub Container Registry
+      - name: Login to GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Push the container to GitHub Container Registry
+      - name: Push container image to registry
+        if: github.ref == 'refs/heads/main'
+        run: |
+          # Tag with GitHub owner and repo name
+          podman tag mcp-project-orchestrator:latest ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+          podman tag mcp-project-orchestrator:latest ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ github.sha }}
+          
+          # Push both tags
+          podman push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+          podman push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ github.sha }}
+

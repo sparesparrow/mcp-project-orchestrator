@@ -1,0 +1,10 @@
+{
+  "name": "Memento-diagram",
+  "description": "Mermaid diagram for Memento pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Memento Design Pattern, illustrating state capture and restoration processes.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

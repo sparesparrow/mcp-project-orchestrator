@@ -1,0 +1,12 @@
+{
+  "name": "elide",
+  "description": "Prompt template extracted from 8929.b5b29c25d0b317812054.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u2026",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8929.b5b29c25d0b317812054.js",
+    "imported": true
+  }
+}

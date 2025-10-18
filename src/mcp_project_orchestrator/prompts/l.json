@@ -1,0 +1,12 @@
+{
+  "name": "l",
+  "description": "Prompt template extracted from browser-source-map-support.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "function",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/source-map-support/browser-source-map-support.js",
+    "imported": true
+  }
+}

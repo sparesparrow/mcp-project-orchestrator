@@ -1,0 +1,10 @@
+{
+  "name": "Singleton-diagram",
+  "description": "Mermaid diagram for Singleton pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Singleton Design Pattern, illustrating the single instance and global access point.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

@@ -1,0 +1,41 @@
+# Testing Requirements for OpenSSL FIPS Development
+
+## FIPS Testing Standards
+**For FIPS module changes:**
+- Every security fix requires corresponding regression test
+- FIPS module changes require additional self-tests with Known Answer Tests (KAT)
+- Include fuzzing test cases for new parsers and input handlers
+- Run integration tests before committing any FIPS-related changes
+- Validate self-tests run automatically on module load
+
+## Coverage Requirements
+**Code coverage standards:**
+- Critical security functions must have 100% branch coverage
+- FIPS self-tests must cover all approved algorithms completely
+- Include negative test cases for error conditions and edge cases
+- Test boundary conditions and input validation thoroughly
+- Maintain coverage reports for security auditing
+
+## Test Organization
+**Structuring test suites:**
+- Unit tests for individual functions and algorithms
+- Integration tests for component interactions
+- System tests for end-to-end FIPS validation
+- Performance tests for cryptographic operations
+- Stress tests for memory and resource handling
+
+## Test Automation
+**CI/CD integration:**
+- Run full test suite on every commit
+- Parallel test execution for faster feedback
+- Automated FIPS validation in CI pipelines
+- Test result reporting and tracking
+- Fail CI on test failures or coverage drops
+
+## Security Testing
+**Additional security validation:**
+- Fuzz testing for input handling robustness
+- Memory leak detection and analysis
+- Thread safety testing under load
+- Side-channel attack testing (timing, power analysis)
+- Cryptographic correctness validation against reference implementations

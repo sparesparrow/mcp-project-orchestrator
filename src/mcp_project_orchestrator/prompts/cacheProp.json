@@ -1,0 +1,12 @@
+{
+  "name": "cacheProp",
+  "description": "Prompt template extracted from summarizer-factory.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "c_${filesOnly ? ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-lib-report/lib/summarizer-factory.js",
+    "imported": true
+  }
+}

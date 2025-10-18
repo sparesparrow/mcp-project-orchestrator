@@ -1,0 +1,12 @@
+{
+  "name": "escapeFuncStr",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "var _ENCODE_HTML_RULES = {\\n",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ejs/lib/utils.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "colorCode",
+  "description": "Prompt template extracted from node.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u001B[3",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/debug/src/node.js",
+    "imported": true
+  }
+}

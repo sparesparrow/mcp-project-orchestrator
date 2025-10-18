@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      S3_BUCKET: mcp-orchestrator-artifacts
+      ECR_REPOSITORY: mcp-project-orchestrator
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push container image (Podman)
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.ref_name }}
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y podman
+          podman build -f Containerfile -t "$ECR_REGISTRY/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG" .
+          podman push "$ECR_REGISTRY/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG"
+
+      - name: Build Python distribution
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+          python -m build
+
+      - name: Upload dists to S3
+        run: |
+          aws s3 cp dist/ s3://$S3_BUCKET/releases/${{ github.ref_name }}/ --recursive --only-show-errors
+
+      - name: Publish Conan package to S3 cache (optional)
+        run: |
+          pip install "conan>=2.3,<3"
+          conan profile detect --force | cat
+          conan create . --user=sparesparrow --channel=stable --build=missing | cat
+          # Create an archive of the package cache to upload to S3 as a simple binary cache
+          tar czf conan_cache.tgz -C ~/.conan2/p/ . || true
+          aws s3 cp conan_cache.tgz s3://$S3_BUCKET/releases/${{ github.ref_name }}/conan_cache.tgz || true
+

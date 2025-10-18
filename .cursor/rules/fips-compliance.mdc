@@ -1,0 +1,54 @@
+# FIPS Compliance Rules for OpenSSL Development
+
+## Algorithm Approval Requirements
+**When implementing cryptographic functions:**
+- Verify algorithm is FIPS 140-3 approved (AES, SHA-256/384/512, RSA, ECDSA, ECDH, HMAC)
+- Document FIPS approval status in code comments
+- Include algorithm validation in self-tests
+- Never implement non-approved algorithms in FIPS mode
+
+## Self-Test Implementation
+**For every FIPS cryptographic operation:**
+- Implement Known Answer Tests (KAT) for algorithm validation
+- Run self-tests during module initialization
+- Fail securely if self-tests fail (no cryptographic operations allowed)
+- Log self-test failures for audit purposes
+
+## Key Management Security
+**When handling cryptographic keys:**
+- Use constant-time comparison functions for key validation
+- Implement secure key destruction with OPENSSL_cleanse()
+- Never log or expose private key material
+- Validate key parameters against FIPS requirements
+- Use approved random number generation
+
+## Error Handling in FIPS Context
+**For FIPS-related errors:**
+- Return FIPS-specific error codes distinguishable from non-FIPS errors
+- Implement secure error recovery without exposing sensitive information
+- Never continue operation after FIPS failure
+- Log FIPS events for security auditing
+
+## FIPS Boundary Management
+**At FIPS module boundaries:**
+- Clearly document FIPS/non-FIPS data transitions
+- Implement integrity checking for data crossing boundaries
+- Use approved methods for boundary crossing
+- Validate data integrity after boundary transitions
+
+## Conditional Compilation
+**When using FIPS-specific code:**
+- Use `#ifdef OPENSSL_FIPS` guards appropriately
+- Ensure graceful degradation when FIPS is not available
+- Test both FIPS and non-FIPS code paths
+- Document FIPS-specific behavior differences
+
+## Security Code Review Checklist
+**Before committing FIPS-related changes:**
+- [ ] All algorithms are FIPS-approved
+- [ ] Self-tests are implemented and tested
+- [ ] Key material is properly protected
+- [ ] Error handling is secure
+- [ ] No sensitive data logging
+- [ ] FIPS boundaries are clearly defined
+- [ ] Code works in both FIPS and non-FIPS modes

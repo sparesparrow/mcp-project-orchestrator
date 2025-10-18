@@ -1,0 +1,12 @@
+{
+  "name": "result",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "{",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pg/lib/utils.js",
+    "imported": true
+  }
+}

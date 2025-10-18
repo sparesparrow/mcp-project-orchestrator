@@ -1,0 +1,12 @@
+{
+  "name": "connectionString",
+  "description": "Prompt template extracted from connection-strings.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "postgres://foo:bar@baz:1234/xur",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pg-pool/test/connection-strings.js",
+    "imported": true
+  }
+}

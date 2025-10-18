@@ -1,0 +1,12 @@
+{
+  "name": "fullpaths",
+  "description": "Prompt template extracted from ignore.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${fullpath}/",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/rimraf/node_modules/glob/dist/esm/ignore.js",
+    "imported": true
+  }
+}

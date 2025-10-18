@@ -1,0 +1,12 @@
+{
+  "name": "stringPath",
+  "description": "Prompt template extracted from conversion.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "body",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/traverse/lib/path/conversion.js",
+    "imported": true
+  }
+}

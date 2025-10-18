@@ -1,0 +1,41 @@
+# Documentation Standards for OpenSSL FIPS Development
+
+## Code Documentation Requirements
+**When documenting code:**
+- Update CHANGES.md for all user-visible changes with security implications noted
+- Document API changes in doc/man3/ with complete parameter descriptions
+- Include code examples for new functions showing secure usage patterns
+- Link to relevant RFCs and standards in documentation
+- Document security considerations and limitations
+
+## Security Documentation
+**For security-critical components:**
+- Document threat models for new features and major changes
+- Include security considerations in design documents and code reviews
+- Maintain FIPS security policy documentation with approval references
+- Document algorithm limitations and constraints clearly
+- Provide migration guides for security-related API changes
+
+## API Documentation Standards
+**For public interfaces:**
+- Complete parameter documentation with types, ranges, and validation rules
+- Document return values and error conditions comprehensively
+- Include security warnings for functions handling sensitive data
+- Provide usage examples with security best practices
+- Document thread safety guarantees and requirements
+
+## FIPS Documentation
+**FIPS-specific requirements:**
+- Document FIPS approval status for all implemented algorithms
+- Include FIPS boundary definitions and crossing points
+- Document self-test implementations and validation procedures
+- Maintain FIPS security policy references and compliance statements
+- Document non-FIPS fallback behaviors when applicable
+
+## Developer Documentation
+**For internal development:**
+- Document build and test procedures for FIPS configurations
+- Include troubleshooting guides for common FIPS issues
+- Document code review checklists for security compliance
+- Maintain architecture diagrams showing FIPS boundaries
+- Document testing procedures for FIPS validation

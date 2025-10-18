@@ -1,0 +1,39 @@
+# Conan Package Management Rules for OpenSSL
+
+## Package Structure Standards
+**When creating Conan packages:**
+- Use semantic versioning for all Conan packages following OpenSSL version scheme
+- Include conandata.yml for source downloads with proper checksums
+- Test package in test_package/ before export to validate functionality
+- Document dependencies in conanfile.py docstrings with clear rationale
+
+## Build Integration Best Practices
+**For CMake/Conan integration:**
+- Use Conan for dependency management, never git submodules for external deps
+- CMake configurations must support cross-compilation with Conan toolchains
+- Always run tests in build/test directory for consistent CI/CD
+- Use Ninja generator for faster incremental builds
+- Include Conan toolchain.cmake integration in CMakeLists.txt
+
+## Dependency Management
+**When managing package dependencies:**
+- Prefer Conan Center packages over custom implementations
+- Use version ranges carefully to avoid breaking changes
+- Document dependency requirements in README.md
+- Test against multiple dependency versions in CI
+- Keep dependency tree minimal to reduce attack surface
+
+## Cross-Platform Compatibility
+**For multi-platform packages:**
+- Test on all supported platforms (Linux, Windows, macOS)
+- Use Conan profiles for platform-specific configurations
+- Document platform-specific requirements and limitations
+- Handle platform differences gracefully (path separators, library naming)
+
+## Security Considerations
+**For secure package management:**
+- Verify checksums of all downloaded sources
+- Use secure connections for package repositories
+- Audit transitive dependencies for vulnerabilities
+- Keep packages updated to latest secure versions
+- Document security implications of dependencies

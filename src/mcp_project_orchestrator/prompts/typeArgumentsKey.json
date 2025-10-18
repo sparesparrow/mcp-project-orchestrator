@@ -1,0 +1,12 @@
+{
+  "name": "typeArgumentsKey",
+  "description": "Prompt template extracted from removeTypeDuplicates.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "typeParameters",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/types/lib/modifications/typescript/removeTypeDuplicates.js",
+    "imported": true
+  }
+}

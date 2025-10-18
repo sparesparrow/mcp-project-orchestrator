@@ -1,0 +1,12 @@
+{
+  "name": "statSync",
+  "description": "Prompt template extracted from fs.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "package.json",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@types/node/fs.d.ts",
+    "imported": true
+  }
+}

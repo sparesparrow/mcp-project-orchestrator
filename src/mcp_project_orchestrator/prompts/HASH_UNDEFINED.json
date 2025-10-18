@@ -1,0 +1,12 @@
+{
+  "name": "HASH_UNDEFINED",
+  "description": "Prompt template extracted from 4324.fa653693694bd924557b.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "__lodash_hash_undefined__",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/4324.fa653693694bd924557b.js",
+    "imported": true
+  }
+}

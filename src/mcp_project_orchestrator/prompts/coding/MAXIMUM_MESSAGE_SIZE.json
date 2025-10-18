@@ -1,0 +1,12 @@
+{
+  "name": "MAXIMUM_MESSAGE_SIZE",
+  "description": "Prompt template extracted from sse.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "4mb",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/@modelcontextprotocol/server-postgres/node_modules/@modelcontextprotocol/sdk/dist/server/sse.js",
+    "imported": true
+  }
+}

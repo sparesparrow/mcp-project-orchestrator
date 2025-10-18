@@ -1,0 +1,12 @@
+{
+  "name": "st",
+  "description": "Prompt template extracted from 9296.176231372f63ddcb8e6c.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "webkitFontSmoothing",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/9296.176231372f63ddcb8e6c.js",
+    "imported": true
+  }
+}

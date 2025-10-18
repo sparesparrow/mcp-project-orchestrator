@@ -1,0 +1,365 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Deploy to production'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff mypy
+          pip install -e .
+      - name: Lint with ruff
+        run: |
+          ruff check .
+      - name: Type check with mypy
+        run: |
+          mypy src/
+      - name: Check for TODO markers
+        run: |
+          # Find TODO comments and report them
+          TODOS=$(grep -r "TODO" --include="*.py" src/ || true)
+          if [ -n "$TODOS" ]; then
+            echo "::warning::Found TODO comments in code:"
+            echo "$TODOS"
+          fi
+
+  test:
+    name: Run Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+          pip install -e .
+      - name: Test with pytest
+        run: |
+          pytest --cache-clear --cov=src/ --cov-report=xml
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+      - name: Verify environment
+        run: |
+          # Run the environment verification script
+          python scripts/verify_environment.py
+
+  update-changelog:
+    name: Update Changelog
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for changelog generation
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Update changelog
+        run: |
+          python scripts/update_changelog.py
+      - name: Commit updated changelog
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if git diff --name-only | grep -q "CHANGELOG.md"; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add CHANGELOG.md
+            git commit -m "Update CHANGELOG.md [skip ci]"
+            git push
+          else
+            echo "No changes to CHANGELOG.md"
+          fi
+
+  build:
+    name: Build Container
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      - name: Build container image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Containerfile
+          push: false
+          tags: mcp-project-orchestrator:${{ github.sha }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+          outputs: type=docker,dest=/tmp/mcp-image.tar
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: container-image
+          path: /tmp/mcp-image.tar
+          retention-days: 1
+
+  mcp-inspect:
+    name: Test MCP Server
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+      - name: Download container image
+        uses: actions/download-artifact@v3
+        with:
+          name: container-image
+          path: /tmp
+      - name: Load container image
+        run: |
+          docker load -i /tmp/mcp-image.tar
+      - name: Run MCP Server
+        run: |
+          docker run -d -p 8080:8080 \
+            -v ${{ github.workspace }}:/app \
+            --workdir /app \
+            --entrypoint python \
+            --name mcp-server \
+            mcp-project-orchestrator:${{ github.sha }} \
+            -m mcp_project_orchestrator.fastmcp
+      - name: Install MCP Inspector
+        run: |
+          npm install -g @modelcontextprotocol/inspector
+      - name: Wait for server to start
+        run: sleep 5
+      - name: Test with MCP Inspector
+        run: |
+          # Basic connectivity test
+          npx @modelcontextprotocol/inspector http://localhost:8080
+          
+          # Validation test
+          npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+          
+          # Try interactive mode but exit immediately (for testing connectivity)
+          echo "exit" | npx @modelcontextprotocol/inspector http://localhost:8080 --interactive || true
+      - name: Stop MCP Server
+        run: |
+          docker stop mcp-server
+          docker rm mcp-server
+
+  publish:
+    name: Publish Container
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    needs: [mcp-inspect, update-changelog]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download container image
+        uses: actions/download-artifact@v3
+        with:
+          name: container-image
+          path: /tmp
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+      - name: Load container image
+        run: |
+          docker load -i /tmp/mcp-image.tar
+      - name: Extract version for tags
+        id: get_version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "Using tag version: $VERSION"
+          else
+            echo "version=latest" >> $GITHUB_OUTPUT
+            echo "Using latest version"
+          fi
+      - name: Tag container image
+        run: |
+          if [[ "${{ steps.get_version.outputs.version }}" == "latest" ]]; then
+            docker tag mcp-project-orchestrator:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+            docker tag mcp-project-orchestrator:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ github.sha }}
+          else
+            docker tag mcp-project-orchestrator:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ steps.get_version.outputs.version }}
+            docker tag mcp-project-orchestrator:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+          fi
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push container image
+        run: |
+          if [[ "${{ steps.get_version.outputs.version }}" == "latest" ]]; then
+            docker push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+            docker push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ github.sha }}
+          else
+            docker push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:${{ steps.get_version.outputs.version }}
+            docker push ghcr.io/${{ github.repository_owner }}/mcp-project-orchestrator:latest
+          fi
+
+  deploy:
+    name: Deploy to Production
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.inputs.deploy == 'true') || startsWith(github.ref, 'refs/tags/v')
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production environment"
+          # Add deployment steps here, such as:
+          # - SSH into server
+          # - Pull latest container image
+          # - Restart services
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate Release Notes
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: generate_notes
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          # Extract the relevant section from CHANGELOG.md
+          NOTES=$(awk -v ver="$VERSION" 'BEGIN{p=0} $0 ~ "^## \\[" ver "\\]" {p=1;next} $0 ~ "^## \\[" {p=0} p' CHANGELOG.md)
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
+          echo "$NOTES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ env.RELEASE_NOTES }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Add a new job for Podman testing (if CI system supports it)
+  podman-test:
+    name: Test with Podman
+    if: false  # Disabled by default - enable if your CI runners support Podman
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+      - name: Build with Podman
+        run: |
+          podman build -t mcp-project-orchestrator:${{ github.sha }} -f Containerfile .
+      - name: Run with Podman
+        run: |
+          podman run -d --rm -p 8080:8080 \
+            -v ${{ github.workspace }}:/app:Z \
+            --workdir /app \
+            --entrypoint python \
+            localhost/mcp-project-orchestrator:${{ github.sha }} \
+            -m mcp_project_orchestrator.fastmcp
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install MCP Inspector
+        run: |
+          npm install -g @modelcontextprotocol/inspector
+      - name: Wait for server to start
+        run: sleep 5
+      - name: Test with MCP Inspector under Podman
+        run: |
+          npx @modelcontextprotocol/inspector http://localhost:8080
+      - name: Stop Podman containers
+        run: |
+          podman stop --all
+
+  # Add a manual validation job that can be triggered separately
+  manual-mcp-validate:
+    name: Manual MCP Validation
+    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+      - name: Download container image
+        uses: actions/download-artifact@v3
+        with:
+          name: container-image
+      - name: Load container image
+        run: |
+          docker load -i mcp-project-orchestrator-image.tar
+      - name: Run MCP Server
+        run: |
+          docker run -d -p 8080:8080 \
+            -v ${{ github.workspace }}:/app \
+            --workdir /app \
+            --entrypoint python \
+            --name mcp-server \
+            mcp-project-orchestrator:${{ github.sha }} \
+            -m mcp_project_orchestrator.fastmcp
+      - name: Install MCP Inspector
+        run: |
+          npm install -g @modelcontextprotocol/inspector
+      - name: Wait for server to start
+        run: sleep 5
+      - name: Comprehensive MCP Validation
+        run: |
+          # Basic connection test
+          npx @modelcontextprotocol/inspector http://localhost:8080
+          
+          # Validation test
+          npx @modelcontextprotocol/inspector http://localhost:8080 --validate
+          
+          # Check server details with verbose output
+          npx @modelcontextprotocol/inspector http://localhost:8080 --verbose
+      - name: Stop MCP Server
+        run: |
+          docker stop mcp-server
+          docker rm mcp-server 

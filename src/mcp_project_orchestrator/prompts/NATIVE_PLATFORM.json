@@ -1,0 +1,12 @@
+{
+  "name": "NATIVE_PLATFORM",
+  "description": "Prompt template extracted from resolver.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "native",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-resolve/build/resolver.js",
+    "imported": true
+  }
+}

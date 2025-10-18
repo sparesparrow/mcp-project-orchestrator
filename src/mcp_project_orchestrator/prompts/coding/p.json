@@ -1,0 +1,12 @@
+{
+  "name": "p",
+  "description": "Prompt template extracted from 1986.26029e99ef54a5652df8.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "comment",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/1986.26029e99ef54a5652df8.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,40 @@
+# Security Coding Standards for OpenSSL
+
+## Memory Management
+**When handling memory in security-critical code:**
+- Use OPENSSL_malloc() and OPENSSL_free() exclusively for cryptographic buffers
+- Always check allocation return values before use
+- Implement cleanup in error paths with goto pattern for consistent deallocation
+- Use OPENSSL_clear_free() for sensitive data to prevent information leakage
+- Zero-out buffers before deallocation using OPENSSL_cleanse()
+
+## Input Validation
+**For all external input sources:**
+- Validate all input from external sources at trust boundaries
+- Implement bounds checking for all buffer operations to prevent overflow
+- Use safe string operations (OPENSSL_strlcpy, OPENSSL_strlcat) instead of strcpy/strcat
+- Consider side-channel attacks in validation logic - avoid timing dependencies
+- Sanitize input before passing to cryptographic operations
+
+## Thread Safety
+**When implementing multi-threaded code:**
+- Mark thread-safe functions with clear documentation comments
+- Use appropriate locks for shared state modification
+- Document lock acquisition order to prevent deadlocks
+- Implement thread-local storage for sensitive data that shouldn't be shared
+- Use atomic operations where appropriate for performance-critical sections
+
+## Constant-Time Operations
+**For cryptographic comparisons and operations:**
+- Use constant-time comparison functions (CRYPTO_memcmp) for sensitive data
+- Avoid conditional branches based on secret data
+- Implement algorithms resistant to timing attacks
+- Document timing attack mitigations in code comments
+
+## Error Handling Security
+**When handling errors in crypto code:**
+- Never leak sensitive information through error messages
+- Use generic error codes that don't reveal internal state
+- Implement secure error recovery that doesn't compromise security
+- Log security events without exposing sensitive data
+- Fail securely - prefer denying service over insecure operation

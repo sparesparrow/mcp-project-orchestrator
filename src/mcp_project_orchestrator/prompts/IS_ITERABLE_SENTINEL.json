@@ -1,0 +1,12 @@
+{
+  "name": "IS_ITERABLE_SENTINEL",
+  "description": "Prompt template extracted from Immutable.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "@@__IMMUTABLE_ITERABLE__@@",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/pretty-format/build/plugins/Immutable.js",
+    "imported": true
+  }
+}

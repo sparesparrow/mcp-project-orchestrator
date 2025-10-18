@@ -1,0 +1,12 @@
+{
+  "name": "errMessage",
+  "description": "Prompt template extracted from templates.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Chalk template literal is missing ${styles.length} closing bracket${styles.length === 1 ? ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/chalk/source/templates.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "sourceMapContent",
+  "description": "Prompt template extracted from compiler-utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "data:application/json;charset=utf-8;base64,",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ts-jest/dist/legacy/compiler/compiler-utils.js",
+    "imported": true
+  }
+}
