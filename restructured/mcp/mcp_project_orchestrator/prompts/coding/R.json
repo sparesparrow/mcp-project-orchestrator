@@ -1,0 +1,12 @@
+{
+  "name": "R",
+  "description": "Prompt template extracted from index.min.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "LRU_CACHE_UNBOUNDED",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/path-scurry/node_modules/lru-cache/dist/commonjs/index.min.js",
+    "imported": true
+  }
+}

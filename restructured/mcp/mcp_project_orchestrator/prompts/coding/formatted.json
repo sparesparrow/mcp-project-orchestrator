@@ -1,0 +1,12 @@
+{
+  "name": "formatted",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\x1b[36;1m",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/depd/index.js",
+    "imported": true
+  }
+}

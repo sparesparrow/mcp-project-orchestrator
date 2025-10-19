@@ -1,0 +1,12 @@
+{
+  "name": "PRETTY_PLACEHOLDER",
+  "description": "Prompt template extracted from array.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "%p",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-each/build/table/array.js",
+    "imported": true
+  }
+}

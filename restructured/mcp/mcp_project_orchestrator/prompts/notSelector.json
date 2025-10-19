@@ -1,0 +1,12 @@
+{
+  "name": "notSelector",
+  "description": "Prompt template extracted from block-navigation.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": ":not(",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-reports/lib/html/assets/block-navigation.js",
+    "imported": true
+  }
+}

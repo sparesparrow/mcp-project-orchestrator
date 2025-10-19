@@ -1,0 +1,12 @@
+{
+  "name": "maliciousPayload",
+  "description": "Prompt template extracted from test.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "{",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/xtend/test.js",
+    "imported": true
+  }
+}

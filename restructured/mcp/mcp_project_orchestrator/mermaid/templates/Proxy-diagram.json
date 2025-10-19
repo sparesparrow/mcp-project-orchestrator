@@ -1,0 +1,10 @@
+{
+  "name": "Proxy-diagram",
+  "description": "Mermaid diagram for Proxy pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Proxy Design Pattern, demonstrating the surrogate control pattern.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

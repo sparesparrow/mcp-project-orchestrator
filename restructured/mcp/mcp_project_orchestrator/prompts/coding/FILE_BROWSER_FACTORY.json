@@ -1,0 +1,12 @@
+{
+  "name": "FILE_BROWSER_FACTORY",
+  "description": "Prompt template extracted from 7302.8dfb32b083b16efa038a.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "FileBrowser",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7302.8dfb32b083b16efa038a.js",
+    "imported": true
+  }
+}

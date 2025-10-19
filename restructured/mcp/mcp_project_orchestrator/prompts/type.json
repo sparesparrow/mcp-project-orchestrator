@@ -1,0 +1,12 @@
+{
+  "name": "type",
+  "description": "Prompt template extracted from parse.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "close",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/braces/lib/parse.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,301 @@
+---
+title: OpenSSL Development (macOS {{ os_version }})
+description: Platform-specific rules for macOS development environment
+created: {{ timestamp }}
+platform: macos
+user: {{ user }}
+---
+
+# macOS Development Environment
+
+## Environment Context
+
+- **OS**: macOS {{ os_version }}
+- **Architecture**: {{ architecture }}
+- **Python**: {{ python_version }} ({{ python_implementation }})
+- **User**: {{ user }}
+- **Home**: {{ home }}
+- **Shell**: {{ shell }}
+{% if in_venv %}
+- **Virtual Environment**: ✅ Active
+{% endif %}
+
+## Build System Rules
+
+### Compiler Defaults
+
+When building OpenSSL on macOS:
+- **Default Compiler**: Clang (Apple's version)
+- **Architecture**: Support both Intel (x86_64) and Apple Silicon (arm64)
+- **Universal Binaries**: Use `-arch x86_64 -arch arm64` for universal builds
+- **Optimization**: Use `-O2` for release builds
+- **Debug Symbols**: Include `-g` debug symbols for debug builds
+
+### Conan Profile Selection
+
+Prefer these profiles in order:
+1. `macos-clang-release` for production builds
+2. `macos-clang-debug` for development
+3. `macos-gcc-release` for alternative compiler testing
+4. `macos-gcc-debug` for GCC development
+
+### Environment Variables
+
+Check these environment variables before suggesting build commands:
+- `CONAN_USER_HOME` (default: {{ home }}/.conan2)
+- `OPENSSL_ROOT_DIR` for custom OpenSSL installation
+- `CC`, `CXX` for compiler overrides
+- `PKG_CONFIG_PATH` for library discovery
+- `DYLD_LIBRARY_PATH` for runtime library loading
+- `ARCHFLAGS` for architecture specification
+
+### Build Commands
+
+#### Standard Build Process
+
+```bash
+# Configure for current architecture
+./Configure darwin64-x86_64-cc --prefix=/usr/local
+
+# For Apple Silicon
+./Configure darwin64-arm64-cc --prefix=/usr/local
+
+# Universal binary (both architectures)
+./Configure darwin64-x86_64-cc darwin64-arm64-cc --prefix=/usr/local
+
+# Build with parallel jobs
+make -j$(sysctl -n hw.ncpu)
+
+# Run tests
+make test
+
+# Install
+sudo make install
+```
+
+#### Debug Build
+
+```bash
+# Configure for debug
+./Configure darwin64-x86_64-cc --debug --prefix=/usr/local
+
+# Build with debug symbols
+make -j$(sysctl -n hw.ncpu) CFLAGS="-g -O0"
+
+# Run tests with verbose output
+make test V=1
+```
+
+#### Universal Binary Build
+
+```bash
+# Set architecture flags
+export ARCHFLAGS="-arch x86_64 -arch arm64"
+
+# Configure for universal binary
+./Configure darwin64-x86_64-cc darwin64-arm64-cc --prefix=/usr/local
+
+# Build
+make -j$(sysctl -n hw.ncpu)
+```
+
+## Testing Rules
+
+### Test Execution
+
+On macOS, use system CPU count:
+```bash
+# Use all available cores
+make test -j$(sysctl -n hw.ncpu)
+
+# Or specify number of jobs
+make test -j4
+```
+
+### Python Testing
+
+Use `pytest-xdist` for parallel Python tests:
+```bash
+# Install pytest-xdist
+pip install pytest-xdist
+
+# Run tests in parallel
+pytest -n auto tests/
+
+# Run with specific number of workers
+pytest -n 4 tests/
+```
+
+### Memory Testing
+
+Use AddressSanitizer for memory debugging:
+```bash
+# Build with AddressSanitizer
+./Configure darwin64-x86_64-cc --debug --prefix=/usr/local
+make -j$(sysctl -n hw.ncpu) CFLAGS="-g -O0 -fsanitize=address"
+make test
+```
+
+## File Path Conventions
+
+### Path Standards
+
+- **Forward Slashes**: Use `/` for all paths
+- **Home Directory**: `{{ home }}`
+- **Temp Directory**: `/tmp` or `$TMPDIR`
+- **Conan Cache**: `{{ home }}/.conan2/`
+- **Build Directory**: `./build/` or `./out/`
+- **Install Directory**: `/usr/local` or `./install/`
+
+### Library Paths
+
+- **System Libraries**: `/usr/lib/`, `/System/Library/`
+- **Homebrew Libraries**: `/opt/homebrew/lib/` (Apple Silicon) or `/usr/local/lib/` (Intel)
+- **Custom Libraries**: `$DYLD_LIBRARY_PATH`
+
+## Platform-Specific Quirks
+
+### Homebrew Integration
+
+- **Package Manager**: Use Homebrew for system dependencies
+- **Installation**: Install to `/opt/homebrew` (Apple Silicon) or `/usr/local` (Intel)
+- **Path Management**: Add Homebrew paths to `PATH` and `PKG_CONFIG_PATH`
+
+### Code Signing
+
+- **Developer ID**: Required for distribution outside App Store
+- **Notarization**: Required for macOS 10.15+ distribution
+- **Entitlements**: May be required for certain system access
+
+### System Integration
+
+- **LaunchDaemons**: Use `launchctl` for service management
+- **Cron**: Use `crontab` for scheduled tasks
+- **Logs**: Check Console.app or `log` command
+- **Process Management**: Use `ps`, `top`, `htop` for process monitoring
+
+## Development Tools
+
+### Essential Tools
+
+- **Xcode Command Line Tools**: `xcode-select --install`
+- **Git**: Version control system
+- **Homebrew**: Package manager
+- **Make**: Build automation
+- **GDB/LLDB**: Debugger
+
+### Recommended Tools
+
+- **Valgrind**: Memory debugging (Intel only)
+- **Instruments**: Apple's profiling tool
+- **Dtrace**: System tracing
+- **Perf**: Performance analysis
+
+### IDE Integration
+
+- **Xcode**: Apple's IDE
+- **VS Code**: With C/C++ extension
+- **CLion**: JetBrains C++ IDE
+- **Vim/Neovim**: With appropriate plugins
+
+## Package Management
+
+### Homebrew Packages
+
+```bash
+# Install Homebrew (if not already installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install development tools
+brew install openssl zlib pkg-config
+
+# Install additional tools
+brew install git vim gdb valgrind
+```
+
+### Python Packages
+
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Or install specific packages
+pip install pytest pytest-xdist black ruff mypy
+```
+
+## Performance Optimization
+
+### Compiler Optimizations
+
+- **Clang Optimizations**: Use `-O2` for release, `-O0` for debug
+- **Link-Time Optimization**: Use `-flto` for better optimization
+- **Profile-Guided Optimization**: Use `-fprofile-generate` and `-fprofile-use`
+
+### System Tuning
+
+- **CPU Scaling**: Use `pmset` to manage power settings
+- **Memory**: Monitor with Activity Monitor
+- **I/O**: Use SSD for better I/O performance
+
+## Architecture Considerations
+
+### Intel vs Apple Silicon
+
+- **Intel (x86_64)**: Traditional x86_64 architecture
+- **Apple Silicon (arm64)**: ARM-based architecture
+- **Universal Binaries**: Support both architectures in single binary
+- **Rosetta 2**: Run Intel binaries on Apple Silicon
+
+### Build Considerations
+
+```bash
+# Check current architecture
+uname -m
+
+# Build for specific architecture
+arch -x86_64 make  # Force Intel build on Apple Silicon
+arch -arm64 make   # Force ARM build on Apple Silicon
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Permission Denied**: Check file permissions and ownership
+2. **Library Not Found**: Update `DYLD_LIBRARY_PATH` or `PKG_CONFIG_PATH`
+3. **Compiler Errors**: Ensure Xcode Command Line Tools are installed
+4. **Architecture Mismatch**: Check architecture compatibility
+
+### Debugging Commands
+
+```bash
+# Check system information
+uname -a
+sw_vers
+system_profiler SPHardwareDataType
+sysctl -n hw.ncpu
+vm_stat
+
+# Check running processes
+ps aux | grep openssl
+top -pid $(pgrep openssl)
+
+# Check system logs
+log show --predicate 'process == "openssl"' --info
+```
+
+### Homebrew Troubleshooting
+
+```bash
+# Check Homebrew status
+brew doctor
+
+# Update Homebrew
+brew update
+
+# Check installed packages
+brew list
+
+# Check package dependencies
+brew deps openssl
+```

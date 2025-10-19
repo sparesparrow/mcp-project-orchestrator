@@ -1,0 +1,12 @@
+{
+  "name": "transform",
+  "description": "Prompt template extracted from 7369.286a75761c308381b0a4.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "translate",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7369.286a75761c308381b0a4.js",
+    "imported": true
+  }
+}

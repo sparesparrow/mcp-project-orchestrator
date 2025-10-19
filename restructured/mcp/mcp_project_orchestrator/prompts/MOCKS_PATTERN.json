@@ -1,0 +1,12 @@
+{
+  "name": "MOCKS_PATTERN",
+  "description": "Prompt template extracted from getMockName.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${path().sep}__mocks__${path().sep}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-haste-map/build/getMockName.js",
+    "imported": true
+  }
+}

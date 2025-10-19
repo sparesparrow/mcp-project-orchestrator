@@ -1,0 +1,12 @@
+{
+  "name": "ROOT_NAMESPACE_NAME",
+  "description": "Prompt template extracted from namespace.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "__rootNamespace__",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jake/lib/namespace.js",
+    "imported": true
+  }
+}

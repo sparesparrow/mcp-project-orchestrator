@@ -1,0 +1,12 @@
+{
+  "name": "J",
+  "description": "Prompt template extracted from 9582.c10e0d8d04b7da1a22da.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "year",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/9582.c10e0d8d04b7da1a22da.js",
+    "imported": true
+  }
+}

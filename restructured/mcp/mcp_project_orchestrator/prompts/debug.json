@@ -1,0 +1,12 @@
+{
+  "name": "debug",
+  "description": "Prompt template extracted from util.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "this is some data",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@types/node/util.d.ts",
+    "imported": true
+  }
+}

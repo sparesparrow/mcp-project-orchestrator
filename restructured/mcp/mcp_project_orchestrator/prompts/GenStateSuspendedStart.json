@@ -1,0 +1,12 @@
+{
+  "name": "GenStateSuspendedStart",
+  "description": "Prompt template extracted from regeneratorRuntime.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "suspendedStart",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/helpers/lib/helpers/regeneratorRuntime.js",
+    "imported": true
+  }
+}

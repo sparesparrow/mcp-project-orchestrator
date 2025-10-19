@@ -1,0 +1,12 @@
+{
+  "name": "BROWSER_VAR",
+  "description": "Prompt template extracted from browser-test.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "JLAB_BROWSER_TYPE",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/jupyterlab/browser-test.js",
+    "imported": true
+  }
+}

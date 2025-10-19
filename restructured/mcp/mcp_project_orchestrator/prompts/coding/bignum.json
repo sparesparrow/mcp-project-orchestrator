@@ -1,0 +1,12 @@
+{
+  "name": "bignum",
+  "description": "Prompt template extracted from types.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "31415926535897932384626433832795028841971693993751058.16180339887498948482045868343656381177203091798057628",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pg-types/test/types.js",
+    "imported": true
+  }
+}

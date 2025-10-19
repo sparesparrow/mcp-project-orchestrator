@@ -1,0 +1,12 @@
+{
+  "name": "at",
+  "description": "Prompt template extracted from 700.f3db1bd22341e0bf0b74.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "http://www.w3.org/1999/xhtml",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/700.f3db1bd22341e0bf0b74.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "jsonType",
+  "description": "Prompt template extracted from json.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "json",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/formidable/src/plugins/json.js",
+    "imported": true
+  }
+}

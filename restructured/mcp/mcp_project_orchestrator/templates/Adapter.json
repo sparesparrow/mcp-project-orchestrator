@@ -1,0 +1,18 @@
+{
+  "name": "Adapter",
+  "description": "Adapts one interface to another.",
+  "type": "component",
+  "files": [],
+  "dependencies": [],
+  "variables": {},
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-project-orchestrator/component_templates.json",
+    "imported": true
+  },
+  "mermaid": "Generate a Mermaid diagram visualizing Adapter Design Pattern, showing how incompatible interfaces are adapted to work together."
+}

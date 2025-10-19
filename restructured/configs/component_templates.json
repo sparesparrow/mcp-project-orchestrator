@@ -1,0 +1,99 @@
+{
+  "component_templates": [
+    {
+      "name": "Factory",
+      "description": "Creates objects using the Factory Method.",
+      "mermaid": "Generate a Mermaid diagram visualizing FactoryMethod Design Pattern, showing the factory, product, and client interactions."
+    },
+    {
+      "name": "AbstractFactory",
+      "description": "Creates related objects without specifying concrete classes.",
+      "mermaid": "Generate a Mermaid diagram visualizing AbstractFactory Design Pattern, illustrating families of related objects and their creation process."
+    },
+    {
+      "name": "Builder",
+      "description": "Constructs objects using a step-by-step approach.",
+      "mermaid": "Generate a Mermaid diagram visualizing Builder Design Pattern, that shows the step-by-step construction process of complex objects."
+    },
+    {
+      "name": "Prototype",
+      "description": "Clones existing objects as prototypes.",
+      "mermaid": "Generate a Mermaid diagram visualizing Prototype Design Pattern, displaying object cloning and prototype relationships."
+    },
+    {
+      "name": "Singleton",
+      "description": "Manages a single instance across the application.",
+      "mermaid": "Generate a Mermaid diagram visualizing Singleton Design Pattern, illustrating the single instance and global access point."
+    },
+    {
+      "name": "Adapter",
+      "description": "Adapts one interface to another.",
+      "mermaid": "Generate a Mermaid diagram visualizing Adapter Design Pattern, showing how incompatible interfaces are adapted to work together."
+    },
+    {
+      "name": "Decorator",
+      "description": "Wraps objects to extend functionality.",
+      "mermaid": "Generate a Mermaid diagram visualizing Decorator Design Pattern, that shows dynamic addition of behaviors to objects."
+    },
+    {
+      "name": "Facade",
+      "description": "Simplifies interactions with a subsystem.",
+      "mermaid": "Generate a Mermaid diagram visualizing Facade Design Pattern, showing a simplified interface versus a complex subsystem."
+    },
+    {
+      "name": "Proxy",
+      "description": "Intermediates access to a real object.",
+      "mermaid": "Generate a Mermaid diagram visualizing Proxy Design Pattern, demonstrating the surrogate control pattern."
+    },
+    {
+      "name": "Chain",
+      "description": "Processes a request through a chain of handlers.",
+      "mermaid": "Generate a Mermaid diagram visualizing ChainOfResponsibility Design Pattern, showing the flow of requests through handlers."
+    },
+    {
+      "name": "Command",
+      "description": "Encapsulates requests as objects.",
+      "mermaid": "Generate a Mermaid diagram visualizing Command Design Pattern, outlining encapsulated request objects and their invokers."
+    },
+    {
+      "name": "Iterator",
+      "description": "Enables sequential access to collection elements.",
+      "mermaid": "Generate a Mermaid diagram visualizing Iterator Design Pattern, showing sequential access to a collection."
+    },
+    {
+      "name": "Mediator",
+      "description": "Manages communication between objects.",
+      "mermaid": "Generate a Mermaid diagram visualizing Mediator Design Pattern, showing how components communicate via a mediator."
+    },
+    {
+      "name": "Memento",
+      "description": "Stores and restores object state.",
+      "mermaid": "Generate a Mermaid diagram visualizing Memento Design Pattern, illustrating state capture and restoration processes."
+    },
+    {
+      "name": "Observer",
+      "description": "Notifies subscribers of state changes.",
+      "mermaid": "Generate a Mermaid diagram visualizing Observer Design Pattern, showing one-to-many dependencies between subjects and observers."
+    },
+    {
+      "name": "State",
+      "description": "Manages state-dependent behavior.",
+      "mermaid": "Generate a Mermaid diagram visualizing State Design Pattern, outlining state transitions and behavior changes."
+    },
+    {
+      "name": "Strategy",
+      "description": "Encapsulates interchangeable algorithms.",
+      "mermaid": "Generate a Mermaid diagram visualizing Strategy Design Pattern, showing interchangeable algorithms and their selection criteria."
+    },
+    {
+      "name": "TemplateMethod",
+      "description": "Defines a skeletal algorithm with overrideable steps.",
+      "mermaid": "Generate a Mermaid diagram visualizing TemplateMethod Design Pattern, illustrating the skeletal algorithm with customizable steps."
+    },
+    {
+      "name": "Visitor",
+      "description": "Separates operations from object structure.",
+      "mermaid": "Generate a Mermaid diagram visualizing Visitor Design Pattern, showing the separation of operations from object structure."
+    }
+  ]
+}

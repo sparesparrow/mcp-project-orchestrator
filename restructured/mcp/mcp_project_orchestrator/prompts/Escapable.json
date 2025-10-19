@@ -1,0 +1,12 @@
+{
+  "name": "Escapable",
+  "description": "Prompt template extracted from 6271.a83a0f2aa464d0c1bbf5.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "!\\",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/6271.a83a0f2aa464d0c1bbf5.js",
+    "imported": true
+  }
+}

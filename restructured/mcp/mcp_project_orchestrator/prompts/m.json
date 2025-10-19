@@ -1,0 +1,12 @@
+{
+  "name": "m",
+  "description": "Prompt template extracted from walker.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "cannot ignore child matches, ignore lacks add() method.",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/rimraf/node_modules/glob/dist/esm/walker.js",
+    "imported": true
+  }
+}

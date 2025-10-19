@@ -1,0 +1,12 @@
+{
+  "name": "sranges",
+  "description": "Prompt template extracted from brace-expressions.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/rimraf/node_modules/minimatch/dist/commonjs/brace-expressions.js",
+    "imported": true
+  }
+}

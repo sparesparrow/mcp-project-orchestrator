@@ -1,0 +1,12 @@
+{
+  "name": "comma",
+  "description": "Prompt template extracted from sourcemap-codec.umd.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": ",",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jridgewell/sourcemap-codec/dist/sourcemap-codec.umd.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "newUrl",
+  "description": "Prompt template extracted from routing.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "#${params.join(",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-reports/lib/html-spa/src/routing.js",
+    "imported": true
+  }
+}

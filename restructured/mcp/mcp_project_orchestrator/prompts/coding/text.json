@@ -1,0 +1,12 @@
+{
+  "name": "text",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "select $1::text as name",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pg-pool/test/index.js",
+    "imported": true
+  }
+}

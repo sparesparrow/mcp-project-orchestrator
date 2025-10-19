@@ -1,0 +1,12 @@
+{
+  "name": "isSourceNode",
+  "description": "Prompt template extracted from source-node.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "$$$isSourceNode$$$",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/source-map/lib/source-node.js",
+    "imported": true
+  }
+}

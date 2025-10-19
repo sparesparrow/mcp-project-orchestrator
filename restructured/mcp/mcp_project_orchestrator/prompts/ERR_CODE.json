@@ -1,0 +1,12 @@
+{
+  "name": "ERR_CODE",
+  "description": "Prompt template extracted from error.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "ARGError",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/argparse/lib/argument/error.js",
+    "imported": true
+  }
+}

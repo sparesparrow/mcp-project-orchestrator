@@ -1,0 +1,12 @@
+{
+  "name": "usage",
+  "description": "Prompt template extracted from args.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "Usage: $0 [--config=<pathToConfigFile>] [TestPathPattern]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-cli/build/args.js",
+    "imported": true
+  }
+}

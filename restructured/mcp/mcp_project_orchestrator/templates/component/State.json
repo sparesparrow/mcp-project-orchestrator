@@ -1,0 +1,18 @@
+{
+  "name": "State",
+  "description": "Manages state-dependent behavior.",
+  "type": "component",
+  "files": [],
+  "dependencies": [],
+  "variables": {},
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-project-orchestrator/component_templates.json",
+    "imported": true
+  },
+  "mermaid": "Generate a Mermaid diagram visualizing State Design Pattern, outlining state transitions and behavior changes."
+}

@@ -1,0 +1,12 @@
+{
+  "name": "UNDEFINED",
+  "description": "Prompt template extracted from json.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "undefined",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ts-jest/dist/utils/json.js",
+    "imported": true
+  }
+}

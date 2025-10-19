@@ -1,0 +1,12 @@
+{
+  "name": "a",
+  "description": "Prompt template extracted from remoteEntry.e4ff09401a2f575928c0.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "default",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/labextensions/@jupyter-widgets/jupyterlab-manager/static/remoteEntry.e4ff09401a2f575928c0.js",
+    "imported": true
+  }
+}

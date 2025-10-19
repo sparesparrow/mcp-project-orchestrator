@@ -1,0 +1,10 @@
+{
+  "name": "State-diagram",
+  "description": "Mermaid diagram for State pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing State Design Pattern, outlining state transitions and behavior changes.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

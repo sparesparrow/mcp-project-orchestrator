@@ -1,0 +1,12 @@
+{
+  "name": "symbolTag",
+  "description": "Prompt template extracted from 6033.e5f43eeda4cc803965de.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[object Symbol]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/6033.e5f43eeda4cc803965de.js",
+    "imported": true
+  }
+}

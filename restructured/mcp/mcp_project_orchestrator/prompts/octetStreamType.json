@@ -1,0 +1,12 @@
+{
+  "name": "octetStreamType",
+  "description": "Prompt template extracted from octetstream.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "octet-stream",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/formidable/src/plugins/octetstream.js",
+    "imported": true
+  }
+}

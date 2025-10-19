@@ -1,0 +1,12 @@
+{
+  "name": "reI",
+  "description": "Prompt template extracted from 4499.69ddcc73939e5bacc11c.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\s*([+-]?\\\\d+)\\\\s*",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/4499.69ddcc73939e5bacc11c.js",
+    "imported": true
+  }
+}

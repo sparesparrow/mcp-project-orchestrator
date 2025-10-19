@@ -1,0 +1,12 @@
+{
+  "name": "errMsg",
+  "description": "Prompt template extracted from 3079.1a9a59cb31f366c7aee9.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Infinite loop on byte: ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/3079.1a9a59cb31f366c7aee9.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,309 @@
+---
+title: OpenSSL Development (CI Linux)
+description: CI-specific rules for Linux build environments
+created: {{ timestamp }}
+platform: ci-linux
+user: {{ user }}
+---
+
+# CI Linux Environment
+
+## Environment Context
+
+- **OS**: Linux {{ os_version }}
+- **Architecture**: {{ architecture }}
+- **Python**: {{ python_version }} ({{ python_implementation }})
+- **User**: {{ user }}
+- **CI Provider**: {% if is_github_actions %}GitHub Actions{% elif is_gitlab_ci %}GitLab CI{% elif is_jenkins %}Jenkins{% else %}Unknown{% endif %}
+- **CI Environment**: {{ is_ci }}
+{% if in_venv %}
+- **Virtual Environment**: ✅ Active
+{% endif %}
+
+## CI Build Rules
+
+### Build Configuration
+
+For CI environments:
+- **Parallel Builds**: Use all available CPU cores
+- **Verbose Output**: Enable verbose build output for debugging
+- **Error Handling**: Treat warnings as errors
+- **Clean Builds**: Always start with clean build directory
+- **Artifact Collection**: Collect build artifacts for distribution
+
+### Compiler Settings
+
+- **Default Compiler**: GCC for maximum compatibility
+- **Optimization**: Use `-O2` for release builds
+- **Debug Symbols**: Include `-g` for debugging
+- **Warnings**: Use `-Wall -Wextra -Werror` for strict compilation
+- **Sanitizers**: Use AddressSanitizer and UndefinedBehaviorSanitizer
+
+### Build Commands
+
+#### Standard CI Build
+
+```bash
+#!/bin/bash
+set -e  # Exit on any error
+
+# Configure
+./Configure linux-x86_64 --prefix=/usr/local
+
+# Build with all available cores
+make -j$(nproc)
+
+# Run tests
+make test
+
+# Install
+sudo make install
+```
+
+#### Debug CI Build
+
+```bash
+#!/bin/bash
+set -e
+
+# Configure for debug
+./Configure linux-x86_64 --debug --prefix=/usr/local
+
+# Build with debug symbols
+make -j$(nproc) CFLAGS="-g -O0"
+
+# Run tests with verbose output
+make test V=1
+```
+
+#### Sanitizer Build
+
+```bash
+#!/bin/bash
+set -e
+
+# Configure with sanitizers
+./Configure linux-x86_64 --debug --prefix=/usr/local
+make -j$(nproc) CFLAGS="-g -O0 -fsanitize=address -fsanitize=undefined"
+
+# Run tests
+make test
+```
+
+## Testing Rules
+
+### Test Execution
+
+- **Parallel Testing**: Use all available CPU cores
+- **Timeout Handling**: Set appropriate timeouts for tests
+- **Test Reporting**: Generate test reports in standard formats
+- **Coverage**: Collect code coverage information
+
+### Test Commands
+
+```bash
+# Run tests in parallel
+make test -j$(nproc)
+
+# Run with timeout
+timeout 3600 make test -j$(nproc)
+
+# Run specific test suites
+make test TESTS="test_ssl test_crypto"
+
+# Generate test report
+make test > test-results.log 2>&1
+```
+
+### Python Testing
+
+```bash
+# Install test dependencies
+pip install pytest pytest-xdist pytest-cov
+
+# Run tests in parallel
+pytest -n auto tests/ --cov=src --cov-report=xml
+
+# Run with specific markers
+pytest -n auto tests/ -m "not slow"
+```
+
+## Environment Setup
+
+### System Dependencies
+
+```bash
+# Update package lists
+sudo apt-get update
+
+# Install build dependencies
+sudo apt-get install -y \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    pkg-config \
+    valgrind \
+    gdb
+
+# Install Python dependencies
+pip install -r requirements-dev.txt
+```
+
+### Environment Variables
+
+```bash
+# Set CI-specific environment variables
+export CI=true
+export OPENSSL_ROOT_DIR=/usr/local
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
+# Set build flags
+export CFLAGS="-Wall -Wextra -Werror -O2"
+export CXXFLAGS="-Wall -Wextra -Werror -O2"
+```
+
+## Artifact Management
+
+### Build Artifacts
+
+- **Binaries**: Collect built binaries and libraries
+- **Headers**: Collect header files
+- **Documentation**: Collect generated documentation
+- **Test Reports**: Collect test results and coverage reports
+
+### Artifact Collection
+
+```bash
+# Create artifacts directory
+mkdir -p artifacts
+
+# Copy binaries
+cp -r /usr/local/bin/* artifacts/
+cp -r /usr/local/lib/* artifacts/
+cp -r /usr/local/include/* artifacts/
+
+# Copy test results
+cp test-results.log artifacts/
+cp coverage.xml artifacts/
+
+# Create archive
+tar -czf openssl-build-$(date +%Y%m%d-%H%M%S).tar.gz artifacts/
+```
+
+## Security Considerations
+
+### Secure Builds
+
+- **Dependency Scanning**: Scan dependencies for vulnerabilities
+- **Code Signing**: Sign binaries if required
+- **Secrets Management**: Use secure secret storage
+- **Access Control**: Limit access to build artifacts
+
+### Security Tools
+
+```bash
+# Install security tools
+sudo apt-get install -y \
+    bandit \
+    safety \
+    semgrep
+
+# Run security scans
+bandit -r src/
+safety check
+semgrep --config=auto src/
+```
+
+## Performance Monitoring
+
+### Build Performance
+
+- **Build Time**: Monitor build duration
+- **Resource Usage**: Monitor CPU and memory usage
+- **Cache Efficiency**: Monitor build cache hit rates
+- **Parallel Efficiency**: Monitor parallel build effectiveness
+
+### Performance Metrics
+
+```bash
+# Measure build time
+time make -j$(nproc)
+
+# Monitor resource usage
+htop -d 1
+
+# Check build cache
+ccache -s
+```
+
+## Error Handling
+
+### Build Failures
+
+- **Early Exit**: Exit on first error
+- **Error Reporting**: Report errors clearly
+- **Log Collection**: Collect relevant logs
+- **Debug Information**: Include debug information
+
+### Error Recovery
+
+```bash
+# Clean build on failure
+if ! make -j$(nproc); then
+    echo "Build failed, cleaning and retrying..."
+    make clean
+    make -j$(nproc)
+fi
+```
+
+## Notification and Reporting
+
+### Build Notifications
+
+- **Success Notifications**: Notify on successful builds
+- **Failure Notifications**: Notify on build failures
+- **Test Notifications**: Notify on test failures
+- **Security Notifications**: Notify on security issues
+
+### Reporting
+
+```bash
+# Generate build report
+cat > build-report.md << EOF
+# Build Report
+
+- **Build Time**: $(date)
+- **Platform**: $(uname -a)
+- **Compiler**: $(gcc --version | head -1)
+- **Test Results**: $(grep -c "PASS" test-results.log || echo "0") passed
+- **Coverage**: $(grep -o '[0-9]*%' coverage.xml | tail -1 || echo "N/A")
+
+EOF
+```
+
+## Troubleshooting
+
+### Common CI Issues
+
+1. **Build Timeout**: Increase timeout or optimize build
+2. **Memory Issues**: Increase memory or optimize build
+3. **Permission Issues**: Check file permissions and ownership
+4. **Network Issues**: Check network connectivity and proxies
+
+### Debug Commands
+
+```bash
+# Check system resources
+free -h
+df -h
+nproc
+
+# Check build environment
+echo $PATH
+echo $LD_LIBRARY_PATH
+echo $PKG_CONFIG_PATH
+
+# Check build logs
+tail -f build.log
+```

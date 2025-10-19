@@ -1,0 +1,12 @@
+{
+  "name": "paddedNumber",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " ${number}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/code-frame/lib/index.js",
+    "imported": true
+  }
+}

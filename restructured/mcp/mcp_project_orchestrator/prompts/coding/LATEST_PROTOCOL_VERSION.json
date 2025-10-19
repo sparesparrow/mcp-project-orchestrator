@@ -1,0 +1,12 @@
+{
+  "name": "LATEST_PROTOCOL_VERSION",
+  "description": "Prompt template extracted from types.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "2024-11-05",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/@modelcontextprotocol/server-postgres/node_modules/@modelcontextprotocol/sdk/dist/types.js",
+    "imported": true
+  }
+}

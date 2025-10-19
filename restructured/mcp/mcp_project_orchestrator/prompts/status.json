@@ -1,0 +1,12 @@
+{
+  "name": "status",
+  "description": "Prompt template extracted from http-server.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "healthy",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/utils/http-server.js",
+    "imported": true
+  }
+}

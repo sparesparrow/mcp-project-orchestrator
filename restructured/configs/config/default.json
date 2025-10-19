@@ -1,0 +1,23 @@
+{
+  "name": "mcp-project-orchestrator",
+  "version": "0.1.0",
+  "description": "MCP Project Orchestrator Server",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8080
+  },
+  "paths": {
+    "prompts": "/home/sparrow/projects/mcp-project-orchestrator/src/mcp_project_orchestrator/prompts",
+    "templates": "/home/sparrow/projects/mcp-project-orchestrator/src/mcp_project_orchestrator/templates",
+    "resources": "/home/sparrow/projects/mcp-project-orchestrator/src/mcp_project_orchestrator/resources",
+    "mermaid_templates": "/home/sparrow/projects/mcp-project-orchestrator/src/mcp_project_orchestrator/mermaid/templates",
+    "mermaid_output": "/home/sparrow/projects/mcp-project-orchestrator/output/mermaid"
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "/home/sparrow/projects/mcp-project-orchestrator/logs/orchestrator.log"
+  },
+  "mermaid": {
+    "cli_path": "/usr/local/bin/mmdc"
+  }
+}

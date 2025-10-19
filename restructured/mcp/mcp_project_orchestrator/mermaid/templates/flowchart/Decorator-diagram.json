@@ -1,0 +1,10 @@
+{
+  "name": "Decorator-diagram",
+  "description": "Mermaid diagram for Decorator pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Decorator Design Pattern, that shows dynamic addition of behaviors to objects.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

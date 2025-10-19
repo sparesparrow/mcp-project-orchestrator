@@ -1,0 +1,12 @@
+{
+  "name": "str",
+  "description": "Prompt template extracted from test.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\u70eb\u70eb\u70eb\\r\\n\u70eb\u70eb\u70eb",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/split2/test.js",
+    "imported": true
+  }
+}
