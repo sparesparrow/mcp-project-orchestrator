@@ -1,43 +1,81 @@
 """
-MCP Project Orchestrator - A comprehensive MCP server for project orchestration.
+MCP Project Orchestrator with Agent Skills Integration.
 
-This package provides tools for project template management, prompt management,
-diagram generation, and AWS integration through the Model Context Protocol (MCP).
+This package provides comprehensive project orchestration capabilities with
+Agent Skills integration, MCP 2025 protocol support, and specialized tools
+for OpenSSL development and FIPS compliance.
 """
 
-__version__ = "0.1.0"
+from .fastmcp import FastMCP
+from .project_orchestration import mcp
+from .skills_registry import (
+    SkillsRegistry,
+    ProjectContext,
+    SkillComposition,
+    SkillMetadata,
+    SkillType,
+    SkillPriority
+)
+from .skills_enabled_mcp import SkillsEnabledMCPServer
+from .fips_compliance import (
+    FIPSComplianceValidator,
+    FIPSValidationLevel,
+    SecurityViolation,
+    SecurityViolationType
+)
+from .cursor_integration import (
+    CursorCLIManager,
+    CursorAgentOrchestrator,
+    CursorExecutionMode
+)
+from .openssl_tools_orchestration import (
+    OpenSSLToolsOrchestrator,
+    OpenSSLProjectContext,
+    OpenSSLProjectType,
+    BuildPlatform,
+    WorkflowTrigger
+)
+from .openssl_orchestration_main import OpenSSLOrchestrationMain
 
-from .core import FastMCPServer, MCPConfig, setup_logging, MCPException
-from .mermaid import DiagramType, MermaidGenerator, MermaidRenderer
-from .prompt_manager import PromptLoader, PromptManager, PromptTemplate
+__version__ = "0.2.0"
+__author__ = "sparesparrow"
+__description__ = "MCP Project Orchestrator with Agent Skills Integration"
 
-# AWS MCP integration (optional)
-try:
-    from .aws_mcp import AWSConfig, AWSMCPIntegration, register_aws_mcp_tools
-    _AWS_AVAILABLE = True
-except ImportError:
-    _AWS_AVAILABLE = False
-    AWSConfig = None
-    AWSMCPIntegration = None
-    register_aws_mcp_tools = None
-
+# Export main classes and functions
 __all__ = [
-    "FastMCPServer",
-    "MCPConfig",
-    "setup_logging",
-    "MCPException",
-    "PromptManager",
-    "PromptTemplate",
-    "PromptLoader",
-    "MermaidGenerator",
-    "MermaidRenderer",
-    "DiagramType",
+    # Core MCP functionality
+    "FastMCP",
+    "mcp",
+    
+    # Skills registry and composition
+    "SkillsRegistry",
+    "ProjectContext", 
+    "SkillComposition",
+    "SkillMetadata",
+    "SkillType",
+    "SkillPriority",
+    
+    # Enhanced MCP server
+    "SkillsEnabledMCPServer",
+    
+    # FIPS compliance
+    "FIPSComplianceValidator",
+    "FIPSValidationLevel",
+    "SecurityViolation",
+    "SecurityViolationType",
+    
+    # Cursor integration
+    "CursorCLIManager",
+    "CursorAgentOrchestrator",
+    "CursorExecutionMode",
+    
+    # OpenSSL orchestration
+    "OpenSSLToolsOrchestrator",
+    "OpenSSLProjectContext",
+    "OpenSSLProjectType",
+    "BuildPlatform",
+    "WorkflowTrigger",
+    
+    # Main orchestration entry point
+    "OpenSSLOrchestrationMain"
 ]
-
-# Add AWS exports if available
-if _AWS_AVAILABLE:
-    __all__.extend([
-        "AWSConfig",
-        "AWSMCPIntegration",
-        "register_aws_mcp_tools",
-    ])
