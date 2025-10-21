@@ -1,12 +1,12 @@
 {
-  "name": "o",
-  "description": "Prompt template extracted from remoteEntry.cad89c571bc2aee4aff2.js",
+  "name": "O",
+  "description": "Prompt template extracted from 1495.13603dd823bbf5eb08b3.js",
   "type": "prompt",
   "category": "coding",
-  "content": "default",
+  "content": "</${i}>",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/labextensions/@jupyter-notebook/lab-extension/static/remoteEntry.cad89c571bc2aee4aff2.js",
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/1495.13603dd823bbf5eb08b3.js",
     "imported": true
   }
 }

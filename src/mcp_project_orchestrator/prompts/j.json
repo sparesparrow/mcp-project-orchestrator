@@ -1,12 +1,12 @@
 {
-  "name": "j",
-  "description": "Prompt template extracted from 898.4051a8b212a0f4c89d60.js",
+  "name": "J",
+  "description": "Prompt template extracted from 9582.c10e0d8d04b7da1a22da.js",
   "type": "prompt",
-  "category": "coding",
-  "content": "function",
+  "category": "user",
+  "content": "year",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/labextensions/@jupyter-widgets/jupyterlab-manager/static/898.4051a8b212a0f4c89d60.js",
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/9582.c10e0d8d04b7da1a22da.js",
     "imported": true
   }
 }

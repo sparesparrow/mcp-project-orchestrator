@@ -1,12 +1,12 @@
 {
-  "name": "identifier",
-  "description": "Prompt template extracted from 3211.2e93fd406e5c4e53774f.js",
+  "name": "Identifier",
+  "description": "Prompt template extracted from 1418.5913bb08784c217a1f0b.js",
   "type": "prompt",
   "category": "coding",
-  "content": "(?![\\\\d\\\\s])[$\\\\w\\\\xAA-\\\\uFFDC](?:(?!\\\\s)[$\\\\w\\\\xAA-\\\\uFFDC]|-[A-Za-z])*",
+  "content": "[a-zA-Z\\\\$][a-zA-Z0-9\\\\$]*",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/3211.2e93fd406e5c4e53774f.js",
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1418.5913bb08784c217a1f0b.js",
     "imported": true
   }
 }

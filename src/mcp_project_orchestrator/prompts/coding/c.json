@@ -1,12 +1,12 @@
 {
-  "name": "c",
-  "description": "Prompt template extracted from browser.js",
+  "name": "C",
+  "description": "Prompt template extracted from index.min.js",
   "type": "prompt",
   "category": "coding",
-  "content": "color: ",
+  "content": "function",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/debug/src/browser.js",
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/json5/dist/index.min.js",
     "imported": true
   }
 }

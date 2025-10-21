@@ -1,12 +1,12 @@
 {
-  "name": "error",
-  "description": "Prompt template extracted from full.js",
+  "name": "ERROR",
+  "description": "Prompt template extracted from normalize.js",
   "type": "prompt",
   "category": "coding",
-  "content": "A plugin/preset has external untracked dependencies ",
+  "content": "${_utils.BULLET}Validation Error",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/config/full.js",
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-config/build/normalize.js",
     "imported": true
   }
 }

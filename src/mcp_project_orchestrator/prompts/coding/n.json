@@ -1,12 +1,12 @@
 {
-  "name": "n",
-  "description": "Prompt template extracted from js-yaml.min.js",
+  "name": "N",
+  "description": "Prompt template extracted from 8217.801fbb0b549a74238760.js",
   "type": "prompt",
   "category": "coding",
-  "content": "function",
+  "content": "builtin",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-prompts/node_modules/js-yaml/dist/js-yaml.min.js",
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/8217.801fbb0b549a74238760.js",
     "imported": true
   }
 }

@@ -1,12 +1,12 @@
 {
-  "name": "st",
-  "description": "Prompt template extracted from 9296.176231372f63ddcb8e6c.js",
+  "name": "ST",
+  "description": "Prompt template extracted from index.js",
   "type": "prompt",
   "category": "coding",
-  "content": "webkitFontSmoothing",
+  "content": "(?:\\\\u0007|\\\\u001B\\\\u005C|\\\\u009C)",
   "variables": {},
   "metadata": {
-    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/9296.176231372f63ddcb8e6c.js",
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@isaacs/cliui/node_modules/ansi-regex/index.js",
     "imported": true
   }
 }
