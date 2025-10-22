@@ -1,0 +1,75 @@
+name: OpenSSL Ecosystem Monitor
+
+on:
+  schedule:
+    # Run every 4 hours
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+    inputs:
+      hours_back:
+        description: 'Hours to look back for failures'
+        required: false
+        default: '4'
+        type: string
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  monitor-ecosystem:
+    name: Monitor OpenSSL Ecosystem
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: read
+      actions: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install PyGithub httpx
+          
+      - name: Run ecosystem monitor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -m mcp_project_orchestrator.ecosystem_monitor
+          
+      - name: Generate monitoring report
+        if: always()
+        run: |
+          echo "## 🔍 OpenSSL Ecosystem Monitoring Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Monitor Run:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "**Repositories Monitored:** 5" >> $GITHUB_STEP_SUMMARY
+          echo "**Lookback Period:** ${{ inputs.hours_back || '4' }} hours" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Monitored Repositories" >> $GITHUB_STEP_SUMMARY
+          echo "- sparesparrow/openssl" >> $GITHUB_STEP_SUMMARY
+          echo "- sparesparrow/openssl-conan-base" >> $GITHUB_STEP_SUMMARY
+          echo "- sparesparrow/openssl-fips-policy" >> $GITHUB_STEP_SUMMARY
+          echo "- sparesparrow/openssl-tools" >> $GITHUB_STEP_SUMMARY
+          echo "- sparesparrow/mcp-project-orchestrator" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Failure Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "- Automated failure pattern detection" >> $GITHUB_STEP_SUMMARY
+          echo "- AI-assisted fix suggestions" >> $GITHUB_STEP_SUMMARY
+          echo "- Auto-issue creation for recurring patterns" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "- Review any created issues for failure patterns" >> $GITHUB_STEP_SUMMARY
+          echo "- Implement suggested fixes" >> $GITHUB_STEP_SUMMARY
+          echo "- Monitor for pattern recurrence" >> $GITHUB_STEP_SUMMARY

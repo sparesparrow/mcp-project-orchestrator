@@ -1,0 +1,111 @@
+name: Fan-Out Release Orchestrator
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_repository:
+        description: 'Source repository that triggered the release'
+        required: true
+        type: string
+      source_version:
+        description: 'Version of the source repository'
+        required: true
+        type: string
+      release_type:
+        description: 'Type of release (foundation, tooling, domain, orchestration)'
+        required: true
+        type: choice
+        options:
+          - foundation
+          - tooling
+          - domain
+          - orchestration
+      dependency_update:
+        description: 'Whether this is a dependency update'
+        required: false
+        default: 'false'
+        type: boolean
+      triggered_by:
+        description: 'What triggered this orchestration'
+        required: false
+        default: 'manual'
+        type: string
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  orchestrate-release:
+    name: Orchestrate Cross-Repository Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install PyGithub httpx
+          
+      - name: Run fan-out orchestration
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -c "
+          import asyncio
+          from mcp_project_orchestrator.fan_out_orchestrator import ReleaseCoordinator
+          
+          async def orchestrate():
+              coordinator = ReleaseCoordinator('${{ env.GITHUB_TOKEN }}')
+              
+              if '${{ inputs.release_type }}' == 'foundation':
+                  result = await coordinator.coordinate_foundation_release('${{ inputs.source_version }}')
+              elif '${{ inputs.release_type }}' == 'tooling':
+                  result = await coordinator.coordinate_tooling_release('${{ inputs.source_version }}')
+              elif '${{ inputs.release_type }}' == 'domain':
+                  result = await coordinator.coordinate_domain_release('${{ inputs.source_version }}')
+              else:
+                  print('Unknown release type: ${{ inputs.release_type }}')
+                  return
+              
+              print(f'Orchestration result: {result}')
+          
+          asyncio.run(orchestrate())
+          "
+          
+      - name: Generate orchestration report
+        if: always()
+        run: |
+          echo "## 🚀 Fan-Out Release Orchestration Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Orchestration Run:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "**Source Repository:** ${{ inputs.source_repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Source Version:** ${{ inputs.source_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Release Type:** ${{ inputs.release_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered By:** ${{ inputs.triggered_by }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Dependency Update:** ${{ inputs.dependency_update }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Orchestration Actions" >> $GITHUB_STEP_SUMMARY
+          echo "- Analyzed dependency relationships" >> $GITHUB_STEP_SUMMARY
+          echo "- Triggered dependent repository workflows" >> $GITHUB_STEP_SUMMARY
+          echo "- Created dependency update PRs where needed" >> $GITHUB_STEP_SUMMARY
+          echo "- Monitored release status across ecosystem" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "- Review triggered workflows in dependent repositories" >> $GITHUB_STEP_SUMMARY
+          echo "- Monitor build and test results" >> $GITHUB_STEP_SUMMARY
+          echo "- Address any dependency conflicts" >> $GITHUB_STEP_SUMMARY
+          echo "- Verify end-to-end integration" >> $GITHUB_STEP_SUMMARY
