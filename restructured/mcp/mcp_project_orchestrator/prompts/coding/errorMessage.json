@@ -1,0 +1,12 @@
+{
+  "name": "errorMessage",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Option ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@pkgjs/parseargs/index.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "lt",
+  "description": "Prompt template extracted from annotator.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u0001",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-reports/lib/html/annotator.js",
+    "imported": true
+  }
+}

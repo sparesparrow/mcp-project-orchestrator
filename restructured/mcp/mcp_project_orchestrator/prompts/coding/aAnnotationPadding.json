@@ -1,0 +1,12 @@
+{
+  "name": "aAnnotationPadding",
+  "description": "Prompt template extracted from diffLines.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-diff/build/diffLines.js",
+    "imported": true
+  }
+}

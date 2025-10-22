@@ -1,0 +1,12 @@
+{
+  "name": "r",
+  "description": "Prompt template extracted from source-map.min.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/source-map/dist/source-map.min.js",
+    "imported": true
+  }
+}

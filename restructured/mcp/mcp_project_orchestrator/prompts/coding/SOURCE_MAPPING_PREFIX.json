@@ -1,0 +1,12 @@
+{
+  "name": "SOURCE_MAPPING_PREFIX",
+  "description": "Prompt template extracted from compiler-utils.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "sourceMappingURL=",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ts-jest/dist/legacy/compiler/compiler-utils.d.ts",
+    "imported": true
+  }
+}

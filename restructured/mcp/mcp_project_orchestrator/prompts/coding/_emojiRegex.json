@@ -1,0 +1,12 @@
+{
+  "name": "_emojiRegex",
+  "description": "Prompt template extracted from types.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "^(\\\\p{Extended_Pictographic}|\\\\p{Emoji_Component})+$",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/zod-to-json-schema/dist-test/cjs/node_modules/zod/lib/types.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "destMain",
+  "description": "Prompt template extracted from symlinks.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "symlinks/dest/node_modules/mod-a/index.js",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/resolve/test/symlinks.js",
+    "imported": true
+  }
+}

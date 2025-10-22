@@ -1,0 +1,12 @@
+{
+  "name": "NO_ARGUMENTS",
+  "description": "Prompt template extracted from spyMatchers.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "called with 0 arguments",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/expect/build/spyMatchers.js",
+    "imported": true
+  }
+}

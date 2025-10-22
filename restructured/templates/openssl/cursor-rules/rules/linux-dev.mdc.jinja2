@@ -1,0 +1,265 @@
+---
+title: OpenSSL Development (Linux {{ os_version }})
+description: Platform-specific rules for Linux development environment
+created: {{ timestamp }}
+platform: linux
+user: {{ user }}
+---
+
+# Linux Development Environment
+
+## Environment Context
+
+- **OS**: Linux {{ os_version }}
+- **Architecture**: {{ architecture }}
+- **Python**: {{ python_version }} ({{ python_implementation }})
+- **User**: {{ user }}
+- **Home**: {{ home }}
+- **Shell**: {{ shell }}
+{% if in_venv %}
+- **Virtual Environment**: ✅ Active
+{% endif %}
+
+## Build System Rules
+
+### Compiler Defaults
+
+When building OpenSSL on Linux:
+- **Default Compiler**: GCC unless clang is explicitly requested
+- **Shared Libraries**: Use `-fPIC` for position-independent code
+- **Optimization**: Enable `-O2` optimization for release builds
+- **Debug Symbols**: Include `-g` debug symbols for debug builds
+- **Warnings**: Use `-Wall -Wextra -Werror` for strict compilation
+
+### Conan Profile Selection
+
+Prefer these profiles in order:
+1. `linux-gcc-release` for production builds
+2. `linux-gcc-debug` for development
+3. `linux-clang-release` for alternative compiler testing
+4. `linux-clang-debug` for clang development
+
+### Environment Variables
+
+Check these environment variables before suggesting build commands:
+- `CONAN_USER_HOME` (default: {{ home }}/.conan2)
+- `OPENSSL_ROOT_DIR` for custom OpenSSL installation
+- `CC`, `CXX` for compiler overrides
+- `PKG_CONFIG_PATH` for library discovery
+- `LD_LIBRARY_PATH` for runtime library loading
+
+### Build Commands
+
+#### Standard Build Process
+
+```bash
+# Configure with GCC
+./Configure linux-x86_64 --prefix=/usr/local
+
+# Build with parallel jobs
+make -j$(nproc)
+
+# Run tests
+make test
+
+# Install (may require sudo)
+sudo make install
+```
+
+#### Debug Build
+
+```bash
+# Configure for debug
+./Configure linux-x86_64 --debug --prefix=/usr/local
+
+# Build with debug symbols
+make -j$(nproc) CFLAGS="-g -O0"
+
+# Run tests with verbose output
+make test V=1
+```
+
+#### Clang Build
+
+```bash
+# Set compiler
+export CC=clang
+export CXX=clang++
+
+# Configure
+./Configure linux-x86_64 --prefix=/usr/local
+
+# Build
+make -j$(nproc)
+```
+
+## Testing Rules
+
+### Test Execution
+
+On Linux, tests can run in parallel:
+```bash
+# Use all available cores
+make test -j$(nproc)
+
+# Or specify number of jobs
+make test -j4
+```
+
+### Python Testing
+
+Suggest using `pytest-xdist` for parallel Python tests:
+```bash
+# Install pytest-xdist
+pip install pytest-xdist
+
+# Run tests in parallel
+pytest -n auto tests/
+
+# Run with specific number of workers
+pytest -n 4 tests/
+```
+
+### Memory Testing
+
+Use Valgrind for memory leak detection:
+```bash
+# Install valgrind
+sudo apt-get install valgrind  # Ubuntu/Debian
+sudo yum install valgrind      # RHEL/CentOS
+
+# Run tests with valgrind
+valgrind --leak-check=full --show-leak-kinds=all make test
+```
+
+## File Path Conventions
+
+### Path Standards
+
+- **Forward Slashes**: Use `/` for all paths
+- **Home Directory**: `{{ home }}`
+- **Temp Directory**: `/tmp` or `$TMPDIR`
+- **Conan Cache**: `{{ home }}/.conan2/`
+- **Build Directory**: `./build/` or `./out/`
+- **Install Directory**: `/usr/local` or `./install/`
+
+### Library Paths
+
+- **System Libraries**: `/usr/lib/`, `/usr/lib64/`
+- **Local Libraries**: `/usr/local/lib/`
+- **Custom Libraries**: `$LD_LIBRARY_PATH`
+
+## Platform-Specific Quirks
+
+### Security Modules
+
+- **AppArmor**: May block file access, check with `dmesg` or `aa-status`
+- **SELinux**: May prevent execution, check with `ausearch` or `getenforce`
+- **Firewall**: May block network connections, check with `ufw status` or `iptables -L`
+
+### Library Dependencies
+
+- **OpenSSL Development**: Install `libssl-dev` (Ubuntu/Debian) or `openssl-devel` (RHEL/CentOS)
+- **Zlib Development**: Install `zlib1g-dev` (Ubuntu/Debian) or `zlib-devel` (RHEL/CentOS)
+- **Pkg-config**: Install `pkg-config` for library discovery
+
+### System Integration
+
+- **Systemd**: Use `systemctl` for service management
+- **Cron**: Use `crontab` for scheduled tasks
+- **Logs**: Check `/var/log/` for system logs
+- **Process Management**: Use `ps`, `top`, `htop` for process monitoring
+
+## Development Tools
+
+### Essential Tools
+
+- **Build Tools**: `build-essential` package (Ubuntu/Debian)
+- **Git**: Version control system
+- **Vim/Emacs**: Text editors
+- **GDB**: Debugger
+- **Make**: Build automation
+
+### Recommended Tools
+
+- **Valgrind**: Memory debugging
+- **GProf**: Profiling
+- **Strace**: System call tracing
+- **Ltrace**: Library call tracing
+- **Perf**: Performance analysis
+
+### IDE Integration
+
+- **VS Code**: With C/C++ extension
+- **CLion**: JetBrains C++ IDE
+- **Qt Creator**: Cross-platform IDE
+- **Vim/Neovim**: With appropriate plugins
+
+## Package Management
+
+### System Packages
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install build-essential libssl-dev zlib1g-dev pkg-config
+
+# RHEL/CentOS/Fedora
+sudo yum groupinstall "Development Tools"
+sudo yum install openssl-devel zlib-devel pkgconfig
+
+# Arch Linux
+sudo pacman -S base-devel openssl zlib pkgconfig
+```
+
+### Python Packages
+
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Or install specific packages
+pip install pytest pytest-xdist black ruff mypy
+```
+
+## Performance Optimization
+
+### Compiler Optimizations
+
+- **GCC Optimizations**: Use `-O2` for release, `-O0` for debug
+- **Link-Time Optimization**: Use `-flto` for better optimization
+- **Profile-Guided Optimization**: Use `-fprofile-generate` and `-fprofile-use`
+
+### System Tuning
+
+- **CPU Scaling**: Use `performance` governor for maximum performance
+- **Memory**: Ensure sufficient RAM and swap space
+- **I/O**: Use SSD for better I/O performance
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Permission Denied**: Check file permissions and ownership
+2. **Library Not Found**: Update `LD_LIBRARY_PATH` or `PKG_CONFIG_PATH`
+3. **Compiler Errors**: Ensure development tools are installed
+4. **Memory Issues**: Check available memory and swap space
+
+### Debugging Commands
+
+```bash
+# Check system information
+uname -a
+cat /etc/os-release
+lscpu
+free -h
+df -h
+
+# Check running processes
+ps aux | grep openssl
+top -p $(pgrep openssl)
+
+# Check system logs
+journalctl -f
+tail -f /var/log/syslog
+```

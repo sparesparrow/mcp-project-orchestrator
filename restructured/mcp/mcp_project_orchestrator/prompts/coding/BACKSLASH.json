@@ -1,0 +1,12 @@
+{
+  "name": "BACKSLASH",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/postgres-array/index.js",
+    "imported": true
+  }
+}

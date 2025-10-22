@@ -1,0 +1,12 @@
+{
+  "name": "se",
+  "description": "Prompt template extracted from 7990.fc875753fcfcc9b4eebc.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "vega-themes",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/7990.fc875753fcfcc9b4eebc.js",
+    "imported": true
+  }
+}

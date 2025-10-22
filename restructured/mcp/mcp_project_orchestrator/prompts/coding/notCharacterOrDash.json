@@ -1,0 +1,12 @@
+{
+  "name": "notCharacterOrDash",
+  "description": "Prompt template extracted from 8378.c1a78f0d6f0124d37fa9.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "(?=[^A-Za-z\\\\d\\\\-_]|$)",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8378.c1a78f0d6f0124d37fa9.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "multipartType",
+  "description": "Prompt template extracted from multipart.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "multipart",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/formidable/src/plugins/multipart.js",
+    "imported": true
+  }
+}

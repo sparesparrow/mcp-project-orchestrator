@@ -1,0 +1,12 @@
+{
+  "name": "classForPercent",
+  "description": "Prompt template extracted from summaryTableLine.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "none",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-reports/lib/html-spa/src/summaryTableLine.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "argsTag",
+  "description": "Prompt template extracted from 7811.fa11577c84ea92d4102c.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[object Arguments]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7811.fa11577c84ea92d4102c.js",
+    "imported": true
+  }
+}

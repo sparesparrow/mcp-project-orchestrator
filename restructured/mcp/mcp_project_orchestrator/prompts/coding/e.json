@@ -1,0 +1,12 @@
+{
+  "name": "e",
+  "description": "Prompt template extracted from superagent.min.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "function",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/superagent/dist/superagent.min.js",
+    "imported": true
+  }
+}

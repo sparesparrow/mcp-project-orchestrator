@@ -1,0 +1,12 @@
+{
+  "name": "error",
+  "description": "Prompt template extracted from full.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "A plugin/preset has external untracked dependencies ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/config/full.js",
+    "imported": true
+  }
+}

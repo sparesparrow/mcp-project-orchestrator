@@ -1,0 +1,12 @@
+{
+  "name": "ARROW",
+  "description": "Prompt template extracted from specialChars.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " \\u203A ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-util/build/specialChars.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ANDROID_EVERGREEN_FIRST",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "37",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/browserslist/index.js",
+    "imported": true
+  }
+}

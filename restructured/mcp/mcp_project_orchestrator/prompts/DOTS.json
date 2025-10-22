@@ -1,0 +1,12 @@
+{
+  "name": "DOTS",
+  "description": "Prompt template extracted from formatTestNameByPattern.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "...",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-watcher/build/lib/formatTestNameByPattern.js",
+    "imported": true
+  }
+}

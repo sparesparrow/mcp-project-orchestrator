@@ -1,0 +1,10 @@
+{
+  "name": "Observer-diagram",
+  "description": "Mermaid diagram for Observer pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Observer Design Pattern, showing one-to-many dependencies between subjects and observers.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

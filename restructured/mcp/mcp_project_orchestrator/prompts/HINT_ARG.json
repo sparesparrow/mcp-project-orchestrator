@@ -1,0 +1,12 @@
+{
+  "name": "HINT_ARG",
+  "description": "Prompt template extracted from printSnapshot.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "hint",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-snapshot/build/printSnapshot.js",
+    "imported": true
+  }
+}

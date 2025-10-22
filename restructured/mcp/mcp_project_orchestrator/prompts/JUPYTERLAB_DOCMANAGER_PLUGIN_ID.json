@@ -1,0 +1,12 @@
+{
+  "name": "JUPYTERLAB_DOCMANAGER_PLUGIN_ID",
+  "description": "Prompt template extracted from 8579.d7fc77346371c454ec00.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "@jupyterlab/docmanager-extension:plugin",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8579.d7fc77346371c454ec00.js",
+    "imported": true
+  }
+}

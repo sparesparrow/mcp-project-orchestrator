@@ -1,0 +1,12 @@
+{
+  "name": "cssClassStr",
+  "description": "Prompt template extracted from 1388.826f4dbe3aadaef0ba1f.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1388.826f4dbe3aadaef0ba1f.js",
+    "imported": true
+  }
+}

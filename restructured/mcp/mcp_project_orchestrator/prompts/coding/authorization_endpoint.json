@@ -1,0 +1,12 @@
+{
+  "name": "authorization_endpoint",
+  "description": "Prompt template extracted from router.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "/authorize",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/@modelcontextprotocol/sdk/dist/cjs/server/auth/router.js",
+    "imported": true
+  }
+}

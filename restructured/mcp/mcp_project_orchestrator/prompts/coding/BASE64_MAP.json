@@ -1,0 +1,12 @@
+{
+  "name": "BASE64_MAP",
+  "description": "Prompt template extracted from binary.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\\n\\r",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/js-yaml/lib/js-yaml/type/binary.js",
+    "imported": true
+  }
+}

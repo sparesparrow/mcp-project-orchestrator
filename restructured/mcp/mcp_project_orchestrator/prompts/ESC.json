@@ -1,0 +1,12 @@
+{
+  "name": "ESC",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u001B[",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ansi-escapes/index.js",
+    "imported": true
+  }
+}

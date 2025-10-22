@@ -1,0 +1,12 @@
+{
+  "name": "fnKey",
+  "description": "Prompt template extracted from visitors.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "is${nodeType}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/traverse/lib/visitors.js",
+    "imported": true
+  }
+}

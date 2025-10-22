@@ -1,0 +1,81 @@
+{
+  "mcpServers": {
+    "openssl-context": {
+      "command": "{% if os == 'windows' %}npx.cmd{% else %}npx{% endif %}",
+      "args": ["-y", "@sparesparrow/mcp-openssl-context"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "{{ repo_root }}",
+        "CONAN_USER_HOME": "{{ home }}/.conan2",
+        "PLATFORM": "{{ os }}",
+        "ARCHITECTURE": "{{ architecture }}",
+        "PYTHON_VERSION": "{{ python_version }}",
+        "USER": "{{ user }}"
+      }
+    },
+    "build-intelligence": {
+      "command": "{% if os == 'windows' %}npx.cmd{% else %}npx{% endif %}",
+      "args": ["-y", "@sparesparrow/mcp-build-intelligence"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "{{ repo_root }}",
+        "PLATFORM": "{{ os }}",
+        "ARCHITECTURE": "{{ architecture }}",
+        "BUILD_TYPE": "{% if is_ci %}release{% else %}debug{% endif %}",
+        "CONAN_USER_HOME": "{{ platform_detector.get_conan_home() }}"
+      }
+    },
+    "workflow-orchestrator": {
+      "command": "{% if os == 'windows' %}npx.cmd{% else %}npx{% endif %}",
+      "args": ["-y", "@sparesparrow/mcp-workflow-orchestrator"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}",
+        "PLATFORM": "{{ os }}",
+        "CI_ENVIRONMENT": "{{ is_ci }}",
+        "REPO_ROOT": "{{ repo_root }}"
+      },
+      "disabled": {% if is_ci %}true{% else %}false{% endif %}
+    },
+    "fips-compliance": {
+      "command": "{% if os == 'windows' %}npx.cmd{% else %}npx{% endif %}",
+      "args": ["-y", "@sparesparrow/mcp-fips-compliance"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "{{ repo_root }}",
+        "PLATFORM": "{{ os }}",
+        "FIPS_MODE": "{% if is_ci %}strict{% else %}development{% endif %}",
+        "COMPLIANCE_LEVEL": "FIPS140-2"
+      }
+    },
+    "security-scanner": {
+      "command": "{% if os == 'windows' %}npx.cmd{% else %}npx{% endif %}",
+      "args": ["-y", "@sparesparrow/mcp-security-scanner"],
+      "env": {
+        "OPENSSL_PROJECT_ROOT": "{{ repo_root }}",
+        "PLATFORM": "{{ os }}",
+        "SCAN_LEVEL": "{% if is_ci %}comprehensive{% else %}standard{% endif %}",
+        "REPORT_FORMAT": "json"
+      }
+    }
+  },
+  "globalShortcut": "Ctrl+Shift+.",
+  "logging": {
+    "level": "{% if is_ci %}error{% else %}info{% endif %}",
+    "file": "{{ repo_root }}/.cursor/cursor.log",
+    "maxSize": "10MB",
+    "maxFiles": 5
+  },
+  "features": {
+    "autoComplete": true,
+    "syntaxHighlighting": true,
+    "errorChecking": true,
+    "codeFormatting": true,
+    "intelligentSuggestions": true
+  },
+  "platform": {
+    "os": "{{ os }}",
+    "architecture": "{{ architecture }}",
+    "pythonVersion": "{{ python_version }}",
+    "user": "{{ user }}",
+    "home": "{{ home }}",
+    "ciEnvironment": {{ is_ci }},
+    "timestamp": "{{ timestamp }}"
+  }
+}

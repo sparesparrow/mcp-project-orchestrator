@@ -1,0 +1,12 @@
+{
+  "name": "string",
+  "description": "Prompt template extracted from index.d.ts",
+  "type": "prompt",
+  "category": "other",
+  "content": "#!/usr/bin/env node\\nconsole.log(",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/shebang-regex/index.d.ts",
+    "imported": true
+  }
+}

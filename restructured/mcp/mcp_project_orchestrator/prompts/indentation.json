@@ -1,0 +1,12 @@
+{
+  "name": "indentation",
+  "description": "Prompt template extracted from VerboseReporter.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "  ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/reporters/build/VerboseReporter.js",
+    "imported": true
+  }
+}

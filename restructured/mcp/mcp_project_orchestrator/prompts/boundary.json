@@ -1,0 +1,12 @@
+{
+  "name": "boundary",
+  "description": "Prompt template extracted from form_data.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "--------------------------",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/form-data/lib/form_data.js",
+    "imported": true
+  }
+}

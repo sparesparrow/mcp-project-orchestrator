@@ -1,0 +1,12 @@
+{
+  "name": "plusChar",
+  "description": "Prompt template extracted from utf7.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "+",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/iconv-lite/encodings/utf7.js",
+    "imported": true
+  }
+}

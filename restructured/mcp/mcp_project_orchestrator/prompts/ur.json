@@ -1,0 +1,12 @@
+{
+  "name": "ur",
+  "description": "Prompt template extracted from 5829.0e46d479b4ade4783661.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "*",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/5829.0e46d479b4ade4783661.js",
+    "imported": true
+  }
+}

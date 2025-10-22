@@ -1,0 +1,12 @@
+{
+  "name": "DEFAULT_INDENT",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "  ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/update-browserslist-db/utils.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "n",
+  "description": "Prompt template extracted from js-yaml.min.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "function",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/js-yaml/dist/js-yaml.min.js",
+    "imported": true
+  }
+}

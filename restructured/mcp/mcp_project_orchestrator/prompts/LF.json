@@ -1,0 +1,12 @@
+{
+  "name": "LF",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\n",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/lines-and-columns/build/index.js",
+    "imported": true
+  }
+}

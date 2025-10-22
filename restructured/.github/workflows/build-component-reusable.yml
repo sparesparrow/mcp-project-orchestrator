@@ -1,0 +1,134 @@
+# Reusable workflow for building OpenSSL components
+name: Build Component (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      component:
+        required: true
+        type: string
+        description: 'Component name (e.g., openssl, openssl-fips, openssl-quic)'
+      platform:
+        required: true
+        type: string
+        description: 'Platform identifier (e.g., linux-gcc11, windows-msvc2022)'
+      build-type:
+        required: false
+        type: string
+        default: 'Release'
+        description: 'Build type (Debug, Release, RelWithDebInfo)'
+      fips-enabled:
+        required: false
+        type: boolean
+        default: false
+        description: 'Enable FIPS mode'
+      upload-artifacts:
+        required: false
+        type: boolean
+        default: true
+        description: 'Upload build artifacts'
+    secrets:
+      CONAN_LOGIN_USERNAME:
+        required: false
+      CONAN_PASSWORD:
+        required: false
+      CLOUDSMITH_API_KEY:
+        required: false
+      ARTIFACTORY_API_KEY:
+        required: false
+
+env:
+  CONAN_USER_HOME: ${{ github.workspace }}/.conan2
+  CONAN_COLOR_DISPLAY: 1
+  CLICOLOR_FORCE: 1
+  CLICOLOR: 1
+
+jobs:
+  build:
+    name: Build ${{ inputs.component }} (${{ inputs.platform }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - platform: linux-gcc11
+            os: ubuntu-22.04
+            conan_profile: linux-gcc11
+          - platform: linux-clang15
+            os: ubuntu-22.04
+            conan_profile: linux-clang15
+          - platform: windows-msvc2022
+            os: windows-2022
+            conan_profile: windows-msvc2022
+          - platform: macos-clang14
+            os: macos-12
+            conan_profile: macos-clang14
+        exclude:
+          - platform: ${{ inputs.platform != matrix.platform && 'dummy' || '' }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install Conan
+        run: |
+          pip install conan==2.0.17
+          
+      - name: Cache Conan packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.CONAN_USER_HOME }}
+          key: conan-${{ runner.os }}-${{ inputs.platform }}-${{ inputs.component }}-${{ hashFiles('conanfile.py', 'conan-profiles/*.profile') }}
+          restore-keys: |
+            conan-${{ runner.os }}-${{ inputs.platform }}-${{ inputs.component }}-
+            conan-${{ runner.os }}-${{ inputs.platform }}-
+            conan-${{ runner.os }}-
+            
+      - name: Configure Conan remotes
+        if: secrets.CONAN_LOGIN_USERNAME != ''
+        run: |
+          conan remote add artifactory ${{ secrets.ARTIFACTORY_URL || 'https://artifactory.example.com/artifactory/api/conan/conan' }}
+          conan remote login -p ${{ secrets.CONAN_PASSWORD }} artifactory ${{ secrets.CONAN_LOGIN_USERNAME }}
+          
+      - name: Build component
+        run: |
+          cd ${{ inputs.component }}
+          conan create . --profile=${{ inputs.platform }} \
+            -s build_type=${{ inputs.build-type }} \
+            -o fips=${{ inputs.fips-enabled }} \
+            --build=missing
+            
+      - name: Test component
+        run: |
+          cd ${{ inputs.component }}
+          conan test test_package . --profile=${{ inputs.platform }} \
+            -s build_type=${{ inputs.build-type }} \
+            -o fips=${{ inputs.fips-enabled }}
+            
+      - name: Upload build artifacts
+        if: inputs.upload-artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.component }}-${{ inputs.platform }}-${{ inputs.build-type }}
+          path: |
+            ${{ env.CONAN_USER_HOME }}/p/*/p/
+            build/
+          retention-days: 30
+          
+      - name: Upload to Cloudsmith
+        if: secrets.CLOUDSMITH_API_KEY != ''
+        run: |
+          # Install Cloudsmith CLI
+          pip install cloudsmith-cli
+          
+          # Upload package to Cloudsmith
+          cloudsmith push conan ${{ secrets.CLOUDSMITH_ORGANIZATION }}/${{ secrets.CLOUDSMITH_REPOSITORY }} \
+            --api-key ${{ secrets.CLOUDSMITH_API_KEY }} \
+            --path ${{ env.CONAN_USER_HOME }}/p/*/p/

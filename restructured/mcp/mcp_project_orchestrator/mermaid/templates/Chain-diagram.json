@@ -1,0 +1,10 @@
+{
+  "name": "Chain-diagram",
+  "description": "Mermaid diagram for Chain pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing ChainOfResponsibility Design Pattern, showing the flow of requests through handlers.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

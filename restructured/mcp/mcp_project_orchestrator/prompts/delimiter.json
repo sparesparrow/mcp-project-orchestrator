@@ -1,0 +1,12 @@
+{
+  "name": "delimiter",
+  "description": "Prompt template extracted from 7796.ea7106c833e81e2e6a6d.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "-",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7796.ea7106c833e81e2e6a6d.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "INDIRECTION_FRAGMENT",
+  "description": "Prompt template extracted from fast_path.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "..${path().sep}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-haste-map/build/lib/fast_path.js",
+    "imported": true
+  }
+}

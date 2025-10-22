@@ -1,0 +1,12 @@
+{
+  "name": "REQUIRED_FIELD_SYMBOL",
+  "description": "Prompt template extracted from 1871.29951b77779d94d726d1.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "*",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1871.29951b77779d94d726d1.js",
+    "imported": true
+  }
+}

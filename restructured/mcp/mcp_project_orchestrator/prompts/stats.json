@@ -1,0 +1,12 @@
+{
+  "name": "stats",
+  "description": "Prompt template extracted from FailedTestsInteractiveMode.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${(0, _jestUtil().pluralize)(\n      ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/core/build/FailedTestsInteractiveMode.js",
+    "imported": true
+  }
+}

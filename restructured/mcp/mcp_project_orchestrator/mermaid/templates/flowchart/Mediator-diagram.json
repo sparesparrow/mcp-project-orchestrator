@@ -1,0 +1,10 @@
+{
+  "name": "Mediator-diagram",
+  "description": "Mermaid diagram for Mediator pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Mediator Design Pattern, showing how components communicate via a mediator.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

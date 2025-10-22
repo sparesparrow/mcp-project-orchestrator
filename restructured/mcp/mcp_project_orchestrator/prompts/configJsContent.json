@@ -1,0 +1,12 @@
+{
+  "name": "configJsContent",
+  "description": "Prompt template extracted from ensure-config.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\n// Default configuration\n// This file is created by the build process if it doesn",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/scripts/build/ensure-config.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "TOPBAR_FACTORY",
+  "description": "Prompt template extracted from notebook_core.4799ce7e762b693682b6.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "TopBar",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/notebook_core.4799ce7e762b693682b6.js",
+    "imported": true
+  }
+}

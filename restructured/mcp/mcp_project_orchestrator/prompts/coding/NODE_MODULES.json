@@ -1,0 +1,12 @@
+{
+  "name": "NODE_MODULES",
+  "description": "Prompt template extracted from constants.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${path().sep}node_modules${path().sep}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-config/build/constants.js",
+    "imported": true
+  }
+}

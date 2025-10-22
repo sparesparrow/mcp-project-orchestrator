@@ -1,0 +1,12 @@
+{
+  "name": "DATA",
+  "description": "Prompt template extracted from ipv4.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "127.0.0.1",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/zod-to-json-schema/dist-test/cjs/node_modules/zod/lib/benchmarks/ipv4.js",
+    "imported": true
+  }
+}

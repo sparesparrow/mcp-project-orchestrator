@@ -1,0 +1,12 @@
+{
+  "name": "expected",
+  "description": "Prompt template extracted from indent-option.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[ 1, 2, 3, \\",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/object-inspect/test/indent-option.js",
+    "imported": true
+  }
+}

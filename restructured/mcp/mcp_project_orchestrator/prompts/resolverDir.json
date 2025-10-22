@@ -1,0 +1,12 @@
+{
+  "name": "resolverDir",
+  "description": "Prompt template extracted from faulty_basedir.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "C:\\\\a\\\\b\\\\c\\\\d",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/resolve/test/faulty_basedir.js",
+    "imported": true
+  }
+}

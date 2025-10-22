@@ -1,0 +1,12 @@
+{
+  "name": "baseFlags",
+  "description": "Prompt template extracted from 5261.570ec78f80a112aa7d5d.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "gm",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/5261.570ec78f80a112aa7d5d.js",
+    "imported": true
+  }
+}

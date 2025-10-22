@@ -1,0 +1,12 @@
+{
+  "name": "output",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "${prepend}(?:${input})${append}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/picomatch/lib/utils.js",
+    "imported": true
+  }
+}

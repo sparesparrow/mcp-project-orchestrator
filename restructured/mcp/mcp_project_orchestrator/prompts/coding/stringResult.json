@@ -1,0 +1,12 @@
+{
+  "name": "stringResult",
+  "description": "Prompt template extracted from inspect.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[ !XYZ\u00a1, [] ]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/object-inspect/test/inspect.js",
+    "imported": true
+  }
+}

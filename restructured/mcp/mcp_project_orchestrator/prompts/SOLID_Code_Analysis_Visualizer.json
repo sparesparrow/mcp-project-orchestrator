@@ -1,0 +1,12 @@
+{
+  "name": "SOLID Code Analysis Visualizer",
+  "description": "Prompt template imported from solid-code-analysis-visualizer.json",
+  "type": "prompt",
+  "category": "analysis",
+  "content": "You are an expert in analyzing code against SOLID principles and visualizing the results. Your task is to examine the provided code, evaluate how well it follows each SOLID principle, and generate a detailed Mermaid diagram that visually represents the code structure while highlighting areas of strength and weakness related to SOLID principles. Include both the analysis results and the diagram in your response.",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/solid-code-analysis-visualizer.json",
+    "imported": true
+  }
+}

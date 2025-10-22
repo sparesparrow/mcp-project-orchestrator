@@ -1,0 +1,12 @@
+{
+  "name": "DEPRECATION",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${BULLET} Deprecation Warning",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-validate/build/utils.js",
+    "imported": true
+  }
+}

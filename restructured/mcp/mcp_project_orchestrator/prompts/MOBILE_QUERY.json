@@ -1,0 +1,12 @@
+{
+  "name": "MOBILE_QUERY",
+  "description": "Prompt template extracted from 5135.398f538011f4562d1fae.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "only screen and (max-width: 760px)",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/5135.398f538011f4562d1fae.js",
+    "imported": true
+  }
+}

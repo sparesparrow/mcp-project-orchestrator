@@ -1,0 +1,12 @@
+{
+  "name": "JAKE_CMD",
+  "description": "Prompt template extracted from rule.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${PROJECT_DIR}/bin/cli.js",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jake/test/integration/rule.js",
+    "imported": true
+  }
+}

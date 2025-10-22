@@ -1,0 +1,12 @@
+{
+  "name": "ROOT_DESCRIBE_BLOCK_NAME",
+  "description": "Prompt template extracted from state.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "ROOT_DESCRIBE_BLOCK",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-circus/build/state.js",
+    "imported": true
+  }
+}

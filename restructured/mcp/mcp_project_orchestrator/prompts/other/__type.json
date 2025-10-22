@@ -1,0 +1,12 @@
+{
+  "name": "__type",
+  "description": "Prompt template extracted from pure-rand-default.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "commonjs",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/pure-rand/lib/pure-rand-default.js",
+    "imported": true
+  }
+}

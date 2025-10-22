@@ -1,0 +1,12 @@
+{
+  "name": "Analyze Mermaid Diagram",
+  "description": "Prompt template imported from analyze-mermaid-diagram.json",
+  "type": "prompt",
+  "category": "other",
+  "content": "You are an expert in analyzing Mermaid diagrams. Your task is to analyze the provided diagram code and provide insights about its structure, clarity, and potential improvements.",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/analyze-mermaid-diagram.json",
+    "imported": true
+  }
+}

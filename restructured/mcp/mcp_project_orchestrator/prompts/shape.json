@@ -1,0 +1,12 @@
+{
+  "name": "shape",
+  "description": "Prompt template extracted from 8443.214c35b34c68e0bcfa22.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "M 0,",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8443.214c35b34c68e0bcfa22.js",
+    "imported": true
+  }
+}

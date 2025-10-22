@@ -1,0 +1,12 @@
+{
+  "name": "b",
+  "description": "Prompt template extracted from 3330.a6d6a93bb012ea4f3589.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "global",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/3330.a6d6a93bb012ea4f3589.js",
+    "imported": true
+  }
+}

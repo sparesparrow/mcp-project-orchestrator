@@ -1,0 +1,12 @@
+{
+  "name": "rangeStart",
+  "description": "Prompt template extracted from ascii.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[${count.toString(10)}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@bcoe/v8-coverage/dist/lib/ascii.js",
+    "imported": true
+  }
+}

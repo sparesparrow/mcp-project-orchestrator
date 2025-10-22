@@ -1,0 +1,12 @@
+{
+  "name": "code",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/parser/lib/index.js",
+    "imported": true
+  }
+}

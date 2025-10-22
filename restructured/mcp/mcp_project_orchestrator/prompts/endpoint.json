@@ -1,0 +1,12 @@
+{
+  "name": "endpoint",
+  "description": "Prompt template extracted from sse.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "/events",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/dist/sse.js",
+    "imported": true
+  }
+}

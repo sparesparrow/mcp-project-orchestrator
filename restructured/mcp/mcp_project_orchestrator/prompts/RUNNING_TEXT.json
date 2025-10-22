@@ -1,0 +1,12 @@
+{
+  "name": "RUNNING_TEXT",
+  "description": "Prompt template extracted from Status.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " RUNS ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/reporters/build/Status.js",
+    "imported": true
+  }
+}

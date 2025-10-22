@@ -1,0 +1,12 @@
+{
+  "name": "nullTag",
+  "description": "Prompt template extracted from 755.3d6eb3b7f81d035f52f4.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[object Null]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/755.3d6eb3b7f81d035f52f4.js",
+    "imported": true
+  }
+}

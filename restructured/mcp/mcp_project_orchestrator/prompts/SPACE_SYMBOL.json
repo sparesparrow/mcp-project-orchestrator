@@ -1,0 +1,12 @@
+{
+  "name": "SPACE_SYMBOL",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u{00B7}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-matcher-utils/build/index.js",
+    "imported": true
+  }
+}

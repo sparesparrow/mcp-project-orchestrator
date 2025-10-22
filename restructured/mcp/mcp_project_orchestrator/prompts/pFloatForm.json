@@ -1,0 +1,12 @@
+{
+  "name": "pFloatForm",
+  "description": "Prompt template extracted from 4038.edb04f3d9d68204491ba.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "(?:(?:\\\\.\\\\d+|\\\\d+\\\\.\\\\d*|\\\\d+)(?:[eE][+-]?\\\\d+)?)",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/4038.edb04f3d9d68204491ba.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "promptId",
+  "description": "Prompt template extracted from postgres-adapter.integration.test.ts",
+  "type": "prompt",
+  "category": "user",
+  "content": "update-test-${Date.now()}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/tests/integration/postgres-adapter.integration.test.ts",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ERRORCLASS",
+  "description": "Prompt template extracted from 2871.46ec88c6997ef947f39f.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "error",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/2871.46ec88c6997ef947f39f.js",
+    "imported": true
+  }
+}

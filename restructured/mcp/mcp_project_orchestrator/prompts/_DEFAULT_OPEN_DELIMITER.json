@@ -1,0 +1,12 @@
+{
+  "name": "_DEFAULT_OPEN_DELIMITER",
+  "description": "Prompt template extracted from ejs.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "<",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ejs/lib/ejs.js",
+    "imported": true
+  }
+}

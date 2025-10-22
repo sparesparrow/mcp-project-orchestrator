@@ -1,0 +1,12 @@
+{
+  "name": "marker",
+  "description": "Prompt template extracted from 417.29f636ec8be265b7e480.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "fast-${Math.random().toString(36).substring(2, 8)}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/417.29f636ec8be265b7e480.js",
+    "imported": true
+  }
+}

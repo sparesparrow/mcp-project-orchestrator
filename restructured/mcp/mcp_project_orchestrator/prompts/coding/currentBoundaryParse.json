@@ -1,0 +1,12 @@
+{
+  "name": "currentBoundaryParse",
+  "description": "Prompt template extracted from 7427.bf7a5e024a86a49270f3.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "global",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7427.bf7a5e024a86a49270f3.js",
+    "imported": true
+  }
+}

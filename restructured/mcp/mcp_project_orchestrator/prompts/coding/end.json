@@ -1,0 +1,12 @@
+{
+  "name": "end",
+  "description": "Prompt template extracted from 7582.5611b71499b0becf7b6a.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\\\\\end\\\\s*(\\\\{",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7582.5611b71499b0becf7b6a.js",
+    "imported": true
+  }
+}

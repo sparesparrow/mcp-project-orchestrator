@@ -1,0 +1,12 @@
+{
+  "name": "BOMChar",
+  "description": "Prompt template extracted from bom-handling.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\uFEFF",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/iconv-lite/lib/bom-handling.js",
+    "imported": true
+  }
+}

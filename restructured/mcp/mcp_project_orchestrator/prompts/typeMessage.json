@@ -1,0 +1,12 @@
+{
+  "name": "typeMessage",
+  "description": "Prompt template extracted from getConsoleOutput.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "console.${type}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/console/build/getConsoleOutput.js",
+    "imported": true
+  }
+}

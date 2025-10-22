@@ -1,0 +1,12 @@
+{
+  "name": "message",
+  "description": "Prompt template extracted from websocket-server.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Invalid HTTP method",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/ws/lib/websocket-server.js",
+    "imported": true
+  }
+}

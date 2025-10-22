@@ -1,0 +1,12 @@
+{
+  "name": "query",
+  "description": "Prompt template extracted from adapters.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "SELECT * FROM prompts",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/dist/adapters.js",
+    "imported": true
+  }
+}

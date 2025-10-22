@@ -1,0 +1,12 @@
+{
+  "name": "meth",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "on",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-reports/lib/lcov/index.js",
+    "imported": true
+  }
+}

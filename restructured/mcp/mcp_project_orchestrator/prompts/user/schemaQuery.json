@@ -1,0 +1,12 @@
+{
+  "name": "schemaQuery",
+  "description": "Prompt template extracted from database-tools.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "\n          SELECT \n            t.table_name, \n            c.column_name, \n            c.data_type,\n            c.column_default,\n            c.is_nullable,\n            c.character_maximum_length,\n            tc.constraint_type,\n            kcu.column_name as key_column\n          FROM \n            information_schema.tables t\n          LEFT JOIN \n            information_schema.columns c ON t.table_name = c.table_name AND t.table_schema = c.table_schema\n          LEFT JOIN \n            information_schema.table_constraints tc ON tc.table_name = t.table_name AND tc.table_schema = t.table_schema AND tc.constraint_type = ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/tools/database-tools.js",
+    "imported": true
+  }
+}
