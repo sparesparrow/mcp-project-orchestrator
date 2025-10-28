@@ -1,0 +1,12 @@
+{
+  "name": "SUB_NAME",
+  "description": "Prompt template extracted from WatchmanWatcher.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "sane-sub",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-haste-map/build/watchers/WatchmanWatcher.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "IS_KEYED_SENTINEL",
+  "description": "Prompt template extracted from immutableUtils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "@@__IMMUTABLE_KEYED__@@",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/expect-utils/build/immutableUtils.js",
+    "imported": true
+  }
+}

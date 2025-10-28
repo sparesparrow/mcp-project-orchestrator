@@ -1,0 +1,12 @@
+{
+  "name": "property_prefix",
+  "description": "Prompt template extracted from 8845.ac1c5acb78cea4acee08.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "bspr_",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8845.ac1c5acb78cea4acee08.js",
+    "imported": true
+  }
+}

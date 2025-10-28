@@ -1,0 +1,10 @@
+{
+  "name": "TemplateMethod-diagram",
+  "description": "Mermaid diagram for TemplateMethod pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing TemplateMethod Design Pattern, illustrating the skeletal algorithm with customizable steps.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

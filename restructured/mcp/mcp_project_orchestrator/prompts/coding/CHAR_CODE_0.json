@@ -1,0 +1,12 @@
+{
+  "name": "CHAR_CODE_0",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "0",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/postgres-date/index.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "NO_DIFF_MESSAGE",
+  "description": "Prompt template extracted from constants.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Compared values have no visual difference.",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-diff/build/constants.js",
+    "imported": true
+  }
+}

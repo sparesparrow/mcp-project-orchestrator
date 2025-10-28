@@ -1,0 +1,12 @@
+{
+  "name": "LETTERDASHNUMBER",
+  "description": "Prompt template extracted from semver.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[a-zA-Z0-9-]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/semver/semver.js",
+    "imported": true
+  }
+}

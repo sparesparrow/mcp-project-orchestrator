@@ -1,0 +1,12 @@
+{
+  "name": "FORMAT",
+  "description": "Prompt template extracted from node.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Browserslist config should be a string or an array ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/browserslist/node.js",
+    "imported": true
+  }
+}

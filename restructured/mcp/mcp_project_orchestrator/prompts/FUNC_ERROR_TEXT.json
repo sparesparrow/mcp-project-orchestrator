@@ -1,0 +1,12 @@
+{
+  "name": "FUNC_ERROR_TEXT",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Expected a function",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/lodash.memoize/index.js",
+    "imported": true
+  }
+}

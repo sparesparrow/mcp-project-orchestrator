@@ -1,0 +1,12 @@
+{
+  "name": "QO",
+  "description": "Prompt template extracted from 8103.00fa0c157eb92e5cf3ba.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "break case const continue default delete export extends false finally in instanceof let new return static super switch this throw true typeof var yield",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/8103.00fa0c157eb92e5cf3ba.js",
+    "imported": true
+  }
+}

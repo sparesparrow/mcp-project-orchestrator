@@ -1,0 +1,12 @@
+{
+  "name": "override",
+  "description": "Prompt template extracted from 6739.a2cfcf763eb412a26515.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "variable",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/6739.a2cfcf763eb412a26515.js",
+    "imported": true
+  }
+}

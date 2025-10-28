@@ -1,0 +1,12 @@
+{
+  "name": "BABELIGNORE_FILENAME",
+  "description": "Prompt template extracted from configuration.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": ".babelignore",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/config/files/configuration.js",
+    "imported": true
+  }
+}

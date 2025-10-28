@@ -1,0 +1,12 @@
+{
+  "name": "tmpl",
+  "description": "Prompt template extracted from tmpl.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "var __p=[],print=function(){__p.push.apply(__p,arguments);};",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/tmpl/lib/tmpl.js",
+    "imported": true
+  }
+}

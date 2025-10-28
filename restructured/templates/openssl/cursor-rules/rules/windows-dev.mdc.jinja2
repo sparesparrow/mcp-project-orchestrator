@@ -1,0 +1,339 @@
+---
+title: OpenSSL Development (Windows {{ os_version }})
+description: Platform-specific rules for Windows development environment
+created: {{ timestamp }}
+platform: windows
+user: {{ user }}
+---
+
+# Windows Development Environment
+
+## Environment Context
+
+- **OS**: Windows {{ os_version }}
+- **Architecture**: {{ architecture }}
+- **Python**: {{ python_version }} ({{ python_implementation }})
+- **User**: {{ user }}
+- **Home**: {{ home }}
+- **Shell**: {{ shell }}
+{% if in_venv %}
+- **Virtual Environment**: ✅ Active
+{% endif %}
+
+## Build System Rules
+
+### Compiler Defaults
+
+When building OpenSSL on Windows:
+- **Default Compiler**: MSVC (Visual Studio) compiler
+- **Build System**: Use `nmake` instead of `make`
+- **Configuration**: Use `perl Configure VC-WIN64A` for 64-bit
+- **Architecture**: Support both x86 and x64 architectures
+- **Optimization**: Use `/O2` for release builds
+- **Debug Symbols**: Use `/Zi` for debug builds
+
+### Conan Profile Selection
+
+Prefer these profiles in order:
+1. `windows-msvc-release` for production builds
+2. `windows-msvc-debug` for development
+3. `windows-clang-cl-release` for clang-cl testing
+4. `windows-gcc-release` for MinGW/GCC testing
+
+### Environment Variables
+
+Check these environment variables before suggesting build commands:
+- `CONAN_USER_HOME` (default: {{ home }}\\.conan2)
+- `OPENSSL_ROOT_DIR` for custom OpenSSL installation
+- `CC`, `CXX` for compiler overrides
+- `PKG_CONFIG_PATH` for library discovery
+- `PATH` for executable discovery
+- `INCLUDE` and `LIB` for header and library paths
+
+### Build Commands
+
+#### Standard Build Process
+
+```cmd
+# Configure for 64-bit
+perl Configure VC-WIN64A --prefix=C:\OpenSSL
+
+# For 32-bit
+perl Configure VC-WIN32 --prefix=C:\OpenSSL
+
+# Build with parallel jobs
+nmake
+
+# Run tests
+nmake test
+
+# Install
+nmake install
+```
+
+#### Debug Build
+
+```cmd
+# Configure for debug
+perl Configure VC-WIN64A --debug --prefix=C:\OpenSSL
+
+# Build with debug symbols
+nmake CFLAGS="/Zi /Od"
+
+# Run tests with verbose output
+nmake test V=1
+```
+
+#### Clang-cl Build
+
+```cmd
+# Set compiler
+set CC=clang-cl
+set CXX=clang-cl
+
+# Configure
+perl Configure VC-WIN64A --prefix=C:\OpenSSL
+
+# Build
+nmake
+```
+
+## Testing Rules
+
+### Test Execution
+
+On Windows, use available CPU count:
+```cmd
+# Use all available cores
+nmake test -j%NUMBER_OF_PROCESSORS%
+
+# Or specify number of jobs
+nmake test -j4
+```
+
+### Python Testing
+
+Use `pytest-xdist` for parallel Python tests:
+```cmd
+# Install pytest-xdist
+pip install pytest-xdist
+
+# Run tests in parallel
+pytest -n auto tests/
+
+# Run with specific number of workers
+pytest -n 4 tests/
+```
+
+### Memory Testing
+
+Use Application Verifier for memory debugging:
+```cmd
+# Install Application Verifier
+# Download from Microsoft website
+
+# Run tests with Application Verifier
+appverif -enable -for openssl.exe
+nmake test
+```
+
+## File Path Conventions
+
+### Path Standards
+
+- **Backslashes**: Use `\` in command line (or `/` in Python code)
+- **Home Directory**: `{{ home }}`
+- **Temp Directory**: `%TEMP%` or `C:\Windows\Temp`
+- **Conan Cache**: `{{ home }}\\.conan2\\`
+- **Build Directory**: `.\build\` or `.\out\`
+- **Install Directory**: `C:\OpenSSL` or `.\install\`
+
+### Library Paths
+
+- **System Libraries**: `C:\Windows\System32\`
+- **Visual Studio Libraries**: `C:\Program Files (x86)\Microsoft Visual Studio\...\VC\lib\`
+- **Custom Libraries**: Add to `PATH` or `LIB` environment variable
+
+## Platform-Specific Quirks
+
+### Visual Studio Integration
+
+- **Developer Command Prompt**: Use VS Developer Command Prompt for builds
+- **MSBuild**: Use MSBuild for project files
+- **IntelliSense**: Configure for proper code completion
+- **Debugging**: Use Visual Studio debugger for debugging
+
+### Windows Defender
+
+- **Antivirus**: Windows Defender may block build artifacts
+- **Exclusions**: Add build directories to Windows Defender exclusions
+- **Real-time Protection**: May need to temporarily disable for builds
+
+### Long Path Support
+
+- **Registry Setting**: Enable long path support in Windows 10+
+- **Git Configuration**: Use `git config core.longpaths true`
+- **Build Tools**: Ensure build tools support long paths
+
+### System Integration
+
+- **Services**: Use `sc` command for service management
+- **Task Scheduler**: Use Task Scheduler for scheduled tasks
+- **Event Viewer**: Check Windows Event Viewer for logs
+- **Process Management**: Use Task Manager or `tasklist` for process monitoring
+
+## Development Tools
+
+### Essential Tools
+
+- **Visual Studio**: Full IDE with compiler toolchain
+- **Visual Studio Build Tools**: Minimal build tools
+- **Git**: Version control system
+- **Perl**: Required for OpenSSL Configure script
+- **NASM**: Assembler for optimized crypto routines
+
+### Recommended Tools
+
+- **Application Verifier**: Memory debugging
+- **PerfView**: Performance analysis
+- **Process Monitor**: System call tracing
+- **Dependency Walker**: DLL dependency analysis
+
+### IDE Integration
+
+- **Visual Studio**: Full IDE with debugging
+- **VS Code**: With C/C++ extension
+- **CLion**: JetBrains C++ IDE
+- **Qt Creator**: Cross-platform IDE
+
+## Package Management
+
+### System Packages
+
+```cmd
+# Install Visual Studio Build Tools
+# Download from Microsoft website
+
+# Install Perl (Strawberry Perl recommended)
+# Download from strawberryperl.com
+
+# Install NASM
+# Download from nasm.us
+
+# Install Git
+# Download from git-scm.com
+```
+
+### Python Packages
+
+```cmd
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Or install specific packages
+pip install pytest pytest-xdist black ruff mypy
+```
+
+### Chocolatey Packages
+
+```cmd
+# Install Chocolatey (if not already installed)
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install development tools
+choco install visualstudio2022buildtools
+choco install strawberryperl
+choco install nasm
+choco install git
+```
+
+## Performance Optimization
+
+### Compiler Optimizations
+
+- **MSVC Optimizations**: Use `/O2` for release, `/Od` for debug
+- **Link-Time Code Generation**: Use `/LTCG` for better optimization
+- **Profile-Guided Optimization**: Use `/LTCG:PGO` for profile-guided optimization
+
+### System Tuning
+
+- **Power Plan**: Use High Performance power plan
+- **Memory**: Ensure sufficient RAM and virtual memory
+- **I/O**: Use SSD for better I/O performance
+
+## Architecture Considerations
+
+### x86 vs x64
+
+- **x86 (32-bit)**: Traditional 32-bit architecture
+- **x64 (64-bit)**: 64-bit architecture (recommended)
+- **ARM64**: ARM-based architecture (Windows on ARM)
+- **Universal Windows Platform**: For Windows Store apps
+
+### Build Considerations
+
+```cmd
+# Check current architecture
+echo %PROCESSOR_ARCHITECTURE%
+
+# Build for specific architecture
+# Use appropriate Configure command
+perl Configure VC-WIN32    # 32-bit
+perl Configure VC-WIN64A   # 64-bit
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Permission Denied**: Run as Administrator or check file permissions
+2. **Library Not Found**: Update `PATH`, `INCLUDE`, or `LIB` environment variables
+3. **Compiler Errors**: Ensure Visual Studio Build Tools are installed
+4. **Perl Not Found**: Install Strawberry Perl and add to PATH
+5. **NASM Not Found**: Install NASM and add to PATH
+
+### Debugging Commands
+
+```cmd
+# Check system information
+systeminfo
+wmic cpu get name
+wmic memorychip get capacity
+
+# Check running processes
+tasklist | findstr openssl
+taskmgr
+
+# Check system logs
+eventvwr.msc
+```
+
+### Environment Setup
+
+```cmd
+# Check environment variables
+echo %PATH%
+echo %INCLUDE%
+echo %LIB%
+
+# Set Visual Studio environment
+# Run from Start Menu: "Developer Command Prompt for VS 2022"
+# Or manually set:
+call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+```
+
+### Build Troubleshooting
+
+```cmd
+# Clean build
+nmake clean
+
+# Verbose build
+nmake V=1
+
+# Check dependencies
+nmake depend
+
+# Check configuration
+nmake config
+```

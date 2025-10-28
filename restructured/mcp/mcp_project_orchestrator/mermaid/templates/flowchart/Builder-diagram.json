@@ -1,0 +1,10 @@
+{
+  "name": "Builder-diagram",
+  "description": "Mermaid diagram for Builder pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Builder Design Pattern, that shows the step-by-step construction process of complex objects.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

@@ -1,0 +1,64 @@
+---
+title: OpenSSL Development (Linux)
+description: Platform-specific rules for Linux development environment
+created: 2024-01-01T00:00:00
+platform: linux
+user: developer
+---
+
+# Linux Development Environment
+
+## Environment Context
+
+- **OS**: Linux 5.4.0-74-generic
+- **Architecture**: x86_64
+- **Python**: 3.11.0 (CPython)
+- **User**: developer
+- **Home**: /home/developer
+- **Shell**: /bin/bash
+
+## Build System Rules
+
+### Compiler Defaults
+
+When building OpenSSL on Linux:
+- **Default Compiler**: GCC unless clang is explicitly requested
+- **Shared Libraries**: Use `-fPIC` for position-independent code
+- **Optimization**: Enable `-O2` optimization for release builds
+- **Debug Symbols**: Include `-g` debug symbols for debug builds
+- **Warnings**: Use `-Wall -Wextra -Werror` for strict compilation
+
+### Conan Profile Selection
+
+Prefer these profiles in order:
+1. `linux-gcc-release` for production builds
+2. `linux-gcc-debug` for development
+3. `linux-clang-release` for alternative compiler testing
+4. `linux-clang-debug` for clang development
+
+### Environment Variables
+
+Check these environment variables before suggesting build commands:
+- `CONAN_USER_HOME` (default: /home/developer/.conan2)
+- `OPENSSL_ROOT_DIR` for custom OpenSSL installation
+- `CC`, `CXX` for compiler overrides
+- `PKG_CONFIG_PATH` for library discovery
+- `LD_LIBRARY_PATH` for runtime library loading
+
+### Build Commands
+
+#### Standard Build Process
+
+```bash
+# Configure with GCC
+./Configure linux-x86_64 --prefix=/usr/local
+
+# Build with parallel jobs
+make -j$(nproc)
+
+# Run tests
+make test
+
+# Install (may require sudo)
+sudo make install
+```

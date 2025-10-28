@@ -1,0 +1,12 @@
+{
+  "name": "messages",
+  "description": "Prompt template extracted from activeFiltersMessage.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\n${_chalk().default.bold(",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/core/build/lib/activeFiltersMessage.js",
+    "imported": true
+  }
+}

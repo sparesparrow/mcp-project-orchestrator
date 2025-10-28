@@ -1,0 +1,12 @@
+{
+  "name": "pathExt",
+  "description": "Prompt template extracted from basic.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": ".EXE;.CAT;.CMD;.COM",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/isexe/test/basic.js",
+    "imported": true
+  }
+}

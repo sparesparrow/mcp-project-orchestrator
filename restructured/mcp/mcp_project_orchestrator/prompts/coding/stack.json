@@ -1,0 +1,12 @@
+{
+  "name": "stack",
+  "description": "Prompt template extracted from fake-timers-src.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${infiniteLoopError}\\n${job.type || ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js",
+    "imported": true
+  }
+}

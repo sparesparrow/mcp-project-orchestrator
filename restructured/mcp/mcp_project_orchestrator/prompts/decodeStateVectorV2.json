@@ -1,0 +1,12 @@
+{
+  "name": "decodeStateVectorV2",
+  "description": "Prompt template extracted from 7957.d903973498b192f6210c.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "font-family:monospace;border-bottom:1px solid #e2e2e2;padding:2px;",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7957.d903973498b192f6210c.js",
+    "imported": true
+  }
+}

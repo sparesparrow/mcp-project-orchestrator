@@ -1,0 +1,12 @@
+{
+  "name": "add",
+  "description": "Prompt template extracted from module.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "const a: number = 1;",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@types/node/module.d.ts",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ADDITIONAL_PROPERTY_FLAG",
+  "description": "Prompt template extracted from 7995.45be6443b704da1daafc.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "__additional_property",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7995.45be6443b704da1daafc.js",
+    "imported": true
+  }
+}

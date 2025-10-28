@@ -1,0 +1,12 @@
+{
+  "name": "Aa",
+  "description": "Prompt template extracted from 2576.b98b7b23adeec4cb6932.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "data-jp-theme-name",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/2576.b98b7b23adeec4cb6932.js",
+    "imported": true
+  }
+}

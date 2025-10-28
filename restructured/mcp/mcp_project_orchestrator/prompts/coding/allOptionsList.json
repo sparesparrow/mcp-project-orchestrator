@@ -1,0 +1,12 @@
+{
+  "name": "allOptionsList",
+  "description": "Prompt template extracted from config.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/shx/lib/config.js",
+    "imported": true
+  }
+}

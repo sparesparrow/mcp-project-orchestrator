@@ -1,0 +1,12 @@
+{
+  "name": "templateDir",
+  "description": "Prompt template extracted from project-orchestrator-tools.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "/home/sparrow/.config/Claude/prompts/project-orchestrator",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/tools/project-orchestrator-tools.js",
+    "imported": true
+  }
+}

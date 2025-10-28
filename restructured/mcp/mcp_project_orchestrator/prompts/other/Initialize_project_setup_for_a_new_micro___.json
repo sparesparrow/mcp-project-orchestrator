@@ -1,0 +1,12 @@
+{
+  "name": "Initialize project setup for a new micro...",
+  "description": "Initialize project setup for a new microservice",
+  "type": "prompt",
+  "category": "other",
+  "content": "Initialize project setup for a new microservice",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/initialize-project-setup-for-a-new-micro.json",
+    "imported": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "TemplateMethod",
+  "description": "Defines a skeletal algorithm with overrideable steps.",
+  "type": "component",
+  "files": [],
+  "dependencies": [],
+  "variables": {},
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-project-orchestrator/component_templates.json",
+    "imported": true
+  },
+  "mermaid": "Generate a Mermaid diagram visualizing TemplateMethod Design Pattern, illustrating the skeletal algorithm with customizable steps."
+}

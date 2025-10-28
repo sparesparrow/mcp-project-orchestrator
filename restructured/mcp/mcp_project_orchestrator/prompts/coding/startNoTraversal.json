@@ -1,0 +1,12 @@
+{
+  "name": "startNoTraversal",
+  "description": "Prompt template extracted from ast.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "(?!(?:^|/)\\\\.\\\\.?(?:$|/))",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/rimraf/node_modules/minimatch/dist/esm/ast.js",
+    "imported": true
+  }
+}

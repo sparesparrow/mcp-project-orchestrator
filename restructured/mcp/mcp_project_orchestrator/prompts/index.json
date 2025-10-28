@@ -1,0 +1,2121 @@
+{
+  "templates": {
+    "Advanced Multi-Server Integration Template": {
+      "filename": "Advanced_Multi-Server_Integration_Template",
+      "category": "other"
+    },
+    "Data Analysis Template": {
+      "filename": "Data_Analysis_Template",
+      "category": "analysis"
+    },
+    "PromptCombiner Interface": {
+      "filename": "PromptCombiner_Interface",
+      "category": "architecture"
+    },
+    "Collaborative Development with MCP Integration": {
+      "filename": "Collaborative_Development_with_MCP_Integration",
+      "category": "development"
+    },
+    "MCP Server Integration Guide": {
+      "filename": "MCP_Server_Integration_Guide",
+      "category": "other"
+    },
+    "Docker Compose Prompt Combiner": {
+      "filename": "Docker_Compose_Prompt_Combiner",
+      "category": "devops"
+    },
+    "Sequential Data Analysis with MCP Integration": {
+      "filename": "Sequential_Data_Analysis_with_MCP_Integration",
+      "category": "analysis"
+    },
+    "Development System Prompt": {
+      "filename": "Development_System_Prompt",
+      "category": "system"
+    },
+    "Database Query Assistant": {
+      "filename": "Database_Query_Assistant",
+      "category": "assistant"
+    },
+    "Docker Containerization Guide": {
+      "filename": "Docker_Containerization_Guide",
+      "category": "devops"
+    },
+    "Multi-Resource Context Assistant": {
+      "filename": "Multi-Resource_Context_Assistant",
+      "category": "other"
+    },
+    "Monorepo Migration and Code Organization Guide": {
+      "filename": "Monorepo_Migration_and_Code_Organization_Guide",
+      "category": "development"
+    },
+    "Code Review Assistant": {
+      "filename": "Code_Review_Assistant",
+      "category": "assistant"
+    },
+    "MCP Integration Assistant": {
+      "filename": "MCP_Integration_Assistant",
+      "category": "assistant"
+    },
+    "Docker MCP Servers Orchestration Guide": {
+      "filename": "Docker_MCP_Servers_Orchestration_Guide",
+      "category": "other"
+    },
+    "Development Workflow": {
+      "filename": "Development_Workflow",
+      "category": "development"
+    },
+    "MCP Server Development Prompt Combiner": {
+      "filename": "MCP_Server_Development_Prompt_Combiner",
+      "category": "development"
+    },
+    "MCP Resources Explorer": {
+      "filename": "MCP_Resources_Explorer",
+      "category": "other"
+    },
+    "Project Analysis Assistant": {
+      "filename": "Project_Analysis_Assistant",
+      "category": "assistant"
+    },
+    "GitHub Repository Explorer": {
+      "filename": "GitHub_Repository_Explorer",
+      "category": "other"
+    },
+    "Template-Based MCP Integration": {
+      "filename": "Template-Based_MCP_Integration",
+      "category": "other"
+    },
+    "MCP Resources Integration Guide": {
+      "filename": "MCP_Resources_Integration_Guide",
+      "category": "other"
+    },
+    "Consolidated TypeScript Interfaces Template": {
+      "filename": "Consolidated_TypeScript_Interfaces_Template",
+      "category": "development"
+    },
+    "mcp-code-generator": {
+      "filename": "mcp-code-generator",
+      "category": "other"
+    },
+    "Basic Template": {
+      "filename": "Basic_Template",
+      "category": "other"
+    },
+    "endpoint": {
+      "filename": "endpoint",
+      "category": "coding"
+    },
+    "query": {
+      "filename": "query",
+      "category": "coding"
+    },
+    "configJsContent": {
+      "filename": "configJsContent",
+      "category": "coding"
+    },
+    "storageType": {
+      "filename": "storageType",
+      "category": "coding"
+    },
+    "packageVersion": {
+      "filename": "packageVersion",
+      "category": "coding"
+    },
+    "schemaQuery": {
+      "filename": "schemaQuery",
+      "category": "user"
+    },
+    "templateDir": {
+      "filename": "templateDir",
+      "category": "coding"
+    },
+    "insertPromptQuery": {
+      "filename": "insertPromptQuery",
+      "category": "coding"
+    },
+    "status": {
+      "filename": "status",
+      "category": "system"
+    },
+    "storageStatus": {
+      "filename": "storageStatus",
+      "category": "coding"
+    },
+    "chars": {
+      "filename": "chars",
+      "category": "coding"
+    },
+    "s": {
+      "filename": "s",
+      "category": "coding"
+    },
+    "ERROR_MESSAGE": {
+      "filename": "ERROR_MESSAGE",
+      "category": "coding"
+    },
+    "maliciousPayload": {
+      "filename": "maliciousPayload",
+      "category": "coding"
+    },
+    "cacheControl": {
+      "filename": "cacheControl",
+      "category": "coding"
+    },
+    "path": {
+      "filename": "path",
+      "category": "coding"
+    },
+    "UNMATCHED_SURROGATE_PAIR_REPLACE": {
+      "filename": "UNMATCHED_SURROGATE_PAIR_REPLACE",
+      "category": "coding"
+    },
+    "unit": {
+      "filename": "unit",
+      "category": "coding"
+    },
+    "NUMBER": {
+      "filename": "NUMBER",
+      "category": "coding"
+    },
+    "str": {
+      "filename": "str",
+      "category": "coding"
+    },
+    "formatted": {
+      "filename": "formatted",
+      "category": "coding"
+    },
+    "doc": {
+      "filename": "doc",
+      "category": "coding"
+    },
+    "colorCode": {
+      "filename": "colorCode",
+      "category": "coding"
+    },
+    "c": {
+      "filename": "c",
+      "category": "coding"
+    },
+    "bignum": {
+      "filename": "bignum",
+      "category": "coding"
+    },
+    "point": {
+      "filename": "point",
+      "category": "coding"
+    },
+    "plusChar": {
+      "filename": "plusChar",
+      "category": "coding"
+    },
+    "BOMChar": {
+      "filename": "BOMChar",
+      "category": "coding"
+    },
+    "expected": {
+      "filename": "expected",
+      "category": "coding"
+    },
+    "expectedString": {
+      "filename": "expectedString",
+      "category": "coding"
+    },
+    "stringResult": {
+      "filename": "stringResult",
+      "category": "coding"
+    },
+    "result": {
+      "filename": "result",
+      "category": "coding"
+    },
+    "clientFirstMessageBare": {
+      "filename": "clientFirstMessageBare",
+      "category": "coding"
+    },
+    "trustProxyDefaultSymbol": {
+      "filename": "trustProxyDefaultSymbol",
+      "category": "coding"
+    },
+    "JSON_SYNTAX_CHAR": {
+      "filename": "JSON_SYNTAX_CHAR",
+      "category": "coding"
+    },
+    "encoded": {
+      "filename": "encoded",
+      "category": "user"
+    },
+    "isoSentinel": {
+      "filename": "isoSentinel",
+      "category": "coding"
+    },
+    "backupId": {
+      "filename": "backupId",
+      "category": "user"
+    },
+    "SCHEMA_PATH": {
+      "filename": "SCHEMA_PATH",
+      "category": "coding"
+    },
+    "LATEST_PROTOCOL_VERSION": {
+      "filename": "LATEST_PROTOCOL_VERSION",
+      "category": "coding"
+    },
+    "SUBPROTOCOL": {
+      "filename": "SUBPROTOCOL",
+      "category": "coding"
+    },
+    "MAXIMUM_MESSAGE_SIZE": {
+      "filename": "MAXIMUM_MESSAGE_SIZE",
+      "category": "coding"
+    },
+    "responseType": {
+      "filename": "responseType",
+      "category": "coding"
+    },
+    "pattern": {
+      "filename": "pattern",
+      "category": "coding"
+    },
+    "authorization_endpoint": {
+      "filename": "authorization_endpoint",
+      "category": "coding"
+    },
+    "connectionString": {
+      "filename": "connectionString",
+      "category": "coding"
+    },
+    "queryText": {
+      "filename": "queryText",
+      "category": "coding"
+    },
+    "text": {
+      "filename": "text",
+      "category": "coding"
+    },
+    "key": {
+      "filename": "key",
+      "category": "coding"
+    },
+    "msg": {
+      "filename": "msg",
+      "category": "coding"
+    },
+    "message": {
+      "filename": "message",
+      "category": "coding"
+    },
+    "_emojiRegex": {
+      "filename": "_emojiRegex",
+      "category": "coding"
+    },
+    "short": {
+      "filename": "short",
+      "category": "coding"
+    },
+    "SUITE_NAME": {
+      "filename": "SUITE_NAME",
+      "category": "coding"
+    },
+    "DATA": {
+      "filename": "DATA",
+      "category": "coding"
+    },
+    "DEFAULT_DELIMITER": {
+      "filename": "DEFAULT_DELIMITER",
+      "category": "coding"
+    },
+    "mask": {
+      "filename": "mask",
+      "category": "coding"
+    },
+    "txt": {
+      "filename": "txt",
+      "category": "user"
+    },
+    "lstatkey": {
+      "filename": "lstatkey",
+      "category": "coding"
+    },
+    "ANSI_ESCAPE_BELL": {
+      "filename": "ANSI_ESCAPE_BELL",
+      "category": "coding"
+    },
+    "prefix": {
+      "filename": "prefix",
+      "category": "coding"
+    },
+    "BACKSLASH": {
+      "filename": "BACKSLASH",
+      "category": "coding"
+    },
+    "FORMAT": {
+      "filename": "FORMAT",
+      "category": "coding"
+    },
+    "ANDROID_EVERGREEN_FIRST": {
+      "filename": "ANDROID_EVERGREEN_FIRST",
+      "category": "coding"
+    },
+    "USAGE": {
+      "filename": "USAGE",
+      "category": "coding"
+    },
+    "LIMIT_REPLACE_NODE": {
+      "filename": "LIMIT_REPLACE_NODE",
+      "category": "coding"
+    },
+    "DEFAULT_INDENT": {
+      "filename": "DEFAULT_INDENT",
+      "category": "other"
+    },
+    "BANG": {
+      "filename": "BANG",
+      "category": "coding"
+    },
+    "nonASCIIidentifierStartChars": {
+      "filename": "nonASCIIidentifierStartChars",
+      "category": "coding"
+    },
+    "LETTERDASHNUMBER": {
+      "filename": "LETTERDASHNUMBER",
+      "category": "coding"
+    },
+    "data": {
+      "filename": "data",
+      "category": "coding"
+    },
+    "logTime": {
+      "filename": "logTime",
+      "category": "coding"
+    },
+    "astralRange": {
+      "filename": "astralRange",
+      "category": "coding"
+    },
+    "qmark": {
+      "filename": "qmark",
+      "category": "coding"
+    },
+    "EMPTY": {
+      "filename": "EMPTY",
+      "category": "coding"
+    },
+    "GENSYNC_EXPECTED_START": {
+      "filename": "GENSYNC_EXPECTED_START",
+      "category": "coding"
+    },
+    "CHAR_CODE_0": {
+      "filename": "CHAR_CODE_0",
+      "category": "coding"
+    },
+    "ESC": {
+      "filename": "ESC",
+      "category": "coding"
+    },
+    "FUNC_ERROR_TEXT": {
+      "filename": "FUNC_ERROR_TEXT",
+      "category": "coding"
+    },
+    "environment": {
+      "filename": "environment",
+      "category": "coding"
+    },
+    "l": {
+      "filename": "l",
+      "category": "coding"
+    },
+    "ev": {
+      "filename": "ev",
+      "category": "coding"
+    },
+    "cmd": {
+      "filename": "cmd",
+      "category": "coding"
+    },
+    "value": {
+      "filename": "value",
+      "category": "coding"
+    },
+    "escSlash": {
+      "filename": "escSlash",
+      "category": "coding"
+    },
+    "d": {
+      "filename": "d",
+      "category": "coding"
+    },
+    "START_OF_LINE": {
+      "filename": "START_OF_LINE",
+      "category": "coding"
+    },
+    "PRETTY_PLACEHOLDER": {
+      "filename": "PRETTY_PLACEHOLDER",
+      "category": "coding"
+    },
+    "MOCK_CONSTRUCTOR_NAME": {
+      "filename": "MOCK_CONSTRUCTOR_NAME",
+      "category": "coding"
+    },
+    "expression1": {
+      "filename": "expression1",
+      "category": "coding"
+    },
+    "HOOK_RETURNED_NOTHING_ERROR_MESSAGE": {
+      "filename": "HOOK_RETURNED_NOTHING_ERROR_MESSAGE",
+      "category": "coding"
+    },
+    "fullpaths": {
+      "filename": "fullpaths",
+      "category": "coding"
+    },
+    "m": {
+      "filename": "m",
+      "category": "coding"
+    },
+    "parseClass": {
+      "filename": "parseClass",
+      "category": "coding"
+    },
+    "startNoTraversal": {
+      "filename": "startNoTraversal",
+      "category": "coding"
+    },
+    "minimatch": {
+      "filename": "minimatch",
+      "category": "coding"
+    },
+    "sranges": {
+      "filename": "sranges",
+      "category": "coding"
+    },
+    "findPackageJson": {
+      "filename": "findPackageJson",
+      "category": "coding"
+    },
+    "NM": {
+      "filename": "NM",
+      "category": "coding"
+    },
+    "DEPRECATION": {
+      "filename": "DEPRECATION",
+      "category": "coding"
+    },
+    "DOCUMENTATION_NOTE": {
+      "filename": "DOCUMENTATION_NOTE",
+      "category": "coding"
+    },
+    "execaMessage": {
+      "filename": "execaMessage",
+      "category": "coding"
+    },
+    "pathExt": {
+      "filename": "pathExt",
+      "category": "coding"
+    },
+    "C": {
+      "filename": "C",
+      "category": "coding"
+    },
+    "SHARED": {
+      "filename": "SHARED",
+      "category": "coding"
+    },
+    "separator": {
+      "filename": "separator",
+      "category": "coding"
+    },
+    "tmpl": {
+      "filename": "tmpl",
+      "category": "coding"
+    },
+    "A": {
+      "filename": "A",
+      "category": "coding"
+    },
+    "comma": {
+      "filename": "comma",
+      "category": "coding"
+    },
+    "versionMajorMinor": {
+      "filename": "versionMajorMinor",
+      "category": "system"
+    },
+    "typesRegistryPackageName": {
+      "filename": "typesRegistryPackageName",
+      "category": "coding"
+    },
+    "nonKey": {
+      "filename": "nonKey",
+      "category": "coding"
+    },
+    "usage": {
+      "filename": "usage",
+      "category": "user"
+    },
+    "SEMVER_SPEC_VERSION": {
+      "filename": "SEMVER_SPEC_VERSION",
+      "category": "coding"
+    },
+    "match": {
+      "filename": "match",
+      "category": "coding"
+    },
+    "es6Default": {
+      "filename": "es6Default",
+      "category": "coding"
+    },
+    "paddedNumber": {
+      "filename": "paddedNumber",
+      "category": "coding"
+    },
+    "subkey": {
+      "filename": "subkey",
+      "category": "coding"
+    },
+    "typeArgumentsKey": {
+      "filename": "typeArgumentsKey",
+      "category": "coding"
+    },
+    "t": {
+      "filename": "t",
+      "category": "coding"
+    },
+    "GenStateSuspendedStart": {
+      "filename": "GenStateSuspendedStart",
+      "category": "coding"
+    },
+    "fnKey": {
+      "filename": "fnKey",
+      "category": "coding"
+    },
+    "stringPath": {
+      "filename": "stringPath",
+      "category": "coding"
+    },
+    "typeKey": {
+      "filename": "typeKey",
+      "category": "coding"
+    },
+    "sep": {
+      "filename": "sep",
+      "category": "coding"
+    },
+    "code": {
+      "filename": "code",
+      "category": "coding"
+    },
+    "nodeInternalPrefix": {
+      "filename": "nodeInternalPrefix",
+      "category": "coding"
+    },
+    "START_HIDING": {
+      "filename": "START_HIDING",
+      "category": "coding"
+    },
+    "error": {
+      "filename": "error",
+      "category": "coding"
+    },
+    "helpMessage": {
+      "filename": "helpMessage",
+      "category": "coding"
+    },
+    "BABELIGNORE_FILENAME": {
+      "filename": "BABELIGNORE_FILENAME",
+      "category": "coding"
+    },
+    "PACKAGE_FILENAME": {
+      "filename": "PACKAGE_FILENAME",
+      "category": "coding"
+    },
+    "name": {
+      "filename": "name",
+      "category": "coding"
+    },
+    "stack": {
+      "filename": "stack",
+      "category": "coding"
+    },
+    "XP_DEFAULT_PATHEXT": {
+      "filename": "XP_DEFAULT_PATHEXT",
+      "category": "coding"
+    },
+    "stringifiedObject": {
+      "filename": "stringifiedObject",
+      "category": "coding"
+    },
+    "pkg": {
+      "filename": "pkg",
+      "category": "coding"
+    },
+    "completionShTemplate": {
+      "filename": "completionShTemplate",
+      "category": "other"
+    },
+    "defaultHelpOpt": {
+      "filename": "defaultHelpOpt",
+      "category": "coding"
+    },
+    "deferY18nLookupPrefix": {
+      "filename": "deferY18nLookupPrefix",
+      "category": "coding"
+    },
+    "R": {
+      "filename": "R",
+      "category": "coding"
+    },
+    "e": {
+      "filename": "e",
+      "category": "coding"
+    },
+    "defaultHost": {
+      "filename": "defaultHost",
+      "category": "coding"
+    },
+    "allOptionsList": {
+      "filename": "allOptionsList",
+      "category": "coding"
+    },
+    "escapedChar": {
+      "filename": "escapedChar",
+      "category": "coding"
+    },
+    "isConfigType": {
+      "filename": "isConfigType",
+      "category": "coding"
+    },
+    "moduleDirectory": {
+      "filename": "moduleDirectory",
+      "category": "coding"
+    },
+    "destMain": {
+      "filename": "destMain",
+      "category": "coding"
+    },
+    "resolverDir": {
+      "filename": "resolverDir",
+      "category": "coding"
+    },
+    "boundary": {
+      "filename": "boundary",
+      "category": "coding"
+    },
+    "ROOT_DESCRIBE_BLOCK_NAME": {
+      "filename": "ROOT_DESCRIBE_BLOCK_NAME",
+      "category": "coding"
+    },
+    "handlerFuncName": {
+      "filename": "handlerFuncName",
+      "category": "coding"
+    },
+    "ERR_CODE": {
+      "filename": "ERR_CODE",
+      "category": "coding"
+    },
+    "cacheProp": {
+      "filename": "cacheProp",
+      "category": "coding"
+    },
+    "INDENT": {
+      "filename": "INDENT",
+      "category": "coding"
+    },
+    "head": {
+      "filename": "head",
+      "category": "coding"
+    },
+    "JEST_GLOBALS_MODULE_NAME": {
+      "filename": "JEST_GLOBALS_MODULE_NAME",
+      "category": "coding"
+    },
+    "UNDEFINED": {
+      "filename": "UNDEFINED",
+      "category": "coding"
+    },
+    "cjsPattern": {
+      "filename": "cjsPattern",
+      "category": "coding"
+    },
+    "sourceMapContent": {
+      "filename": "sourceMapContent",
+      "category": "coding"
+    },
+    "HINT_ARG": {
+      "filename": "HINT_ARG",
+      "category": "coding"
+    },
+    "SNAPSHOT_VERSION": {
+      "filename": "SNAPSHOT_VERSION",
+      "category": "coding"
+    },
+    "EXTENSION": {
+      "filename": "EXTENSION",
+      "category": "coding"
+    },
+    "DID_NOT_THROW": {
+      "filename": "DID_NOT_THROW",
+      "category": "coding"
+    },
+    "intToCharMap": {
+      "filename": "intToCharMap",
+      "category": "coding"
+    },
+    "r": {
+      "filename": "r",
+      "category": "coding"
+    },
+    "isSourceNode": {
+      "filename": "isSourceNode",
+      "category": "coding"
+    },
+    "JEST_GLOBAL_NAME": {
+      "filename": "JEST_GLOBAL_NAME",
+      "category": "coding"
+    },
+    "NATIVE_PLATFORM": {
+      "filename": "NATIVE_PLATFORM",
+      "category": "coding"
+    },
+    "SPACE_SYMBOL": {
+      "filename": "SPACE_SYMBOL",
+      "category": "coding"
+    },
+    "errorMessage": {
+      "filename": "errorMessage",
+      "category": "coding"
+    },
+    "ST": {
+      "filename": "ST",
+      "category": "coding"
+    },
+    "output": {
+      "filename": "output",
+      "category": "other"
+    },
+    "source": {
+      "filename": "source",
+      "category": "coding"
+    },
+    "WIN_SLASH": {
+      "filename": "WIN_SLASH",
+      "category": "other"
+    },
+    "f": {
+      "filename": "f",
+      "category": "coding"
+    },
+    "VERSION": {
+      "filename": "VERSION",
+      "category": "other"
+    },
+    "tempName": {
+      "filename": "tempName",
+      "category": "coding"
+    },
+    "ERROR": {
+      "filename": "ERROR",
+      "category": "coding"
+    },
+    "NODE_MODULES": {
+      "filename": "NODE_MODULES",
+      "category": "coding"
+    },
+    "strValue": {
+      "filename": "strValue",
+      "category": "coding"
+    },
+    "ARROW": {
+      "filename": "ARROW",
+      "category": "coding"
+    },
+    "LF": {
+      "filename": "LF",
+      "category": "coding"
+    },
+    "multipartType": {
+      "filename": "multipartType",
+      "category": "coding"
+    },
+    "octetStreamType": {
+      "filename": "octetStreamType",
+      "category": "coding"
+    },
+    "querystringType": {
+      "filename": "querystringType",
+      "category": "coding"
+    },
+    "jsonType": {
+      "filename": "jsonType",
+      "category": "coding"
+    },
+    "STATES": {
+      "filename": "STATES",
+      "category": "coding"
+    },
+    "n": {
+      "filename": "n",
+      "category": "coding"
+    },
+    "BASE64_MAP": {
+      "filename": "BASE64_MAP",
+      "category": "coding"
+    },
+    "PATH_NODE_MODULES": {
+      "filename": "PATH_NODE_MODULES",
+      "category": "system"
+    },
+    "OUTSIDE_JEST_VM_PROTOCOL": {
+      "filename": "OUTSIDE_JEST_VM_PROTOCOL",
+      "category": "coding"
+    },
+    "DOTS": {
+      "filename": "DOTS",
+      "category": "coding"
+    },
+    "inputText": {
+      "filename": "inputText",
+      "category": "coding"
+    },
+    "typeMessage": {
+      "filename": "typeMessage",
+      "category": "coding"
+    },
+    "FAIL_TEXT": {
+      "filename": "FAIL_TEXT",
+      "category": "coding"
+    },
+    "time": {
+      "filename": "time",
+      "category": "coding"
+    },
+    "titleSeparator": {
+      "filename": "titleSeparator",
+      "category": "coding"
+    },
+    "absoluteThresholdGroup": {
+      "filename": "absoluteThresholdGroup",
+      "category": "coding"
+    },
+    "indentation": {
+      "filename": "indentation",
+      "category": "coding"
+    },
+    "RUNNING_TEXT": {
+      "filename": "RUNNING_TEXT",
+      "category": "coding"
+    },
+    "CACHE_VERSION": {
+      "filename": "CACHE_VERSION",
+      "category": "coding"
+    },
+    "BULLET": {
+      "filename": "BULLET",
+      "category": "coding"
+    },
+    "DOT": {
+      "filename": "DOT",
+      "category": "coding"
+    },
+    "IS_KEYED_SENTINEL": {
+      "filename": "IS_KEYED_SENTINEL",
+      "category": "coding"
+    },
+    "stats": {
+      "filename": "stats",
+      "category": "coding"
+    },
+    "messages": {
+      "filename": "messages",
+      "category": "coding"
+    },
+    "command": {
+      "filename": "command",
+      "category": "coding"
+    },
+    "escapeFuncStr": {
+      "filename": "escapeFuncStr",
+      "category": "coding"
+    },
+    "_DEFAULT_OPEN_DELIMITER": {
+      "filename": "_DEFAULT_OPEN_DELIMITER",
+      "category": "coding"
+    },
+    "DEFAULT_LOG_TARGET": {
+      "filename": "DEFAULT_LOG_TARGET",
+      "category": "coding"
+    },
+    "NO_ARGUMENTS": {
+      "filename": "NO_ARGUMENTS",
+      "category": "coding"
+    },
+    "EXPECTED_LABEL": {
+      "filename": "EXPECTED_LABEL",
+      "category": "coding"
+    },
+    "IS_ITERABLE_SENTINEL": {
+      "filename": "IS_ITERABLE_SENTINEL",
+      "category": "coding"
+    },
+    "SPACE": {
+      "filename": "SPACE",
+      "category": "coding"
+    },
+    "type": {
+      "filename": "type",
+      "category": "other"
+    },
+    "errMessage": {
+      "filename": "errMessage",
+      "category": "coding"
+    },
+    "bgModel": {
+      "filename": "bgModel",
+      "category": "coding"
+    },
+    "rangeStart": {
+      "filename": "rangeStart",
+      "category": "coding"
+    },
+    "MOCKS_PATTERN": {
+      "filename": "MOCKS_PATTERN",
+      "category": "coding"
+    },
+    "PACKAGE_JSON": {
+      "filename": "PACKAGE_JSON",
+      "category": "coding"
+    },
+    "SUB_NAME": {
+      "filename": "SUB_NAME",
+      "category": "coding"
+    },
+    "CHANGE_EVENT": {
+      "filename": "CHANGE_EVENT",
+      "category": "coding"
+    },
+    "INDIRECTION_FRAGMENT": {
+      "filename": "INDIRECTION_FRAGMENT",
+      "category": "coding"
+    },
+    "NOT_A_DOT": {
+      "filename": "NOT_A_DOT",
+      "category": "coding"
+    },
+    "watchmanURL": {
+      "filename": "watchmanURL",
+      "category": "coding"
+    },
+    "ROOT_NAMESPACE_NAME": {
+      "filename": "ROOT_NAMESPACE_NAME",
+      "category": "coding"
+    },
+    "JAKE_CMD": {
+      "filename": "JAKE_CMD",
+      "category": "coding"
+    },
+    "ROOT_TASK_NAME": {
+      "filename": "ROOT_TASK_NAME",
+      "category": "coding"
+    },
+    "_UUID_CHARS": {
+      "filename": "_UUID_CHARS",
+      "category": "coding"
+    },
+    "lt": {
+      "filename": "lt",
+      "category": "coding"
+    },
+    "resolvedDestination": {
+      "filename": "resolvedDestination",
+      "category": "coding"
+    },
+    "DELIM": {
+      "filename": "DELIM",
+      "category": "coding"
+    },
+    "meth": {
+      "filename": "meth",
+      "category": "coding"
+    },
+    "notSelector": {
+      "filename": "notSelector",
+      "category": "coding"
+    },
+    "newUrl": {
+      "filename": "newUrl",
+      "category": "coding"
+    },
+    "classForPercent": {
+      "filename": "classForPercent",
+      "category": "coding"
+    },
+    "NO_DIFF_MESSAGE": {
+      "filename": "NO_DIFF_MESSAGE",
+      "category": "coding"
+    },
+    "aAnnotationPadding": {
+      "filename": "aAnnotationPadding",
+      "category": "coding"
+    },
+    "__type": {
+      "filename": "__type",
+      "category": "other"
+    },
+    "sseUrl": {
+      "filename": "sseUrl",
+      "category": "other"
+    },
+    "promptId": {
+      "filename": "promptId",
+      "category": "user"
+    },
+    "mdcContent": {
+      "filename": "mdcContent",
+      "category": "coding"
+    },
+    "json": {
+      "filename": "json",
+      "category": "coding"
+    },
+    "string": {
+      "filename": "string",
+      "category": "other"
+    },
+    "PatternBoolean": {
+      "filename": "PatternBoolean",
+      "category": "coding"
+    },
+    "ProjectsUpdatedInBackgroundEvent": {
+      "filename": "ProjectsUpdatedInBackgroundEvent",
+      "category": "system"
+    },
+    "LINE_FEED": {
+      "filename": "LINE_FEED",
+      "category": "other"
+    },
+    "SOURCE_MAPPING_PREFIX": {
+      "filename": "SOURCE_MAPPING_PREFIX",
+      "category": "coding"
+    },
+    "input": {
+      "filename": "input",
+      "category": "coding"
+    },
+    "DEFAULT_JS_PATTERN": {
+      "filename": "DEFAULT_JS_PATTERN",
+      "category": "coding"
+    },
+    "pubkey256": {
+      "filename": "pubkey256",
+      "category": "coding"
+    },
+    "sensitiveHeaders": {
+      "filename": "sensitiveHeaders",
+      "category": "coding"
+    },
+    "add": {
+      "filename": "add",
+      "category": "coding"
+    },
+    "INSPECT_MAX_BYTES": {
+      "filename": "INSPECT_MAX_BYTES",
+      "category": "coding"
+    },
+    "secret": {
+      "filename": "secret",
+      "category": "coding"
+    },
+    "debug": {
+      "filename": "debug",
+      "category": "coding"
+    },
+    "statSync": {
+      "filename": "statSync",
+      "category": "coding"
+    },
+    "earlyHintsLink": {
+      "filename": "earlyHintsLink",
+      "category": "coding"
+    },
+    "i": {
+      "filename": "i",
+      "category": "coding"
+    },
+    "_": {
+      "filename": "_",
+      "category": "coding"
+    },
+    "j": {
+      "filename": "j",
+      "category": "coding"
+    },
+    "E": {
+      "filename": "E",
+      "category": "coding"
+    },
+    "a": {
+      "filename": "a",
+      "category": "coding"
+    },
+    "o": {
+      "filename": "o",
+      "category": "coding"
+    },
+    "re": {
+      "filename": "re",
+      "category": "coding"
+    },
+    "QO": {
+      "filename": "QO",
+      "category": "coding"
+    },
+    "y": {
+      "filename": "y",
+      "category": "coding"
+    },
+    "J": {
+      "filename": "J",
+      "category": "user"
+    },
+    "Aa": {
+      "filename": "Aa",
+      "category": "system"
+    },
+    "se": {
+      "filename": "se",
+      "category": "coding"
+    },
+    "u": {
+      "filename": "u",
+      "category": "coding"
+    },
+    "at": {
+      "filename": "at",
+      "category": "coding"
+    },
+    "h": {
+      "filename": "h",
+      "category": "coding"
+    },
+    "tn": {
+      "filename": "tn",
+      "category": "coding"
+    },
+    "ur": {
+      "filename": "ur",
+      "category": "coding"
+    },
+    "p": {
+      "filename": "p",
+      "category": "coding"
+    },
+    "Q": {
+      "filename": "Q",
+      "category": "coding"
+    },
+    "k": {
+      "filename": "k",
+      "category": "coding"
+    },
+    "N": {
+      "filename": "N",
+      "category": "coding"
+    },
+    "Vr": {
+      "filename": "Vr",
+      "category": "coding"
+    },
+    "bt": {
+      "filename": "bt",
+      "category": "coding"
+    },
+    "O": {
+      "filename": "O",
+      "category": "coding"
+    },
+    "b": {
+      "filename": "b",
+      "category": "system"
+    },
+    "T": {
+      "filename": "T",
+      "category": "coding"
+    },
+    "st": {
+      "filename": "st",
+      "category": "coding"
+    },
+    "BROWSER_VAR": {
+      "filename": "BROWSER_VAR",
+      "category": "coding"
+    },
+    "PLUGIN_ID_DOC_MANAGER": {
+      "filename": "PLUGIN_ID_DOC_MANAGER",
+      "category": "coding"
+    },
+    "ERRORCLASS": {
+      "filename": "ERRORCLASS",
+      "category": "coding"
+    },
+    "page": {
+      "filename": "page",
+      "category": "coding"
+    },
+    "delimiter": {
+      "filename": "delimiter",
+      "category": "coding"
+    },
+    "ADDITIONAL_PROPERTY_FLAG": {
+      "filename": "ADDITIONAL_PROPERTY_FLAG",
+      "category": "coding"
+    },
+    "side": {
+      "filename": "side",
+      "category": "coding"
+    },
+    "jupyter_namespaceObject": {
+      "filename": "jupyter_namespaceObject",
+      "category": "coding"
+    },
+    "property_prefix": {
+      "filename": "property_prefix",
+      "category": "coding"
+    },
+    "selector": {
+      "filename": "selector",
+      "category": "coding"
+    },
+    "from": {
+      "filename": "from",
+      "category": "coding"
+    },
+    "override": {
+      "filename": "override",
+      "category": "coding"
+    },
+    "HASH_UNDEFINED": {
+      "filename": "HASH_UNDEFINED",
+      "category": "coding"
+    },
+    "transform": {
+      "filename": "transform",
+      "category": "coding"
+    },
+    "SEARCHABLE_CLASS": {
+      "filename": "SEARCHABLE_CLASS",
+      "category": "coding"
+    },
+    "Escapable": {
+      "filename": "Escapable",
+      "category": "coding"
+    },
+    "end": {
+      "filename": "end",
+      "category": "coding"
+    },
+    "symbolTag": {
+      "filename": "symbolTag",
+      "category": "coding"
+    },
+    "event": {
+      "filename": "event",
+      "category": "coding"
+    },
+    "style": {
+      "filename": "style",
+      "category": "coding"
+    },
+    "reI": {
+      "filename": "reI",
+      "category": "coding"
+    },
+    "fill": {
+      "filename": "fill",
+      "category": "coding"
+    },
+    "id": {
+      "filename": "id",
+      "category": "coding"
+    },
+    "decodeStateVectorV2": {
+      "filename": "decodeStateVectorV2",
+      "category": "coding"
+    },
+    "pBuiltins": {
+      "filename": "pBuiltins",
+      "category": "coding"
+    },
+    "stringTag": {
+      "filename": "stringTag",
+      "category": "coding"
+    },
+    "BUILTIN": {
+      "filename": "BUILTIN",
+      "category": "coding"
+    },
+    "blockKeywordsStr": {
+      "filename": "blockKeywordsStr",
+      "category": "coding"
+    },
+    "notCharacterOrDash": {
+      "filename": "notCharacterOrDash",
+      "category": "coding"
+    },
+    "webkit": {
+      "filename": "webkit",
+      "category": "coding"
+    },
+    "symbolPattern": {
+      "filename": "symbolPattern",
+      "category": "coding"
+    },
+    "dataWebpackPrefix": {
+      "filename": "dataWebpackPrefix",
+      "category": "coding"
+    },
+    "MERMAID_DOM_ID_PREFIX": {
+      "filename": "MERMAID_DOM_ID_PREFIX",
+      "category": "coding"
+    },
+    "marker": {
+      "filename": "marker",
+      "category": "system"
+    },
+    "operators": {
+      "filename": "operators",
+      "category": "coding"
+    },
+    "DESCENDING": {
+      "filename": "DESCENDING",
+      "category": "user"
+    },
+    "cKeywords": {
+      "filename": "cKeywords",
+      "category": "coding"
+    },
+    "SHAPE_STATE": {
+      "filename": "SHAPE_STATE",
+      "category": "coding"
+    },
+    "__dirname": {
+      "filename": "__dirname",
+      "category": "coding"
+    },
+    "route": {
+      "filename": "route",
+      "category": "coding"
+    },
+    "direction": {
+      "filename": "direction",
+      "category": "coding"
+    },
+    "FILE_BROWSER_FACTORY": {
+      "filename": "FILE_BROWSER_FACTORY",
+      "category": "coding"
+    },
+    "notebookURL": {
+      "filename": "notebookURL",
+      "category": "coding"
+    },
+    "octChar": {
+      "filename": "octChar",
+      "category": "coding"
+    },
+    "sqlKeywords": {
+      "filename": "sqlKeywords",
+      "category": "coding"
+    },
+    "classStr": {
+      "filename": "classStr",
+      "category": "coding"
+    },
+    "displayValue": {
+      "filename": "displayValue",
+      "category": "coding"
+    },
+    "shape": {
+      "filename": "shape",
+      "category": "coding"
+    },
+    "xhtml": {
+      "filename": "xhtml",
+      "category": "coding"
+    },
+    "pFloatForm": {
+      "filename": "pFloatForm",
+      "category": "coding"
+    },
+    "Identifier": {
+      "filename": "Identifier",
+      "category": "coding"
+    },
+    "baseFlags": {
+      "filename": "baseFlags",
+      "category": "coding"
+    },
+    "DNS": {
+      "filename": "DNS",
+      "category": "coding"
+    },
+    "REQUIRED_FIELD_SYMBOL": {
+      "filename": "REQUIRED_FIELD_SYMBOL",
+      "category": "coding"
+    },
+    "RXstyle": {
+      "filename": "RXstyle",
+      "category": "system"
+    },
+    "identifier": {
+      "filename": "identifier",
+      "category": "coding"
+    },
+    "JUPYTERLAB_DOCMANAGER_PLUGIN_ID": {
+      "filename": "JUPYTERLAB_DOCMANAGER_PLUGIN_ID",
+      "category": "coding"
+    },
+    "brackets": {
+      "filename": "brackets",
+      "category": "coding"
+    },
+    "nullTag": {
+      "filename": "nullTag",
+      "category": "coding"
+    },
+    "errMsg": {
+      "filename": "errMsg",
+      "category": "coding"
+    },
+    "reserve": {
+      "filename": "reserve",
+      "category": "coding"
+    },
+    "dummyCompoundId": {
+      "filename": "dummyCompoundId",
+      "category": "coding"
+    },
+    "TOPBAR_FACTORY": {
+      "filename": "TOPBAR_FACTORY",
+      "category": "user"
+    },
+    "insert": {
+      "filename": "insert",
+      "category": "coding"
+    },
+    "labelId": {
+      "filename": "labelId",
+      "category": "coding"
+    },
+    "argsTag": {
+      "filename": "argsTag",
+      "category": "coding"
+    },
+    "cssClassStr": {
+      "filename": "cssClassStr",
+      "category": "coding"
+    },
+    "PN_CHARS": {
+      "filename": "PN_CHARS",
+      "category": "coding"
+    },
+    "DEFAULT_DIAGRAM_DIRECTION": {
+      "filename": "DEFAULT_DIAGRAM_DIRECTION",
+      "category": "coding"
+    },
+    "gutter": {
+      "filename": "gutter",
+      "category": "coding"
+    },
+    "elide": {
+      "filename": "elide",
+      "category": "coding"
+    },
+    "out": {
+      "filename": "out",
+      "category": "coding"
+    },
+    "matchingDelim": {
+      "filename": "matchingDelim",
+      "category": "coding"
+    },
+    "MOBILE_QUERY": {
+      "filename": "MOBILE_QUERY",
+      "category": "user"
+    },
+    "currentBoundaryParse": {
+      "filename": "currentBoundaryParse",
+      "category": "coding"
+    },
+    "mtr": {
+      "filename": "mtr",
+      "category": "coding"
+    },
+    "toValue": {
+      "filename": "toValue",
+      "category": "coding"
+    },
+    "KERNEL_STATUS_ERROR_CLASS": {
+      "filename": "KERNEL_STATUS_ERROR_CLASS",
+      "category": "coding"
+    },
+    "num": {
+      "filename": "num",
+      "category": "coding"
+    },
+    "Analyze Mermaid Diagram": {
+      "filename": "Analyze_Mermaid_Diagram",
+      "category": "other"
+    },
+    "Mermaid Diagram Modifier": {
+      "filename": "Mermaid_Diagram_Modifier",
+      "category": "other"
+    },
+    "Architecture Design Assistant": {
+      "filename": "Architecture_Design_Assistant",
+      "category": "assistant"
+    },
+    "You are limited to respond Yes or No onl...": {
+      "filename": "You_are_limited_to_respond_Yes_or_No_onl___",
+      "category": "other"
+    },
+    "Code Diagram Documentation Creator": {
+      "filename": "Code_Diagram_Documentation_Creator",
+      "category": "other"
+    },
+    "<|image_1|>\ndescribe the icon in one sen...": {
+      "filename": "__image_1___describe_the_icon_in_one_sen___",
+      "category": "other"
+    },
+    "Modify Mermaid Diagram": {
+      "filename": "Modify_Mermaid_Diagram",
+      "category": "other"
+    },
+    "Initialize project setup for a new micro...": {
+      "filename": "Initialize_project_setup_for_a_new_micro___",
+      "category": "other"
+    },
+    "install dependencies, build, run, test,...": {
+      "filename": "install_dependencies__build__run__test____",
+      "category": "other"
+    },
+    "Debugging Assistant": {
+      "filename": "Debugging_Assistant",
+      "category": "assistant"
+    },
+    "Foresight Assistant": {
+      "filename": "Foresight_Assistant",
+      "category": "assistant"
+    },
+    "Generate different types of questions ab...": {
+      "filename": "Generate_different_types_of_questions_ab___",
+      "category": "other"
+    },
+    "Generate Mermaid Diagram": {
+      "filename": "Generate_Mermaid_Diagram",
+      "category": "other"
+    },
+    "Mermaid Diagram Generator": {
+      "filename": "Mermaid_Diagram_Generator",
+      "category": "other"
+    },
+    "SOLID Code Analysis Visualizer": {
+      "filename": "SOLID_Code_Analysis_Visualizer",
+      "category": "analysis"
+    },
+    "Analysis Assistant": {
+      "filename": "Analysis_Assistant",
+      "category": "assistant"
+    },
+    "Task List Helper": {
+      "filename": "Task_List_Helper",
+      "category": "other"
+    },
+    "Test Prompt": {
+      "filename": "Test_Prompt",
+      "category": "other"
+    },
+    "Mermaid Class Diagram Generator": {
+      "filename": "Mermaid_Class_Diagram_Generator",
+      "category": "other"
+    },
+    "Mermaid Analysis Expert": {
+      "filename": "Mermaid_Analysis_Expert",
+      "category": "analysis"
+    },
+    "Could you interpret the assumed applicat...": {
+      "filename": "Could_you_interpret_the_assumed_applicat___",
+      "category": "other"
+    },
+    "Code Refactoring Assistant": {
+      "filename": "Code_Refactoring_Assistant",
+      "category": "assistant"
+    },
+    "Research Assistant": {
+      "filename": "Research_Assistant",
+      "category": "assistant"
+    }
+  },
+  "categories": {
+    "system": {
+      "templates": [
+        "Development System Prompt",
+        "status",
+        "versionMajorMinor",
+        "PATH_NODE_MODULES",
+        "ProjectsUpdatedInBackgroundEvent",
+        "Aa",
+        "b",
+        "marker",
+        "RXstyle"
+      ],
+      "count": 9
+    },
+    "user": {
+      "templates": [
+        "schemaQuery",
+        "encoded",
+        "backupId",
+        "txt",
+        "usage",
+        "promptId",
+        "J",
+        "DESCENDING",
+        "TOPBAR_FACTORY",
+        "MOBILE_QUERY"
+      ],
+      "count": 10
+    },
+    "assistant": {
+      "templates": [
+        "Database Query Assistant",
+        "Code Review Assistant",
+        "MCP Integration Assistant",
+        "Project Analysis Assistant",
+        "Architecture Design Assistant",
+        "Debugging Assistant",
+        "Foresight Assistant",
+        "Analysis Assistant",
+        "Code Refactoring Assistant",
+        "Research Assistant"
+      ],
+      "count": 10
+    },
+    "general": {
+      "templates": [],
+      "count": 0
+    },
+    "coding": {
+      "templates": [
+        "endpoint",
+        "query",
+        "configJsContent",
+        "storageType",
+        "packageVersion",
+        "templateDir",
+        "insertPromptQuery",
+        "storageStatus",
+        "chars",
+        "s",
+        "ERROR_MESSAGE",
+        "maliciousPayload",
+        "cacheControl",
+        "path",
+        "UNMATCHED_SURROGATE_PAIR_REPLACE",
+        "unit",
+        "NUMBER",
+        "str",
+        "formatted",
+        "doc",
+        "colorCode",
+        "c",
+        "bignum",
+        "point",
+        "plusChar",
+        "BOMChar",
+        "expected",
+        "expectedString",
+        "stringResult",
+        "result",
+        "clientFirstMessageBare",
+        "trustProxyDefaultSymbol",
+        "JSON_SYNTAX_CHAR",
+        "isoSentinel",
+        "SCHEMA_PATH",
+        "LATEST_PROTOCOL_VERSION",
+        "SUBPROTOCOL",
+        "MAXIMUM_MESSAGE_SIZE",
+        "responseType",
+        "pattern",
+        "authorization_endpoint",
+        "connectionString",
+        "queryText",
+        "text",
+        "key",
+        "msg",
+        "message",
+        "_emojiRegex",
+        "short",
+        "SUITE_NAME",
+        "DATA",
+        "DEFAULT_DELIMITER",
+        "mask",
+        "lstatkey",
+        "ANSI_ESCAPE_BELL",
+        "prefix",
+        "BACKSLASH",
+        "FORMAT",
+        "ANDROID_EVERGREEN_FIRST",
+        "USAGE",
+        "LIMIT_REPLACE_NODE",
+        "BANG",
+        "nonASCIIidentifierStartChars",
+        "LETTERDASHNUMBER",
+        "data",
+        "logTime",
+        "astralRange",
+        "qmark",
+        "EMPTY",
+        "GENSYNC_EXPECTED_START",
+        "CHAR_CODE_0",
+        "ESC",
+        "FUNC_ERROR_TEXT",
+        "environment",
+        "l",
+        "ev",
+        "cmd",
+        "value",
+        "escSlash",
+        "d",
+        "START_OF_LINE",
+        "PRETTY_PLACEHOLDER",
+        "MOCK_CONSTRUCTOR_NAME",
+        "expression1",
+        "HOOK_RETURNED_NOTHING_ERROR_MESSAGE",
+        "fullpaths",
+        "m",
+        "parseClass",
+        "startNoTraversal",
+        "minimatch",
+        "sranges",
+        "findPackageJson",
+        "NM",
+        "DEPRECATION",
+        "DOCUMENTATION_NOTE",
+        "execaMessage",
+        "pathExt",
+        "C",
+        "SHARED",
+        "separator",
+        "tmpl",
+        "A",
+        "comma",
+        "typesRegistryPackageName",
+        "nonKey",
+        "SEMVER_SPEC_VERSION",
+        "match",
+        "es6Default",
+        "paddedNumber",
+        "subkey",
+        "typeArgumentsKey",
+        "t",
+        "GenStateSuspendedStart",
+        "fnKey",
+        "stringPath",
+        "typeKey",
+        "sep",
+        "code",
+        "nodeInternalPrefix",
+        "START_HIDING",
+        "error",
+        "helpMessage",
+        "BABELIGNORE_FILENAME",
+        "PACKAGE_FILENAME",
+        "name",
+        "stack",
+        "XP_DEFAULT_PATHEXT",
+        "stringifiedObject",
+        "pkg",
+        "defaultHelpOpt",
+        "deferY18nLookupPrefix",
+        "R",
+        "e",
+        "defaultHost",
+        "allOptionsList",
+        "escapedChar",
+        "isConfigType",
+        "moduleDirectory",
+        "destMain",
+        "resolverDir",
+        "boundary",
+        "ROOT_DESCRIBE_BLOCK_NAME",
+        "handlerFuncName",
+        "ERR_CODE",
+        "cacheProp",
+        "INDENT",
+        "head",
+        "JEST_GLOBALS_MODULE_NAME",
+        "UNDEFINED",
+        "cjsPattern",
+        "sourceMapContent",
+        "HINT_ARG",
+        "SNAPSHOT_VERSION",
+        "EXTENSION",
+        "DID_NOT_THROW",
+        "intToCharMap",
+        "r",
+        "isSourceNode",
+        "JEST_GLOBAL_NAME",
+        "NATIVE_PLATFORM",
+        "SPACE_SYMBOL",
+        "errorMessage",
+        "ST",
+        "source",
+        "f",
+        "tempName",
+        "ERROR",
+        "NODE_MODULES",
+        "strValue",
+        "ARROW",
+        "LF",
+        "multipartType",
+        "octetStreamType",
+        "querystringType",
+        "jsonType",
+        "STATES",
+        "n",
+        "BASE64_MAP",
+        "OUTSIDE_JEST_VM_PROTOCOL",
+        "DOTS",
+        "inputText",
+        "typeMessage",
+        "FAIL_TEXT",
+        "time",
+        "titleSeparator",
+        "absoluteThresholdGroup",
+        "indentation",
+        "RUNNING_TEXT",
+        "CACHE_VERSION",
+        "BULLET",
+        "DOT",
+        "IS_KEYED_SENTINEL",
+        "stats",
+        "messages",
+        "command",
+        "escapeFuncStr",
+        "_DEFAULT_OPEN_DELIMITER",
+        "DEFAULT_LOG_TARGET",
+        "NO_ARGUMENTS",
+        "EXPECTED_LABEL",
+        "IS_ITERABLE_SENTINEL",
+        "SPACE",
+        "errMessage",
+        "bgModel",
+        "rangeStart",
+        "MOCKS_PATTERN",
+        "PACKAGE_JSON",
+        "SUB_NAME",
+        "CHANGE_EVENT",
+        "INDIRECTION_FRAGMENT",
+        "NOT_A_DOT",
+        "watchmanURL",
+        "ROOT_NAMESPACE_NAME",
+        "JAKE_CMD",
+        "ROOT_TASK_NAME",
+        "_UUID_CHARS",
+        "lt",
+        "resolvedDestination",
+        "DELIM",
+        "meth",
+        "notSelector",
+        "newUrl",
+        "classForPercent",
+        "NO_DIFF_MESSAGE",
+        "aAnnotationPadding",
+        "mdcContent",
+        "json",
+        "PatternBoolean",
+        "SOURCE_MAPPING_PREFIX",
+        "input",
+        "DEFAULT_JS_PATTERN",
+        "pubkey256",
+        "sensitiveHeaders",
+        "add",
+        "INSPECT_MAX_BYTES",
+        "secret",
+        "debug",
+        "statSync",
+        "earlyHintsLink",
+        "i",
+        "_",
+        "j",
+        "E",
+        "a",
+        "o",
+        "re",
+        "QO",
+        "y",
+        "se",
+        "u",
+        "at",
+        "h",
+        "tn",
+        "ur",
+        "p",
+        "Q",
+        "k",
+        "N",
+        "Vr",
+        "bt",
+        "O",
+        "T",
+        "st",
+        "BROWSER_VAR",
+        "PLUGIN_ID_DOC_MANAGER",
+        "ERRORCLASS",
+        "page",
+        "delimiter",
+        "ADDITIONAL_PROPERTY_FLAG",
+        "side",
+        "jupyter_namespaceObject",
+        "property_prefix",
+        "selector",
+        "from",
+        "override",
+        "HASH_UNDEFINED",
+        "transform",
+        "SEARCHABLE_CLASS",
+        "Escapable",
+        "end",
+        "symbolTag",
+        "event",
+        "style",
+        "reI",
+        "fill",
+        "id",
+        "decodeStateVectorV2",
+        "pBuiltins",
+        "stringTag",
+        "BUILTIN",
+        "blockKeywordsStr",
+        "notCharacterOrDash",
+        "webkit",
+        "symbolPattern",
+        "dataWebpackPrefix",
+        "MERMAID_DOM_ID_PREFIX",
+        "operators",
+        "cKeywords",
+        "SHAPE_STATE",
+        "__dirname",
+        "route",
+        "direction",
+        "FILE_BROWSER_FACTORY",
+        "notebookURL",
+        "octChar",
+        "sqlKeywords",
+        "classStr",
+        "displayValue",
+        "shape",
+        "xhtml",
+        "pFloatForm",
+        "Identifier",
+        "baseFlags",
+        "DNS",
+        "REQUIRED_FIELD_SYMBOL",
+        "identifier",
+        "JUPYTERLAB_DOCMANAGER_PLUGIN_ID",
+        "brackets",
+        "nullTag",
+        "errMsg",
+        "reserve",
+        "dummyCompoundId",
+        "insert",
+        "labelId",
+        "argsTag",
+        "cssClassStr",
+        "PN_CHARS",
+        "DEFAULT_DIAGRAM_DIRECTION",
+        "gutter",
+        "elide",
+        "out",
+        "matchingDelim",
+        "currentBoundaryParse",
+        "mtr",
+        "toValue",
+        "KERNEL_STATUS_ERROR_CLASS",
+        "num"
+      ],
+      "count": 337
+    },
+    "analysis": {
+      "templates": [
+        "Data Analysis Template",
+        "Sequential Data Analysis with MCP Integration",
+        "SOLID Code Analysis Visualizer",
+        "Mermaid Analysis Expert"
+      ],
+      "count": 4
+    },
+    "architecture": {
+      "templates": [
+        "PromptCombiner Interface"
+      ],
+      "count": 1
+    },
+    "devops": {
+      "templates": [
+        "Docker Compose Prompt Combiner",
+        "Docker Containerization Guide"
+      ],
+      "count": 2
+    },
+    "development": {
+      "templates": [
+        "Collaborative Development with MCP Integration",
+        "Monorepo Migration and Code Organization Guide",
+        "Development Workflow",
+        "MCP Server Development Prompt Combiner",
+        "Consolidated TypeScript Interfaces Template"
+      ],
+      "count": 5
+    },
+    "other": {
+      "templates": [
+        "Advanced Multi-Server Integration Template",
+        "MCP Server Integration Guide",
+        "Multi-Resource Context Assistant",
+        "Docker MCP Servers Orchestration Guide",
+        "MCP Resources Explorer",
+        "GitHub Repository Explorer",
+        "Template-Based MCP Integration",
+        "MCP Resources Integration Guide",
+        "mcp-code-generator",
+        "Basic Template",
+        "DEFAULT_INDENT",
+        "completionShTemplate",
+        "output",
+        "WIN_SLASH",
+        "VERSION",
+        "type",
+        "__type",
+        "sseUrl",
+        "string",
+        "LINE_FEED",
+        "Analyze Mermaid Diagram",
+        "Mermaid Diagram Modifier",
+        "You are limited to respond Yes or No onl...",
+        "Code Diagram Documentation Creator",
+        "<|image_1|>\ndescribe the icon in one sen...",
+        "Modify Mermaid Diagram",
+        "Initialize project setup for a new micro...",
+        "install dependencies, build, run, test,...",
+        "Generate different types of questions ab...",
+        "Generate Mermaid Diagram",
+        "Mermaid Diagram Generator",
+        "Task List Helper",
+        "Test Prompt",
+        "Mermaid Class Diagram Generator",
+        "Could you interpret the assumed applicat..."
+      ],
+      "count": 35
+    }
+  },
+  "total_count": 413
+}

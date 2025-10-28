@@ -1,0 +1,65 @@
+---
+title: OpenSSL Development (Linux)
+platform: linux
+project_type: openssl
+---
+
+# OpenSSL Development Environment
+
+## Conan Profiles
+
+**Standard Development**:
+```bash
+conan install . --profile linux-gcc-release --build=missing
+```
+
+**FIPS Government**:
+```bash
+conan install . --profile fips-linux-gcc-release \
+  -o deployment_target=fips-government --build=missing
+```
+
+## Build Commands
+
+**Configure and Build**:
+```bash
+cmake --preset conan-default
+cmake --build --preset conan-release
+```
+
+**Run Tests**:
+```bash
+ctest --preset conan-release
+```
+
+## OpenSSL Specific Patterns
+
+When writing OpenSSL code:
+- Always call `SSL_load_error_strings()` and `OpenSSL_add_all_algorithms()` for initialization
+- Use RAII pattern: create contexts with `*_new()`, free with `*_free()`
+- Check return values: OpenSSL functions return 1 for success, 0 or -1 for error
+- For FIPS builds, check `FIPS_mode()` status
+
+## Debugging
+
+**Memory Issues**:
+```bash
+valgrind ./build/Release/{{project_name}}
+```
+
+**OpenSSL Errors**:
+```c++
+ERR_print_errors_fp(stderr);  // Print OpenSSL error stack
+```
+
+## Common Dependencies
+
+- `openssl-base/1.0.0`: Foundation utilities  
+- `openssl-fips-data/140-3.1`: FIPS compliance data (government builds)
+- `openssl-build-tools/1.2.0`: Build orchestration
+
+## Platform Notes
+
+- Compiler: GCC 11+ recommended
+- Parallel builds: Use `-j$(nproc)` 
+- Conan cache: `~/.conan2/`

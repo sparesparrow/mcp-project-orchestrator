@@ -1,0 +1,12 @@
+{
+  "name": "<|image_1|>\ndescribe the icon in one sen...",
+  "description": "<|image_1|>\ndescribe the icon in one sentence",
+  "type": "prompt",
+  "category": "other",
+  "content": "<|image_1|>\ndescribe the icon in one sentence",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/image-1-describe-the-icon-in-one-sen.json",
+    "imported": true
+  }
+}

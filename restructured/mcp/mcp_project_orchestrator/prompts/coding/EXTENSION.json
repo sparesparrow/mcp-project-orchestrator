@@ -1,0 +1,12 @@
+{
+  "name": "EXTENSION",
+  "description": "Prompt template extracted from SnapshotResolver.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "snap",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-snapshot/build/SnapshotResolver.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "jupyter_namespaceObject",
+  "description": "Prompt template extracted from 9068.cb72a595212d6ed7de5e.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "<svg width=\\",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/9068.cb72a595212d6ed7de5e.js",
+    "imported": true
+  }
+}

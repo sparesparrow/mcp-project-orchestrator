@@ -1,0 +1,12 @@
+{
+  "name": "SCHEMA_PATH",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "schema",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/@modelcontextprotocol/server-postgres/dist/index.js",
+    "imported": true
+  }
+}

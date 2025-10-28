@@ -1,0 +1,12 @@
+{
+  "name": "INDENT",
+  "description": "Prompt template extracted from xml-writer.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "  ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-lib-report/lib/xml-writer.js",
+    "imported": true
+  }
+}

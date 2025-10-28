@@ -1,0 +1,12 @@
+{
+  "name": "key",
+  "description": "Prompt template extracted from permessage-deflate.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${endpoint}_max_window_bits",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/ws/lib/permessage-deflate.js",
+    "imported": true
+  }
+}

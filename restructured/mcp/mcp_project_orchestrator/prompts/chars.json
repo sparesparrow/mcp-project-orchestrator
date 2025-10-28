@@ -1,0 +1,12 @@
+{
+  "name": "chars",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "abcdefghijklmnopqrstuvwxyz0123456789",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/core/utils.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "KERNEL_STATUS_ERROR_CLASS",
+  "description": "Prompt template extracted from 5573.fadd0e2001b2575ccb0f.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "jp-NotebookKernelStatus-error",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/5573.fadd0e2001b2575ccb0f.js",
+    "imported": true
+  }
+}

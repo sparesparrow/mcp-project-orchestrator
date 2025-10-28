@@ -1,0 +1,12 @@
+{
+  "name": "fill",
+  "description": "Prompt template extracted from 4035.f4b13866b60b1af40230.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "#CCC",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/4035.f4b13866b60b1af40230.js",
+    "imported": true
+  }
+}

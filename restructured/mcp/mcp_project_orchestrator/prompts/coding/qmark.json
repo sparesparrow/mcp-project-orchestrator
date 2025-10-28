@@ -1,0 +1,12 @@
+{
+  "name": "qmark",
+  "description": "Prompt template extracted from minimatch.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[^/]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/minimatch/minimatch.js",
+    "imported": true
+  }
+}

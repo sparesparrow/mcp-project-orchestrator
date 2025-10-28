@@ -1,0 +1,266 @@
+# Pull Request Review Guidelines
+
+## Overview
+
+This document provides comprehensive guidelines for reviewing OpenSSL pull requests, ensuring code quality, security, and maintainability.
+
+## Review Checklist
+
+### Functionality
+- [ ] **Correctness**: Does the code work as intended?
+- [ ] **Edge Cases**: Are edge cases handled properly?
+- [ ] **Error Handling**: Is error handling comprehensive?
+- [ ] **Input Validation**: Are inputs validated appropriately?
+- [ ] **Output Validation**: Are outputs validated correctly?
+
+### Security
+- [ ] **Vulnerabilities**: Are there any security vulnerabilities?
+- [ ] **Input Sanitization**: Are inputs properly sanitized?
+- [ ] **Output Encoding**: Are outputs properly encoded?
+- [ ] **Memory Safety**: Is memory managed safely?
+- [ ] **Cryptographic Security**: Are cryptographic operations secure?
+
+### Performance
+- [ ] **Efficiency**: Is the code efficient?
+- [ ] **Memory Usage**: Is memory usage reasonable?
+- [ ] **CPU Usage**: Is CPU usage reasonable?
+- [ ] **Scalability**: Does the code scale appropriately?
+- [ ] **Bottlenecks**: Are there any performance bottlenecks?
+
+### Code Quality
+- [ ] **Readability**: Is the code readable and understandable?
+- [ ] **Maintainability**: Is the code maintainable?
+- [ ] **Consistency**: Is the code consistent with existing patterns?
+- [ ] **Documentation**: Is the code properly documented?
+- [ ] **Testing**: Are there appropriate tests?
+
+### Standards Compliance
+- [ ] **Coding Standards**: Does the code follow coding standards?
+- [ ] **FIPS Compliance**: Is the code FIPS 140-2 compliant?
+- [ ] **API Standards**: Does the code follow API standards?
+- [ ] **Documentation Standards**: Does the documentation follow standards?
+
+## Security Review
+
+### Cryptographic Security
+- **Algorithm Selection**: Use only FIPS-approved algorithms
+- **Key Management**: Implement proper key management
+- **Random Number Generation**: Use cryptographically secure RNGs
+- **Constant-Time Operations**: Use constant-time operations where needed
+
+```c
+// Good - FIPS-approved AES
+EVP_CIPHER *cipher = EVP_aes_256_gcm();
+
+// Bad - Not FIPS-approved
+EVP_CIPHER *cipher = EVP_rc4();
+```
+
+### Memory Safety
+- **Buffer Overflows**: Check for buffer overflow vulnerabilities
+- **Use-After-Free**: Check for use-after-free vulnerabilities
+- **Double-Free**: Check for double-free vulnerabilities
+- **Memory Leaks**: Check for memory leaks
+
+```c
+// Good - Proper memory management
+EVP_PKEY *pkey = EVP_PKEY_new();
+if (pkey == NULL) {
+    return 0;
+}
+// ... use pkey ...
+EVP_PKEY_free(pkey);
+
+// Bad - Memory leak
+EVP_PKEY *pkey = EVP_PKEY_new();
+// ... use pkey ...
+// Missing EVP_PKEY_free(pkey);
+```
+
+### Input Validation
+- **Bounds Checking**: Check array bounds and buffer limits
+- **Type Validation**: Validate data types and formats
+- **Length Validation**: Validate input lengths
+- **Sanitization**: Sanitize inputs appropriately
+
+```c
+// Good - Input validation
+if (input_len > MAX_INPUT_LEN) {
+    return 0;  // Invalid input length
+}
+
+// Bad - No input validation
+memcpy(buffer, input, input_len);  // Potential buffer overflow
+```
+
+## Performance Review
+
+### Algorithm Efficiency
+- **Time Complexity**: Consider time complexity
+- **Space Complexity**: Consider space complexity
+- **Scalability**: Consider scalability implications
+- **Optimization**: Look for optimization opportunities
+
+### Resource Usage
+- **Memory Usage**: Monitor memory usage
+- **CPU Usage**: Monitor CPU usage
+- **I/O Usage**: Monitor I/O usage
+- **Network Usage**: Monitor network usage
+
+### Performance Testing
+- **Benchmarks**: Include performance benchmarks
+- **Profiling**: Use profiling tools
+- **Load Testing**: Test under load
+- **Stress Testing**: Test under stress
+
+## Code Quality Review
+
+### Readability
+- **Naming**: Use descriptive names
+- **Structure**: Use clear structure
+- **Comments**: Include helpful comments
+- **Formatting**: Follow formatting standards
+
+```c
+// Good - Clear and readable
+int EVP_PKEY_generate_key(EVP_PKEY_CTX *ctx, EVP_PKEY **ppkey);
+
+// Bad - Unclear and cryptic
+int gen_key(EVP_PKEY_CTX *ctx, EVP_PKEY **ppkey);
+```
+
+### Maintainability
+- **Modularity**: Use modular design
+- **Coupling**: Minimize coupling
+- **Cohesion**: Maximize cohesion
+- **Extensibility**: Design for extensibility
+
+### Consistency
+- **Style**: Follow consistent coding style
+- **Patterns**: Use consistent patterns
+- **Conventions**: Follow established conventions
+- **Standards**: Adhere to standards
+
+## Testing Review
+
+### Test Coverage
+- **Unit Tests**: Include unit tests
+- **Integration Tests**: Include integration tests
+- **System Tests**: Include system tests
+- **Coverage**: Ensure adequate test coverage
+
+### Test Quality
+- **Test Cases**: Include comprehensive test cases
+- **Edge Cases**: Test edge cases
+- **Error Cases**: Test error cases
+- **Performance Tests**: Include performance tests
+
+### Test Documentation
+- **Test Purpose**: Document test purpose
+- **Test Data**: Document test data
+- **Expected Results**: Document expected results
+- **Test Maintenance**: Keep tests up to date
+
+## Documentation Review
+
+### API Documentation
+- **Function Documentation**: Document all functions
+- **Parameter Documentation**: Document all parameters
+- **Return Value Documentation**: Document return values
+- **Error Documentation**: Document error conditions
+
+### Code Documentation
+- **Inline Comments**: Include helpful inline comments
+- **Block Comments**: Include block comments for complex logic
+- **Header Comments**: Include header comments
+- **Examples**: Include usage examples
+
+### User Documentation
+- **README**: Update README files
+- **Installation**: Document installation procedures
+- **Configuration**: Document configuration options
+- **Usage**: Document usage instructions
+
+## Standards Compliance Review
+
+### FIPS 140-2 Compliance
+- **Algorithm Validation**: Use only FIPS-approved algorithms
+- **Key Management**: Follow FIPS key management requirements
+- **Testing**: Ensure FIPS validation testing
+- **Documentation**: Maintain FIPS compliance documentation
+
+### API Standards
+- **Naming Conventions**: Follow naming conventions
+- **Parameter Order**: Follow parameter order conventions
+- **Return Values**: Follow return value conventions
+- **Error Handling**: Follow error handling conventions
+
+## Review Process
+
+### Initial Review
+1. **Overview**: Get an overview of the changes
+2. **Scope**: Understand the scope of the changes
+3. **Impact**: Assess the impact of the changes
+4. **Risk**: Assess the risk of the changes
+
+### Detailed Review
+1. **Code Review**: Review the code thoroughly
+2. **Test Review**: Review the tests
+3. **Documentation Review**: Review the documentation
+4. **Security Review**: Review for security issues
+
+### Final Review
+1. **Summary**: Summarize the review findings
+2. **Recommendations**: Provide recommendations
+3. **Approval**: Approve or request changes
+4. **Follow-up**: Follow up on requested changes
+
+## Common Issues
+
+### Security Issues
+- **Buffer Overflows**: Common in C code
+- **Use-After-Free**: Common in C code
+- **Input Validation**: Often missing
+- **Output Encoding**: Often incorrect
+
+### Performance Issues
+- **Inefficient Algorithms**: Using wrong algorithms
+- **Memory Leaks**: Not freeing memory
+- **CPU Usage**: Inefficient CPU usage
+- **I/O Usage**: Inefficient I/O usage
+
+### Code Quality Issues
+- **Poor Naming**: Unclear variable/function names
+- **Complex Logic**: Overly complex logic
+- **Missing Comments**: Lack of documentation
+- **Inconsistent Style**: Inconsistent coding style
+
+### Testing Issues
+- **Insufficient Coverage**: Not enough test coverage
+- **Missing Edge Cases**: Not testing edge cases
+- **Poor Test Quality**: Low-quality tests
+- **Missing Documentation**: Undocumented tests
+
+## Best Practices
+
+### Review Process
+- **Thorough Review**: Review thoroughly
+- **Constructive Feedback**: Provide constructive feedback
+- **Timely Response**: Respond in a timely manner
+- **Follow-up**: Follow up on requested changes
+
+### Communication
+- **Clear Comments**: Write clear review comments
+- **Specific Feedback**: Provide specific feedback
+- **Positive Reinforcement**: Acknowledge good work
+- **Professional Tone**: Maintain professional tone
+
+### Continuous Improvement
+- **Learn from Reviews**: Learn from review feedback
+- **Share Knowledge**: Share knowledge with team
+- **Improve Process**: Continuously improve review process
+- **Best Practices**: Follow best practices
+
+## Conclusion
+
+Effective pull request reviews are essential for maintaining code quality, security, and maintainability in OpenSSL. Following these guidelines ensures that reviews are thorough, constructive, and beneficial for the entire development team.

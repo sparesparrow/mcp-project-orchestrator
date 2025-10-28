@@ -1,0 +1,12 @@
+{
+  "name": "reserve",
+  "description": "Prompt template extracted from 2702.bc49dbd258cca77aeea4.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "><+-.,[]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/2702.bc49dbd258cca77aeea4.js",
+    "imported": true
+  }
+}

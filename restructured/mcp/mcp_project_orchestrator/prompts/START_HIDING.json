@@ -1,0 +1,12 @@
+{
+  "name": "START_HIDING",
+  "description": "Prompt template extracted from rewrite-stack-trace.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "startHiding - secret - don",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/errors/rewrite-stack-trace.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "SEMVER_SPEC_VERSION",
+  "description": "Prompt template extracted from constants.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "2.0.0",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/make-dir/node_modules/semver/internal/constants.js",
+    "imported": true
+  }
+}

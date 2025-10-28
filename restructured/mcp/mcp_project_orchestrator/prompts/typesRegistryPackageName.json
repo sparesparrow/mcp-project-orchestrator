@@ -1,0 +1,12 @@
+{
+  "name": "typesRegistryPackageName",
+  "description": "Prompt template extracted from _typingsInstaller.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "types-registry",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/typescript/lib/_typingsInstaller.js",
+    "imported": true
+  }
+}

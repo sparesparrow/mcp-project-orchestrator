@@ -1,0 +1,12 @@
+{
+  "name": "environment",
+  "description": "Prompt template extracted from source-map-support.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "auto",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/source-map-support/source-map-support.js",
+    "imported": true
+  }
+}

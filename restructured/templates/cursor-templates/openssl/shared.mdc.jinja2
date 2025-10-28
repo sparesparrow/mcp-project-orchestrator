@@ -1,0 +1,43 @@
+---
+title: OpenSSL Shared Development Rules
+platform: all
+---
+
+# OpenSSL Development Standards
+
+## Code Style
+
+- **Naming**: Use `snake_case` for functions, `PascalCase` for classes
+- **Error Handling**: Always check OpenSSL function return values
+- **Memory Management**: Use RAII, pair `*_new()` with `*_free()`
+- **Constants**: Use OpenSSL defined constants, not magic numbers
+
+## Security Guidelines
+
+- Never hardcode keys or certificates
+- Use secure random number generation: `RAND_bytes()`
+- Validate all input parameters
+- Clear sensitive data: `OPENSSL_cleanse()`
+
+## FIPS Compliance
+
+For government deployments:
+- Only use FIPS-approved algorithms
+- Verify FIPS mode is enabled: `FIPS_mode() == 1`
+- Include certificate metadata in SBOM
+
+## Testing
+
+Every OpenSSL component should test:
+- Basic crypto operations (hash, encrypt/decrypt)
+- TLS client/server functionality
+- Error handling paths
+- Memory leak detection
+
+## Documentation
+
+Minimal documentation approach:
+- README.md: Installation and usage
+- CLAUDE.md: AI context and patterns
+- Self-explanatory function names
+- Mermaid diagrams for architecture

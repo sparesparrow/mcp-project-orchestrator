@@ -1,0 +1,30 @@
+{
+  "name": "openssl-tools-orchestrator",
+  "version": "0.2.0",
+  "type": "python",
+  "description": "OpenSSL Tools Orchestration with Agent Skills Integration",
+  "dependencies": [
+    "openssl>=3.1.0",
+    "zlib>=1.3.0",
+    "fastapi>=0.68.0",
+    "uvicorn>=0.15.0",
+    "pydantic>=1.8.2",
+    "pyyaml>=6.0",
+    "rich>=10.12.0",
+    "typer>=0.4.0"
+  ],
+  "build_system": "cmake",
+  "platforms": [
+    "linux",
+    "windows",
+    "macos"
+  ],
+  "fips_support": true,
+  "features": [
+    "multi_platform_build",
+    "fips_compliance",
+    "ci_cd_automation",
+    "agent_skills_integration",
+    "security_validation"
+  ]
+}

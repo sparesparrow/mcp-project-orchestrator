@@ -1,0 +1,12 @@
+{
+  "name": "nodeInternalPrefix",
+  "description": "Prompt template extracted from import-meta-resolve.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "__node_internal_",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/vendor/import-meta-resolve.js",
+    "imported": true
+  }
+}

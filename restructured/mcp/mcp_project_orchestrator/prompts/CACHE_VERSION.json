@@ -1,0 +1,12 @@
+{
+  "name": "CACHE_VERSION",
+  "description": "Prompt template extracted from ScriptTransformer.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "1",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/transform/build/ScriptTransformer.js",
+    "imported": true
+  }
+}

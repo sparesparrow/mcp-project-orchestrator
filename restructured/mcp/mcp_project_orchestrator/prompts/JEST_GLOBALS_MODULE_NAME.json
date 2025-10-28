@@ -1,0 +1,12 @@
+{
+  "name": "JEST_GLOBALS_MODULE_NAME",
+  "description": "Prompt template extracted from hoist-jest.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "@jest/globals",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ts-jest/dist/transformers/hoist-jest.js",
+    "imported": true
+  }
+}

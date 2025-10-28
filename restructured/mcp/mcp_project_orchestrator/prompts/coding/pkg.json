@@ -1,0 +1,12 @@
+{
+  "name": "pkg",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "diff-sequences",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/diff-sequences/build/index.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "trustProxyDefaultSymbol",
+  "description": "Prompt template extracted from application.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "@@symbol:trust_proxy_default",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/express/lib/application.js",
+    "imported": true
+  }
+}

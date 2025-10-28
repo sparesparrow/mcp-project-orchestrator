@@ -1,0 +1,12 @@
+{
+  "name": "T",
+  "description": "Prompt template extracted from 1909.7487a09fefbe7f9eabb6.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "bspr_",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/1909.7487a09fefbe7f9eabb6.js",
+    "imported": true
+  }
+}

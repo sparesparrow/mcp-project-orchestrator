@@ -1,0 +1,12 @@
+{
+  "name": "NUMBER",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "([+-]?\\\\d+)",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/postgres-interval/index.js",
+    "imported": true
+  }
+}

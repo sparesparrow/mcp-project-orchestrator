@@ -1,0 +1,158 @@
+---
+title: OpenSSL Development - Shared Rules
+description: Common development rules and guidelines for OpenSSL projects
+created: {{ timestamp }}
+platform: shared
+user: {{ user }}
+---
+
+# OpenSSL Development Guidelines
+
+## Environment Context
+
+- **Platform**: {{ os }} {{ os_version }}
+- **Python**: {{ python_version }} ({{ python_implementation }})
+- **User**: {{ user }}
+- **Home**: {{ home }}
+- **CI Environment**: {{ is_ci }}
+{% if in_venv %}
+- **Virtual Environment**: ✅ Active
+{% endif %}
+
+## General Development Rules
+
+### Code Quality Standards
+
+- **Documentation**: All functions, classes, and modules must have comprehensive docstrings following PEP 257 conventions
+- **Type Hints**: Use type hints for all function parameters and return values
+- **Error Handling**: Implement robust error handling with meaningful error messages
+- **Testing**: Maintain high test coverage using pytest
+- **Linting**: Code must pass Ruff linting checks
+
+### OpenSSL-Specific Guidelines
+
+#### Cryptographic Best Practices
+
+- **Constant-Time Operations**: Always use constant-time implementations for cryptographic operations
+- **Memory Management**: Properly zero out sensitive memory after use
+- **Random Number Generation**: Use cryptographically secure random number generators
+- **Key Management**: Follow proper key generation, storage, and disposal practices
+
+#### Security Considerations
+
+- **Input Validation**: Validate all inputs, especially from external sources
+- **Buffer Overflows**: Always check buffer bounds before operations
+- **Side-Channel Attacks**: Be aware of timing and power analysis attacks
+- **FIPS Compliance**: Ensure code meets FIPS 140-2 requirements when applicable
+
+### Build System Integration
+
+#### Conan Package Manager
+
+- **Profile Selection**: Use appropriate Conan profiles for the target platform
+- **Dependency Management**: Keep dependencies up-to-date and secure
+- **Build Variants**: Support both debug and release builds
+- **Cross-Platform**: Ensure builds work across Linux, macOS, and Windows
+
+#### Compiler Standards
+
+- **C Standard**: Use C99 or later for maximum compatibility
+- **C++ Standard**: Use C++17 or later for modern C++ features
+- **Warnings**: Treat warnings as errors in CI builds
+- **Optimization**: Use appropriate optimization levels for each build type
+
+### Testing Requirements
+
+#### Unit Testing
+
+- **Coverage**: Maintain at least 80% test coverage
+- **Test Cases**: Include edge cases and error conditions
+- **Mocking**: Use appropriate mocking for external dependencies
+- **Performance**: Include performance tests for critical paths
+
+#### Integration Testing
+
+- **End-to-End**: Test complete workflows and integrations
+- **Cross-Platform**: Verify functionality across different platforms
+- **Security**: Include security-focused test scenarios
+- **Compliance**: Test FIPS and other compliance requirements
+
+### Documentation Standards
+
+#### Code Documentation
+
+- **API Documentation**: Document all public APIs thoroughly
+- **Examples**: Provide usage examples for complex functions
+- **Architecture**: Document system architecture and design decisions
+- **Security**: Document security considerations and mitigations
+
+#### User Documentation
+
+- **README**: Maintain comprehensive README files
+- **Installation**: Provide clear installation and setup instructions
+- **Configuration**: Document all configuration options
+- **Troubleshooting**: Include common issues and solutions
+
+### Version Control Best Practices
+
+#### Git Workflow
+
+- **Branching**: Use feature branches for new development
+- **Commits**: Write clear, descriptive commit messages
+- **Pull Requests**: Use PRs for code review and discussion
+- **Tags**: Tag releases with semantic versioning
+
+#### Code Review
+
+- **Review Process**: All code must be reviewed before merging
+- **Security Review**: Security-sensitive code requires additional review
+- **Performance Review**: Performance-critical code needs performance analysis
+- **Documentation Review**: Ensure documentation is updated with code changes
+
+### Performance Guidelines
+
+#### Optimization
+
+- **Profiling**: Profile code to identify bottlenecks
+- **Algorithm Selection**: Choose appropriate algorithms for the use case
+- **Memory Usage**: Optimize memory usage and avoid leaks
+- **CPU Usage**: Minimize CPU usage for better performance
+
+#### Monitoring
+
+- **Metrics**: Collect relevant performance metrics
+- **Logging**: Use appropriate logging levels
+- **Debugging**: Provide debugging information when needed
+- **Alerting**: Set up alerts for critical issues
+
+### Security Best Practices
+
+#### Secure Coding
+
+- **Input Sanitization**: Sanitize all inputs before processing
+- **Output Encoding**: Properly encode outputs to prevent injection
+- **Authentication**: Implement strong authentication mechanisms
+- **Authorization**: Use principle of least privilege
+
+#### Vulnerability Management
+
+- **Dependency Scanning**: Regularly scan dependencies for vulnerabilities
+- **Security Updates**: Apply security updates promptly
+- **Penetration Testing**: Conduct regular security testing
+- **Incident Response**: Have a plan for security incidents
+
+### Compliance and Standards
+
+#### FIPS 140-2 Compliance
+
+- **Algorithm Validation**: Use only FIPS-approved algorithms
+- **Key Management**: Follow FIPS key management requirements
+- **Testing**: Ensure FIPS validation testing is performed
+- **Documentation**: Maintain FIPS compliance documentation
+
+#### Other Standards
+
+- **Common Criteria**: Follow Common Criteria requirements when applicable
+- **NIST Guidelines**: Adhere to NIST cybersecurity guidelines
+- **Industry Standards**: Follow relevant industry security standards
+- **Regulatory Requirements**: Meet applicable regulatory requirements

@@ -1,0 +1,12 @@
+{
+  "name": "ROOT_TASK_NAME",
+  "description": "Prompt template extracted from task.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "__rootTask__",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jake/lib/task/task.js",
+    "imported": true
+  }
+}

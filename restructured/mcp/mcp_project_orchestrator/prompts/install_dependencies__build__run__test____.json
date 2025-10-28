@@ -1,0 +1,12 @@
+{
+  "name": "install dependencies, build, run, test,...",
+  "description": "install dependencies, build, run, test, fix, document, commit, and push your changes",
+  "type": "prompt",
+  "category": "other",
+  "content": "install dependencies, build, run, test, fix, document, commit, and push your changes. Because your environment is externally managed, we'll create and use a virtual environment:\nCreate a virtual environment in the project directory.\nUpgrade pip (optional but recommended).\nInstall the package in editable mode within the virtual environment.\nRun tests (e.g. using pytest).\nDocument any changes (the README already provides documentation).\nCommit all changes and push to your Git repository.",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/install-dependencies-build-run-test.json",
+    "imported": true
+  }
+}

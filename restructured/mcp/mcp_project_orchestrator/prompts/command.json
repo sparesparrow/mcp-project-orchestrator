@@ -1,0 +1,12 @@
+{
+  "name": "command",
+  "description": "Prompt template extracted from exit_test.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "node log.js 0 ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/exit/test/exit_test.js",
+    "imported": true
+  }
+}

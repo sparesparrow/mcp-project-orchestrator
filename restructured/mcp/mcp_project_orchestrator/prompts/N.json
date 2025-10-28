@@ -1,0 +1,12 @@
+{
+  "name": "N",
+  "description": "Prompt template extracted from 8217.801fbb0b549a74238760.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "builtin",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/8217.801fbb0b549a74238760.js",
+    "imported": true
+  }
+}

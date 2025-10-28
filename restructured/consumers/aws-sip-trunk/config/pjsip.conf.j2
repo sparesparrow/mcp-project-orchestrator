@@ -1,0 +1,146 @@
+;
+; PJSIP Configuration Template for ElevenLabs SIP Trunk
+; Jinja2 template for dynamic configuration generation
+;
+
+[global]
+max_forwards=70
+user_agent=Asterisk-AWS-{{ instance_id }}
+default_realm={{ default_realm | default('aws.internal') }}
+debug={{ debug | default('no') }}
+
+; TCP Transport Configuration
+[transport-tcp]
+type=transport
+protocol=tcp
+bind=0.0.0.0:{{ sip_tcp_port | default('5060') }}
+external_media_address={{ elastic_ip }}
+external_signaling_address={{ elastic_ip }}
+local_net={{ private_ip }}/{{ vpc_cidr_bits | default('16') }}
+{% if async_operations %}
+async_operations={{ async_operations }}
+{% endif %}
+
+{% if enable_tls %}
+; TLS Transport Configuration
+[transport-tls]
+type=transport
+protocol=tls
+bind=0.0.0.0:{{ sip_tls_port | default('5061') }}
+cert_file={{ tls_cert_file | default('/etc/asterisk/asterisk.pem') }}
+priv_key_file={{ tls_key_file | default('/etc/asterisk/asterisk.key') }}
+method={{ tls_method | default('tlsv1_2') }}
+verify_server=no
+verify_client=no
+external_media_address={{ elastic_ip }}
+external_signaling_address={{ elastic_ip }}
+local_net={{ private_ip }}/{{ vpc_cidr_bits | default('16') }}
+{% endif %}
+
+; ElevenLabs Endpoint Configuration
+[elevenlabs]
+type=endpoint
+context={{ elevenlabs_context | default('from-elevenlabs') }}
+transport={{ elevenlabs_transport | default('transport-tcp') }}
+aors=elevenlabs
+outbound_auth=elevenlabs-auth
+allow=!all,{{ codecs | default('ulaw,alaw') }}
+direct_media={{ direct_media | default('no') }}
+from_user={{ elevenlabs_phone }}
+callerid={{ elevenlabs_phone }}
+rtp_symmetric=yes
+force_rport=yes
+rewrite_contact=yes
+dtmf_mode={{ dtmf_mode | default('rfc4733') }}
+trust_id_inbound=yes
+trust_id_outbound=yes
+{% if max_audio_streams %}
+max_audio_streams={{ max_audio_streams }}
+{% endif %}
+{% if ice_support %}
+ice_support=yes
+{% endif %}
+send_rpid=yes
+send_pai=yes
+100rel={{ rel100_mode | default('no') }}
+timers={{ session_timers | default('yes') }}
+timers_min_se={{ timers_min_se | default('90') }}
+timers_sess_expires={{ timers_sess_expires | default('1800') }}
+
+; Address of Record for ElevenLabs
+[elevenlabs]
+type=aor
+contact=sip:{{ elevenlabs_sip_host | default('sip.elevenlabs.io') }}:{{ elevenlabs_sip_port | default('5060') }};transport={{ elevenlabs_aor_transport | default('tcp') }}
+qualify_frequency={{ qualify_frequency | default('60') }}
+qualify_timeout={{ qualify_timeout | default('3') }}
+{% if outbound_proxy %}
+outbound_proxy={{ outbound_proxy }}
+{% endif %}
+
+; Authentication for ElevenLabs
+[elevenlabs-auth]
+type=auth
+auth_type=userpass
+username={{ elevenlabs_phone }}
+password={{ elevenlabs_password }}
+realm={{ elevenlabs_realm | default('') }}
+
+; Identify ElevenLabs incoming traffic
+[elevenlabs]
+type=identify
+endpoint=elevenlabs
+match={{ elevenlabs_sip_host | default('sip.elevenlabs.io') }}
+{% if elevenlabs_ip_whitelist %}
+{% for ip in elevenlabs_ip_whitelist %}
+match={{ ip }}
+{% endfor %}
+{% endif %}
+
+{% if enable_outbound_registration %}
+; Outbound Registration (if required by ElevenLabs)
+[elevenlabs-registration]
+type=registration
+transport={{ elevenlabs_transport | default('transport-tcp') }}
+outbound_auth=elevenlabs-auth
+server_uri=sip:{{ elevenlabs_sip_host | default('sip.elevenlabs.io') }}
+client_uri=sip:{{ elevenlabs_phone }}@{{ elevenlabs_sip_host | default('sip.elevenlabs.io') }}
+retry_interval={{ registration_retry_interval | default('60') }}
+forbidden_retry_interval={{ registration_forbidden_retry | default('600') }}
+expiration={{ registration_expiration | default('3600') }}
+{% endif %}
+
+; ACL Configuration (optional security layer)
+{% if enable_acl %}
+[acl-elevenlabs]
+type=acl
+deny=0.0.0.0/0.0.0.0
+permit={{ elevenlabs_sip_host | default('sip.elevenlabs.io') }}
+{% for ip in trusted_ips | default([]) %}
+permit={{ ip }}
+{% endfor %}
+{% endif %}
+
+;
+; Additional custom endpoints can be added below
+;
+{% if custom_endpoints %}
+{% for endpoint_name, endpoint_config in custom_endpoints.items() %}
+
+[{{ endpoint_name }}]
+type=endpoint
+context={{ endpoint_config.context | default('default') }}
+transport={{ endpoint_config.transport | default('transport-tcp') }}
+aors={{ endpoint_name }}
+allow=!all,{{ endpoint_config.codecs | default('ulaw,alaw') }}
+direct_media={{ endpoint_config.direct_media | default('no') }}
+
+[{{ endpoint_name }}]
+type=aor
+contact={{ endpoint_config.contact }}
+qualify_frequency={{ endpoint_config.qualify_frequency | default('60') }}
+{% endfor %}
+{% endif %}
+
+;
+; End of PJSIP Configuration
+;

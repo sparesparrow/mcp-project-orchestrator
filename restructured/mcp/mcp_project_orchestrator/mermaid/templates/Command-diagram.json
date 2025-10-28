@@ -1,0 +1,10 @@
+{
+  "name": "Command-diagram",
+  "description": "Mermaid diagram for Command pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Command Design Pattern, outlining encapsulated request objects and their invokers.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

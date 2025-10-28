@@ -1,0 +1,12 @@
+{
+  "name": "LINE_FEED",
+  "description": "Prompt template extracted from constants.d.ts",
+  "type": "prompt",
+  "category": "other",
+  "content": "\\n",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ts-jest/dist/constants.d.ts",
+    "imported": true
+  }
+}

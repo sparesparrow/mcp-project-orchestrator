@@ -1,0 +1,12 @@
+{
+  "name": "ProjectsUpdatedInBackgroundEvent",
+  "description": "Prompt template extracted from typescript.d.ts",
+  "type": "prompt",
+  "category": "system",
+  "content": "projectsUpdatedInBackground",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/typescript/lib/typescript.d.ts",
+    "imported": true
+  }
+}

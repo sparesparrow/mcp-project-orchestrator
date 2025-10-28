@@ -1,0 +1,12 @@
+{
+  "name": "mdcContent",
+  "description": "Prompt template extracted from adapters.unit.test.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "---\nname: MDC Test\ndescription: A test prompt from MDC\nglobs: [",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/tests/unit/adapters.unit.test.ts",
+    "imported": true
+  }
+}

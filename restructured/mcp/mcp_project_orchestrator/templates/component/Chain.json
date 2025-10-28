@@ -1,0 +1,18 @@
+{
+  "name": "Chain",
+  "description": "Processes a request through a chain of handlers.",
+  "type": "component",
+  "files": [],
+  "dependencies": [],
+  "variables": {},
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-project-orchestrator/component_templates.json",
+    "imported": true
+  },
+  "mermaid": "Generate a Mermaid diagram visualizing ChainOfResponsibility Design Pattern, showing the flow of requests through handlers."
+}

@@ -1,0 +1,12 @@
+{
+  "name": "toValue",
+  "description": "Prompt template extracted from 2913.274b19d8f201991f4a69.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\uFFFF",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/2913.274b19d8f201991f4a69.js",
+    "imported": true
+  }
+}

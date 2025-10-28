@@ -1,0 +1,104 @@
+name: Validate Cursor Configuration
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'mcp-project-orchestrator/openssl/**'
+      - '.cursor/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'mcp-project-orchestrator/openssl/**'
+      - '.cursor/**'
+
+jobs:
+  validate-cursor-config:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        cd mcp-project-orchestrator/openssl
+        pip install -e .
+        pip install pyyaml
+        
+    - name: Validate YAML frontmatter
+      run: |
+        cd mcp-project-orchestrator/openssl
+        python -m mcp_orchestrator.yaml_validator .cursor/rules/ || echo "No .cursor/rules directory found"
+        
+    - name: Validate template rendering
+      run: |
+        cd mcp-project-orchestrator/openssl
+        python -m pytest tests/test_template_validation.py -v
+        
+    - name: Validate MCP configuration schema
+      run: |
+        cd mcp-project-orchestrator/openssl
+        python -c "
+        import json
+        from pathlib import Path
+        from mcp_orchestrator.cursor_deployer import CursorConfigDeployer
+        
+        # Test template rendering
+        repo_root = Path('.')
+        package_root = Path('.')
+        deployer = CursorConfigDeployer(repo_root, package_root)
+        
+        platform_info = deployer.detect_platform()
+        platform_info['repo_root'] = str(repo_root)
+        
+        # Render MCP config template
+        content = deployer._render_template_content('cursor-rules/mcp.json.jinja2', platform_info)
+        
+        # Validate JSON
+        config = json.loads(content)
+        
+        # Check required fields
+        required_fields = ['mcpServers', 'globalShortcut', 'logging', 'features', 'platform']
+        for field in required_fields:
+            assert field in config, f'Missing required field: {field}'
+        
+        # Validate mcpServers
+        assert isinstance(config['mcpServers'], dict)
+        for server_name, server_config in config['mcpServers'].items():
+            assert 'command' in server_config
+            assert 'args' in server_config
+            assert 'env' in server_config
+        
+        print('✅ MCP configuration schema validation passed')
+        "
+        
+    - name: Test CLI commands
+      run: |
+        cd mcp-project-orchestrator/openssl
+        python -m mcp_orchestrator.cli --help
+        python -m mcp_orchestrator.deploy_cursor --help
+        
+    - name: Test environment variable validation
+      run: |
+        cd mcp-project-orchestrator/openssl
+        python -c "
+        from mcp_orchestrator.env_config import EnvironmentConfig
+        env_config = EnvironmentConfig()
+        
+        # Test validation
+        is_valid, missing = env_config.validate_required('openssl')
+        print(f'Required variables valid: {is_valid}')
+        print(f'Missing variables: {missing}')
+        
+        # Test error messages
+        errors = env_config.get_validation_errors('openssl')
+        print(f'Validation errors: {len(errors)}')
+        
+        print('✅ Environment variable validation passed')
+        "

@@ -1,0 +1,12 @@
+{
+  "name": "t",
+  "description": "Prompt template extracted from helpers-generated.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "undefined",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/helpers/lib/helpers-generated.js",
+    "imported": true
+  }
+}

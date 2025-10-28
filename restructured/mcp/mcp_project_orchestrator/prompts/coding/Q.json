@@ -1,0 +1,12 @@
+{
+  "name": "Q",
+  "description": "Prompt template extracted from 6372.25d926454a35e061a88b.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "descending",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/6372.25d926454a35e061a88b.js",
+    "imported": true
+  }
+}

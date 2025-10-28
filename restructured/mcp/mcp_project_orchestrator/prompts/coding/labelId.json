@@ -1,0 +1,12 @@
+{
+  "name": "labelId",
+  "description": "Prompt template extracted from 7097.43efeed14ea8a19c9342.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "rel",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7097.43efeed14ea8a19c9342.js",
+    "imported": true
+  }
+}

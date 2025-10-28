@@ -1,0 +1,12 @@
+{
+  "name": "JSON_SYNTAX_CHAR",
+  "description": "Prompt template extracted from json.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "#",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/body-parser/lib/types/json.js",
+    "imported": true
+  }
+}

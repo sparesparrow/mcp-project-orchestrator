@@ -1,0 +1,42 @@
+# Example Terraform Variables File
+# Copy this file to terraform.tfvars and fill in your values
+
+# AWS Configuration
+aws_region = "us-east-1"
+project_name = "asterisk-sip-trunk"
+environment = "prod"
+
+# EC2 Configuration
+instance_type = "t3.medium"
+ssh_key_name = "your-ssh-key-name"
+
+# Network Configuration
+vpc_cidr = "10.0.0.0/16"
+public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+
+# SSH Access (optional - leave empty for no SSH access)
+allowed_ssh_cidrs = []  # Example: ["1.2.3.4/32"]
+
+# ElevenLabs Configuration
+elevenlabs_phone_e164 = "+12025551234"  # Your ElevenLabs phone number
+elevenlabs_sip_password = "your-sip-password"  # SIP trunk password
+
+# Features
+enable_high_availability = false
+enable_call_recordings = true
+enable_cloudwatch_monitoring = true
+enable_tls = false
+
+# Monitoring
+alarm_email = "your-email@example.com"
+
+# Storage
+call_recording_retention_days = 90
+backup_enabled = true
+
+# Logging
+asterisk_log_level = "NOTICE"  # ERROR, WARNING, NOTICE, VERBOSE, DEBUG
+
+# DNS Configuration (optional)
+# route53_zone_id = "Z1234567890ABC"
+# domain_name = "sip.yourdomain.com"

@@ -1,0 +1,12 @@
+{
+  "name": "LIMIT_REPLACE_NODE",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[...]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/fast-safe-stringify/index.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "DEFAULT_LOG_TARGET",
+  "description": "Prompt template extracted from target.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "stderr:",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/bs-logger/dist/logger/target.js",
+    "imported": true
+  }
+}

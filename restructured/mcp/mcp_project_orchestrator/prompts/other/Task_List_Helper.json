@@ -1,0 +1,14 @@
+{
+  "name": "Task List Helper",
+  "description": "A basic prompt to help organize and prioritize tasks",
+  "type": "prompt",
+  "category": "other",
+  "content": "Please create a prioritized task list based on the following requirements:\n\n{{requirements}}",
+  "variables": [
+    "requirements"
+  ],
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/task-list-helper-8ithy.json",
+    "imported": true
+  }
+}

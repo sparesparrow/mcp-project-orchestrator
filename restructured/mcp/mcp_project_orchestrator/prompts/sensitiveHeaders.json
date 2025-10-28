@@ -1,0 +1,12 @@
+{
+  "name": "sensitiveHeaders",
+  "description": "Prompt template extracted from http2.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "</styles.css>; rel=preload; as=style",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@types/node/http2.d.ts",
+    "imported": true
+  }
+}

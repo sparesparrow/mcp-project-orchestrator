@@ -1,0 +1,12 @@
+{
+  "name": "data",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "sourceMappingURL=",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/convert-source-map/index.js",
+    "imported": true
+  }
+}

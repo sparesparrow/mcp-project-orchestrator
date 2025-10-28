@@ -1,0 +1,12 @@
+{
+  "name": "SUBPROTOCOL",
+  "description": "Prompt template extracted from websocket.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "mcp",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/@modelcontextprotocol/server-postgres/node_modules/@modelcontextprotocol/sdk/dist/client/websocket.js",
+    "imported": true
+  }
+}

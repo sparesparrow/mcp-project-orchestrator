@@ -1,0 +1,12 @@
+{
+  "name": "DEFAULT_DELIMITER",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "/",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/path-to-regexp/dist/index.js",
+    "imported": true
+  }
+}

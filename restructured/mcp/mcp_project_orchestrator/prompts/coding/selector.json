@@ -1,0 +1,12 @@
+{
+  "name": "selector",
+  "description": "Prompt template extracted from 2065.e9b5d8d0a8bec3304454.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "mjx-c",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/2065.e9b5d8d0a8bec3304454.js",
+    "imported": true
+  }
+}

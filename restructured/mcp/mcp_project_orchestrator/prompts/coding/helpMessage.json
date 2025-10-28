@@ -1,0 +1,12 @@
+{
+  "name": "helpMessage",
+  "description": "Prompt template extracted from missing-plugin-helper.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Support for the experimental syntax ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/parser/util/missing-plugin-helper.js",
+    "imported": true
+  }
+}

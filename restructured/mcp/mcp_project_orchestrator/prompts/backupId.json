@@ -1,0 +1,12 @@
+{
+  "name": "backupId",
+  "description": "Prompt template extracted from adapters.js",
+  "type": "prompt",
+  "category": "user",
+  "content": "file_backup_${new Date().toISOString().replace(/[:.]/g, ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/@sparesparrow/mcp-prompts/dist/adapters.js",
+    "imported": true
+  }
+}

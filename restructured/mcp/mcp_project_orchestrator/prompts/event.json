@@ -1,0 +1,12 @@
+{
+  "name": "event",
+  "description": "Prompt template extracted from 7450.a58b6759d984aebf0459.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "delete.selection",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7450.a58b6759d984aebf0459.js",
+    "imported": true
+  }
+}

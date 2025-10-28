@@ -1,0 +1,12 @@
+{
+  "name": "name",
+  "description": "Prompt template extracted from function-name.test.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "fn${naturalNumber}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@sinonjs/commons/lib/function-name.test.js",
+    "imported": true
+  }
+}

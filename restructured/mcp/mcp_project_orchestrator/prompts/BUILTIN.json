@@ -1,0 +1,12 @@
+{
+  "name": "BUILTIN",
+  "description": "Prompt template extracted from 8979.cafa00ee6b2e82b39a17.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "builtin",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8979.cafa00ee6b2e82b39a17.js",
+    "imported": true
+  }
+}

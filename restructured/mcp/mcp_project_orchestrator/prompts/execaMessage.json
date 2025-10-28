@@ -1,0 +1,12 @@
+{
+  "name": "execaMessage",
+  "description": "Prompt template extracted from error.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Command ${prefix}: ${command}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/execa/lib/error.js",
+    "imported": true
+  }
+}

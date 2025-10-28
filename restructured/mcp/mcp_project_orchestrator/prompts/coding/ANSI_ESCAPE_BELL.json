@@ -1,0 +1,12 @@
+{
+  "name": "ANSI_ESCAPE_BELL",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u0007",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/wrap-ansi-cjs/index.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "DID_NOT_THROW",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "Received function did not throw",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-snapshot/build/index.js",
+    "imported": true
+  }
+}

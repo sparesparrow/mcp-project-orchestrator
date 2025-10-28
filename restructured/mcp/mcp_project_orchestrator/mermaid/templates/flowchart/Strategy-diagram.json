@@ -1,0 +1,10 @@
+{
+  "name": "Strategy-diagram",
+  "description": "Mermaid diagram for Strategy pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Strategy Design Pattern, showing interchangeable algorithms and their selection criteria.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

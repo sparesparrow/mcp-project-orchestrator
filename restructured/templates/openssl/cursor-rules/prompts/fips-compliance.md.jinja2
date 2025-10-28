@@ -1,0 +1,252 @@
+# FIPS 140-2 Compliance Guidelines
+
+## Overview
+
+This document provides guidelines for ensuring FIPS 140-2 compliance in OpenSSL development. FIPS 140-2 (Federal Information Processing Standard) is a U.S. government standard that specifies security requirements for cryptographic modules.
+
+## FIPS 140-2 Requirements
+
+### Security Levels
+
+FIPS 140-2 defines four security levels:
+
+- **Level 1**: Basic security requirements
+- **Level 2**: Physical security requirements
+- **Level 3**: Physical security and identity-based authentication
+- **Level 4**: Physical security and identity-based authentication with tamper detection
+
+### Cryptographic Module Requirements
+
+#### Approved Algorithms
+- **Symmetric Encryption**: AES (128, 192, 256 bit keys)
+- **Asymmetric Encryption**: RSA, ECDSA, ECDH
+- **Hash Functions**: SHA-1, SHA-224, SHA-256, SHA-384, SHA-512
+- **Message Authentication**: HMAC
+- **Key Derivation**: PBKDF2, HKDF
+- **Random Number Generation**: FIPS-approved RNGs
+
+#### Prohibited Algorithms
+- **MD5**: Not FIPS-approved
+- **RC4**: Not FIPS-approved
+- **DES**: Not FIPS-approved (except for legacy support)
+- **Custom Algorithms**: Not allowed unless FIPS-approved
+
+## Implementation Guidelines
+
+### Algorithm Selection
+
+#### Symmetric Encryption
+```c
+// Good - FIPS-approved AES
+EVP_CIPHER *cipher = EVP_aes_256_gcm();
+
+// Bad - Not FIPS-approved
+EVP_CIPHER *cipher = EVP_rc4();
+```
+
+#### Hash Functions
+```c
+// Good - FIPS-approved SHA-256
+EVP_MD *md = EVP_sha256();
+
+// Bad - Not FIPS-approved
+EVP_MD *md = EVP_md5();
+```
+
+#### Random Number Generation
+```c
+// Good - FIPS-approved RNG
+if (RAND_bytes(random_data, 32) <= 0) {
+    // Handle error
+}
+
+// Bad - Not FIPS-approved
+random_data[0] = rand() % 256;
+```
+
+### Key Management
+
+#### Key Generation
+- **Key Sizes**: Use FIPS-approved key sizes
+- **Key Strength**: Ensure sufficient key strength
+- **Key Derivation**: Use FIPS-approved key derivation functions
+
+```c
+// Good - FIPS-approved key generation
+EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, NULL);
+EVP_PKEY_keygen_init(ctx);
+EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, 2048);  // FIPS-approved size
+EVP_PKEY_keygen(ctx, &pkey);
+
+// Bad - Insufficient key size
+EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, 1024);  // Not FIPS-approved
+```
+
+#### Key Storage
+- **Secure Storage**: Store keys securely
+- **Key Protection**: Protect keys from unauthorized access
+- **Key Disposal**: Properly dispose of keys when no longer needed
+
+```c
+// Good - Secure key storage
+EVP_PKEY *pkey = EVP_PKEY_new();
+// ... use pkey ...
+EVP_PKEY_free(pkey);  // Proper cleanup
+
+// Bad - Insecure key storage
+// Storing keys in plain text files
+```
+
+### Cryptographic Operations
+
+#### Encryption/Decryption
+- **Mode Selection**: Use FIPS-approved modes (GCM, CBC, etc.)
+- **Padding**: Use FIPS-approved padding schemes
+- **Initialization Vectors**: Use cryptographically secure IVs
+
+```c
+// Good - FIPS-approved AES-GCM
+EVP_CIPHER *cipher = EVP_aes_256_gcm();
+EVP_EncryptInit_ex(ctx, cipher, NULL, key, iv);
+
+// Bad - Not FIPS-approved
+EVP_CIPHER *cipher = EVP_rc4();
+```
+
+#### Digital Signatures
+- **Hash Functions**: Use FIPS-approved hash functions
+- **Signature Algorithms**: Use FIPS-approved signature algorithms
+- **Key Sizes**: Use FIPS-approved key sizes
+
+```c
+// Good - FIPS-approved ECDSA with SHA-256
+EVP_MD *md = EVP_sha256();
+EVP_DigestSignInit(ctx, NULL, md, NULL, pkey);
+
+// Bad - Not FIPS-approved
+EVP_MD *md = EVP_md5();
+```
+
+### Random Number Generation
+
+#### Entropy Sources
+- **Hardware RNG**: Use hardware random number generators when available
+- **Software RNG**: Use FIPS-approved software RNGs
+- **Entropy Pool**: Maintain sufficient entropy in the entropy pool
+
+```c
+// Good - FIPS-approved random number generation
+if (RAND_bytes(random_data, 32) <= 0) {
+    // Handle error
+}
+
+// Bad - Not FIPS-approved
+random_data[0] = rand() % 256;
+```
+
+#### Seed Management
+- **Seeding**: Properly seed the RNG
+- **Reseeding**: Reseed the RNG periodically
+- **Seed Quality**: Ensure high-quality seed material
+
+```c
+// Good - Proper seeding
+if (RAND_seed(seed_data, seed_length) <= 0) {
+    // Handle error
+}
+
+// Bad - Insufficient seeding
+RAND_seed("weak_seed", 10);
+```
+
+## Testing Requirements
+
+### Algorithm Validation
+- **Known Answer Tests**: Test with known test vectors
+- **Monte Carlo Tests**: Test with random inputs
+- **Boundary Tests**: Test boundary conditions
+- **Error Tests**: Test error conditions
+
+### Key Management Testing
+- **Key Generation**: Test key generation functions
+- **Key Storage**: Test key storage mechanisms
+- **Key Disposal**: Test key disposal functions
+- **Key Access**: Test key access controls
+
+### Random Number Generation Testing
+- **Entropy Tests**: Test entropy sources
+- **Statistical Tests**: Test random number quality
+- **Seed Tests**: Test seeding mechanisms
+- **Reseed Tests**: Test reseeding functions
+
+## Documentation Requirements
+
+### Security Policy
+- **Module Description**: Describe the cryptographic module
+- **Security Level**: Specify the security level
+- **Algorithms**: List approved algorithms
+- **Key Management**: Describe key management procedures
+
+### User Guide
+- **Installation**: Provide installation instructions
+- **Configuration**: Describe configuration options
+- **Usage**: Provide usage examples
+- **Troubleshooting**: Include troubleshooting information
+
+### Developer Guide
+- **API Reference**: Document all APIs
+- **Examples**: Provide code examples
+- **Best Practices**: Describe best practices
+- **Common Pitfalls**: List common pitfalls
+
+## Compliance Verification
+
+### Self-Tests
+- **Power-Up Tests**: Run tests on module startup
+- **Conditional Tests**: Run tests on specific conditions
+- **Continuous Tests**: Run tests continuously during operation
+- **Error Handling**: Handle test failures appropriately
+
+### Validation Testing
+- **Algorithm Validation**: Validate all algorithms
+- **Module Validation**: Validate the entire module
+- **Integration Testing**: Test integration with other systems
+- **Performance Testing**: Test performance characteristics
+
+## Common Pitfalls
+
+### Algorithm Selection
+- **Avoid MD5**: MD5 is not FIPS-approved
+- **Avoid RC4**: RC4 is not FIPS-approved
+- **Use Approved Modes**: Use only FIPS-approved modes
+- **Check Key Sizes**: Ensure key sizes are FIPS-approved
+
+### Key Management
+- **Secure Storage**: Store keys securely
+- **Proper Disposal**: Dispose of keys properly
+- **Access Control**: Implement proper access controls
+- **Key Rotation**: Implement key rotation policies
+
+### Random Number Generation
+- **Use Approved RNGs**: Use only FIPS-approved RNGs
+- **Proper Seeding**: Seed RNGs properly
+- **Entropy Quality**: Ensure high-quality entropy
+- **Reseeding**: Reseed RNGs periodically
+
+## Best Practices
+
+### Development
+- **Code Review**: Review code for FIPS compliance
+- **Testing**: Test for FIPS compliance
+- **Documentation**: Document FIPS compliance
+- **Validation**: Validate FIPS compliance
+
+### Deployment
+- **Configuration**: Configure for FIPS compliance
+- **Monitoring**: Monitor for FIPS compliance
+- **Updates**: Keep FIPS compliance up to date
+- **Auditing**: Audit FIPS compliance regularly
+
+## Conclusion
+
+FIPS 140-2 compliance is essential for cryptographic modules used in government and regulated environments. Following these guidelines ensures that OpenSSL implementations meet FIPS 140-2 requirements and maintain the highest security standards.

@@ -1,0 +1,30 @@
+{
+  "component_templates": {
+    "templates": [
+      "Factory",
+      "AbstractFactory",
+      "Builder",
+      "Prototype",
+      "Singleton",
+      "Adapter",
+      "Decorator",
+      "Facade",
+      "Proxy",
+      "Chain",
+      "Command",
+      "Iterator",
+      "Mediator",
+      "Memento",
+      "Observer",
+      "State",
+      "Strategy",
+      "TemplateMethod",
+      "Visitor"
+    ],
+    "count": 19
+  },
+  "project_templates": {
+    "templates": [],
+    "count": 0
+  }
+}

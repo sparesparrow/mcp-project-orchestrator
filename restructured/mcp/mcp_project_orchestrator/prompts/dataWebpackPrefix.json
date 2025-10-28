@@ -1,0 +1,12 @@
+{
+  "name": "dataWebpackPrefix",
+  "description": "Prompt template extracted from main.407246dd27aed8010549.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "_JUPYTERLAB.CORE_OUTPUT:",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/main.407246dd27aed8010549.js",
+    "imported": true
+  }
+}

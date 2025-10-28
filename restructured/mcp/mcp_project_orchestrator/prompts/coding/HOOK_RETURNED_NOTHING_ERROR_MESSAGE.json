@@ -1,0 +1,12 @@
+{
+  "name": "HOOK_RETURNED_NOTHING_ERROR_MESSAGE",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[Pirates] A hook returned a non-string, or nothing at all! This is a",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/pirates/lib/index.js",
+    "imported": true
+  }
+}

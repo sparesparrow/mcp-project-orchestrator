@@ -1,0 +1,12 @@
+{
+  "name": "pBuiltins",
+  "description": "Prompt template extracted from 8381.0291906ada65d4e5df4e.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "ABS ACOS ARITY ASIN ATAN AVG BAGSIZE BINSTORAGE BLOOM BUILDBLOOM CBRT CEIL ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8381.0291906ada65d4e5df4e.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "queryText",
+  "description": "Prompt template extracted from sizing.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "SELECT COUNT(*) as counts FROM pg_stat_activity WHERE ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pg-pool/test/sizing.js",
+    "imported": true
+  }
+}

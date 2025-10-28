@@ -1,0 +1,12 @@
+{
+  "name": "source",
+  "description": "Prompt template extracted from picomatch.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${prepend}(?:${state.output})${append}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/picomatch/lib/picomatch.js",
+    "imported": true
+  }
+}

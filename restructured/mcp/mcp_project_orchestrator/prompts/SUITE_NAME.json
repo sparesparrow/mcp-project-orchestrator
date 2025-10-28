@@ -1,0 +1,12 @@
+{
+  "name": "SUITE_NAME",
+  "description": "Prompt template extracted from string.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "z.string",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/zod-to-json-schema/dist-test/cjs/node_modules/zod/lib/benchmarks/string.js",
+    "imported": true
+  }
+}

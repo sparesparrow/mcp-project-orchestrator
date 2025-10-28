@@ -1,0 +1,12 @@
+{
+  "name": "nonKey",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "not a core module",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/is-core-module/test/index.js",
+    "imported": true
+  }
+}

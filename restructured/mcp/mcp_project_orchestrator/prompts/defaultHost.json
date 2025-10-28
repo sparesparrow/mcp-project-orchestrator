@@ -1,0 +1,12 @@
+{
+  "name": "defaultHost",
+  "description": "Prompt template extracted from http2wrapper.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "localhost",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/superagent/lib/node/http2wrapper.js",
+    "imported": true
+  }
+}

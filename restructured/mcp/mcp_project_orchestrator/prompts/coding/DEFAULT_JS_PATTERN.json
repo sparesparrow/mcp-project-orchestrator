@@ -1,0 +1,12 @@
+{
+  "name": "DEFAULT_JS_PATTERN",
+  "description": "Prompt template extracted from index.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\.[jt]sx?$",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-config/build/index.d.ts",
+    "imported": true
+  }
+}

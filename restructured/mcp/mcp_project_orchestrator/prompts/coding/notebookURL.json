@@ -1,0 +1,12 @@
+{
+  "name": "notebookURL",
+  "description": "Prompt template extracted from 9380.709f3e6308fc49ccb353.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "https://github.com/jupyter/notebook",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/9380.709f3e6308fc49ccb353.js",
+    "imported": true
+  }
+}

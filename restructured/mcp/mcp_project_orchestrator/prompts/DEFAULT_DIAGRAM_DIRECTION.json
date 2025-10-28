@@ -1,0 +1,12 @@
+{
+  "name": "DEFAULT_DIAGRAM_DIRECTION",
+  "description": "Prompt template extracted from 5343.9b1635b1e24801d5d086.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "LR",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/5343.9b1635b1e24801d5d086.js",
+    "imported": true
+  }
+}

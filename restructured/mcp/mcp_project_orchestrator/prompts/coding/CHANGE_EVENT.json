@@ -1,0 +1,12 @@
+{
+  "name": "CHANGE_EVENT",
+  "description": "Prompt template extracted from FSEventsWatcher.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "change",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-haste-map/build/watchers/FSEventsWatcher.js",
+    "imported": true
+  }
+}

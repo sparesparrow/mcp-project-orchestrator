@@ -1,0 +1,12 @@
+{
+  "name": "bgModel",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "bg",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/chalk/source/index.js",
+    "imported": true
+  }
+}

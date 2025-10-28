@@ -1,0 +1,12 @@
+{
+  "name": "NOT_A_DOT",
+  "description": "Prompt template extracted from dependencyExtractor.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "(?<!\\\\.\\\\s*)",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-haste-map/build/lib/dependencyExtractor.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,256 @@
+[
+  {
+    "project_name": "MicroservicesArchitectureProject",
+    "description": "This project demonstrates the Microservices Architecture, where the application is divided into multiple small, loosely coupled, and independently deployable services. Each microservice has its own business logic and database.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "UserService",
+        "template": "UserService",
+        "description": "Handles user-related operations."
+      },
+      {
+        "name": "OrderService",
+        "template": "OrderService",
+        "description": "Handles order-related operations."
+      },
+      {
+        "name": "ServiceDiscovery",
+        "template": "ServiceDiscovery",
+        "description": "Service discovery component for registering and discovering microservices."
+      },
+      {
+        "name": "CircuitBreaker",
+        "template": "CircuitBreaker",
+        "description": "Circuit breaker component to handle fault tolerance in microservices."
+      }
+    ]
+  },
+  {
+    "project_name": "EventDrivenArchitectureProject",
+    "description": "This project demonstrates Event-Driven Architecture, where the application is designed around the production, detection, and reaction to events. Components communicate through events, enabling asynchronous and decoupled communication.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "EventProducer",
+        "template": "EventProducer",
+        "description": "Produces events for various actions."
+      },
+      {
+        "name": "EventConsumer",
+        "template": "EventConsumer",
+        "description": "Consumes events and performs actions."
+      },
+      {
+        "name": "EventPublisher",
+        "template": "EventPublisher",
+        "description": "Publishes events to subscribers."
+      },
+      {
+        "name": "EventSubscriber",
+        "template": "EventSubscriber",
+        "description": "Subscribes to events and processes them."
+      },
+      {
+        "name": "EventStore",
+        "template": "EventStore",
+        "description": "Stores events for event sourcing."
+      }
+    ]
+  },
+  {
+    "project_name": "RepositoryPatternProject",
+    "description": "This project demonstrates the Repository Pattern, which is used to create an abstraction layer between the data access layer and the business logic layer of an application. The Repository pattern is often used in conjunction with the Unit of Work pattern to manage transactions.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "UserRepository",
+        "template": "UserRepository",
+        "description": "Handles user data operations."
+      },
+      {
+        "name": "OrderRepository",
+        "template": "OrderRepository",
+        "description": "Handles order data operations."
+      },
+      {
+        "name": "UnitOfWork",
+        "template": "UnitOfWork",
+        "description": "Manages transactions and coordinates the work of multiple repositories."
+      }
+    ]
+  },
+  {
+    "project_name": "CQRSProject",
+    "description": "This project demonstrates CQRS, a pattern that separates read and write operations into different models. It is often used with Event Sourcing to provide a clear audit trail of changes.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "CommandHandler",
+        "template": "CommandHandler",
+        "description": "Handles command operations for write model."
+      },
+      {
+        "name": "QueryHandler",
+        "template": "QueryHandler",
+        "description": "Handles query operations for read model."
+      },
+      {
+        "name": "EventStore",
+        "template": "EventStore",
+        "description": "Stores events for event sourcing."
+      }
+    ]
+  },
+  {
+    "project_name": "ClientServerProject",
+    "description": "ClientServerProject is a sample project demonstrating the Client-Server pattern. The project includes client and server components that interact via API calls.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "ClientComponent",
+        "template": "ClientComponent",
+        "description": "Main component handling client-side functionalities."
+      },
+      {
+        "name": "ServerComponent",
+        "template": "ServerComponent",
+        "description": "API provider component."
+      },
+      {
+        "name": "IntegrationTests",
+        "template": "IntegrationTests",
+        "description": "Integration tests component."
+      }
+    ]
+  },
+  {
+    "project_name": "ModularMonolithProject",
+    "description": "This project showcases a modular monolith architecture, balancing the benefits of a single codebase with modular separability for easier maintenance.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "CoreModule",
+        "template": "CoreModule",
+        "description": "Contains core business logic and shared services."
+      },
+      {
+        "name": "UserModule",
+        "template": "UserModule",
+        "description": "Handles user operations and authentication."
+      },
+      {
+        "name": "ProductModule",
+        "template": "ProductModule",
+        "description": "Manages product catalog and inventory."
+      }
+    ]
+  },
+  {
+    "project_name": "ServerlessFunctionProject",
+    "description": "This project demonstrates a serverless architecture utilizing Function-as-a-Service, reducing operational overhead and scaling dynamically. It leverages orchestration patterns for function composition.",
+    "mermaid": "",
+    "directory_structure": "",
+    "components": [
+      {
+        "name": "AuthFunction",
+        "template": "AuthFunction",
+        "description": "Handles authentication operations in a serverless environment."
+      },
+      {
+        "name": "DataProcessingFunction",
+        "template": "DataProcessingFunction",
+        "description": "Processes data and triggers events."
+      },
+      {
+        "name": "OrchestrationLayer",
+        "template": "OrchestrationLayer",
+        "description": "Manages workflow orchestration and function chaining."
+      }
+    ]
+  },
+  {
+    "project_name": "BridgeProject",
+    "description": "This project illustrates the Bridge design pattern to separate abstractions from their implementations.",
+    "mermaid": "Generate a Mermaid diagram for BridgeProject showing the separation between abstraction and implementation.",
+    "directory_structure": "Create directories: Bridge/ with subdirectories src, tests, docs.",
+    "components": [
+      {
+        "name": "BridgeComponent",
+        "template": "BridgeComponent",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "project_name": "CompositeProject",
+    "description": "This project demonstrates the Composite design pattern to compose objects into tree structures.",
+    "mermaid": "Generate a Mermaid diagram for CompositeProject illustrating the tree structure of objects and their uniform treatment.",
+    "directory_structure": "Create directories: Composite/ with subdirectories src, tests, docs.",
+    "components": [
+      {
+        "name": "CompositeComponent",
+        "template": "CompositeComponent",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "project_name": "FlyweightProject",
+    "description": "This project illustrates the Flyweight design pattern to minimize memory usage by sharing common state.",
+    "mermaid": "Generate a Mermaid diagram for FlyweightProject to illustrate sharing of common state among objects.",
+    "directory_structure": "Create directories: Flyweight/ with subdirectories src, tests, docs.",
+    "components": [
+      {
+        "name": "FlyweightComponent",
+        "template": "FlyweightComponent",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "project_name": "StrategyProject",
+    "description": "This project demonstrates the Strategy design pattern to define a family of algorithms, encapsulate each one, and make them interchangeable.",
+    "mermaid": "Generate a Mermaid diagram for StrategyProject showing interchangeable algorithms and their selection criteria.",
+    "directory_structure": "Create directories: Strategy/ with subdirectories src, tests, docs.",
+    "components": [
+      {
+        "name": "StrategyComponent",
+        "template": "StrategyComponent",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "project_name": "TemplateMethodProject",
+    "description": "This project illustrates the Template Method design pattern to define the skeleton of an algorithm while letting subclasses override certain steps.",
+    "mermaid": "Generate a Mermaid diagram for TemplateMethodProject illustrating the skeletal algorithm with customizable steps.",
+    "directory_structure": "Create directories: TemplateMethod/ with subdirectories src, tests, docs.",
+    "components": [
+      {
+        "name": "TemplateMethodComponent",
+        "template": "TemplateMethodComponent",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "project_name": "VisitorProject",
+    "description": "This project demonstrates the Visitor design pattern to separate algorithms from the objects on which they operate.",
+    "mermaid": "Generate a Mermaid diagram for VisitorProject showing the separation of operations from object structure.",
+    "directory_structure": "Create directories: Visitor/ with subdirectories src, tests, docs.",
+    "components": [
+      {
+        "name": "VisitorComponent",
+        "template": "VisitorComponent",
+        "description": ""
+      }
+    ]
+  }
+]

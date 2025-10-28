@@ -1,0 +1,12 @@
+{
+  "name": "SPACE",
+  "description": "Prompt template extracted from AsymmetricMatcher.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/pretty-format/build/plugins/AsymmetricMatcher.js",
+    "imported": true
+  }
+}

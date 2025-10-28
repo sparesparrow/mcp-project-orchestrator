@@ -1,0 +1,12 @@
+{
+  "name": "MERMAID_DOM_ID_PREFIX",
+  "description": "Prompt template extracted from 1261.a7489136daa9b610b37f.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "flowchart-",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1261.a7489136daa9b610b37f.js",
+    "imported": true
+  }
+}

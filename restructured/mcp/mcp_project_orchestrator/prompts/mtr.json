@@ -1,0 +1,12 @@
+{
+  "name": "mtr",
+  "description": "Prompt template extracted from 7154.1ab03d07151bbd0aad06.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "mtr",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/7154.1ab03d07151bbd0aad06.js",
+    "imported": true
+  }
+}
