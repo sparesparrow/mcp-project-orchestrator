@@ -1,0 +1,12 @@
+{
+  "name": "NM",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${node_path_1.sep}node_modules${node_path_1.sep}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/package-json-from-dist/dist/commonjs/index.js",
+    "imported": true
+  }
+}

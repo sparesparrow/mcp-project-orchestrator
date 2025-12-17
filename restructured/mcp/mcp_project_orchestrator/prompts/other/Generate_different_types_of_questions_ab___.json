@@ -1,0 +1,12 @@
+{
+  "name": "Generate different types of questions ab...",
+  "description": "Generate different types of questions about the given text",
+  "type": "prompt",
+  "category": "other",
+  "content": "Generate different types of questions about the given text. Each question must be on a new line. Do not include empty lines or blank questions.",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/generate-different-types-of-questions-ab.json",
+    "imported": true
+  }
+}

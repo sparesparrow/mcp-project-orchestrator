@@ -1,0 +1,12 @@
+{
+  "name": "MOCK_CONSTRUCTOR_NAME",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "mockConstructor",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-mock/build/index.js",
+    "imported": true
+  }
+}

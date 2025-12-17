@@ -1,0 +1,12 @@
+{
+  "name": "inputText",
+  "description": "Prompt template extracted from patternModeHelpers.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${_chalk().default.dim(",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-watcher/build/lib/patternModeHelpers.js",
+    "imported": true
+  }
+}

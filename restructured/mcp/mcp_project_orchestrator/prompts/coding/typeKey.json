@@ -1,0 +1,12 @@
+{
+  "name": "typeKey",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "is${type}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/traverse/lib/path/index.js",
+    "imported": true
+  }
+}

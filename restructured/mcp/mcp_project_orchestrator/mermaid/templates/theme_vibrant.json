@@ -1,0 +1,10 @@
+{
+  "name": "theme_vibrant",
+  "description": "Mermaid flowchart diagram",
+  "type": "flowchart",
+  "content": "graph TD\n    A[Start] --> B[Process]\n    B --> C[End]\n    B --> D[Alternative]\n\n%% Styling\nclassDef default fill:#ffffff,stroke:#4a86e8,stroke-width:1px,color:#333333,rx:5px,ry:5px\nclassDef highlight fill:#ff7700,stroke:#4a86e8,stroke-width:2px,color:white,rx:5px,ry:5px\nclassDef success fill:#6aa84f,stroke:#4a86e8,stroke-width:1px,color:white,rx:5px,ry:5px\nclassDef warning fill:#f1c232,stroke:#4a86e8,stroke-width:1px,color:#333333,rx:5px,ry:5px\nclassDef error fill:#cc0000,stroke:#4a86e8,stroke-width:1px,color:white,rx:5px,ry:5px",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

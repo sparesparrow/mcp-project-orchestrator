@@ -1,0 +1,12 @@
+{
+  "name": "versionMajorMinor",
+  "description": "Prompt template extracted from _tsc.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "5.8",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/typescript/lib/_tsc.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "stringifiedObject",
+  "description": "Prompt template extracted from generateConfigFile.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${option}: ${JSON.stringify(\n    map[option],\n    null,\n    2\n  )}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/create-jest/build/generateConfigFile.js",
+    "imported": true
+  }
+}

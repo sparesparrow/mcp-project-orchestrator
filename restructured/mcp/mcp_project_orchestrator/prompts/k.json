@@ -1,0 +1,12 @@
+{
+  "name": "k",
+  "description": "Prompt template extracted from 6483.79f1ab5249584f984bf4.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "LR",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/6483.79f1ab5249584f984bf4.js",
+    "imported": true
+  }
+}

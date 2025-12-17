@@ -1,0 +1,12 @@
+{
+  "name": "sseUrl",
+  "description": "Prompt template extracted from test-sse-client.js",
+  "type": "prompt",
+  "category": "other",
+  "content": "http://localhost:3003/events?transportType=sse",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/legacy/sse/test-sse-client.js",
+    "imported": true
+  }
+}

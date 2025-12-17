@@ -1,0 +1,12 @@
+{
+  "name": "defaultHelpOpt",
+  "description": "Prompt template extracted from yargs-factory.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "help",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/yargs/build/lib/yargs-factory.js",
+    "imported": true
+  }
+}

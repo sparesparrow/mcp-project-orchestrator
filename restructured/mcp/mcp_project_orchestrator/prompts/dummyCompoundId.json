@@ -1,0 +1,12 @@
+{
+  "name": "dummyCompoundId",
+  "description": "Prompt template extracted from 1495.41f3debb92dfdd91c6da.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "DummyCompound_",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1495.41f3debb92dfdd91c6da.js",
+    "imported": true
+  }
+}

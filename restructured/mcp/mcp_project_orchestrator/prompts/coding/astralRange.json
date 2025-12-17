@@ -1,0 +1,12 @@
+{
+  "name": "astralRange",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\ud800-\\\\udfff",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/char-regex/index.js",
+    "imported": true
+  }
+}

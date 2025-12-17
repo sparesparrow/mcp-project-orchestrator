@@ -1,0 +1,12 @@
+{
+  "name": "DOCUMENTATION_NOTE",
+  "description": "Prompt template extracted from validateCLIOptions.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "  ${_chalk().default.bold(\n  ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-validate/build/validateCLIOptions.js",
+    "imported": true
+  }
+}

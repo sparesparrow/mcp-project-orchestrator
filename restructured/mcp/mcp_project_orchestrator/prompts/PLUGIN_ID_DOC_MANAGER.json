@@ -1,0 +1,12 @@
+{
+  "name": "PLUGIN_ID_DOC_MANAGER",
+  "description": "Prompt template extracted from lib_extension_index_js.cc9baf28438ab1b21a09.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "@jupyterlab/docmanager-extension:manager",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/jupyterlab/galata/@jupyterlab/galata-extension/static/lib_extension_index_js.cc9baf28438ab1b21a09.js",
+    "imported": true
+  }
+}

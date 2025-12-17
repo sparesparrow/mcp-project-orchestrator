@@ -1,0 +1,12 @@
+{
+  "name": "sqlKeywords",
+  "description": "Prompt template extracted from 8479.1807152edb3d746c4d0b.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "alter and as asc between by count create delete desc distinct drop from group having in insert into is join like not on or order select set table union update values where limit ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/8479.1807152edb3d746c4d0b.js",
+    "imported": true
+  }
+}

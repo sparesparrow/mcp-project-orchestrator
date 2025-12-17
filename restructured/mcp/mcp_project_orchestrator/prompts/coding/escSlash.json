@@ -1,0 +1,12 @@
+{
+  "name": "escSlash",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\0SLASH",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/brace-expansion/index.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "PACKAGE_FILENAME",
+  "description": "Prompt template extracted from package.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "package.json",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/core/lib/config/files/package.js",
+    "imported": true
+  }
+}

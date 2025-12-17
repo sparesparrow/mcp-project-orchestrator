@@ -1,0 +1,12 @@
+{
+  "name": "json",
+  "description": "Prompt template extracted from index.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "{\n\t// Rainbows\n\t",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/strip-json-comments/index.d.ts",
+    "imported": true
+  }
+}

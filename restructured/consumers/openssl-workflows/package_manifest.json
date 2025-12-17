@@ -1,0 +1,32 @@
+{
+  "name": "openssl-workflows",
+  "version": "0.2.0",
+  "type": "github_actions",
+  "description": "GitHub Actions workflows for OpenSSL development",
+  "workflows": [
+    "ci-cd.yml",
+    "fips-validation.yml",
+    "release.yml",
+    "security-scan.yml"
+  ],
+  "platforms": [
+    "linux",
+    "windows",
+    "macos"
+  ],
+  "triggers": [
+    "push",
+    "pull_request",
+    "workflow_dispatch",
+    "schedule",
+    "release",
+    "tag"
+  ],
+  "features": [
+    "multi_platform_ci",
+    "fips_validation",
+    "security_scanning",
+    "automated_release",
+    "matrix_builds"
+  ]
+}

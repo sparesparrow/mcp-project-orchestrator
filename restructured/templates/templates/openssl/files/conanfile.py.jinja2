@@ -1,0 +1,25 @@
+from conan import ConanFile
+from conan.tools.cmake import CMake, cmake_layout
+
+class {{project_name|title}}Conan(ConanFile):
+    name = "{{project_name}}"
+    version = "0.1.0"
+    settings = "os", "compiler", "build_type", "arch"
+    generators = "CMakeDeps", "CMakeToolchain"
+    
+    def requirements(self):
+        self.requires("openssl/{{openssl_version}}")
+    
+    def layout(self):
+        cmake_layout(self)
+    
+    def configure(self):
+        {% if enable_fips %}
+        # FIPS government deployment
+        self.options["openssl"].deployment_target = "fips-government"
+        {% endif %}
+    
+    def build(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.build()

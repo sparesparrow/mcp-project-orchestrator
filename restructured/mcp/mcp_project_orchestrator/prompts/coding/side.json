@@ -1,0 +1,12 @@
+{
+  "name": "side",
+  "description": "Prompt template extracted from 9799.606ec31deee27f6716b0.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "top",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/9799.606ec31deee27f6716b0.js",
+    "imported": true
+  }
+}

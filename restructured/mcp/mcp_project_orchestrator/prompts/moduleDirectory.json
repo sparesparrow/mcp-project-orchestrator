@@ -1,0 +1,12 @@
+{
+  "name": "moduleDirectory",
+  "description": "Prompt template extracted from node-modules-paths.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "not node modules",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/resolve/test/node-modules-paths.js",
+    "imported": true
+  }
+}

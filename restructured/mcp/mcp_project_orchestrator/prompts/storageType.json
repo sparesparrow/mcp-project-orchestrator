@@ -1,0 +1,12 @@
+{
+  "name": "storageType",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "storage",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/publish/build/index.js",
+    "imported": true
+  }
+}

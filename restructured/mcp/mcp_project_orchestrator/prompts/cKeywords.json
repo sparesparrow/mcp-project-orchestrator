@@ -1,0 +1,12 @@
+{
+  "name": "cKeywords",
+  "description": "Prompt template extracted from 9425.9d70d88b5d2e3e2ac115.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "auto if break case register continue return default do sizeof ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/9425.9d70d88b5d2e3e2ac115.js",
+    "imported": true
+  }
+}

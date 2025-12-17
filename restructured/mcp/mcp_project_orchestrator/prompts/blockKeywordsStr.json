@@ -1,0 +1,12 @@
+{
+  "name": "blockKeywordsStr",
+  "description": "Prompt template extracted from 3501.c1c56527cb2f94c27dcf.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "body catch class do else enum for foreach foreach_reverse if in interface mixin ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/3501.c1c56527cb2f94c27dcf.js",
+    "imported": true
+  }
+}

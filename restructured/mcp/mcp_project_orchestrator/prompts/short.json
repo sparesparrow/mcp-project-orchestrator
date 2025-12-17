@@ -1,0 +1,12 @@
+{
+  "name": "short",
+  "description": "Prompt template extracted from primitives.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "short",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/zod-to-json-schema/dist-test/cjs/node_modules/zod/lib/benchmarks/primitives.js",
+    "imported": true
+  }
+}

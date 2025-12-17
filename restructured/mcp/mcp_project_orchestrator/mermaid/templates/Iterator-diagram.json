@@ -1,0 +1,10 @@
+{
+  "name": "Iterator-diagram",
+  "description": "Mermaid diagram for Iterator pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Iterator Design Pattern, showing sequential access to a collection.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "DOT",
+  "description": "Prompt template extracted from enhanceUnexpectedTokenMessage.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": " \\u2022 ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@jest/transform/build/enhanceUnexpectedTokenMessage.js",
+    "imported": true
+  }
+}

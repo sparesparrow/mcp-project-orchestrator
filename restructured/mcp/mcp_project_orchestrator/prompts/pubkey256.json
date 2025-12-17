@@ -1,0 +1,12 @@
+{
+  "name": "pubkey256",
+  "description": "Prompt template extracted from https.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "pL1+qb9HTMRZJmuC/bB/ZI9d302BYrrqiVuRyW+DGrU=",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@types/node/https.d.ts",
+    "imported": true
+  }
+}

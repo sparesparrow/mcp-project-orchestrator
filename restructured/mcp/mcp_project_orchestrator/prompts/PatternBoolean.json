@@ -1,0 +1,12 @@
+{
+  "name": "PatternBoolean",
+  "description": "Prompt template extracted from typebox.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "(true|false)",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@sinclair/typebox/typebox.d.ts",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "subkey",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${key}[${i}]",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@babel/types/lib/definitions/utils.js",
+    "imported": true
+  }
+}

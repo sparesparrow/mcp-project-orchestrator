@@ -1,0 +1,12 @@
+{
+  "name": "SNAPSHOT_VERSION",
+  "description": "Prompt template extracted from utils.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "1",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-snapshot/build/utils.js",
+    "imported": true
+  }
+}
