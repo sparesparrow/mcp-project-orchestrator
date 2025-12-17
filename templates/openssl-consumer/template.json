@@ -1,0 +1,14 @@
+{
+  "name": "openssl-consumer",
+  "description": "Template for OpenSSL consumer projects",
+  "type": "project",
+  "category": "library",
+  "variables": {
+    "project_name": "my-openssl-app",
+    "openssl_version": "3.4.1",
+    "deployment_target": "general",
+    "enable_fips": false,
+    "author_name": "Developer",
+    "author_email": "developer@example.com"
+  }
+}

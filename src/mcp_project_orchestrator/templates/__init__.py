@@ -31,7 +31,9 @@ class ProjectTemplate(BaseTemplate):
         project_root.mkdir(parents=True, exist_ok=True)
 
         for file in self.files:
-            dest = project_root / file.path
+            # Strip .jinja2 extension for output filename
+            dest_path = file.path.replace('.jinja2', '') if file.path.endswith('.jinja2') else file.path
+            dest = project_root / dest_path
             dest.parent.mkdir(parents=True, exist_ok=True)
             content = self.substitute_variables_jinja2(file.content) if file.path.endswith(".jinja2") else self.substitute_variables(file.content)
             dest.write_text(content)
