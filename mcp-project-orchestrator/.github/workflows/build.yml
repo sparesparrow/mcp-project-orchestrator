@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine "conan>=2.3,<3"
+          conan profile detect --force | cat
+
+      - name: Build Python artifacts
+        run: |
+          python -m build
+          ls -la dist | cat
+
+      - name: Upload Python dist as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-dist
+          path: dist/*
+
+      - name: Build Conan package
+        run: |
+          conan create . --user=sparesparrow --channel=stable --build=missing | cat
+          conan cache path mcp-project-orchestrator/0.1.0@sparesparrow/stable | cat
+
+      - name: Export Conan package to local
+        run: |
+          conan export-pkg . --name=mcp-project-orchestrator --version=0.1.0 --user=sparesparrow --channel=stable --force | cat
+

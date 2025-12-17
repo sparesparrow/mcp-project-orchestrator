@@ -1,0 +1,12 @@
+{
+  "name": "bt",
+  "description": "Prompt template extracted from 5090.404be96d8a6eae1e719a.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "ArrowDown",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/5090.404be96d8a6eae1e719a.js",
+    "imported": true
+  }
+}

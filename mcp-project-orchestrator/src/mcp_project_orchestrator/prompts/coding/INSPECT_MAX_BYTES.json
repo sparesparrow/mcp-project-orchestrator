@@ -1,0 +1,12 @@
+{
+  "name": "INSPECT_MAX_BYTES",
+  "description": "Prompt template extracted from buffer.d.ts",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\u00bd + \\u00bc = \\u00be",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/@types/node/buffer.d.ts",
+    "imported": true
+  }
+}

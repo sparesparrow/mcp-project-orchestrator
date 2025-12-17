@@ -1,0 +1,10 @@
+{
+  "name": "AbstractFactory-diagram",
+  "description": "Mermaid diagram for AbstractFactory pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing AbstractFactory Design Pattern, illustrating families of related objects and their creation process.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

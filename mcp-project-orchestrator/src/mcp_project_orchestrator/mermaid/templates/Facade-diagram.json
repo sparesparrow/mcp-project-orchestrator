@@ -1,0 +1,10 @@
+{
+  "name": "Facade-diagram",
+  "description": "Mermaid diagram for Facade pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Facade Design Pattern, showing a simplified interface versus a complex subsystem.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Adapter-diagram",
+  "description": "Mermaid diagram for Adapter pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Adapter Design Pattern, showing how incompatible interfaces are adapted to work together.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

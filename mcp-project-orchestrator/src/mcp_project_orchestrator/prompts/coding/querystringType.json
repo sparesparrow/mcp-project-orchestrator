@@ -1,0 +1,12 @@
+{
+  "name": "querystringType",
+  "description": "Prompt template extracted from querystring.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "urlencoded",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/formidable/src/plugins/querystring.js",
+    "imported": true
+  }
+}

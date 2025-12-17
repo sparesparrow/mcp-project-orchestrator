@@ -1,0 +1,12 @@
+{
+  "name": "cjsPattern",
+  "description": "Prompt template extracted from paths-to-module-name-mapper.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "^",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/ts-jest/dist/config/paths-to-module-name-mapper.js",
+    "imported": true
+  }
+}

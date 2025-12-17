@@ -1,0 +1,12 @@
+{
+  "name": "findPackageJson",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${sep}node_modules${sep}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/package-json-from-dist/dist/esm/index.js",
+    "imported": true
+  }
+}

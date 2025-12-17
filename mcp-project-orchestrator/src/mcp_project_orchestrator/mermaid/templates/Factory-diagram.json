@@ -1,0 +1,10 @@
+{
+  "name": "Factory-diagram",
+  "description": "Mermaid diagram for Factory pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing FactoryMethod Design Pattern, showing the factory, product, and client interactions.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

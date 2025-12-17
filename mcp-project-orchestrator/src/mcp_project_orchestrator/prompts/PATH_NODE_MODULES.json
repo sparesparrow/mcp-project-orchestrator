@@ -1,0 +1,12 @@
+{
+  "name": "PATH_NODE_MODULES",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "${path.sep}node_modules${path.sep}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-message-util/build/index.js",
+    "imported": true
+  }
+}

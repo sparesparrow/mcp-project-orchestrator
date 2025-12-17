@@ -1,0 +1,60 @@
+{
+  "enable": {
+    "cursorConfigs": true,
+    "pythonMcp": true,
+    "tsMcp": true,
+    "cppMcp": true,
+    "mcpClient": true,
+    "backgroundAgent": true,
+    "githubActions": true,
+    "devcontainer": true,
+    "awsTerraform": true,
+    "awsMcp": true,
+    "webAndMcp": true,
+    "cppConan": true,
+    "esp32": true,
+    "android": true
+  },
+  "aws": {
+    "enabled": true,
+    "services": ["s3", "ec2", "lambda", "cloudformation", "iam"],
+    "bestPractices": {
+      "enabled": true,
+      "enforcement": true
+    },
+    "costOptimization": {
+      "enabled": true,
+      "alertThreshold": 100
+    },
+    "security": {
+      "scanningEnabled": false,
+      "enforceEncryption": true
+    }
+  },
+  "ports": {
+    "pyMcpPort": 8765,
+    "tsMcpPort": 8766
+  },
+  "backgroundAgent": {
+    "host": "127.0.0.1",
+    "port": 8088
+  },
+  "tools": {
+    "largeCodebases": {
+      "enabled": true,
+      "exclude": ["node_modules", "build", "dist", ".git", ".venv", "venv"],
+      "maxFileSizeMB": 5
+    },
+    "mermaid": {
+      "enabled": true
+    }
+  },
+  "container": {
+    "prefer": "podman"
+  },
+  "runtime": {
+    "node": "lts/*",
+    "python": "3.11"
+  }
+}
+

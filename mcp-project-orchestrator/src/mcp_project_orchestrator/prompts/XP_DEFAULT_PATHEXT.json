@@ -1,0 +1,12 @@
+{
+  "name": "XP_DEFAULT_PATHEXT",
+  "description": "Prompt template extracted from which.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": ".com;.exe;.bat;.cmd;.vbs;.vbe;.js;.jse;.wsf;.wsh",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/shelljs/src/which.js",
+    "imported": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "prefix",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "file:////",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/collect-v8-coverage/index.js",
+    "imported": true
+  }
+}

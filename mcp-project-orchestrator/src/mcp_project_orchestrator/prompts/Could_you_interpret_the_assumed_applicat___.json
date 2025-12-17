@@ -1,0 +1,12 @@
+{
+  "name": "Could you interpret the assumed applicat...",
+  "description": "Could you interpret the assumed application of this software design as a life-story analogy?",
+  "type": "prompt",
+  "category": "other",
+  "content": "Could you interpret the assumed application of this software design as a life-story analogy?",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/mcp/data/prompts/could-you-interpret-the-assumed-applicat.json",
+    "imported": true
+  }
+}

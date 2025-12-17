@@ -1,0 +1,26 @@
+{
+  "name": "openssl-consumer",
+  "description": "Template for OpenSSL consumer projects", 
+  "type": "PROJECT",
+  "category": "CRYPTOGRAPHY",
+  "variables": {
+    "project_name": "my-openssl-app",
+    "openssl_version": "3.4.1",
+    "deployment_target": "general",
+    "enable_fips": false,
+    "author_name": "Developer",
+    "author_email": "developer@example.com"
+  },
+  "files": [
+    "conanfile.py.jinja2",
+    "main.cpp.jinja2", 
+    "CMakeLists.txt.jinja2",
+    "README.md.jinja2"
+  ],
+  "setup_commands": [
+    "conan remote add sparesparrow-conan https://conan.cloudsmith.io/sparesparrow-conan/openssl-conan/ --force",
+    "conan install . --build=missing",
+    "cmake --preset conan-default",
+    "cmake --build --preset conan-release"
+  ]
+}

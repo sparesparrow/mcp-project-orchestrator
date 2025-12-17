@@ -1,0 +1,12 @@
+{
+  "name": "cacheControl",
+  "description": "Prompt template extracted from index.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "public, max-age=",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/send/index.js",
+    "imported": true
+  }
+}

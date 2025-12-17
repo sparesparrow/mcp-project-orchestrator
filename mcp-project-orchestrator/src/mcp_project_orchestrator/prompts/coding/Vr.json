@@ -1,0 +1,12 @@
+{
+  "name": "Vr",
+  "description": "Prompt template extracted from 9046.99c477ea375dcbb8c7ca.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "font-family:monospace;border-bottom:1px solid #e2e2e2;padding:2px;",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/share/jupyter/lab/static/9046.99c477ea375dcbb8c7ca.js",
+    "imported": true
+  }
+}

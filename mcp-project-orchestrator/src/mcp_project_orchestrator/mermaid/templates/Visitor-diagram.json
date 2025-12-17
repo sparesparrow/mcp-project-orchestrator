@@ -1,0 +1,10 @@
+{
+  "name": "Visitor-diagram",
+  "description": "Mermaid diagram for Visitor pattern",
+  "type": "flowchart",
+  "content": "Generate a Mermaid diagram visualizing Visitor Design Pattern, showing the separation of operations from object structure.",
+  "variables": {},
+  "metadata": {
+    "imported": true
+  }
+}

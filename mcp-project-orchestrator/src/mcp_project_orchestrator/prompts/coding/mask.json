@@ -1,0 +1,12 @@
+{
+  "name": "mask",
+  "description": "Prompt template extracted from index.browser.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/custom-mcp/node_modules/pkce-challenge/dist/index.browser.js",
+    "imported": true
+  }
+}

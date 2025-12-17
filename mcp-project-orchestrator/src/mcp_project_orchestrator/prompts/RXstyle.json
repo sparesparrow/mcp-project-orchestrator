@@ -1,0 +1,12 @@
+{
+  "name": "RXstyle",
+  "description": "Prompt template extracted from 3322.e8348cc2a800190d4f49.js",
+  "type": "prompt",
+  "category": "system",
+  "content": "string.special",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/3322.e8348cc2a800190d4f49.js",
+    "imported": true
+  }
+}

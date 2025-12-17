@@ -1,0 +1,12 @@
+{
+  "name": "watchmanURL",
+  "description": "Prompt template extracted from watchman.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "https://facebook.github.io/watchman/docs/troubleshooting",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jest-haste-map/build/crawlers/watchman.js",
+    "imported": true
+  }
+}

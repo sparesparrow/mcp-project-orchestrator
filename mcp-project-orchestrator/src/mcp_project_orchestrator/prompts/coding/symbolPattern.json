@@ -1,0 +1,12 @@
+{
+  "name": "symbolPattern",
+  "description": "Prompt template extracted from 9331.5850506ebb1d3f304481.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "[-_a-zA-Z?!*@<>$%]+",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/9331.5850506ebb1d3f304481.js",
+    "imported": true
+  }
+}

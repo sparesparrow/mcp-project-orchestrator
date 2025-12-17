@@ -1,0 +1,12 @@
+{
+  "name": "cmd",
+  "description": "Prompt template extracted from jakefile.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "../node-jsdoc-toolkit/app/run.js -n -r=100 ",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/jake/jakefile.js",
+    "imported": true
+  }
+}

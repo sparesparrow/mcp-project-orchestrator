@@ -1,0 +1,12 @@
+{
+  "name": "handlerFuncName",
+  "description": "Prompt template extracted from action_container.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "_handleConflict",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/argparse/lib/action_container.js",
+    "imported": true
+  }
+}

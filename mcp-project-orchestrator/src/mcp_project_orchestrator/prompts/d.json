@@ -1,0 +1,12 @@
+{
+  "name": "d",
+  "description": "Prompt template extracted from map-store.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "data:",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/istanbul-lib-source-maps/lib/map-store.js",
+    "imported": true
+  }
+}

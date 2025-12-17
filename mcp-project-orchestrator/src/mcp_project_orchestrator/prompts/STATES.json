@@ -1,0 +1,12 @@
+{
+  "name": "STATES",
+  "description": "Prompt template extracted from Multipart.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "${name}Mark",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/formidable/src/parsers/Multipart.js",
+    "imported": true
+  }
+}

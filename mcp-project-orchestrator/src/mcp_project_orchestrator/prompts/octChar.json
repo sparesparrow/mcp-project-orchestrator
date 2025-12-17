@@ -1,0 +1,12 @@
+{
+  "name": "octChar",
+  "description": "Prompt template extracted from 1837.6bbfd9967be58e1325f1.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "\\\\\\\\[0-7]{1,3}",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-servers/src/prompt-manager/.venv/lib/python3.12/site-packages/notebook/static/1837.6bbfd9967be58e1325f1.js",
+    "imported": true
+  }
+}

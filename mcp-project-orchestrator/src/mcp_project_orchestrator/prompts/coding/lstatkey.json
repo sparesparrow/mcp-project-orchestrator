@@ -1,0 +1,12 @@
+{
+  "name": "lstatkey",
+  "description": "Prompt template extracted from glob.js",
+  "type": "prompt",
+  "category": "coding",
+  "content": "lstat\\0",
+  "variables": {},
+  "metadata": {
+    "source": "/home/sparrow/projects/mcp-prompts/node_modules/glob/glob.js",
+    "imported": true
+  }
+}
