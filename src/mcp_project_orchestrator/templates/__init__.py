@@ -103,6 +103,19 @@ class TemplateManager:
     def get_template(self, name: str) -> Optional[BaseTemplate]:
         return self._templates.get(name)
 
+    def apply_template(self, template_name: str, variables: dict, target_dir: str) -> None:
+        """Apply a template with variables to create a new project"""
+        template = self.get_template(template_name)
+        if not template:
+            raise ValueError(f"Template '{template_name}' not found")
+
+        # Set variables
+        for key, value in variables.items():
+            template.set_variable(key, str(value))
+
+        # Apply template
+        template.apply(target_dir)
+
 
 __all__ = [
     "TemplateType",
@@ -113,16 +126,3 @@ __all__ = [
     "ComponentTemplate",
     "TemplateManager",
 ]
-
-    def apply_template(self, template_name: str, variables: dict, target_dir: str) -> None:
-        """Apply a template with variables to create a new project"""
-        template = self.get_template(template_name)
-        if not template:
-            raise ValueError(f"Template '{template_name}' not found")
-        
-        # Set variables
-        for key, value in variables.items():
-            template.set_variable(key, str(value))
-        
-        # Apply template
-        template.apply(target_dir)
