@@ -1,0 +1,49 @@
+name: Device APKs
+
+# Builds the debug app APK and the instrumented-test APK for install on a physical phone.
+# Consumed by .claude/skills/android-test/scripts/phone_ci.sh (artifact name: device-apks).
+# Double-underscore placeholders (gradlew directory and its path prefix) are filled in by scripts/install_into.sh.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: device-apks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: __ANDROID_DIR__
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'   # only used to create a wrapper when the repo has none
+      - uses: android-actions/setup-android@v3
+        with:
+          # the default also installs legacy 'tools', which the SDK repo no longer serves (sdkmanager exits 1)
+          packages: platform-tools
+      - run: |
+          yes | sdkmanager --licenses > /dev/null
+          sdkmanager "platforms;android-34" "build-tools;34.0.0"
+      - name: Gradle wrapper (generate if the repo has none)
+        run: |
+          [ -f gradlew ] || gradle wrapper --gradle-version 8.7
+          chmod +x ./gradlew
+      - run: ./gradlew assembleDebug assembleDebugAndroidTest --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: device-apks
+          path: |
+            __ANDROID_PREFIX__**/build/outputs/apk/debug/*.apk
+            __ANDROID_PREFIX__**/build/outputs/apk/androidTest/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
