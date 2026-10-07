@@ -3,9 +3,7 @@
 Run date 2026-10-07, Linux host (Pentium G3240, no AVX2, ~7 GB RAM, root disk 99% full). Device: Android 15, build
 `V1TDS35H.83-20-5-8-6`, channel `reteu`, A/B, no `init_boot`, `boot_b` 64 MiB, `is-userspace` yes in fastbootd.
 
-**Status at the end of the run:** bootloader unlocked (`securestate: flashing_unlocked`), Magisk v30.7 patched `boot` flashed
-to `boot_b`, phone booted into Android and stayed up (USB `22b8:2e82` stable for minutes). **`su` was NOT verified**: the unlock
-wipe turns USB debugging off and the setup wizard needs the screen. See "Verification checklist" below.
+**Result: ROOT VERIFIED.** Bootloader unlocked (`securestate: flashing_unlocked`), Magisk v30.7 patched `boot` flashed to `boot_b`, phone booted. After the user finished the setup wizard and enabled USB debugging, the Magisk app (installed with `adb install`) showed `Installed 30.7 (30700)`, `Ramdisk Yes`, and a "Requires additional setup" dialog; tapping OK (found by screenshot + `adb shell input tap`, see `recipes.md`) rebooted the phone, then `adb shell su -c id` returned `uid=0(root) gid=0(root) context=u:r:magisk:s0` and `magisk -v` printed `30.7:MAGISK:R`. Before that setup step `su` was "inaccessible or not found" (26 attempts over ~5 min), so do not conclude failure from that.
 
 ## What worked, in order
 
@@ -73,11 +71,12 @@ wipe turns USB debugging off and the setup wizard needs the screen. See "Verific
   and a large download). Shizuku cannot give root. Magisk docs: patch on the same device, never use someone else's patched
   image; `vbmeta --disable-verity --disable-verification` only if the phone fails verification (may wipe data).
 
-## Verification checklist (after the user finishes the setup wizard)
+## Verification checklist (what actually worked; after the user finishes the setup wizard)
 
 1. Settings > About phone > tap Build number 7 times > Developer options > USB debugging ON; accept the RSA prompt.
-2. `adb install Magisk-v30.7.apk`; open it. It should report Magisk v30.7 installed; if it says "Requires additional
-   setup", accept and let it reboot.
+2. `adb install Magisk-v30.7.apk` and launch it (`scripts/watch_and_verify.sh SERIAL APK LOG` does both and then polls `su`).
+   It should report `Installed 30.7`, `Ramdisk Yes`. "Requires additional setup ... reboot?": take a screenshot and tap OK
+   (`recipes.md`, screenshot + tap). The phone reboots (~1 min without adb).
 3. `adb shell su -c id` (approve the prompt on the phone) -> `uid=0(root)`.
 4. Rollback if the phone misbehaves: `fastboot reboot fastboot`, then `flash_guarded.sh boot_b stock_boot.img --serial S
    --product cancunf --yes-i-confirmed` using the stock image saved with its sha256, then `fastboot reboot`.
