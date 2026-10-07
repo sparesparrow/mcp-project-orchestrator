@@ -23,15 +23,15 @@ ui_wake() {
   _a shell wm dismiss-keyguard >/dev/null 2>&1 || true   # no effect with a PIN: unlock by hand
 }
 
-# Grant every runtime ("dangerous") permission the package declares. Without this, apps that start
-# foreground services with a camera/location type crash on Android 14+ (SecurityException).
+# Grant the package's runtime ("dangerous") permissions only: names listed under its
+# "runtime permissions:" block in dumpsys. Never grants development/signature permissions.
+# Without CAMERA, a foreground service with a camera type crashes on Android 14+.
 ui_grant_permissions() {
   local p
   while read -r p; do
     [ -n "$p" ] && _a shell pm grant "$PKG" "$p" >/dev/null 2>&1 || true
   done < <(_a shell dumpsys package "$PKG" | tr -d '\r' \
-            | sed -n '/requested permissions:/,/install permissions:/p' \
-            | grep -oE '[A-Za-z0-9_.]+\.permission\.[A-Z_]+' | sort -u)
+            | awk '/^ +runtime permissions:/{f=1;next} f && /^ +[A-Za-z0-9_.]+: granted=/{sub(/:.*/,"");gsub(/ /,"");print;next} f && !/^ +[A-Za-z0-9_.]+: granted=/{f=0}')
 }
 
 ui_launch() {
@@ -42,8 +42,9 @@ ui_launch() {
 }
 
 ui_dump() {
+  _a shell rm -f /sdcard/ui_dump.xml >/dev/null 2>&1 || true   # never read a stale screen
   _a shell uiautomator dump /sdcard/ui_dump.xml >/dev/null 2>&1 || return 1
-  _a shell cat /sdcard/ui_dump.xml | tr -d '\r'
+  _a shell cat /sdcard/ui_dump.xml 2>/dev/null | tr -d '\r'
 }
 
 # ui_find TEXT [contains|exact] [first|bottom-most]  -> prints "x y" (real pixels) or exits 1
@@ -56,8 +57,11 @@ xml = sys.stdin.read().strip()
 if not xml: sys.exit(1)
 c = []
 for n in ET.fromstring(xml).iter("node"):
-    hay = " ".join(p for p in ((n.get("text") or "").strip(), (n.get("content-desc") or "").strip()) if p).lower()
-    if not hay or (hay != needle if mode == "exact" else needle not in hay): continue
+    t, d = (n.get("text") or "").strip().lower(), (n.get("content-desc") or "").strip().lower()
+    hay = " ".join(x for x in (t, d) if x)
+    if not hay: continue
+    ok = (needle in (t, d)) if mode == "exact" else (needle in hay)
+    if not ok: continue
     b = [int(v) for v in re.findall(r"\d+", n.get("bounds", ""))]
     if len(b) == 4: c.append(((b[1] + b[3]) // 2, (b[0] + b[2]) // 2))
 if not c: sys.exit(1)
@@ -107,6 +111,9 @@ ui_diagnostics() {
   _a shell dumpsys activity processes 2>/dev/null | grep -i -A2 "$PKG" >"$OUT/logs/procs.txt" || true
   ui_shot failure || true
   local n
-  n=$(grep -c "FATAL EXCEPTION" "$OUT/logs/crash.txt" 2>/dev/null || true)
+  # count only crashes of the package under test (another app's crash must not fail the run)
+  n=$(grep -A3 "FATAL EXCEPTION" "$OUT/logs/crash.txt" 2>/dev/null | grep -c "Process: $PKG" || true)
   echo "${n:-0}"
 }
+
+ui_cleanup() { _a shell rm -f /sdcard/ui_dump.xml >/dev/null 2>&1 || true; }

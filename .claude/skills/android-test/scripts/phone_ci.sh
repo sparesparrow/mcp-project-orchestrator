@@ -41,14 +41,22 @@ out=$(realpath -m "$out")
 
 refargs=(); [ -z "$ref" ] || refargs=(--branch "$ref")
 if [ -n "$release" ]; then
-  [ "$release" != latest ] || release=$(gh release list -R "$repo" --limit 1 --json tagName --jq '.[0].tagName')
+  [ "$release" != latest ] || release=$(gh release list -R "$repo" --limit 1 --json tagName --jq '.[0].tagName // empty')
+  [ -n "$release" ] || { echo "no releases in $repo" >&2; exit 1; }
   echo "release: $release  device: $serial  out: $out"
 elif [ "$dispatch" = 1 ]; then
   [ "$dry" = 0 ] || { echo "dry-run: would dispatch $wf on ${ref:-default branch} in $repo"; }
   if [ "$dry" = 0 ]; then
+    before=$(gh run list -R "$repo" --workflow "$wf" --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')
     gh workflow run "$wf" -R "$repo" ${ref:+--ref "$ref"}
-    sleep 8
-    run_id=$(gh run list -R "$repo" --workflow "$wf" "${refargs[@]}" --limit 1 --json databaseId --jq '.[0].databaseId')
+    run_id=""
+    for _ in $(seq 1 30); do
+      sleep 4
+      run_id=$(gh run list -R "$repo" --workflow "$wf" --event workflow_dispatch "${refargs[@]}" --limit 1 --json databaseId --jq '.[0].databaseId // 0')
+      [ "$run_id" -gt "$before" ] && break
+      run_id=""
+    done
+    [ -n "$run_id" ] || { echo "dispatched run did not appear" >&2; exit 1; }
     gh run watch "$run_id" -R "$repo" --exit-status
   fi
 fi
@@ -71,9 +79,12 @@ if [ -n "$release" ]; then
 else
   gh run download "$run_id" -R "$repo" -n "$artifact" -D "$out/apks"
 fi
-app_apk=$(find "$out/apks" -name '*.apk' ! -name '*androidTest*' | head -1)
-test_apk=$(find "$out/apks" -name '*androidTest*.apk' | head -1)
-[ -n "$app_apk" ] && [ -n "$test_apk" ] || { echo "artifact lacks app or androidTest APK" >&2; exit 1; }
+mapfile -t app_apks < <(find "$out/apks" -name '*.apk' ! -name '*androidTest*' | sort)
+mapfile -t test_apks < <(find "$out/apks" -name '*androidTest*.apk' | sort)
+[ "${#app_apks[@]}" -ge 1 ] && [ "${#test_apks[@]}" -ge 1 ] || { echo "artifact lacks app or androidTest APK" >&2; exit 1; }
+[ "${#app_apks[@]}" -eq 1 ] && [ "${#test_apks[@]}" -eq 1 ] || {
+  echo "ambiguous APKs (need exactly one app + one androidTest APK):" >&2; printf '  %s\n' "${app_apks[@]}" "${test_apks[@]}" >&2; exit 1; }
+app_apk=${app_apks[0]}; test_apk=${test_apks[0]}
 
 "${A[@]}" logcat -c || true
 # -g grants every runtime permission: foreground services with camera/location types crash on
@@ -84,15 +95,19 @@ set +e
 timeout "$tmo" adb -s "$serial" shell am instrument -w -r "$pkg.test/$runner" | tee "$out/instrument.txt"
 rc=${PIPESTATUS[0]}
 set -e
-[ "$rc" != 124 ] || echo "instrumentation timed out after ${tmo}s" >&2
+if [ "$rc" = 124 ]; then
+  echo "instrumentation timed out after ${tmo}s; stopping it on the device" >&2
+  "${A[@]}" shell am force-stop "$pkg.test" || true; "${A[@]}" shell am force-stop "$pkg" || true
+fi
 "${A[@]}" logcat -d -v threadtime >"$out/logcat.txt" || true
 "${A[@]}" exec-out screencap -p >"$out/final-screen.png" || true
 
 # am instrument exits 0 even when tests fail; read the summary.
-if grep -q '^OK (' "$out/instrument.txt"; then verdict=PASS
+ok_n=$(grep -m1 -oE '^OK \([0-9]+ test' "$out/instrument.txt" | grep -oE '[0-9]+' || true)
+if [ -n "${ok_n:-}" ] && [ "$ok_n" -gt 0 ]; then verdict=PASS
 elif grep -qE 'FAILURES!!!|INSTRUMENTATION_FAILED|shortMsg=' "$out/instrument.txt"; then verdict=FAIL
 else verdict=UNKNOWN; fi
 total=$(grep -m1 -oE 'numtests=[0-9]+' "$out/instrument.txt" | cut -d= -f2 || true)
-failed=$(grep -c 'INSTRUMENTATION_STATUS_CODE: -[0-9]' "$out/instrument.txt" || true)
+failed=$(grep -cE 'INSTRUMENTATION_STATUS_CODE: -[12]$' "$out/instrument.txt" || true)
 echo "verdict: $verdict (tests=${total:-?} failed=${failed:-0} adb rc=$rc); evidence in $out"
 [ "$verdict" = PASS ]

@@ -8,7 +8,7 @@
 # scenario_<name>() functions using ui_* helpers from ui_lib.sh. Built-in scenarios:
 #   launch  start the app, grant permissions, check it stays alive 5 s
 #   nav-all open each bottom-nav label in $TABS, screenshot each, check the app is alive
-# Exit 0 only if the scenario passed and logcat shows no FATAL EXCEPTION for the run.
+# Scenario functions must `return 1` explicitly on any failed step. Exit 0 only if the scenario passed and logcat shows no FATAL EXCEPTION for the run.
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
 profile="" scenario="" SERIAL="" OUT="" list=0
@@ -26,12 +26,15 @@ profile=$(realpath "$profile")
 # shellcheck source=ui_lib.sh
 . "$here/ui_lib.sh"
 
-scenario_launch() { ui_launch; sleep 5; ui_app_alive; }
+scenario_launch() { ui_launch || return 1; sleep 5; ui_app_alive; }
 scenario_nav-all() {
-  ui_launch
+  # explicit `|| return 1`: set -e is ignored inside a function called from `||`
+  ui_launch || return 1
   local t
   for t in ${TABS:?profile must set TABS}; do
-    ui_open_tab "$t"; ui_shot "tab-$t"; ui_app_alive || { _err "app died on tab $t"; return 1; }
+    ui_open_tab "$t" || return 1
+    ui_shot "tab-$t" || true
+    ui_app_alive || { _err "app died on tab $t"; return 1; }
   done
 }
 
@@ -52,5 +55,6 @@ ui_grant_permissions
 _a logcat -c
 rc=0; "scenario_$scenario" || rc=$?
 crashes=$(ui_diagnostics)
+ui_cleanup
 if [ "$rc" = 0 ] && [ "${crashes:-0}" = 0 ]; then echo "verdict: PASS ($scenario) evidence: $OUT"; exit 0; fi
 echo "verdict: FAIL ($scenario) scenario rc=$rc, FATAL EXCEPTION count=$crashes, evidence: $OUT"; exit 1

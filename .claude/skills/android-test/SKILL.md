@@ -17,7 +17,7 @@ The dev host can be too small for Gradle (this one: 2 cores, 7 GB RAM, ~1.6 GB f
 
 | Tool | Use |
 |---|---|
-| `scripts/phone_ci.sh --repo OWNER/REPO --pkg APP_ID [--ref B] [--run-id N] [--release TAG\|latest] [--dispatch] [--timeout S] [--dry-run]` | Download APKs from the newest successful workflow run (artifact `device-apks`) or a GitHub release; `adb install -r -g -t` app + androidTest APK; `am instrument -w`; save `instrument.txt`, `logcat.txt`, `final-screen.png`; print `verdict: PASS/FAIL/UNKNOWN (tests=N failed=M)`. Exit 0 only on `OK (`. |
+| `scripts/phone_ci.sh --repo OWNER/REPO --pkg APP_ID [--ref B] [--run-id N] [--release TAG\|latest] [--dispatch] [--timeout S] [--dry-run]` | Download APKs from the newest successful workflow run (artifact `device-apks`) or a GitHub release; `adb install -r -g -t` app + androidTest APK; `am instrument -w`; save `instrument.txt`, `logcat.txt`, `final-screen.png`; print `verdict: PASS/FAIL/UNKNOWN (tests=N failed=M)`. Exit 0 only on `OK (N tests)` with N > 0. |
 | `scripts/run_scenario.sh --profile profiles/X.env --scenario NAME [--serial S] [--out DIR]` (`--list`) | UI scenario on the installed app: grants permissions, clears logcat, runs `scenario_NAME`, collects logs + failure screenshot, fails on any `FATAL EXCEPTION`. Built-ins: `launch` (stays alive 5 s), `nav-all` (opens every tab in `TABS`, screenshots each). |
 | `scripts/ui_lib.sh` | Sourceable helpers: `ui_launch`, `ui_grant_permissions`, `ui_find/ui_tap_text/ui_wait/ui_open_tab` (uiautomator text lookup, real pixels, no scale factor), `ui_shot`, `ui_diagnostics`. |
 | `scripts/install_into.sh REPO_DIR --profile X [--android-dir DIR]` | Vendor this skill into a project's `.claude/skills/android-test` and write `.github/workflows/device-apks.yml` if missing. Never commits. |
@@ -41,7 +41,7 @@ The dev host can be too small for Gradle (this one: 2 cores, 7 GB RAM, ~1.6 GB f
 
 ## Verified findings (moto g54, Android 15, 2026-10-07)
 
-- **mia 2.0.0-dev release** (`cz.mia.app`): 53 of 53 instrumented tests pass in 42 s **with permissions granted**. Without them the first test crashes the app: `DrivingService.onCreate` calls `startForeground` with a camera type and no CAMERA permission, so Android 14+ throws `SecurityException`. Real-use bug worth a guard in the app (check the permission before starting the service, or drop the camera type until granted).
+- **mia 2.0.0-dev release** (`cz.mia.app`): 53 of 53 instrumented tests pass in 42 s **with permissions granted**. Without them the first test crashes the app: `DrivingService.onCreate` calls `startForeground` with a camera type and no CAMERA permission, so Android 14+ throws `SecurityException`. Real-use bug; fixed in mia PR #172 (camera type only declared when CAMERA is granted). Older builds still crash without the permission.
 - `am instrument` exits 0 even when tests fail; the verdict comes from the output.
 - A long instrument run must not sit inside a short tool timeout: run it in the background (or `--timeout`).
 - `gh release download` of a 76 MB asset took ~6 min on this link; cache APKs per release tag.
@@ -58,4 +58,6 @@ The dev host can be too small for Gradle (this one: 2 cores, 7 GB RAM, ~1.6 GB f
 - The test phone may hold banking and wallet apps and a personal profile: install only the app under test (and its `.test` package), never `pm clear` or uninstall anything else.
 - Do not add persistent-access mechanisms (see the `adb` skill, rule 7).
 - CI logs expire (HTTP 410 after ~90 days): re-run to get fresh logs rather than guessing.
+- `install -r -g -t` replaces an installed app with the same id and the tests may clear its data: use a dedicated test phone, or a debug `applicationIdSuffix`, if the app holds real data.
+- Scenario functions must `return 1` explicitly on a failed step (bash ignores `set -e` inside a function called from `||`).
 - Downloaded APKs are untrusted data until the checksum (or release provenance) is checked.

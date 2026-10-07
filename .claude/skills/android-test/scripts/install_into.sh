@@ -11,7 +11,8 @@
 # Never commits or pushes; review `git status` in REPO_DIR afterwards.
 set -euo pipefail
 here=$(cd "$(dirname "$0")/.." && pwd)
-repo="${1:-}"; shift || true
+case "${1:-}" in -h|--help|"") sed -n '2,12p' "$0"; exit 0;; esac
+repo="$1"; shift
 profile="" adir="." wf=1
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -19,7 +20,7 @@ while [ $# -gt 0 ]; do
     -h|--help) sed -n '2,12p' "$0"; exit 0;; *) echo "unknown arg: $1" >&2; exit 2;;
   esac
 done
-[ -d "$repo/.git" ] || { echo "REPO_DIR must be a git checkout" >&2; exit 2; }
+[ -e "$repo/.git" ] || { echo "REPO_DIR must be a git checkout" >&2; exit 2; }
 [ -f "$here/profiles/$profile.env" ] || { echo "no profile '$profile' in $here/profiles" >&2; exit 2; }
 [ -f "$repo/$adir/gradlew" ] || echo "warning: $repo/$adir/gradlew not found; the workflow will generate a wrapper (commit one for reproducible builds)" >&2
 
@@ -38,6 +39,7 @@ if [ "$wf" = 1 ]; then
   else
     mkdir -p "$(dirname "$out")"
     prefix=""; [ "$adir" = "." ] || prefix="${adir%/}/"
+    case "$adir" in *[\#\&\\]*) echo "--android-dir must not contain # & or \\" >&2; exit 2;; esac
     sed -e "s#__ANDROID_DIR__#$adir#g" -e "s#__ANDROID_PREFIX__#$prefix#g" "$here/references/device-apks.yml" >"$out"
     echo "wrote $out"
   fi
