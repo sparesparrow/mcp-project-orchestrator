@@ -2,8 +2,9 @@
 # Read-only preflight for the adb skill. Prints what is present/missing; installs nothing.
 set -u
 ok=0; miss=0
-chk() { # name, cmd, hint
+chk() { # name, cmd, hint, [optional]
   if command -v "$2" >/dev/null 2>&1; then printf '  [ok]   %-16s %s\n' "$1" "$(command -v "$2")"; ok=$((ok+1))
+  elif [ "${4:-}" = optional ]; then printf '  [opt]  %-16s missing (optional) hint: %s\n' "$1" "$3"
   else printf '  [MISS] %-16s hint: %s\n' "$1" "$3"; miss=$((miss+1)); fi
 }
 echo "== tools =="
@@ -13,8 +14,8 @@ chk python3 python3 "sudo apt install python3"
 chk unzip unzip "sudo apt install unzip"
 chk curl curl "sudo apt install curl"
 chk sha256sum sha256sum "coreutils"
-chk aapt aapt "sudo apt install aapt  (APK verification, optional)"
-chk simg2img simg2img "sudo apt install android-sdk-libsparse-utils (sparse firmware images, optional)"
+chk aapt aapt "sudo apt install aapt  (APK verification)" optional
+chk simg2img simg2img "sudo apt install android-sdk-libsparse-utils (sparse firmware images)" optional
 chk lsusb lsusb "sudo apt install usbutils"
 echo "== versions =="
 command -v adb >/dev/null 2>&1 && adb version | head -2

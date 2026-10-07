@@ -35,7 +35,7 @@ Run date 2026-10-07, Linux host (Pentium G3240, no AVX2, ~7 GB RAM, root disk 99
    `(bootloader) Bootloader is unlocked! Rebooting phone to fastboot mode` after 16 s and the phone came back as
    `flashing_unlocked`. If `OKAY` but still locked, check `getvar securestate` and simply repeat once.
    In the **bootloader** `getvar unlocked` prints "not found"; **fastbootd** prints `unlocked: yes`, which `flash_guarded.sh` needs.
-6. **Flash from fastbootd:** `fastboot reboot fastboot`, then `flash_guarded.sh boot_b <img> --serial S --product cancunf`
+6. **Flash from fastbootd:** `fastboot reboot fastboot`, then `flash_guarded.sh boot_<current-slot> <img> --serial S --product cancunf` (read the slot with `fastboot getvar current-slot` first; it was `b` here)
    (dry run, then `--yes-i-confirmed`), then `fastboot reboot`. XDA reports `(bootloader) Preflash validation failed`
    when flashing Magisk images from the bootloader on this phone, and success from fastbootd; we went straight to fastbootd.
 7. **Boot check without adb** (adb is off after the wipe): poll `lsusb`. fastboot/fastbootd `22b8:2e80`; Android MTP-only
@@ -78,6 +78,6 @@ Run date 2026-10-07, Linux host (Pentium G3240, no AVX2, ~7 GB RAM, root disk 99
    It should report `Installed 30.7`, `Ramdisk Yes`. "Requires additional setup ... reboot?": take a screenshot and tap OK
    (`recipes.md`, screenshot + tap). The phone reboots (~1 min without adb).
 3. `adb shell su -c id` (approve the prompt on the phone) -> `uid=0(root)`.
-4. Rollback if the phone misbehaves: `fastboot reboot fastboot`, then `flash_guarded.sh boot_b stock_boot.img --serial S
+4. Rollback if the phone misbehaves: `fastboot reboot fastboot`, then `flash_guarded.sh boot_<slot flashed> stock_boot.img --serial S
    --product cancunf --yes-i-confirmed` using the stock image saved with its sha256, then `fastboot reboot`.
 5. Do not take OTAs while rooted without restoring the stock boot first; after an OTA the slot and boot image can change.

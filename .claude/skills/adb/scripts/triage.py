@@ -65,8 +65,9 @@ def main():
 
     _, out = run(["adb", "devices", "-l"])
     res["adb_devices"] = parse_devices(out)
-    _, out = run(["fastboot", "devices"])
-    res["fastboot_devices"] = [l.split()[0] for l in out.splitlines() if l.strip() and "\t" in l or " fastboot" in l]
+    rc, out = run(["fastboot", "devices"])
+    res["fastboot_devices"] = [l.split()[0] for l in out.splitlines()
+                               if rc == 0 and l.strip() and re.match(r"^\S+\s+(fastboot|fastbootd)\b", l)]
     _, out = run(["lsusb"])
     keys = ("google", "motorola", "samsung", "xiaomi", "oneplus", "mediatek", "qualcomm", "18d1", "22b8", "04e8", "2717", "0e8d", "05c6")
     res["usb"] = [l for l in out.splitlines() if any(k in l.lower() for k in keys)]

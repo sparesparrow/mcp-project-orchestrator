@@ -13,6 +13,12 @@ echo "release: $tag"; echo "url: $url"
 [ "${1:-}" = "--dry-run" ] && exit 0
 dir=$(mktemp -d)
 curl -fsSL -o "$dir/Magisk-$tag.apk" "$url"
-file "$dir/Magisk-$tag.apk"
+want=$(printf '%s' "$meta" | python3 -I -c 'import json,sys
+d=json.load(sys.stdin)
+a=next(a for a in d["assets"] if a["name"].endswith(".apk") and a["name"].lower().startswith("magisk"))
+print((a.get("digest") or "").removeprefix("sha256:"))')
+got=$(sha256sum "$dir/Magisk-$tag.apk" | cut -d' ' -f1)
+if [ -n "$want" ] && [ "$want" != "$got" ]; then echo "REFUSED: sha256 $got does not match the release digest $want" >&2; exit 1; fi
+[ -n "$want" ] && echo "sha256 matches the GitHub release digest" || echo "WARNING: release has no digest; verify the hash another way" >&2
 sha256sum "$dir/Magisk-$tag.apk"
 echo "saved: $dir/Magisk-$tag.apk  (install with: adb install <path> after user confirmation)"

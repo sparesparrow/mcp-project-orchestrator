@@ -7,7 +7,7 @@ description: Control and troubleshoot Android devices over ADB/fastboot — devi
 
 Never assume the device is connected, unlocked or rooted. Establish facts, then act. `$ARGUMENTS` is a free-form intent ("screenshot", "connect 192.168.1.5", "root my moto g54 5G"); if empty, run triage and summarize options.
 
-For multi-step or state-changing work (rooting, unlocking, flashing), behave as the `adb` agent (`~/.claude/agents/adb.md`) and follow the phased plan in `references/example-root-plan.md`.
+For multi-step or state-changing work (rooting, unlocking, flashing), behave as the `adb` agent (`agents/adb.md`, user or project `.claude/agents/`) and follow the phased plan in `references/example-root-plan.md`.
 
 ## Interaction protocol (state-changing tasks): plan first, then ask
 
@@ -19,11 +19,11 @@ For multi-step or state-changing work (rooting, unlocking, flashing), behave as 
 
 Read-only/everyday requests (screenshot, list packages, logcat) skip plan mode.
 
-## Toolbox (paths relative to `~/.claude/skills/adb/`)
+## Toolbox (paths relative to this skill directory: `~/.claude/skills/adb/` or `.claude/skills/adb/` in a project)
 
 | Tool | Use |
 |---|---|
-| `adb` MCP server (`mcp__adb__*`, ~90 tools, installed in `~/.local/share/adb-mcp-venv`) | Everyday device work: apps, files, input, UI dump, logs, screenshots, port forwards. Structured JSON, injection-safe args. Shell escape hatch is OFF (`ADB_MCP_ALLOW_SHELL` unset). No fastboot support. |
+| `adb` MCP server (`mcp__adb__*`, ~90 tools, a local venv install) | Everyday device work: apps, files, input, UI dump, logs, screenshots, port forwards. Structured JSON, injection-safe args. Shell escape hatch is OFF (`ADB_MCP_ALLOW_SHELL` unset). No fastboot support. |
 | `scripts/doctor.sh` | Read-only preflight: adb/fastboot/python/aapt/udev. |
 | `python3 -I scripts/triage.py [serial]` | Read-only JSON: adb/fastboot/USB state, device props, `verdict`. Decide from this. |
 | `scripts/fastboot_facts.sh [serial]` | Read-only JSON of `fastboot getvar all` (slot, unlocked, partitions, init_boot/vbmeta). |

@@ -15,6 +15,8 @@ class RangeFile(io.RawIOBase):
         self.url = url
         req = urllib.request.Request(url, method="HEAD")
         with urllib.request.urlopen(req, timeout=60) as r:
+            if "Content-Length" not in r.headers:
+                raise SystemExit("server sent no Content-Length")
             self.size = int(r.headers["Content-Length"])
             if r.headers.get("Accept-Ranges", "").lower() != "bytes":
                 raise SystemExit("server does not advertise Accept-Ranges: bytes")
@@ -46,7 +48,11 @@ class RangeFile(io.RawIOBase):
         end = self.pos + n - 1
         req = urllib.request.Request(self.url, headers={"Range": f"bytes={self.pos}-{end}"})
         with urllib.request.urlopen(req, timeout=120) as r:
+            if r.status != 206:
+                raise SystemExit(f"server ignored the Range header (HTTP {r.status}); refusing to read the whole file")
             data = r.read()
+        if len(data) != n:
+            raise SystemExit(f"short range read: wanted {n} bytes, got {len(data)}")
         self.pos += len(data)
         return data
 

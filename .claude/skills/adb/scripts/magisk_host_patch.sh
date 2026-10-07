@@ -21,6 +21,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 [ -f "$apk" ] && [ -f "$boot" ] && [ -n "$out" ] || { sed -n '2,20p' "$0"; exit 2; }
+apk=$(realpath "$apk"); boot=$(realpath "$boot"); out=$(realpath -m "$out")
 case "$(uname -m)" in x86_64) hostabi=x86_64;; aarch64) hostabi=arm64-v8a;; *) echo "unsupported host arch" >&2; exit 1;; esac
 
 w=$(mktemp -d); trap 'rm -rf "$w"' EXIT

@@ -49,6 +49,8 @@ checked=0
 if [ -n "$serial" ] && printf '%s\n' "$devs" | grep -qxF -- "$serial"; then
   checked=1
   dprod=$(gv product); dslot=$(gv current-slot); dunl=$(gv unlocked)
+  # the bootloader prints "unlocked: not found" on some Motorola units; fastbootd says yes. Fall back to securestate.
+  case "$dunl" in yes|no) ;; *) case "$(gv securestate)" in *flashing_unlocked*|*unlocked*) dunl=yes;; *) dunl=${dunl:-unknown};; esac;; esac
   echo "device:    serial=$serial product=$dprod current-slot=$dslot unlocked=$dunl"
   [ -z "$product" ] || [ "$dprod" = "$product" ] || { echo "REFUSED: fastboot product '$dprod' != expected '$product'" >&2; exit 6; }
   [ "$dunl" = "yes" ] || { echo "REFUSED: bootloader not unlocked (unlocked=$dunl)" >&2; exit 6; }

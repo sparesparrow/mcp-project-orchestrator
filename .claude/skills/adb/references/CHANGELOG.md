@@ -4,6 +4,7 @@
 - New references/field-notes-moto-g54-cancunf.md and a "Field notes" section at the end of SKILL.md: GKI-boot-image trick (match `ro.bootimage.build.fingerprint`/date/kernel instead of an exact firmware build), unlock and fastbootd quirks, USB-ID boot check, dead ends, verification checklist.
 - New scripts: `magisk_host_patch.sh` (host-side Magisk patch, mirrors `boot_patch.sh`, static magiskboot from the APK, `--preinit`), `remote_zip_extract.py` (HTTP Range member extraction).
 - firmware-sources.md: LenovoMotoFirmwareDownloader failure modes (SIGILL on non-AVX2 CPUs, Bun 1.3.13 baseline fix, "Missing device fingerprint"); playbooks/motorola.md: unlock and no-exact-firmware notes; SKILL.md rule 4 (user-pasted credential) and rule 7 (no persistent-access mechanisms in images).
+- Review fixes: absolute paths in magisk_host_patch.sh, HTTP 206 check in remote_zip_extract.py, digest check in fetch_magisk.sh, stdin-free fastboot_facts.sh, optional tools no longer fail doctor.sh, triage.py fastboot parsing, flash_guarded.sh unlock fallback via securestate, watch_and_verify.sh device check, fastbootd flashing documented, slot-neutral notes.
 - Update: root verified later the same day (`su -c id` uid=0, Magisk 30.7) after the user enabled USB debugging; added the screenshot + `adb shell input tap` recipe to recipes.md and `scripts/watch_and_verify.sh`.
 
 ## 2026-10-07: browser routes for website steps
