@@ -1,0 +1,6 @@
+# Merge into ~/.codex/config.toml
+# Alternative: codex mcp add playwright -- npx -y @playwright/mcp@latest
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
